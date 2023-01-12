@@ -9,15 +9,20 @@
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
+
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings
   ConfigureBindings();
+
 }
 
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
+  
+  // Set the default command for the Drive Train
+  m_subDriveTrain.SetDefaultCommand(CmdDriveWithController(&m_subDriveTrain, driverController));
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   frc2::Trigger([this] {
@@ -32,4 +37,9 @@ void RobotContainer::ConfigureBindings() {
 frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
   // An example command will be run in autonomous
   return autos::ExampleAuto(&m_subsystem);
+}
+
+void RobotContainer::ConfigureDrive() {
+  m_subDriveTrain.DriveTrainConfigure();
+  m_subDriveTrain.GetPidFromDashboard();
 }
