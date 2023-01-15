@@ -33,13 +33,13 @@ void CmdDriveWithController::Execute() {
   }
 
   // This is controlling the speed of the drive train
-  if(m_driverController->GetRawAxis(AXIS_L_TRIG) > 0)
+  if(m_driverController->GetRawAxis(AXIS_R_TRIG) > 0)
   {
-    speed = -1*m_driverController->GetRawAxis(AXIS_L_TRIG);
+    speed = -1*m_driverController->GetRawAxis(AXIS_R_TRIG);
   }
   else
   {
-    speed = m_driverController->GetRawAxis(AXIS_R_TRIG);
+    speed = m_driverController->GetRawAxis(AXIS_L_TRIG);
   }
 
   // This is the steering section of the drive train
@@ -74,7 +74,7 @@ void CmdDriveWithController::Execute() {
     }
   
   }*/
-
+/*
   if(m_driverController->GetRawAxis(AXIS_LX) < 0.02 && m_driverController->GetRawAxis(AXIS_LX) > -0.02) {
     m_driveTrain->ZeroYaw();
     if(m_driveTrain->GetYaw() > 0){
@@ -83,15 +83,15 @@ void CmdDriveWithController::Execute() {
     if(m_driveTrain->GetYaw() < 0){
       rotation = (180+m_driveTrain->GetYaw())/180 -1;
     }
-  }
-  else{
+  }*/
+ // else{
     if(m_driveTrain->GetDriveTrainGear()==false) {
-        rotation = m_driverController->GetRawAxis(AXIS_LX)*0.8;
+        rotation = m_driverController->GetRawAxis(AXIS_LX)*1;
     }
     else {
-        rotation = m_driverController->GetRawAxis(AXIS_LX)*0.4;
+        rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
     }
-  }
+//  }
 
 
   // This actually drives the drive train
