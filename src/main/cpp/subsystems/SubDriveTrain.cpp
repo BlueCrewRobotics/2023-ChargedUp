@@ -177,3 +177,11 @@ void SubDriveTrain::ResetEncoderPositions() {
   rightDriveMotor->ResetEncoder();
   leftDriveMotor->ResetEncoder();
 }
+
+double SubDriveTrain::GetYaw() {
+  return m_ahrs->GetYaw();
+}
+
+void SubDriveTrain::ZeroYaw() {
+  m_ahrs->ZeroYaw();
+}

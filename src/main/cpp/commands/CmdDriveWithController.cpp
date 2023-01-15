@@ -75,16 +75,26 @@ void CmdDriveWithController::Execute() {
   
   }*/
 
-  if(m_driveTrain->GetDriveTrainGear()==false) {
-      rotation = m_driverController->GetRawAxis(AXIS_LX)*0.8;
-   }
-   else {
-      rotation = m_driverController->GetRawAxis(AXIS_LX)*0.4;
-   }
+  if(m_driverController->GetRawAxis(AXIS_LX) < 0.02 && m_driverController->GetRawAxis(AXIS_LX) > -0.02) {
+    m_driveTrain->ZeroYaw();
+    if(m_driveTrain->GetYaw() > 0){
+      rotation = 1-(180-m_driveTrain->GetYaw())/180;
+    }
+    if(m_driveTrain->GetYaw() < 0){
+      rotation = (180+m_driveTrain->GetYaw())/180 -1;
+    }
+  }
+  else{
+    if(m_driveTrain->GetDriveTrainGear()==false) {
+        rotation = m_driverController->GetRawAxis(AXIS_LX)*0.8;
+    }
+    else {
+        rotation = m_driverController->GetRawAxis(AXIS_LX)*0.4;
+    }
+  }
 
 
-
-  // This acrually drives the drive train
+  // This actually drives the drive train
   m_driveTrain->Drive(speed, rotation);
 
 }

@@ -16,9 +16,12 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/Solenoid.h>
 #include "Constants.h"
+#include "AHRS.h"
 
-class SubDriveTrain : public frc2::SubsystemBase {
- public:
+
+class SubDriveTrain : public frc2::SubsystemBase
+{
+public:
   SubDriveTrain();
 
   /**
@@ -26,7 +29,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-   // Drive the robot
+  // Drive the robot
   void Drive(double speed, double rotation);
   // Configure the drive controllers
   void DriveTrainConfigure();
@@ -35,7 +38,7 @@ class SubDriveTrain : public frc2::SubsystemBase {
   // Clear the sticky faults on the motor controllers
   void ClearStickFaults();
   // Set the follower
-  void SetFollower(TalonFX* motor);
+  void SetFollower(TalonFX *motor);
   // Set the gear solenoid position
   void SetDriveTrainGear();
   // Get the gear shifter solenoid position
@@ -54,35 +57,45 @@ class SubDriveTrain : public frc2::SubsystemBase {
   double GetLeftErrorValue();
   // Get right encoder value
   double GetRightErrorValue();
-  //Reset Enocders Positons
+  // Reset Enocders Positons
   void ResetEncoderPositions();
+  // Get navx positional yaw
+  double GetYaw();
+  //zero yaw
+  void ZeroYaw();
 
- private:
+
+private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
- /*
-  // The below code is used for the falcon 500
-  BC_FalconFX* leftDriveMotor = new BC_FalconFX(MOTOR_LEFT_MASTER);
-  BC_FalconFX* rightDriveMotor = new BC_FalconFX(MOTOR_RIGHT_MASTER);
+  /*
+   // The below code is used for the falcon 500
+   BC_FalconFX* leftDriveMotor = new BC_FalconFX(MOTOR_LEFT_MASTER);
+   BC_FalconFX* rightDriveMotor = new BC_FalconFX(MOTOR_RIGHT_MASTER);
 
-  BC_FalconFX* leftFollowMotor = new BC_FalconFX(MOTOR_LEFT_FOLLOWER);
-  BC_FalconFX* rightFollowMotor = new BC_FalconFX(MOTOR_RIGHT_FOLLOWER);
-*/
+   BC_FalconFX* leftFollowMotor = new BC_FalconFX(MOTOR_LEFT_FOLLOWER);
+   BC_FalconFX* rightFollowMotor = new BC_FalconFX(MOTOR_RIGHT_FOLLOWER);
+ */
 
   // The below code is used for the Talon SRX controllers
-  BC_TalonSRX* leftDriveMotor = new BC_TalonSRX(MOTOR_LEFT_MASTER);
-  BC_TalonSRX* rightDriveMotor = new BC_TalonSRX(MOTOR_RIGHT_MASTER);
+  BC_TalonSRX *leftDriveMotor = new BC_TalonSRX(MOTOR_LEFT_MASTER);
+  BC_TalonSRX *rightDriveMotor = new BC_TalonSRX(MOTOR_RIGHT_MASTER);
 
-  BC_TalonSRX* leftFollowMotor = new BC_TalonSRX(MOTOR_LEFT_FOLLOWER);
-  BC_TalonSRX* rightFollowMotor = new BC_TalonSRX(MOTOR_RIGHT_FOLLOWER);
+  BC_TalonSRX *leftFollowMotor = new BC_TalonSRX(MOTOR_LEFT_FOLLOWER);
+  BC_TalonSRX *rightFollowMotor = new BC_TalonSRX(MOTOR_RIGHT_FOLLOWER);
 
-  frc::DifferentialDrive* driveTrain = new frc::DifferentialDrive(*leftDriveMotor, *rightDriveMotor);
+  frc::DifferentialDrive *driveTrain = new frc::DifferentialDrive(*leftDriveMotor, *rightDriveMotor);
 
-  frc::Solenoid* m_gearSolenoid = new frc::Solenoid(PCM_0,frc::PneumaticsModuleType::CTREPCM,PCM_0_GEARSHIFT);
-  //frc::Solenoid* m_motorCooling = new frc::Solenoid(PCM_0,frc::PneumaticsModuleType::CTREPCM,PCM_0_MOTOR_COOLING);
+  frc::Solenoid *m_gearSolenoid = new frc::Solenoid(PCM_0, frc::PneumaticsModuleType::CTREPCM, PCM_0_GEARSHIFT);
+  // frc::Solenoid* m_motorCooling = new frc::Solenoid(PCM_0,frc::PneumaticsModuleType::CTREPCM,PCM_0_MOTOR_COOLING);
 
   double m_maxSpeed = VELOCITY_SP_MAX_LG;
+
+  // Navx
+  AHRS* m_ahrs = new AHRS(frc::SPI::kMXP);
+
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
+ 
 };
