@@ -11,7 +11,7 @@
 
 // Command includes
 #include "commands/CmdDriveWithController.h"
-
+#include "commands/CmdShiftGear.h"
 #include "Constants.h"
 
 // Subsystems includes
