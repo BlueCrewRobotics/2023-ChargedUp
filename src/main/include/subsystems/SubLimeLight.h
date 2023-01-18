@@ -136,7 +136,7 @@ class SubLimeLight : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  std::shared_ptr<nt::NetworkTable> tblLimelightShooter = nt::NetworkTableInstance::GetDefault().GetTable("limelight-shooter");
+  std::shared_ptr<nt::NetworkTable> tblLimelight = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 
   double m_distance = 11.5;
 };

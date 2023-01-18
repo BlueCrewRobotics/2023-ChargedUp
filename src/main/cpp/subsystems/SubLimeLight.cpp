@@ -16,7 +16,7 @@ void SubLimeLight::Periodic() {
 }
 
 bool SubLimeLight::GetTarget() {
-  if(tblLimelightShooter->GetNumber("tv",0.0) < 1.0){
+  if(tblLimelight->GetNumber("tv",0.0) < 1.0){
     return false;
   }
   return true;
@@ -24,12 +24,12 @@ bool SubLimeLight::GetTarget() {
 }
 
 double SubLimeLight::GetHorizontalOffset(){
-  return tblLimelightShooter->GetNumber("tx",0.0);
+  return tblLimelight->GetNumber("tx",0.0);
 
 }
 
 double SubLimeLight::GetVerticalOffset(){
-  return tblLimelightShooter->GetNumber("ty",0.0);
+  return tblLimelight->GetNumber("ty",0.0);
 }
 
 /**
@@ -49,7 +49,7 @@ double SubLimeLight::GetDistanceToTarget(){
   double h1 = (33/12); // feet
   double h2 = (104/12); // feet
   double a1 =  41.5112;//37.95; // degrees
-  double a2 = tblLimelightShooter->GetNumber("ty",0.0);    
+  double a2 = tblLimelight->GetNumber("ty",0.0);    
   
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
 
@@ -61,7 +61,7 @@ double SubLimeLight::GetDistanceToTarget(){
     Get the skew of the target
   */
 double SubLimeLight::GetSkew(){
-  return tblLimelightShooter->GetNumber("ts",0.0);
+  return tblLimelight->GetNumber("ts",0.0);
 
 }
 
@@ -82,7 +82,7 @@ double SubLimeLight::GetCameraMountAngle(double distance){
   double h1 = (33/12); // inches
   double h2 = (104/12); // inches
   double a1 = 0.0; // degrees
-  double a2 = tblLimelightShooter->GetNumber("ty",0.0);
+  double a2 = tblLimelight->GetNumber("ty",0.0);
   
   a1 = (atan((h2-h1)/d)-(a2*3.1416/180))*180/3.1416;
 
@@ -103,7 +103,7 @@ double SubLimeLight::GetCameraMountAngle(double distance){
   @param mode the mode to set for the LEDs
   */
 void SubLimeLight::SetLEDState(int mode){
-  tblLimelightShooter->PutNumber("ledMode",mode);
+  tblLimelight->PutNumber("ledMode",mode);
 
 }
 
@@ -115,7 +115,7 @@ void SubLimeLight::SetLEDState(int mode){
   @param mode the mode to set for the Camera
 */
 void SubLimeLight::SetCameraMode(int mode){
-  tblLimelightShooter->PutNumber("camMode",mode);
+  tblLimelight->PutNumber("camMode",mode);
 
 }
 
@@ -126,7 +126,7 @@ void SubLimeLight::SetCameraMode(int mode){
   @param pipeline the pipeline to select for the vision targeting
 */
 void SubLimeLight::SelectPipeline(int pipeline){
-  tblLimelightShooter->PutNumber("pipeline",pipeline);
+  tblLimelight->PutNumber("pipeline",pipeline);
 
 }
 
@@ -139,7 +139,7 @@ void SubLimeLight::SelectPipeline(int pipeline){
   @param mode the streaming mode selected
 */
 void SubLimeLight::SelectStreamMode(int mode){
-  tblLimelightShooter->PutNumber("stream",mode);
+  tblLimelight->PutNumber("stream",mode);
 
 }
 
@@ -151,7 +151,7 @@ void SubLimeLight::SelectStreamMode(int mode){
   @param mode the streaming mode selected
 */
 void SubLimeLight::SelectSnapshotMode(int mode){
-  tblLimelightShooter->PutNumber("snapshot",mode);
+  tblLimelight->PutNumber("snapshot",mode);
 
 }
 
