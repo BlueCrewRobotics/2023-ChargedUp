@@ -76,11 +76,13 @@ void CmdDriveWithController::Execute() {
   }*/
 /*
   if(m_driverController->GetRawAxis(AXIS_LX) < 0.02 && m_driverController->GetRawAxis(AXIS_LX) > -0.02) {
-    m_driveTrain->ZeroYaw();
+    m_driveTrain->ZeroYaw(); // This won't work as it zeros every execution.  The rotation will never change.
     if(m_driveTrain->GetYaw() > 0){
+      // Normalize for quadrant I
       rotation = 1-(180-m_driveTrain->GetYaw())/180;
     }
     if(m_driveTrain->GetYaw() < 0){
+      // Normailize for quadrant II
       rotation = (180+m_driveTrain->GetYaw())/180 -1;
     }
   }*/
