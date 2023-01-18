@@ -178,10 +178,18 @@ void SubDriveTrain::ResetEncoderPositions() {
   leftDriveMotor->ResetEncoder();
 }
 
-double SubDriveTrain::GetYaw() {
+float SubDriveTrain::GetYaw() {
   return m_ahrs->GetYaw();
 }
 
 void SubDriveTrain::ZeroYaw() {
   m_ahrs->ZeroYaw();
+}
+
+float SubDriveTrain::GetYawStraightValue() {
+  return m_ahrsYawStraight;
+}
+
+void SubDriveTrain::SetYawStraightValue(float yawValue) {
+  m_ahrsYawStraight = yawValue;
 }

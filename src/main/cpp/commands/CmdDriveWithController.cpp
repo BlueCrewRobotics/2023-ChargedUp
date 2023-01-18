@@ -75,18 +75,26 @@ void CmdDriveWithController::Execute() {
   
   }*/
 /*
+  // Store the yaw straight value while steering the robot.
+  if(m_driverController->GetRawAxis(AXIS_LX) > 0.02 && m_driverController->GetRawAxis(AXIS_LX) < -0.02)
+  {
+      m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());
+  }
+
+  // Drive straight by comparing the stored yaw to the actual navx2 yaw reading
   if(m_driverController->GetRawAxis(AXIS_LX) < 0.02 && m_driverController->GetRawAxis(AXIS_LX) > -0.02) {
-    m_driveTrain->ZeroYaw(); // This won't work as it zeros every execution.  The rotation will never change.
-    if(m_driveTrain->GetYaw() > 0){
+    if(m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw() > 0){
       // Normalize for quadrant I
-      rotation = 1-(180-m_driveTrain->GetYaw())/180;
+      rotation = 1-(180-(m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw()))/180;
+
     }
-    if(m_driveTrain->GetYaw() < 0){
+    if(m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw()  < 0){
       // Normailize for quadrant II
-      rotation = (180+m_driveTrain->GetYaw())/180 -1;
+      rotation = (180+(m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw()))/180 -1;
     }
-  }*/
+  }
  // else{
+*/
     if(m_driveTrain->GetDriveTrainGear()==false) {
         rotation = m_driverController->GetRawAxis(AXIS_LX)*1;
     }

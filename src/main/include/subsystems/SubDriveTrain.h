@@ -60,9 +60,13 @@ public:
   // Reset Enocders Positons
   void ResetEncoderPositions();
   // Get navx positional yaw
-  double GetYaw();
+  float GetYaw();
   //zero yaw
   void ZeroYaw();
+  // Get the Yaw straight value
+  float GetYawStraightValue();
+  // Set Yaw straight value
+  void SetYawStraightValue(float yawValue);
 
 
 private:
@@ -94,6 +98,9 @@ private:
 
   // Navx setup and increasing the update rate default is 60 range is 4-200. Loading of the RobioRio should be monitored
   AHRS* m_ahrs = new AHRS(frc::SPI::kMXP);
+  
+  // Used to drive straight
+  float m_ahrsYawStraight;
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
