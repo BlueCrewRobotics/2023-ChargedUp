@@ -6,6 +6,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+#include <iostream>
+#include <stdio.h>
 #include "commands/CmdDriveWithController.h"
 
 CmdDriveWithController::CmdDriveWithController(SubDriveTrain* driveTrain, frc::Joystick *driverController) 
@@ -78,39 +80,44 @@ void CmdDriveWithController::Execute() {
     }
   
   }*/
-/*
-  // Store the yaw straight value while steering the robot.
-  if(m_driverController->GetRawAxis(AXIS_LX) > 0.02 && m_driverController->GetRawAxis(AXIS_LX) < -0.02)
-  {
-      m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());
-  }
 
-  // Drive straight by comparing the stored yaw to the actual navx2 yaw reading
-  if(m_driverController->GetRawAxis(AXIS_LX) < 0.02 && m_driverController->GetRawAxis(AXIS_LX) > -0.02) {
-    if(m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw() > 0){
-      // Normalize for quadrant I
-      rotation = 1-(180-(m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw()))/180;
+  bool isMoveDesired = (speed > 0.02 || speed < -0.02);
+  bool isTurnDesired = (m_driverController->GetRawAxis(AXIS_LX) > 0.02 || m_driverController->GetRawAxis(AXIS_LX) < -0.02);
 
-    }
-    if(m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw()  < 0){
-      // Normailize for quadrant II
-      rotation = (180+(m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw()))/180 -1;
-    }
-  }
- // else{
-*/
+  // is the controller telling us to turn?
+  if(isTurnDesired) {
+    // Store the yaw straight value while steering the robot.
+    m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());
+    std::cout << "CmdDriveWithController>> Updated desired yaw to: " << m_driveTrain->GetYawStraightValue() << std::endl;
+
     if(m_driveTrain->GetDriveTrainGear()==false) {
-        rotation = m_driverController->GetRawAxis(AXIS_LX)*1;
+        rotation = m_driverController->GetRawAxis(AXIS_LX)*1.0;
     }
     else {
         rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
     }
-//  }
+    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
+  }
+  // Drive straight by comparing the stored yaw to the actual navx2 yaw reading
+  else if(isMoveDesired) {    
+    double headingError = m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw();
+
+    std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
+
+    if(headingError > 0.0) {
+      // Normalize for quadrant I
+      rotation = (1.0 - ((180.0-(headingError))/180.0)) + 0.07;
+    }
+    if(headingError  < 0.0) {
+      // Normailize for quadrant II
+      rotation = (-1.0 + (180.0+(headingError))/180.0) - 0.07;
+    }
+    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
+  }
 
 
   // This actually drives the drive train
   m_driveTrain->Drive(speed, rotation);
-
 }
 
 // Called once the command ends or is interrupted.
