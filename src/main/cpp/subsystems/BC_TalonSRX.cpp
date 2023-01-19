@@ -14,18 +14,20 @@ BC_TalonSRX::BC_TalonSRX(int device) {
   BC_TalonSRX::ptr_talonSRX = new TalonSRX(device);
 }
 
+// speed is a percentage as a decimal between 0 and 1 (1 = 100%)
 void BC_TalonSRX::Set(double speed) {
 
 	// Run in low gear
 	if(m_bSelectedGear == false){  
-		
-		speed = speed*m_dMaxSpeed;
+		// multiplying % speed by motor max speed gives actual motor speed to use
+		speed = speed*m_dMaxSpeed; // jhouse: why not VELOCITY_SP_MAX_LG ??
 		ptr_talonSRX->Set(ControlMode::Velocity, speed);
 		m_dSpeed = speed;
 		ptr_talonSRX->SelectProfileSlot(0,0);
 	}
 	// Run in high gear
 	if(m_bSelectedGear == true){  
+		// multiplying % speed by motor max speed gives actual motor speed to use
 		speed = speed*VELOCITY_SP_MAX_HG;
 		ptr_talonSRX->Set(ControlMode::Velocity, speed);
 		m_dSpeed = speed;
@@ -66,8 +68,10 @@ double BC_TalonSRX::GetCtrlLoopTarget() {
   return ptr_talonSRX->GetClosedLoopTarget(0);
 }
 
+// 'false' is low gear
 void BC_TalonSRX::SetGear(bool gear) { m_bSelectedGear = gear; }
 
+// 'false' is low gear
 bool BC_TalonSRX::GetGear() const {
 	return m_bSelectedGear;
 }

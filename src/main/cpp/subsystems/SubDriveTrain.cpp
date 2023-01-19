@@ -136,6 +136,7 @@ void SubDriveTrain::SetDriveTrainGear() {
     m_gearSolenoid->Set(gear);
 }
 
+// jhouse: doc what gear 'true' is
 bool SubDriveTrain::GetDriveTrainGear() {
     return m_gearSolenoid->Get();
 }
