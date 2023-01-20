@@ -52,7 +52,9 @@ class SubLimeLight : public frc2::SubsystemBase {
      a2 = the angle of the target with respect to the camera ( limelight will give this angle "ty" from network tables)
 
     */
-  double GetDistanceToTarget();
+  double GetDistanceToPurpleCubeTarget();
+
+  double GetDistanceToYellowConeTarget();
 
   /**
       Get the skew of the target

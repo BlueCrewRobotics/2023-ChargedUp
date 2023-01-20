@@ -23,7 +23,7 @@ void CmdDriveWithController::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void CmdDriveWithController::Execute() {
 
-  std::cout << "CmdDriveWithController>> ------------------------------" << std::endl;
+//  std::cout << "CmdDriveWithController>> ------------------------------" << std::endl;
 
   // speed as a percentage
   double speed;
@@ -51,8 +51,8 @@ void CmdDriveWithController::Execute() {
 
   // This is the steering section of the drive train
   double rotation = 0.0;
-
-/*  if(m_driverController->GetRawButton(BUTTON_R_BUMP)==1){
+/*
+  if(m_driverController->GetRawButton(BUTTON_R_BUMP)==1) {
     double hTargetPosition;
     double hTargetAngle;
 
@@ -90,7 +90,7 @@ void CmdDriveWithController::Execute() {
   if(isTurnDesired) {
     // Store the yaw straight value while steering the robot.
     m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());
-    std::cout << "CmdDriveWithController>> Updated desired yaw to: " << m_driveTrain->GetYawStraightValue() << std::endl;
+//    std::cout << "CmdDriveWithController>> Updated desired yaw to: " << m_driveTrain->GetYawStraightValue() << std::endl;
 
     if(m_driveTrain->GetDriveTrainGear()==false) {
         rotation = m_driverController->GetRawAxis(AXIS_LX)*1.0;
@@ -98,30 +98,46 @@ void CmdDriveWithController::Execute() {
     else {
         rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
     }
-    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
+//    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
   }
   // Drive straight by comparing the stored yaw to the actual navx2 yaw reading
   else if(isMoveDesired) {    
     double headingError = m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw();
 
-    std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
+//    std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
 
     if(headingError > 0.0) {
       // Normalize for quadrant I
       rotation = (1.0 - ((180.0-(headingError))/180.0));
+      if(headingError > 5)
+        std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
     }
     if(headingError  < 0.0) {
       // Normailize for quadrant II
       rotation = (-1.0 + (180.0+(headingError))/180.0);
+      if(headingError < -5)
+        std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
     }
     
     // Correct for quadrents III and IV
     if(rotation > 1.0) {
       rotation = (rotation - 1.0) * -1.0;
+      if(rotation > 1.0) {
+        std::cout << "CmdDriveWithController>> ****** Wooooooo"  << std::endl;
+      }
     }
     else if(rotation < -1.0) {
       rotation = (rotation + 1.0) * -1.0;
+      if(rotation < -1.0) {
+        std::cout << "CmdDriveWithController>> ****** Wooooooo"  << std::endl;
+      }
     }
+
+    // catch and avoid erratic jumps
+    if(headingError > 300)
+      rotation = 0.2;
+    else if(headingError < -300)
+      rotation = -0.2;
 
     // Add offset if needed
     if(rotation > 0.0 && rotation < 0.2) {
@@ -130,7 +146,7 @@ void CmdDriveWithController::Execute() {
     else if(rotation < 0.0 && rotation > -0.2) {
       rotation = rotation - 0.07;
     }
-    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
+    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << " Goal-Yaw is: " << m_driveTrain->GetYawStraightValue() << std::endl;
   }
 
 
