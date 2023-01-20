@@ -59,8 +59,8 @@ constexpr int PEAK_CURRENT_LIMIT = 30;
 constexpr int DURATION_CURRENT_LIMIT = 500;
 
 // PID constants PID[0] Used for low speed right side
-constexpr double RIGHT_KF_0 = 0.0274; // 0.07; // 0.13;  // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
-constexpr double RIGHT_KP_0 = 0.16;// 0.286;  // Kp = ((percent of output used for control)*1023) / Error
+constexpr double RIGHT_KF_0 = 0.0274; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
+constexpr double RIGHT_KP_0 = 0.14;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
 constexpr double RIGHT_KI_0 = 0.0;
 constexpr double RIGHT_KD_0 = 0.0;
 
