@@ -23,6 +23,8 @@ void CmdDriveWithController::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void CmdDriveWithController::Execute() {
 
+  std::cout << "CmdDriveWithController>> ------------------------------" << std::endl;
+
   // speed as a percentage
   double speed;
 
@@ -48,7 +50,7 @@ void CmdDriveWithController::Execute() {
   }
 
   // This is the steering section of the drive train
-  double rotation;
+  double rotation = 0.0;
 
 /*  if(m_driverController->GetRawButton(BUTTON_R_BUMP)==1){
     double hTargetPosition;
