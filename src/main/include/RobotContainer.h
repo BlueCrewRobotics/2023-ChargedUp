@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <frc/smartdashboard/SendableChooser.h>
+
 #include <frc2/command/CommandPtr.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include <frc/Joystick.h>
@@ -12,6 +14,11 @@
 // Command includes
 #include "commands/CmdDriveWithController.h"
 #include "commands/CmdShiftGear.h"
+
+// Auto commands
+#include "autocommands/AutoCmdAutonomous.h"
+
+// Constants used throughout code
 #include "Constants.h"
 
 // Subsystems includes
@@ -36,13 +43,20 @@ class RobotContainer {
 
 
  private:
+  // The robot's commands
+  AutoCmdAutonomous m_autoAutonomous{&m_subLimeLight, &m_subDriveTrain};
+  AutoCmdAutonomous m_autoAutonomous2{&m_subLimeLight, &m_subDriveTrain};
+
+  frc::SendableChooser<frc2::Command*> m_autoChooser;
+  
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  frc2::CommandXboxController m_driverController{
-      OperatorConstants::kDriverControllerPort};
+  //frc2::CommandXboxController m_driverController{
+  //    OperatorConstants::kDriverControllerPort};
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   SubDriveTrain m_subDriveTrain;
+  SubLimeLight m_subLimeLight;
 
     // Setup driver controller
   frc::Joystick *driverController = new frc::Joystick(DRIVER_CONTROLLER);

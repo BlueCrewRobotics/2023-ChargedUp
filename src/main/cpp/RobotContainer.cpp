@@ -13,6 +13,13 @@
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
 
+  //Add commands to the autonomous drive station chooser
+  m_autoChooser.SetDefaultOption("Auto 1", &m_autoAutonomous);
+  m_autoChooser.AddOption("Auto 2", &m_autoAutonomous2);
+
+  // Put the chooser on the dashboard
+  frc::SmartDashboard::PutData("Autonomous", &m_autoChooser);
+
   // Configure the button bindings
   ConfigureBindings();
 
