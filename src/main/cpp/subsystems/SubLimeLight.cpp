@@ -44,17 +44,28 @@ double SubLimeLight::GetVerticalOffset(){
     a2 = the angle of the target with respect to the camera ( limelight will give this angle "ty" from network tables)
 
   */
-double SubLimeLight::GetDistanceToTarget(){
+double SubLimeLight::GetDistanceToPurpleCubeTarget() {
   double d = 0.0; // feet
-  double h1 = (33/12); // feet
-  double h2 = (104/12); // feet
-  double a1 =  41.5112;//37.95; // degrees
+  double h1 = (17.25/12.0); // feet
+  double h2 = (4.5/12.0); // feet   // purple cube is 9" tall
+  double a1 =  0.0;//37.95; // degrees
   double a2 = tblLimelight->GetNumber("ty",0.0);    
-  
+
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
 
   return d;
+}
 
+double SubLimeLight::GetDistanceToYellowConeTarget() {
+  double d = 0.0; // feet
+  double h1 = (17.25/12.0); // feet
+  double h2 = (6.5/12.0); // feet   // yellow cone is 13" tall standing, 8" tall on side
+  double a1 =  0.0;//37.95; // degrees
+  double a2 = tblLimelight->GetNumber("ty",0.0);    
+
+  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
+
+  return d;
 }
 
   /**
@@ -62,7 +73,6 @@ double SubLimeLight::GetDistanceToTarget(){
   */
 double SubLimeLight::GetSkew(){
   return tblLimelight->GetNumber("ts",0.0);
-
 }
 
 /**
@@ -85,11 +95,8 @@ double SubLimeLight::GetCameraMountAngle(double distance){
   double a2 = tblLimelight->GetNumber("ty",0.0);
   
   a1 = (atan((h2-h1)/d)-(a2*3.1416/180))*180/3.1416;
-
-  
   
   return a1;
-
 }
 
 /**

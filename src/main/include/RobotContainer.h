@@ -24,6 +24,7 @@
 // Subsystems includes
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
+#include "subsystems/SubLimeLight.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
