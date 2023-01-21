@@ -48,7 +48,7 @@ double SubLimeLight::GetDistanceToPurpleCubeTarget() {
   double d = 0.0; // feet
   double h1 = (17.25/12.0); // feet
   double h2 = (4.5/12.0); // feet   // purple cube is 9" tall
-  double a1 =  0.0;//37.95; // degrees
+  double a1 =  -3.17;//37.95; // degrees
   double a2 = tblLimelight->GetNumber("ty",0.0);    
 
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
@@ -60,12 +60,24 @@ double SubLimeLight::GetDistanceToYellowConeTarget() {
   double d = 0.0; // feet
   double h1 = (17.25/12.0); // feet
   double h2 = (6.5/12.0); // feet   // yellow cone is 13" tall standing, 8" tall on side
-  double a1 =  0.0;//37.95; // degrees
+  double a1 =  -3.17;//37.95; // degrees
   double a2 = tblLimelight->GetNumber("ty",0.0);    
 
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
 
   return d;
+}
+
+double SubLimeLight::GetDistanceToTopPoll(){
+  double d = 0.0;
+  double h1 = (17.25/12); // inches
+  double h2 = (43.75/12); // inches
+  double a1 = 0.0; // degrees
+  double a2 = tblLimelight->GetNumber("ty",0.0);
+  
+  a1 = (atan((h2-h1)/d)-(a2*3.1416/180))*180/3.1416;
+  
+  return a1;
 }
 
   /**
@@ -89,8 +101,8 @@ double SubLimeLight::GetSkew(){
   */
 double SubLimeLight::GetCameraMountAngle(double distance){
   double d = distance;
-  double h1 = (33/12); // inches
-  double h2 = (104/12); // inches
+  double h1 = (17.25/12); // inches
+  double h2 = (43.75/12); // inches
   double a1 = 0.0; // degrees
   double a2 = tblLimelight->GetNumber("ty",0.0);
   
