@@ -60,14 +60,14 @@ constexpr int DURATION_CURRENT_LIMIT = 500;
 
 // PID constants PID[0] Used for low speed right side
 constexpr double RIGHT_KF_0 = 0.341; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
-constexpr double RIGHT_KP_0 = 0.0;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
-constexpr double RIGHT_KI_0 = 0.0;
+constexpr double RIGHT_KP_0 = 1.4;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
+constexpr double RIGHT_KI_0 = 0.001;
 constexpr double RIGHT_KD_0 = 0.0;
 
 // PID constants PID[0] Used for low speed right side
 constexpr double LEFT_KF_0 = 0.341; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
-constexpr double LEFT_KP_0 = 0.0;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
-constexpr double LEFT_KI_0 = 0.0;
+constexpr double LEFT_KP_0 = 1.4;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
+constexpr double LEFT_KI_0 = 0.001;
 constexpr double LEFT_KD_0 = 0;
 
 // PID constants PID[1] uesd for high speed left side

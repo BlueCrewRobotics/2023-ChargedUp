@@ -93,7 +93,7 @@ void CmdDriveWithController::Execute() {
 //    std::cout << "CmdDriveWithController>> Updated desired yaw to: " << m_driveTrain->GetYawStraightValue() << std::endl;
 
     if(m_driveTrain->GetDriveTrainGear()==false) {
-        rotation = m_driverController->GetRawAxis(AXIS_LX)*1.0;
+        rotation = m_driverController->GetRawAxis(AXIS_LX)*0.8;
     }
     else {
         rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
@@ -135,9 +135,9 @@ void CmdDriveWithController::Execute() {
 
     // catch and avoid erratic jumps
     if(headingError > 300)
-      rotation = 0.2;
-    else if(headingError < -300)
       rotation = -0.2;
+    else if(headingError < -300)
+      rotation = 0.2;
 
     // Add offset if needed
     if(rotation > 0.0 && rotation < 0.2) {
