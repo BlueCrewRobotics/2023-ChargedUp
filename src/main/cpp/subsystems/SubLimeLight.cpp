@@ -12,23 +12,22 @@ SubLimeLight::SubLimeLight() = default;
 
 // This method will be called once per scheduler run
 void SubLimeLight::Periodic() {
-
 }
 
 bool SubLimeLight::GetTarget() {
-  if(tblLimelight->GetNumber("tv",0.0) < 1.0){
+  if(tblLimelight->GetNumber("tv",0.0) < 1.0) { 
     return false;
   }
   return true;
   
 }
 
-double SubLimeLight::GetHorizontalOffset(){
+double SubLimeLight::GetHorizontalOffset() {
   return tblLimelight->GetNumber("tx",0.0);
 
 }
 
-double SubLimeLight::GetVerticalOffset(){
+double SubLimeLight::GetVerticalOffset() {
   return tblLimelight->GetNumber("ty",0.0);
 }
 
@@ -48,7 +47,7 @@ double SubLimeLight::GetDistanceToPurpleCubeTarget() {
   double d = 0.0; // feet
   double h1 = (17.25/12.0); // feet
   double h2 = (4.5/12.0); // feet   // purple cube is 9" tall
-  double a1 =  -3.17;//37.95; // degrees
+  double a1 =  -3.18;//37.95; // degrees
   double a2 = tblLimelight->GetNumber("ty",0.0);    
 
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
@@ -60,7 +59,7 @@ double SubLimeLight::GetDistanceToYellowConeTarget() {
   double d = 0.0; // feet
   double h1 = (17.25/12.0); // feet
   double h2 = (6.5/12.0); // feet   // yellow cone is 13" tall standing, 8" tall on side
-  double a1 =  -3.17;//37.95; // degrees
+  double a1 =  -3.18;//37.95; // degrees
   double a2 = tblLimelight->GetNumber("ty",0.0);    
 
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
@@ -68,22 +67,22 @@ double SubLimeLight::GetDistanceToYellowConeTarget() {
   return d;
 }
 
-double SubLimeLight::GetDistanceToTopPoll(){
+double SubLimeLight::GetDistanceToTopPoleTarget() {  
   double d = 0.0;
   double h1 = (17.25/12); // inches
   double h2 = (43.75/12); // inches
-  double a1 = 0.0; // degrees
+  double a1 = -3.18; // degrees
   double a2 = tblLimelight->GetNumber("ty",0.0);
   
-  a1 = (atan((h2-h1)/d)-(a2*3.1416/180))*180/3.1416;
+  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
   
-  return a1;
+  return d;
 }
 
   /**
     Get the skew of the target
   */
-double SubLimeLight::GetSkew(){
+double SubLimeLight::GetSkew() {
   return tblLimelight->GetNumber("ts",0.0);
 }
 
@@ -99,7 +98,7 @@ double SubLimeLight::GetSkew(){
     a2 = the angle of the target with respect to the camera ( limelight will give this angle "ty" from network tables)
 
   */
-double SubLimeLight::GetCameraMountAngle(double distance){
+double SubLimeLight::GetCameraMountAngle(double distance) {
   double d = distance;
   double h1 = (17.25/12); // inches
   double h2 = (43.75/12); // inches
@@ -121,7 +120,7 @@ double SubLimeLight::GetCameraMountAngle(double distance){
   
   @param mode the mode to set for the LEDs
   */
-void SubLimeLight::SetLEDState(int mode){
+void SubLimeLight::SetLEDState(int mode) {
   tblLimelight->PutNumber("ledMode",mode);
 
 }
@@ -133,7 +132,7 @@ void SubLimeLight::SetLEDState(int mode){
   
   @param mode the mode to set for the Camera
 */
-void SubLimeLight::SetCameraMode(int mode){
+void SubLimeLight::SetCameraMode(int mode) {
   tblLimelight->PutNumber("camMode",mode);
 
 }
@@ -144,9 +143,8 @@ void SubLimeLight::SetCameraMode(int mode){
   
   @param pipeline the pipeline to select for the vision targeting
 */
-void SubLimeLight::SelectPipeline(int pipeline){
+void SubLimeLight::SelectPipeline(int pipeline) {
   tblLimelight->PutNumber("pipeline",pipeline);
-
 }
 
 /** Select limelight's streaming mode.
@@ -157,7 +155,7 @@ void SubLimeLight::SelectPipeline(int pipeline){
   
   @param mode the streaming mode selected
 */
-void SubLimeLight::SelectStreamMode(int mode){
+void SubLimeLight::SelectStreamMode(int mode) {
   tblLimelight->PutNumber("stream",mode);
 
 }
@@ -169,7 +167,7 @@ void SubLimeLight::SelectStreamMode(int mode){
   
   @param mode the streaming mode selected
 */
-void SubLimeLight::SelectSnapshotMode(int mode){
+void SubLimeLight::SelectSnapshotMode(int mode) {
   tblLimelight->PutNumber("snapshot",mode);
 
 }
@@ -177,16 +175,15 @@ void SubLimeLight::SelectSnapshotMode(int mode){
 /** Get the Limelight distance value
  * Returns the stored distance
  */
-double SubLimeLight::GetLimelightDistance(){
+double SubLimeLight::GetLimelightDistance() {
   return m_distance;
-
 }
 
 /** Set the Limelight distance value
  * 
  * @param distance the distance to the target
  */
-void SubLimeLight::SetLimelightDistance(double distance){
+void SubLimeLight::SetLimelightDistance(double distance) {
   m_distance = distance;
 
 }
