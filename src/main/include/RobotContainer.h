@@ -15,6 +15,7 @@
 #include "commands/CmdDriveWithController.h"
 #include "commands/CmdShiftGear.h"
 #include "commands/CmdConeRampPrepExtend.h"
+#include "commands/CmdConeRampPrepRetract.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"

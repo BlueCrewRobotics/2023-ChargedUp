@@ -37,6 +37,8 @@ void RobotContainer::ConfigureBindings() {
   // Settup the cone ramp prepper to extend when a is pressed
   driverController_button_a->WhenPressed(CmdConeRampPrepExtend(&m_subConeRampPrep));
 
+  // Settup the Cone Ramp Prepper to retract when a is released
+  driverController_button_a->WhenReleased(CmdConeRampPrepRetract(&m_subConeRampPrep));
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   // frc2::Trigger([this] {
