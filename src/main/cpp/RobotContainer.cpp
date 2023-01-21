@@ -34,7 +34,9 @@ void RobotContainer::ConfigureBindings() {
   // Set the default command for the Drive Train
   m_subDriveTrain.SetDefaultCommand(CmdDriveWithController(&m_subDriveTrain, driverController));
 
-  
+  // Settup the cone ramp prepper to extend when a is pressed
+  driverController_button_a->WhenPressed(CmdConeRampPrepExtend(&m_subConeRampPrep));
+
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   // frc2::Trigger([this] {

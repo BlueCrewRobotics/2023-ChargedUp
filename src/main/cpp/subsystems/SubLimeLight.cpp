@@ -68,7 +68,7 @@ double SubLimeLight::GetDistanceToYellowConeTarget() {
   return d;
 }
 
-double SubLimeLight::GetDistanceToTopPoll(){
+double SubLimeLight::GetDistanceToTopPollTarget(){
   double d = 0.0;
   double h1 = (17.25/12); // inches
   double h2 = (43.75/12); // inches

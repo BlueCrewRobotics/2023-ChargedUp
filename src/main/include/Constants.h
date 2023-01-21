@@ -87,7 +87,7 @@ constexpr int PCM_0 = 9;
 
 // Solenoid Mappings for Shifter PCM
 constexpr int PCM_0_GEARSHIFT = 0;  // Drive train gear shifter
-
+constexpr int PCM_1_PREP_CONERAMP = 1; // piston used on Cone Ramp Extention
 
 namespace OperatorConstants {
 

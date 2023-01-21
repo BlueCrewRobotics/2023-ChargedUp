@@ -14,6 +14,7 @@
 // Command includes
 #include "commands/CmdDriveWithController.h"
 #include "commands/CmdShiftGear.h"
+#include "commands/CmdConeRampPrepExtend.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
@@ -25,6 +26,7 @@
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubLimeLight.h"
+#include "subsystems/SubConeRampPrep.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -58,6 +60,7 @@ class RobotContainer {
   ExampleSubsystem m_subsystem;
   SubDriveTrain m_subDriveTrain;
   SubLimeLight m_subLimeLight;
+  SubConeRampPrep m_subConeRampPrep;
 
     // Setup driver controller
   frc::Joystick *driverController = new frc::Joystick(DRIVER_CONTROLLER);
