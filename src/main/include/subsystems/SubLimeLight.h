@@ -56,7 +56,7 @@ class SubLimeLight : public frc2::SubsystemBase {
 
   double GetDistanceToYellowConeTarget();
 
-  double GetDistanceToTopPollTarget();
+  double GetDistanceToTopPoleTarget();
   /**
       Get the skew of the target
     */

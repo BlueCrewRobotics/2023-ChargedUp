@@ -26,7 +26,7 @@ void CmdDriveWithController::Execute() {
 //  std::cout << "CmdDriveWithController>> ------------------------------" << std::endl;
 
   // speed as a percentage
-  double speed;
+  double speed = 0.0;
 
   // This sets up the virtual low gear
   if(m_driverController->GetRawButton(BUTTON_B)==1) {

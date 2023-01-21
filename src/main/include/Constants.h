@@ -89,6 +89,11 @@ constexpr int PCM_0 = 9;
 constexpr int PCM_0_GEARSHIFT = 0;  // Drive train gear shifter
 
 
+// Limelight related Constants
+constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
+constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;
+
+
 namespace OperatorConstants {
 
 constexpr int kDriverControllerPort = 0;
