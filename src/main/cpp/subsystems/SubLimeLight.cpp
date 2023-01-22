@@ -79,6 +79,29 @@ double SubLimeLight::GetDistanceToTopPoleTarget() {
   return d;
 }
 
+double SubLimeLight::GetDistanceToTarget() {  
+  double d = 0.0;
+  double h1 = (17.25/12); // inches
+
+  double h2 = 0;
+  if(GetSelectedPipeline() == 8) {
+    h2 = 4.5/12.0;
+  }
+  else if(GetSelectedPipeline() == 9) {
+    h2 = 6.5/12.0;
+  }  
+  else if(GetSelectedPipeline() == 0) {
+    h2 = 43.75/12.0;
+  }  
+
+  double a1 = -3.18; // degrees
+  double a2 = tblLimelight->GetNumber("ty",0.0);
+  
+  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
+  
+  return d;
+}
+
   /**
     Get the skew of the target
   */
@@ -145,6 +168,10 @@ void SubLimeLight::SetCameraMode(int mode) {
 */
 void SubLimeLight::SelectPipeline(int pipeline) {
   tblLimelight->PutNumber("pipeline",pipeline);
+}
+
+int SubLimeLight::GetSelectedPipeline() {
+  return tblLimelight->GetNumber("pipeline", -1);
 }
 
 /** Select limelight's streaming mode.

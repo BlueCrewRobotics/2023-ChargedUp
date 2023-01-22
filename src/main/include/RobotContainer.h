@@ -15,6 +15,7 @@
 #include "commands/CmdDriveWithController.h"
 #include "commands/CmdShiftGear.h"
 #include "commands/CmdFindAndGoToCube.h"
+#include "commands/CmdFindAndGoToCone.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"

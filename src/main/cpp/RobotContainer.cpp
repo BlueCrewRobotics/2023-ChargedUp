@@ -32,6 +32,7 @@ void RobotContainer::ConfigureBindings() {
   driverController_button_lbump->WhenPressed(CmdShiftGear(&m_subDriveTrain));
 
   driverController_button_x->WhenPressed(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLight, driverController));
+  driverController_button_y->WhenPressed(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLight, driverController));
 
   // Set the default command for the Drive Train
   m_subDriveTrain.SetDefaultCommand(CmdDriveWithController(&m_subDriveTrain, driverController));
