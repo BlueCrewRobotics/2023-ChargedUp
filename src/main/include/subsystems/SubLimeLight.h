@@ -57,6 +57,9 @@ class SubLimeLight : public frc2::SubsystemBase {
   double GetDistanceToYellowConeTarget();
 
   double GetDistanceToTopPoleTarget();
+
+  double GetDistanceToTarget();
+
   /**
       Get the skew of the target
     */
@@ -105,6 +108,11 @@ class SubLimeLight : public frc2::SubsystemBase {
   */
   void SelectPipeline(int pipeline);
   
+  /**
+   * Get which pipeline id is currently selected
+   */
+  int GetSelectedPipeline();
+
   /** Select limelight's streaming mode.
     
     0 - Standard Side-by-Side stream if a webcam is attached to limelight.

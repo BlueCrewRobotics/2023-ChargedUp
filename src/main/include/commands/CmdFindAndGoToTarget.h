@@ -11,22 +11,33 @@
 #include "subsystems/SubLimeLight.h"
 #include "subsystems/SubDriveTrain.h"
 #include "Constants.h"
-#include "commands/CmdFindAndGoToTarget.h"
 
 /**
- * Command to find a purple cube and drive to it.
+ * Command to find a target and drive to it.
  *
  * <p>Note that this extends CommandHelper, rather extending CommandBase
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdFindAndGoToCube
-   : public CmdFindAndGoToTarget {
+class CmdFindAndGoToTarget
+    : public frc2::CommandHelper<frc2::CommandBase, CmdFindAndGoToTarget> {
  public:
-  CmdFindAndGoToCube(SubDriveTrain* driveTrain, SubLimeLight* limeLight, frc::Joystick *driverController);
+  CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLight* limeLight, frc::Joystick *driverController);
 
   void Initialize() override;
 
+  void Execute() override;
+
+  void End(bool interrupted) override;
+
+  bool IsFinished() override;
+
   double getDistanceToTarget();
 
+ protected:
+  SubDriveTrain* m_driveTrain;
+  SubLimeLight* m_limeLight;
+  frc::Joystick* m_driverController;
+
+  bool m_isFinished = false;
 };

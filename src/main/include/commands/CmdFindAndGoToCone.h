@@ -14,16 +14,16 @@
 #include "commands/CmdFindAndGoToTarget.h"
 
 /**
- * Command to find a purple cube and drive to it.
+ * Command to find a yellow and drive to it.
  *
  * <p>Note that this extends CommandHelper, rather extending CommandBase
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdFindAndGoToCube
+class CmdFindAndGoToCone
    : public CmdFindAndGoToTarget {
  public:
-  CmdFindAndGoToCube(SubDriveTrain* driveTrain, SubLimeLight* limeLight, frc::Joystick *driverController);
+  CmdFindAndGoToCone(SubDriveTrain* driveTrain, SubLimeLight* limeLight, frc::Joystick *driverController);
 
   void Initialize() override;
 
