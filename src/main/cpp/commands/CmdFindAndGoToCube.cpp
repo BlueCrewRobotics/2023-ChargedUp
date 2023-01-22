@@ -58,6 +58,8 @@ void CmdFindAndGoToCube::Execute() {
          std::cout << "moving forward to target!" << std::endl;
         rotation = 0.0;
         speed = -0.65;
+        if(dist < 5.5)
+          speed = -0.4;
       }
       else {
         m_isFinished = true;
