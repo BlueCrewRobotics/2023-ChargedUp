@@ -37,26 +37,32 @@ void CmdFindAndGoToTarget::Execute() {
     if (m_limeLight->GetTarget()) {
       std::cout << "see target!" << std::endl;
       double dist = getDistanceToTarget();
-      int angleTolerance = 3;
+      int angleTolerance = 2;
       if(dist < 10)
-        angleTolerance = 4;
+        angleTolerance = 2;
       if(dist < 6)
-        angleTolerance = 5;
+        angleTolerance = 1;
+//
+//
+;
 
       // Turn towards target
       if (m_limeLight->GetHorizontalOffset() < -angleTolerance) {
         std::cout << "moving left to target!" << std::endl;
         rotation = -0.34;
-        speed = 0.0;
+        if(dist < 5.5)
+          rotation = rotation * 0.8;
       }
       else if (m_limeLight->GetHorizontalOffset() > angleTolerance) {
         std::cout << "moving right to target!" << std::endl;
         rotation = 0.34;
-        speed = 0.0;
+        if(dist < 5.5)
+          rotation = rotation * 0.8;
       }
-      else if (dist > 4.5) {
-         std::cout << "moving forward to target!" << std::endl;
-        rotation = 0.0;
+      
+      if (dist > 4.5) {
+        std::cout << "moving forward to target!" << std::endl;
+        //rotation = 0.0;
         speed = -0.65;
         if(dist < 5.5)
           speed = -0.4;
