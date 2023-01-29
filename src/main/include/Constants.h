@@ -45,6 +45,9 @@ constexpr int MOTOR_LEFT_MASTER = 2;
 constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
 
+//SparkMax turret adressing
+constexpr int MOTOR_TURRET = 15;
+
 // Maximum velocity in units/100ms
 constexpr int VELOCITY_MAX = 3200;
 constexpr int VELOCITY_SP_MAX_HG = 3200;  // Maximum velocity in actual high gear

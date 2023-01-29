@@ -38,7 +38,7 @@ void RobotContainer::ConfigureBindings() {
   m_subDriveTrain.SetDefaultCommand(CmdDriveWithController(&m_subDriveTrain, driverController));
 
   // Settup the cone ramp prepper to extend when a is pressed
-  driverController_button_a->WhenPressed(CmdConeRampPrepExtend(&m_subConeRampPrep));
+  driverController_button_a->WhenHeld(CmdConeRampPrepExtend(&m_subConeRampPrep));
 
   // Settup the Cone Ramp Prepper to retract when a is released
   driverController_button_a->WhenReleased(CmdConeRampPrepRetract(&m_subConeRampPrep));
