@@ -1,6 +1,6 @@
-//*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
+/*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
 /*                       Blue Crew Robotics #6153                             */
-/*                           Rapid React 2022                                 */
+/*                            Charged Up 2023                                 */
 /*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
@@ -120,6 +120,12 @@ double SubLimeLight::GetSkew() {
     a1 = the angle of the camera with respect to ground
     a2 = the angle of the target with respect to the camera ( limelight will give this angle "ty" from network tables)
 
+
+h1 = 54
+h2 = 4.5
+a2 = -2.1
+d = 80
+
   */
 double SubLimeLight::GetCameraMountAngle(double distance) {
   double d = distance;
@@ -129,7 +135,7 @@ double SubLimeLight::GetCameraMountAngle(double distance) {
   double a2 = tblLimelight->GetNumber("ty",0.0);
   
   a1 = (atan((h2-h1)/d)-(a2*3.1416/180))*180/3.1416;
-  
+
   return a1;
 }
 

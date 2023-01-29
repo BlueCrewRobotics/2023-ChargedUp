@@ -18,6 +18,7 @@ void CmdShiftGear::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdShiftGear::Execute() {
+  // Set the drive train gear
   m_subDriveTrain->SetDriveTrainGear();
 }
 
