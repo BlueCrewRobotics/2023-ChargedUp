@@ -16,6 +16,8 @@
 #include "commands/CmdShiftGear.h"
 #include "commands/CmdConeRampPrepExtend.h"
 #include "commands/CmdConeRampPrepRetract.h"
+#include "commands/CmdFindAndGoToCube.h"
+#include "commands/CmdFindAndGoToCone.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"

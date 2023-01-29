@@ -82,12 +82,31 @@ constexpr double LEFT_KP_1 = 0.0;
 constexpr double LEFT_KI_1 = 0;
 constexpr double LEFT_KD_1 = 0;
 
+// slabby encoder measurements...
+//
+// we measured moving a straight line for 80 feet
+//  encoder 1 moved -197063 ticks
+//  encoder 2 moved -197489 ticks
+//
+//  encoder 1 moved -2463.2875 ticks per foot
+//  encoder 2 moved -2468.6125 ticks per foot
+//
+//  encoder 1 moved -205.2739583 ticks per inch
+//  encoder 2 moved -205.7177083 ticks per inch
+//  
+
+
 // PCM Module CAN ID
 constexpr int PCM_0 = 9;
 
 // Solenoid Mappings for Shifter PCM
 constexpr int PCM_0_GEARSHIFT = 0;  // Drive train gear shifter
 constexpr int PCM_1_PREP_CONERAMP = 1; // piston used on Cone Ramp Extention
+
+// Limelight related Constants
+constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
+constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;
+
 
 namespace OperatorConstants {
 
