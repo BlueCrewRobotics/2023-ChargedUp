@@ -8,9 +8,9 @@
 #include "BC_FalconFX.h"
 #include "Constants.h"
 
-class SubVerticleElevator : public frc2::SubsystemBase {
+class SubVerticalElevator : public frc2::SubsystemBase {
  public:
-  SubVerticleElevator();
+  SubVerticalElevator();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -36,5 +36,5 @@ class SubVerticleElevator : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  BC_FalconFX* elevatorMotor = new BC_FalconFX(MOTOR_VERTICLE_ELEVATOR);
+  BC_FalconFX* elevatorMotor = new BC_FalconFX(MOTOR_Vertical_ELEVATOR);
 };

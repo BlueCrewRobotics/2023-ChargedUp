@@ -48,7 +48,7 @@ constexpr int MOTOR_RIGHT_MASTER = 1;
 constexpr int MOTOR_LEFT_MASTER = 2;
 constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
-constexpr int MOTOR_VERTICLE_ELEVATOR = 999;// <---PLACE HOLDER!!!----------------------------
+constexpr int MOTOR_Vertical_ELEVATOR = 999;// <---PLACE HOLDER!!!----------------------------
 
 // Maximum velocity in units/100ms
 constexpr int VELOCITY_MAX = 3200;

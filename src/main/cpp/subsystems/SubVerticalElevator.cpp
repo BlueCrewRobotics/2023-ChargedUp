@@ -2,15 +2,15 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "subsystems/SubVerticleElevator.h"
+#include "subsystems/SubVerticalElevator.h"
 
-SubVerticleElevator::SubVerticleElevator() = default;
+SubVerticalElevator::SubVerticalElevator() = default;
 
 // This method will be called once per scheduler run
-void SubVerticleElevator::Periodic() {}
+void SubVerticalElevator::Periodic() {}
 
 // Configure the elevator motor and stuff
-void SubVerticleElevator::ElevatorConfigure() {
+void SubVerticalElevator::ElevatorConfigure() {
     // Clear the sticky faults on the controllers (whatever that means)
     elevatorMotor->ClearStickyFault();
     // Invert the direction the motor spins if needed (idk why you would need this for the elevator but it's here because I put it here)
@@ -26,12 +26,12 @@ void SubVerticleElevator::ElevatorConfigure() {
 }
 
 // Move the elevator up and down based on speed (will not go to a specific location/position, just goes up or down until you stop telling it to)
-void SubVerticleElevator::ElevateBySpeed(double elevatorSpeed) {
+void SubVerticalElevator::ElevateBySpeed(double elevatorSpeed) {
     // Set the motor speed
     elevatorMotor->Set(elevatorSpeed);
 }
 // Move the elevator to a specific location/position given encoder tics
-void SubVerticleElevator::ElevateToPosition(double elevatorPosition) {
+void SubVerticalElevator::ElevateToPosition(double elevatorPosition) {
     // Get Current Position
     double currentElevatorPosition = elevatorMotor->GetEncoderValue();
     // Find the error from where we want to be
@@ -53,21 +53,21 @@ void SubVerticleElevator::ElevateToPosition(double elevatorPosition) {
 }
 
 // Get the elevator motor encoder value
-double SubVerticleElevator::GetElevatorEncoderValue() {
+double SubVerticalElevator::GetElevatorEncoderValue() {
     return elevatorMotor->GetEncoderValue();
 }
 
 // Get the error from where we want to be
-double SubVerticleElevator::GetElevatorErrorValue() {
+double SubVerticalElevator::GetElevatorErrorValue() {
     return elevatorMotor->GetError();
 }
 
 // Reset the encoder position to 0
-void SubVerticleElevator::ResetEncoderValue() {
+void SubVerticalElevator::ResetEncoderValue() {
     elevatorMotor->ResetEncoder();
 }
 
 // Set the max speed of the elevator motor
-void SubVerticleElevator::SetMaxSpeed(double maxSpeed) {
+void SubVerticalElevator::SetMaxSpeed(double maxSpeed) {
     elevatorMotor->SetMaxSpeed(maxSpeed);
 }
