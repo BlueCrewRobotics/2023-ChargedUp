@@ -18,6 +18,8 @@
 // Command includes
 #include "commands/CmdDriveWithController.h"
 #include "commands/CmdShiftGear.h"
+#include "commands/CmdConeRampPrepExtend.h"
+#include "commands/CmdConeRampPrepRetract.h"
 #include "commands/CmdFindAndGoToCube.h"
 #include "commands/CmdFindAndGoToCone.h"
 
@@ -32,6 +34,7 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubLimeLightLower.h"
 #include "subsystems/SubLimeLightUpper.h"
+#include "subsystems/SubConeRampPrep.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -66,6 +69,7 @@ class RobotContainer {
   SubDriveTrain m_subDriveTrain;
   SubLimeLightLower m_subLimeLightLower;
   SubLimeLightUpper m_subLimeLightUpper;
+  SubConeRampPrep m_subConeRampPrep;
 
     // Setup driver controller
   frc::Joystick *driverController = new frc::Joystick(DRIVER_CONTROLLER);
