@@ -1,6 +1,6 @@
 /*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
 /*                       Blue Crew Robotics #6153                             */
-/*                           Rapid React 2022                                 */
+/*                            Charged Up 2023                                 */
 /*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
@@ -38,13 +38,11 @@ void CmdDriveWithController::Execute() {
   }
 
   // This is controlling the speed of the drive train
-  if(m_driverController->GetRawAxis(AXIS_R_TRIG) > 0)
-  {
+  if(m_driverController->GetRawAxis(AXIS_R_TRIG) > 0) {
     // percentage controller axis is activated
     speed = -1*m_driverController->GetRawAxis(AXIS_R_TRIG);
   }
-  else // jhouse: is it safe to assume the L axis is really exactly 'zero' when not pressed by human?  robot could falsely move a bit otherwise
-  {
+  else { // jhouse: is it safe to assume the L axis is really exactly 'zero' when not pressed by human?  robot could falsely move a bit otherwise
     // percentage controller axis is activated
     speed = m_driverController->GetRawAxis(AXIS_L_TRIG);
   }
@@ -83,6 +81,7 @@ void CmdDriveWithController::Execute() {
   
   }*/
 
+  // Booleans for detecting if we want the robot to move
   bool isMoveDesired = (speed > 0.02 || speed < -0.02);
   bool isTurnDesired = (m_driverController->GetRawAxis(AXIS_LX) > 0.02 || m_driverController->GetRawAxis(AXIS_LX) < -0.02);
 

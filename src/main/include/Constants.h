@@ -1,3 +1,7 @@
+/*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
+/*                       Blue Crew Robotics #6153                             */
+/*                            Charged Up 2023                                 */
+/*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -44,12 +48,14 @@ constexpr int MOTOR_RIGHT_MASTER = 1;
 constexpr int MOTOR_LEFT_MASTER = 2;
 constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
+constexpr int MOTOR_Vertical_ELEVATOR = 999;// <---PLACE HOLDER!!!----------------------------
 
 // Maximum velocity in units/100ms
 constexpr int VELOCITY_MAX = 3200;
 constexpr int VELOCITY_SP_MAX_HG = 3200;  // Maximum velocity in actual high gear
 constexpr int VELOCITY_SP_MAX_LG = 1500;  // Maximum velocity in actual low gear
 constexpr int VELOCITY_SP_MAX_LL = 750;   // Maximum velocity in low low virtual gear
+constexpr int ELEVATOR_VELOCITY_MAX = 1000; // <---PLACE HOLDER!!!------ Maximum velocity of the elevator motor
 
 // Continuous current limit for Talons in amps
 constexpr int CONTINUOUS_CURRENT_LIMIT = 20;
