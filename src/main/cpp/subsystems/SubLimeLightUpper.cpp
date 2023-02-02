@@ -45,9 +45,9 @@ double SubLimeLightUpper::GetVerticalOffset() {
   */
 double SubLimeLightUpper::GetDistanceToPurpleCubeTarget() {
   double d = 0.0; // feet
-  double h1 = (17.25/12.0); // feet
+  double h1 = (54.3/12.0); // feet
   double h2 = (4.5/12.0); // feet   // purple cube is 9" tall
-  double a1 =  -3.18;//37.95; // degrees
+  double a1 =  -24.8492;//37.95; // degrees
   double a2 = tblLimeLightUpper->GetNumber("ty",0.0);    
 
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
@@ -57,9 +57,9 @@ double SubLimeLightUpper::GetDistanceToPurpleCubeTarget() {
 
 double SubLimeLightUpper::GetDistanceToYellowConeTarget() {
   double d = 0.0; // feet
-  double h1 = (17.25/12.0); // feet
+  double h1 = (54.3/12.0); // feet
   double h2 = (6.5/12.0); // feet   // yellow cone is 13" tall standing, 8" tall on side
-  double a1 =  -3.18;//37.95; // degrees
+  double a1 =  -24.8492;//37.95; // degrees
   double a2 = tblLimeLightUpper->GetNumber("ty",0.0);    
 
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
@@ -69,9 +69,9 @@ double SubLimeLightUpper::GetDistanceToYellowConeTarget() {
 
 double SubLimeLightUpper::GetDistanceToTopPoleTarget() {  
   double d = 0.0;
-  double h1 = (17.25/12); // inches
+  double h1 = (54.3/12); // inches
   double h2 = (43.75/12); // inches
-  double a1 = -3.18; // degrees
+  double a1 = -24.8492; // degrees
   double a2 = tblLimeLightUpper->GetNumber("ty",0.0);
   
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
@@ -83,7 +83,7 @@ double SubLimeLightUpper::GetDistanceToTopPoleTarget() {
 
 double SubLimeLightUpper::GetDistanceToTarget() {  
   double d = 0.0;
-  double h1 = (17.25/12); // inches
+  double h1 = (54.3/12); // inches
 
   double h2 = 0;
   if(GetSelectedPipeline() == 8) {
@@ -96,7 +96,7 @@ double SubLimeLightUpper::GetDistanceToTarget() {
     h2 = 43.75/12.0;
   }  
 
-  double a1 = -3.18; // degrees
+  double a1 = -24.8492; // degrees
   double a2 = tblLimeLightUpper->GetNumber("ty",0.0);
   
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
@@ -131,7 +131,7 @@ d = 80
   */
 double SubLimeLightUpper::GetCameraMountAngle(double distance) {
   double d = distance;
-  double h1 = (17.25/12); // inches
+  double h1 = (54.3/12); // inches
   double h2 = (43.75/12); // inches
   double a1 = 0.0; // degrees
   double a2 = tblLimeLightUpper->GetNumber("ty",0.0);
