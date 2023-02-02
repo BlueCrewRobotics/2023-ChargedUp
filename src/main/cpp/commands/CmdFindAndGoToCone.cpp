@@ -14,15 +14,15 @@
 
 #include "commands/CmdFindAndGoToTarget.h"
 #include "commands/CmdFindAndGoToCone.h"
-#include "subsystems/SubLimeLight.h"
+#include "subsystems/SubLimeLightLower.h"
 #include "Constants.h"
 
-CmdFindAndGoToCone::CmdFindAndGoToCone(SubDriveTrain* driveTrain, SubLimeLight* limeLight,  frc::Joystick *driverController) 
-  : CmdFindAndGoToTarget(driveTrain, limeLight, driverController) {
+CmdFindAndGoToCone::CmdFindAndGoToCone(SubDriveTrain* driveTrain, SubLimeLightLower* limeLightLower,  frc::Joystick *driverController) 
+  : CmdFindAndGoToTarget(driveTrain, limeLightLower, driverController) {
 }
 
 // Called when the command is initially scheduled.
 void CmdFindAndGoToCone::Initialize() {
   // Set the limelight Piepline to the yellow cone pipeline
-  m_limeLight->SelectPipeline(LL_PIPELINE_YELLOW_CONE_NUMBER);  
+  m_limeLightLower->SelectPipeline(LL_PIPELINE_YELLOW_CONE_NUMBER);  
 }

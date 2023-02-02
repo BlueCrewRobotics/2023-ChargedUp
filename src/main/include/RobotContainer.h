@@ -30,7 +30,8 @@
 // Subsystems includes
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
-#include "subsystems/SubLimeLight.h"
+#include "subsystems/SubLimeLightLower.h"
+#include "subsystems/SubLimeLightUpper.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -51,8 +52,8 @@ class RobotContainer {
 
  private:
   // The robot's commands
-  AutoCmdAutonomous m_autoAutonomous{&m_subLimeLight, &m_subDriveTrain};
-  AutoCmdAutonomous m_autoAutonomous2{&m_subLimeLight, &m_subDriveTrain};
+  AutoCmdAutonomous m_autoAutonomous{&m_subLimeLightLower, &m_subDriveTrain};
+  AutoCmdAutonomous m_autoAutonomous2{&m_subLimeLightLower, &m_subDriveTrain};
 
   frc::SendableChooser<frc2::Command*> m_autoChooser;
   
@@ -63,7 +64,8 @@ class RobotContainer {
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   SubDriveTrain m_subDriveTrain;
-  SubLimeLight m_subLimeLight;
+  SubLimeLightLower m_subLimeLightLower;
+  SubLimeLightUpper m_subLimeLightUpper;
 
     // Setup driver controller
   frc::Joystick *driverController = new frc::Joystick(DRIVER_CONTROLLER);

@@ -6,29 +6,29 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "subsystems/SubLimeLight.h"
+#include "subsystems/SubLimeLightLower.h"
 
-SubLimeLight::SubLimeLight() = default;
+SubLimeLightLower::SubLimeLightLower() = default;
 
 // This method will be called once per scheduler run
-void SubLimeLight::Periodic() {
+void SubLimeLightLower::Periodic() {
 }
 
-bool SubLimeLight::GetTarget() {
-  if(tblLimelight->GetNumber("tv",0.0) < 1.0) { 
+bool SubLimeLightLower::GetTarget() {
+  if(tblLimeLightLower->GetNumber("tv",0.0) < 1.0) { 
     return false;
   }
   return true;
   
 }
 
-double SubLimeLight::GetHorizontalOffset() {
-  return tblLimelight->GetNumber("tx",0.0);
+double SubLimeLightLower::GetHorizontalOffset() {
+  return tblLimeLightLower->GetNumber("tx",0.0);
 
 }
 
-double SubLimeLight::GetVerticalOffset() {
-  return tblLimelight->GetNumber("ty",0.0);
+double SubLimeLightLower::GetVerticalOffset() {
+  return tblLimeLightLower->GetNumber("ty",0.0);
 }
 
 /**
@@ -40,46 +40,48 @@ double SubLimeLight::GetVerticalOffset() {
     h1 = the height of the camera from the ground
     h2 = the height of the center of the target
     a1 = the angle of the camera with respect to ground
-    a2 = the angle of the target with respect to the camera ( limelight will give this angle "ty" from network tables)
+    a2 = the angle of the target with respect to the camera ( LimeLightLower will give this angle "ty" from network tables)
 
   */
-double SubLimeLight::GetDistanceToPurpleCubeTarget() {
+double SubLimeLightLower::GetDistanceToPurpleCubeTarget() {
   double d = 0.0; // feet
   double h1 = (17.25/12.0); // feet
   double h2 = (4.5/12.0); // feet   // purple cube is 9" tall
   double a1 =  -3.18;//37.95; // degrees
-  double a2 = tblLimelight->GetNumber("ty",0.0);    
+  double a2 = tblLimeLightLower->GetNumber("ty",0.0);    
 
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
 
   return d;
 }
 
-double SubLimeLight::GetDistanceToYellowConeTarget() {
+double SubLimeLightLower::GetDistanceToYellowConeTarget() {
   double d = 0.0; // feet
   double h1 = (17.25/12.0); // feet
   double h2 = (6.5/12.0); // feet   // yellow cone is 13" tall standing, 8" tall on side
   double a1 =  -3.18;//37.95; // degrees
-  double a2 = tblLimelight->GetNumber("ty",0.0);    
+  double a2 = tblLimeLightLower->GetNumber("ty",0.0);    
 
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
 
   return d;
 }
 
-double SubLimeLight::GetDistanceToTopPoleTarget() {  
+double SubLimeLightLower::GetDistanceToTopPoleTarget() {  
   double d = 0.0;
   double h1 = (17.25/12); // inches
   double h2 = (43.75/12); // inches
   double a1 = -3.18; // degrees
-  double a2 = tblLimelight->GetNumber("ty",0.0);
+  double a2 = tblLimeLightLower->GetNumber("ty",0.0);
   
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
   
   return d;
 }
 
-double SubLimeLight::GetDistanceToTarget() {  
+   // angle up upper LimeLightLower: -24.8492
+
+double SubLimeLightLower::GetDistanceToTarget() {  
   double d = 0.0;
   double h1 = (17.25/12); // inches
 
@@ -95,7 +97,7 @@ double SubLimeLight::GetDistanceToTarget() {
   }  
 
   double a1 = -3.18; // degrees
-  double a2 = tblLimelight->GetNumber("ty",0.0);
+  double a2 = tblLimeLightLower->GetNumber("ty",0.0);
   
   d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
   
@@ -105,8 +107,8 @@ double SubLimeLight::GetDistanceToTarget() {
   /**
     Get the skew of the target
   */
-double SubLimeLight::GetSkew() {
-  return tblLimelight->GetNumber("ts",0.0);
+double SubLimeLightLower::GetSkew() {
+  return tblLimeLightLower->GetNumber("ts",0.0);
 }
 
 /**
@@ -118,7 +120,7 @@ double SubLimeLight::GetSkew() {
     h1 = the height of the camera from the ground
     h2 = the height of the center of the target
     a1 = the angle of the camera with respect to ground
-    a2 = the angle of the target with respect to the camera ( limelight will give this angle "ty" from network tables)
+    a2 = the angle of the target with respect to the camera ( LimeLightLower will give this angle "ty" from network tables)
 
 
 h1 = 54
@@ -127,12 +129,12 @@ a2 = -2.1
 d = 80
 
   */
-double SubLimeLight::GetCameraMountAngle(double distance) {
+double SubLimeLightLower::GetCameraMountAngle(double distance) {
   double d = distance;
   double h1 = (17.25/12); // inches
   double h2 = (43.75/12); // inches
   double a1 = 0.0; // degrees
-  double a2 = tblLimelight->GetNumber("ty",0.0);
+  double a2 = tblLimeLightLower->GetNumber("ty",0.0);
   
   a1 = (atan((h2-h1)/d)-(a2*3.1416/180))*180/3.1416;
 
@@ -140,7 +142,7 @@ double SubLimeLight::GetCameraMountAngle(double distance) {
 }
 
 /**
-  Set the Limelight LED state.
+  Set the LimeLightLower LED state.
       
   0 - Use the LED Mode set in the current pipeline
   1 - Force LEDS off
@@ -149,20 +151,20 @@ double SubLimeLight::GetCameraMountAngle(double distance) {
   
   @param mode the mode to set for the LEDs
   */
-void SubLimeLight::SetLEDState(int mode) {
-  tblLimelight->PutNumber("ledMode",mode);
+void SubLimeLightLower::SetLEDState(int mode) {
+  tblLimeLightLower->PutNumber("ledMode",mode);
 
 }
 
-/** Set the Limelight camera mode.
+/** Set the LimeLightLower camera mode.
   
   0 - Use Vision processing
   1 - Use Limeligt as Driver Camera (Increases exposure, disables vision processing)
   
   @param mode the mode to set for the Camera
 */
-void SubLimeLight::SetCameraMode(int mode) {
-  tblLimelight->PutNumber("camMode",mode);
+void SubLimeLightLower::SetCameraMode(int mode) {
+  tblLimeLightLower->PutNumber("camMode",mode);
 
 }
 
@@ -172,51 +174,51 @@ void SubLimeLight::SetCameraMode(int mode) {
   
   @param pipeline the pipeline to select for the vision targeting
 */
-void SubLimeLight::SelectPipeline(int pipeline) {
-  tblLimelight->PutNumber("pipeline",pipeline);
+void SubLimeLightLower::SelectPipeline(int pipeline) {
+  tblLimeLightLower->PutNumber("pipeline",pipeline);
 }
 
-int SubLimeLight::GetSelectedPipeline() {
-  return tblLimelight->GetNumber("pipeline", -1);
+int SubLimeLightLower::GetSelectedPipeline() {
+  return tblLimeLightLower->GetNumber("pipeline", -1);
 }
 
-/** Select limelight's streaming mode.
+/** Select LimeLightLower's streaming mode.
   
-  0 - Standard Side-by-Side stream if a webcam is attached to limelight.
+  0 - Standard Side-by-Side stream if a webcam is attached to LimeLightLower.
   1 - PiP Main - The secondary camera stream is placed in the lower-right corner of the primary camera stream
   2 - PiP Secondary - The primary camera stream is placed in the lower-right corner of the secondary camera stream
   
   @param mode the streaming mode selected
 */
-void SubLimeLight::SelectStreamMode(int mode) {
-  tblLimelight->PutNumber("stream",mode);
+void SubLimeLightLower::SelectStreamMode(int mode) {
+  tblLimeLightLower->PutNumber("stream",mode);
 
 }
 
-/** Select limelight's snapshot mode.
+/** Select LimeLightLower's snapshot mode.
   
   0 - Stop taking snapshots.
   1 - Take two snapshots per second
   
   @param mode the streaming mode selected
 */
-void SubLimeLight::SelectSnapshotMode(int mode) {
-  tblLimelight->PutNumber("snapshot",mode);
+void SubLimeLightLower::SelectSnapshotMode(int mode) {
+  tblLimeLightLower->PutNumber("snapshot",mode);
 
 }
 
-/** Get the Limelight distance value
+/** Get the LimeLightLower distance value
  * Returns the stored distance
  */
-double SubLimeLight::GetLimelightDistance() {
+double SubLimeLightLower::GetLimeLightLowerDistance() {
   return m_distance;
 }
 
-/** Set the Limelight distance value
+/** Set the LimeLightLower distance value
  * 
  * @param distance the distance to the target
  */
-void SubLimeLight::SetLimelightDistance(double distance) {
+void SubLimeLightLower::SetLimeLightLowerDistance(double distance) {
   m_distance = distance;
 
 }

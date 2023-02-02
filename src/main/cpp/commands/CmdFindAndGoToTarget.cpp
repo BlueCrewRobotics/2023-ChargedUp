@@ -16,14 +16,14 @@
 #include <iostream>
 
 #include "commands/CmdFindAndGoToTarget.h"
-#include "subsystems/SubLimeLight.h"
+#include "subsystems/SubLimeLightLower.h"
 #include "Constants.h"
 
-CmdFindAndGoToTarget::CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLight* limeLight,  frc::Joystick *driverController) 
-  : m_driveTrain{driveTrain}, m_limeLight{limeLight}, m_driverController{driverController} {
+CmdFindAndGoToTarget::CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLightLower* limeLightLower,  frc::Joystick *driverController) 
+  : m_driveTrain{driveTrain}, m_limeLightLower{limeLightLower}, m_driverController{driverController} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(driveTrain);
-  AddRequirements(limeLight);  
+  AddRequirements(limeLightLower);  
 }
 
 // Called when the command is initially scheduled.
@@ -45,7 +45,7 @@ void CmdFindAndGoToTarget::Execute() {
   }
   else {
     // Check if limelight has found a target
-    if (m_limeLight->GetTarget()) {
+    if (m_limeLightLower->GetTarget()) {
       std::cout << "see target!" << std::endl;
 
       // Select the tollerence (in degrees) of the angle toward the target based on distance (in feet)
@@ -57,14 +57,14 @@ void CmdFindAndGoToTarget::Execute() {
         angleTolerance = 1;
 
       // Turn towards target
-      if (m_limeLight->GetHorizontalOffset() < -angleTolerance) {
+      if (m_limeLightLower->GetHorizontalOffset() < -angleTolerance) {
         std::cout << "moving left to target!" << std::endl;
         rotation = -0.34;
         // Slow down the turning once we get close
         if(dist < 5.5)
           rotation = rotation * 0.8;
       }
-      else if (m_limeLight->GetHorizontalOffset() > angleTolerance) {
+      else if (m_limeLightLower->GetHorizontalOffset() > angleTolerance) {
         std::cout << "moving right to target!" << std::endl;
         rotation = 0.34;
         // Slow down the turning once we get close
@@ -98,7 +98,7 @@ void CmdFindAndGoToTarget::Execute() {
 }
 
 double CmdFindAndGoToTarget::getDistanceToTarget() {
-  return m_limeLight->GetDistanceToTarget();
+  return m_limeLightLower->GetDistanceToTarget();
 }
 
 // Called once the command ends or is interrupted.

@@ -12,7 +12,7 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc/Joystick.h>
 
-#include "subsystems/SubLimeLight.h"
+#include "subsystems/SubLimeLightLower.h"
 #include "subsystems/SubDriveTrain.h"
 #include "Constants.h"
 
@@ -26,7 +26,7 @@
 class CmdFindAndGoToTarget
     : public frc2::CommandHelper<frc2::CommandBase, CmdFindAndGoToTarget> {
  public:
-  CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLight* limeLight, frc::Joystick *driverController);
+  CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLightLower* limeLightLower, frc::Joystick *driverController);
 
   void Initialize() override;
 
@@ -40,7 +40,7 @@ class CmdFindAndGoToTarget
 
  protected:
   SubDriveTrain* m_driveTrain;
-  SubLimeLight* m_limeLight;
+  SubLimeLightLower* m_limeLightLower;
   frc::Joystick* m_driverController;
 
   bool m_isFinished = false;

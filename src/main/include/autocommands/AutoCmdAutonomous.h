@@ -21,11 +21,11 @@
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubPneumatics.h"
-#include "subsystems/SubLimeLight.h"
+#include "subsystems/SubLimeLightLower.h"
 
 
 class AutoCmdAutonomous
     : public frc2::CommandHelper<frc2::SequentialCommandGroup, AutoCmdAutonomous> {
  public:
-  AutoCmdAutonomous(SubLimeLight* subLimelight, SubDriveTrain* subDriveTrain);
+  AutoCmdAutonomous(SubLimeLightLower* subLimelightLower, SubDriveTrain* subDriveTrain);
 };

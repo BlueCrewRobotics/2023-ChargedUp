@@ -14,9 +14,9 @@
 #include <networktables/NetworkTableInstance.h>
 
 
-class SubLimeLight : public frc2::SubsystemBase {
+class SubLimeLightLower : public frc2::SubsystemBase {
  public:
-  SubLimeLight();
+  SubLimeLightLower();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -24,7 +24,7 @@ class SubLimeLight : public frc2::SubsystemBase {
   void Periodic() override;
 
     /**
-     Get whether or not limelight has a target
+     Get whether or not LimeLightLower has a target
     */
   bool GetTarget();
 
@@ -49,7 +49,7 @@ class SubLimeLight : public frc2::SubsystemBase {
      h1 = the height of the camera from the ground
      h2 = the height of the center of the target
      a1 = the angle of the camera with respect to ground
-     a2 = the angle of the target with respect to the camera ( limelight will give this angle "ty" from network tables)
+     a2 = the angle of the target with respect to the camera ( LimeLightLower will give this angle "ty" from network tables)
 
     */
   double GetDistanceToPurpleCubeTarget();
@@ -74,13 +74,13 @@ class SubLimeLight : public frc2::SubsystemBase {
      h1 = the height of the camera from the ground
      h2 = the height of the center of the target
      a1 = the angle of the camera with respect to ground
-     a2 = the angle of the target with respect to the camera ( limelight will give this angle "ty" from network tables)
+     a2 = the angle of the target with respect to the camera ( LimeLightLower will give this angle "ty" from network tables)
 
    */
   double GetCameraMountAngle(double distance);
 
   /**
-    \Set the Limelight LED state.
+    \Set the LimeLightLower LED state.
         
     \0 - Use the LED Mode set in the current pipeline
     \1 - Force LEDS off
@@ -91,7 +91,7 @@ class SubLimeLight : public frc2::SubsystemBase {
    */
   void SetLEDState(int mode);
 
-  /** Set the Limelight camera mode.
+  /** Set the LimeLightLower camera mode.
     
     0 - Use Vision processing
     1 - Use Limeligt as Driver Camera (Increases exposure, disables vision processing)
@@ -113,9 +113,9 @@ class SubLimeLight : public frc2::SubsystemBase {
    */
   int GetSelectedPipeline();
 
-  /** Select limelight's streaming mode.
+  /** Select LimeLightLower's streaming mode.
     
-    0 - Standard Side-by-Side stream if a webcam is attached to limelight.
+    0 - Standard Side-by-Side stream if a webcam is attached to LimeLightLower.
     1 - PiP Main - The secondary camera stream is placed in the lower-right corner of the primary camera stream
     2 - PiP Secondary - The primary camera stream is placed in the lower-right corner of the secondary camera stream
     
@@ -123,7 +123,7 @@ class SubLimeLight : public frc2::SubsystemBase {
   */
   void SelectStreamMode(int mode);
   
-  /** Select limelight's snapshot mode.
+  /** Select LimeLightLower's snapshot mode.
     
     0 - Stop taking snapshots.
     1 - Take two snapshots per second
@@ -132,22 +132,22 @@ class SubLimeLight : public frc2::SubsystemBase {
   */
   void SelectSnapshotMode(int mode);
 
-  /** Get the Limelight distance value
+  /** Get the LimeLightLower distance value
    * Returns the stored distance
    */
-  double GetLimelightDistance();
+  double GetLimeLightLowerDistance();
 
-  /** Set the Limelight distance value
+  /** Set the LimeLightLower distance value
    * 
    * @param distance the distance to the target
    */
-  void SetLimelightDistance(double distance);
+  void SetLimeLightLowerDistance(double distance);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  std::shared_ptr<nt::NetworkTable> tblLimelight = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+  std::shared_ptr<nt::NetworkTable> tblLimeLightLower = nt::NetworkTableInstance::GetDefault().GetTable("LimeLightLower-bottom");
 
   double m_distance = 11.5;
 };
