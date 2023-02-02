@@ -50,6 +50,9 @@ constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
 constexpr int MOTOR_Vertical_ELEVATOR = 999;// <---PLACE HOLDER!!!----------------------------
 
+//SparkMax turret adressing
+constexpr int MOTOR_TURRET = 15;
+
 // Maximum velocity in units/100ms
 constexpr int VELOCITY_MAX = 3200;
 constexpr int VELOCITY_SP_MAX_HG = 3200;  // Maximum velocity in actual high gear
@@ -107,7 +110,7 @@ constexpr int PCM_0 = 9;
 
 // Solenoid Mappings for Shifter PCM
 constexpr int PCM_0_GEARSHIFT = 0;  // Drive train gear shifter
-
+constexpr int PCM_1_PREP_CONERAMP = 1; // piston used on Cone Ramp Extention
 
 // Limelight related Constants
 constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
