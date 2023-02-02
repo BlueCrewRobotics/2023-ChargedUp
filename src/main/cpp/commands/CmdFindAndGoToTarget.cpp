@@ -51,27 +51,35 @@ void CmdFindAndGoToTarget::Execute() {
       // Select the tollerence (in degrees) of the angle toward the target based on distance (in feet)
       double dist = getDistanceToTarget();
       int angleTolerance = 2;
-      if(dist < 10)
+      int angleOffset = 3;
+      if(dist < 10) {
         angleTolerance = 2;
-      if(dist < 6)
+        angleOffset = 6;
+      }
+      if(dist < 6) {
         angleTolerance = 1;
+        angleOffset = 8.5;
+      }
+
+      int desiredHeadingAngle = m_LimeLightUpper->GetHorizontalOffset() + angleOffset;
 
       // Turn towards target
-      if (m_LimeLightUpper->GetHorizontalOffset() < -angleTolerance) {
+      if (desiredHeadingAngle < -angleTolerance) {
         std::cout << "moving left to target!" << std::endl;
         rotation = -0.34;
         // Slow down the turning once we get close
         if(dist < 5.5)
           rotation = rotation * 0.8;
       }
-      else if (m_LimeLightUpper->GetHorizontalOffset() > angleTolerance) {
+      else if (desiredHeadingAngle > angleTolerance) {
         std::cout << "moving right to target!" << std::endl;
         rotation = 0.34;
         // Slow down the turning once we get close
         if(dist < 5.5)
           rotation = rotation * 0.8;
-      }
       
+      }
+
       if (dist > 4.5) {
         std::cout << "moving forward to target!" << std::endl;
         //rotation = 0.0;
