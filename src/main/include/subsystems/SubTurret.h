@@ -5,7 +5,7 @@
 #pragma once
 
 #include <frc2/command/SubsystemBase.h>
-//#include <rev/CANSparkMax.h>
+#include <rev/CANSparkMax.h>
 
 class SubTurret : public frc2::SubsystemBase {
  public:
@@ -19,7 +19,7 @@ class SubTurret : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-//    rev::CANSparkMax turretMotor{15, rev::CANSparkMax::MotorType::kBrushless}; // Change the zero to an address in robotmap
+    rev::CANSparkMax turretMotor{15, rev::CANSparkMax::MotorType::kBrushless}; // Change the zero to an address in robotmap
     //rev::CANPIDController pidController = turretEngageMotor.GetPIDController();
     //rev::CANEncoder turretEngageEncoder = turretEngageMotor.GetEncoder();
 };
