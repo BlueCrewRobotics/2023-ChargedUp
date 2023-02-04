@@ -22,6 +22,7 @@
 #include "commands/CmdConeRampPrepRetract.h"
 #include "commands/CmdFindAndGoToCube.h"
 #include "commands/CmdFindAndGoToCone.h"
+#include "commands/CmdPrinty.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
@@ -47,7 +48,7 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  frc2::CommandPtr GetAutonomousCommand();
+  frc2::Command* GetAutonomousCommand();
 
   // Configure the drive train run this function in RobotInit()
   void ConfigureDrive();
@@ -56,7 +57,6 @@ class RobotContainer {
  private:
   // The robot's commands
   AutoCmdAutonomous m_autoAutonomous{&m_subLimeLightLower, &m_subDriveTrain};
-  AutoCmdAutonomous m_autoAutonomous2{&m_subLimeLightLower, &m_subDriveTrain};
 
   frc::SendableChooser<frc2::Command*> m_autoChooser;
   

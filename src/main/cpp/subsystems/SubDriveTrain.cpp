@@ -150,6 +150,12 @@ void SubDriveTrain::SetMaxSpeed(double maxSpeed) {
     rightDriveMotor->SetMaxSpeed(maxSpeed);
 }
 
+// Set the ramp for the motors
+void SubDriveTrain::SetRamp(double ramp) {
+  leftDriveMotor->SetRamp(ramp);
+  rightDriveMotor->SetRamp(ramp);
+}
+
 void SubDriveTrain::AutonomousDriving(double leftrotations, double rightrotations) {
   leftrotations = leftrotations * 2048;
   rightrotations = rightrotations * 2048;
@@ -191,6 +197,8 @@ void SubDriveTrain::ZeroYaw() {
   m_ahrs->ZeroYaw();
 }
 
+
+
 float SubDriveTrain::GetYawStraightValue() {
   return m_ahrsYawStraight;
 }
@@ -198,3 +206,8 @@ float SubDriveTrain::GetYawStraightValue() {
 void SubDriveTrain::SetYawStraightValue(float yawValue) {
   m_ahrsYawStraight = yawValue;
 }
+
+float SubDriveTrain::GetPitch() {
+  return m_ahrs->GetRoll();
+}
+

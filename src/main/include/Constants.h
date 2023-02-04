@@ -112,6 +112,16 @@ constexpr int PCM_0 = 9;
 constexpr int PCM_0_GEARSHIFT = 0;  // Drive train gear shifter
 constexpr int PCM_1_PREP_CONERAMP = 1; // piston used on Cone Ramp Extention
 
+// NavX related constants and info
+// 
+// when slabby is sitting level, depending upon which 2 sets of wheels it is sitting on,
+// pitch is: -1.18 to -0.50
+// pitch decreases (more negative) when slabby is tipping backward
+//
+constexpr int NAVX_CHARGED_UP_RAMP_PITCH = 11;
+
+
+
 // Limelight related Constants
 constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
 constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;

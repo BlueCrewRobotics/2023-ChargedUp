@@ -10,7 +10,6 @@
 
 #include <frc2/command/button/Trigger.h>
 
-#include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
 
 
@@ -19,7 +18,7 @@ RobotContainer::RobotContainer() {
 
   //Add commands to the autonomous drive station chooser
   m_autoChooser.SetDefaultOption("Auto 1", &m_autoAutonomous);
-  m_autoChooser.AddOption("Auto 2", &m_autoAutonomous2);
+  //m_autoChooser.AddOption("Auto 2", &m_autoAutonomous2);
 
   // Put the chooser on the dashboard
   frc::SmartDashboard::PutData("Autonomous", &m_autoChooser);
@@ -38,14 +37,10 @@ void RobotContainer::ConfigureBindings() {
   driverController_button_x->WhenPressed(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, driverController));
   driverController_button_y->WhenPressed(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, driverController));
 
+  driverController_button_b->WhenPressed(CmdPrinty(&m_subDriveTrain, driverController));
+
   // Set the default command for the Drive Train
   m_subDriveTrain.SetDefaultCommand(CmdDriveWithController(&m_subDriveTrain, driverController));
-
-  // Settup the cone ramp prepper to extend when a is pressed
-  driverController_button_a->WhenHeld(CmdConeRampPrepExtend(&m_subConeRampPrep));
-
-  // Settup the Cone Ramp Prepper to retract when a is released
-  driverController_button_a->WhenReleased(CmdConeRampPrepRetract(&m_subConeRampPrep));
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   // frc2::Trigger([this] {
@@ -57,9 +52,9 @@ void RobotContainer::ConfigureBindings() {
   // m_driverController.B().WhileTrue(m_subsystem.ExampleMethodCommand());
 }
 
-frc2::CommandPtr RobotContainer::GetAutonomousCommand() {
-  // An example command will be run in autonomous
-  return autos::ExampleAuto(&m_subsystem);
+frc2::Command* RobotContainer::GetAutonomousCommand() {
+  
+  return &m_autoAutonomous;
 }
 
 void RobotContainer::ConfigureDrive() {
