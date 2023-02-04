@@ -44,6 +44,8 @@ public:
   bool GetDriveTrainGear();
   // Set max speed on drive motors
   void SetMaxSpeed(double maxSpeed);
+  // Set the ramp for the motors
+  void SetRamp(double ramp);
   // Autonomous driving
   void AutonomousDriving(double leftrotations, double rightrotations);
   // Rotate the robot
@@ -66,7 +68,8 @@ public:
   float GetYawStraightValue();
   // Set Yaw straight value
   void SetYawStraightValue(float yawValue);
-
+  // Get navx pitch
+  float GetPitch();
 
 private:
   // Components (e.g. motor controllers and sensors) should generally be
