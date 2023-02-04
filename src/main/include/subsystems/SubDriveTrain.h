@@ -30,6 +30,8 @@ public:
 
   // Drive the robot
   void Drive(double speed, double rotation);
+  // Drive the robot straight using navx
+  void DriveStraight(double speed, double headingError);
   // Configure the drive controllers
   void DriveTrainConfigure();
   // Get the PID control parameters from the dashboard

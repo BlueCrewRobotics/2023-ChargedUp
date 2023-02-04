@@ -8,6 +8,9 @@
 
 #include "subsystems/SubDriveTrain.h"
 
+#include <iostream>
+#include <stdio.h>
+
 SubDriveTrain::SubDriveTrain() = default;
 
 // This method will be called once per scheduler run
@@ -132,6 +135,54 @@ void SubDriveTrain::GetPidFromDashboard() {
 void SubDriveTrain::Drive(double speed, double rotation) {
     driveTrain->SetDeadband(0.02);
     driveTrain->ArcadeDrive(speed, rotation, true);
+}
+
+// Drives the Drive train straight
+void SubDriveTrain::DriveStraight(double speed, double headingError) {
+  double rotation = 0.0;
+  if(headingError > 0.0) {
+    // Normalize for quadrant I
+    rotation = (1.0 - ((180.0-(headingError))/180.0));
+//    if(headingError > 5)
+//    std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
+  }
+  if(headingError  < 0.0) {
+    // Normailize for quadrant II
+    rotation = (-1.0 + (180.0+(headingError))/180.0);
+//    if(headingError < -5)
+//      std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
+  }
+    
+    // Correct for quadrents III and IV
+  if(rotation > 1.0) {
+    rotation = (rotation - 1.0) * -1.0;
+    if(rotation > 1.0) {
+//      std::cout << "CmdDriveWithController>> ****** Wooooooo"  << std::endl;
+    }
+  }
+  else if(rotation < -1.0) {
+    rotation = (rotation + 1.0) * -1.0;
+    if(rotation < -1.0) {
+//      std::cout << "CmdDriveWithController>> ****** Wooooooo"  << std::endl;
+    }
+  }
+
+  // catch and avoid erratic jumps
+  if(headingError > 300)
+    rotation = -0.2;
+  else if(headingError < -300)
+    rotation = 0.2;
+
+  // Add offset if needed
+  if(rotation > 0.0 && rotation < 0.2) {
+    rotation = rotation + 0.07;
+  }
+  else if(rotation < 0.0 && rotation > -0.2) {
+    rotation = rotation - 0.07;
+  }
+
+  driveTrain->SetDeadband(0.02);
+  driveTrain->ArcadeDrive(speed, rotation, true);
 }
 
 void SubDriveTrain::SetDriveTrainGear() {
