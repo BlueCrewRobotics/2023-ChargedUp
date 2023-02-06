@@ -7,7 +7,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 /* This is a command for autonomous that watches
- * the pitch from the navx to drive onto the ramp
+ * the pitch from the navx to drive onto the ChargeStation
  * and stay balanced on it.                    */
 #pragma once
 
@@ -25,10 +25,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AutoCmdDriveOntoRampAndStay
-    : public frc2::CommandHelper<frc2::CommandBase, AutoCmdDriveOntoRampAndStay> {
+class AutoCmdDriveOntoChargeStation
+    : public frc2::CommandHelper<frc2::CommandBase, AutoCmdDriveOntoChargeStation> {
  public:
-  AutoCmdDriveOntoRampAndStay(SubDriveTrain* subDriveTrain);
+  AutoCmdDriveOntoChargeStation(SubDriveTrain* subDriveTrain);
 
   void Initialize() override;
 
@@ -41,7 +41,7 @@ class AutoCmdDriveOntoRampAndStay
  private:
   SubDriveTrain* m_driveTrain;
   double m_levelPitchValue = 0.0;
-  bool m_onRamp = false;
-  bool m_leveling = false;
+  bool m_onChargeStation = false;
+  bool m_finished = false;
   frc::Timer m_timer;
 };

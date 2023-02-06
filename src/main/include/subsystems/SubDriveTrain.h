@@ -31,7 +31,7 @@ public:
   // Drive the robot
   void Drive(double speed, double rotation);
   // Drive the robot straight using navx
-  void DriveStraight(double speed, double headingError);
+  void DriveStraight(double speed);
   // Configure the drive controllers
   void DriveTrainConfigure();
   // Get the PID control parameters from the dashboard
@@ -72,6 +72,10 @@ public:
   void SetYawStraightValue(float yawValue);
   // Get navx pitch
   float GetPitch();
+  // Set the Pitch level value
+  void SetPitchLevelValue(float pitchValue);
+  // Get the Pitch level value
+  float GetPitchLevelValue();
 
 private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -105,6 +109,7 @@ private:
   
   // Used to drive straight
   float m_ahrsYawStraight;
+  float m_ahrsPitchLevel;
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.

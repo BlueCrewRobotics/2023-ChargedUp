@@ -131,15 +131,19 @@ void SubDriveTrain::GetPidFromDashboard() {
   rightDriveMotor->SetConfig_kD(1, frc::SmartDashboard::GetNumber("RIGHT_KD_1",RIGHT_KD_1));
 }
 
-// Drives the Drive Train with ArcadeDrive
+// Drives the Drive Train with ArcadeDrive given speed and rotation
 void SubDriveTrain::Drive(double speed, double rotation) {
     driveTrain->SetDeadband(0.02);
     driveTrain->ArcadeDrive(speed, rotation, true);
 }
 
-// Drives the Drive train straight
-void SubDriveTrain::DriveStraight(double speed, double headingError) {
+/*  Drives the Drive train straight given speed                       */
+/*  use m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());    */
+/*  to set the direction you want to go in                            */
+
+void SubDriveTrain::DriveStraight(double speed) {
   double rotation = 0.0;
+  double headingError = m_ahrsYawStraight - m_ahrs->GetYaw();
   if(headingError > 0.0) {
     // Normalize for quadrant I
     rotation = (1.0 - ((180.0-(headingError))/180.0));
@@ -258,6 +262,13 @@ void SubDriveTrain::SetYawStraightValue(float yawValue) {
   m_ahrsYawStraight = yawValue;
 }
 
+void SubDriveTrain::SetPitchLevelValue(float pitchValue) {
+  m_ahrsPitchLevel = pitchValue;
+}
+
+float SubDriveTrain::GetPitchLevelValue() {
+  return m_ahrsPitchLevel;
+}
 float SubDriveTrain::GetPitch() {
   return m_ahrs->GetRoll();
 }
