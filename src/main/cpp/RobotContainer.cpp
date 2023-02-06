@@ -34,8 +34,8 @@ void RobotContainer::ConfigureBindings() {
   // Setup the command to shift gears when right bumper is pressed
   driverController_button_lbump->WhenPressed(CmdShiftGear(&m_subDriveTrain));
 
-  driverController_button_x->WhenPressed(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, driverController));
-  driverController_button_y->WhenPressed(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, driverController));
+  driverController_button_x->WhileHeld(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, driverController));
+  driverController_button_y->WhileHeld(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, driverController));
 
   driverController_button_b->WhenPressed(CmdPrinty(&m_subDriveTrain, driverController));
 

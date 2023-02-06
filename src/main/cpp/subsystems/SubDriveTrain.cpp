@@ -273,3 +273,10 @@ float SubDriveTrain::GetPitch() {
   return m_ahrs->GetRoll();
 }
 
+void SubDriveTrain::SetDirectedRotation(double rotation) {
+  m_directedRotation = rotation;
+}
+
+double SubDriveTrain::GetDirectedRotation() {
+  return m_directedRotation;
+}

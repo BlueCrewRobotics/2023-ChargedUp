@@ -76,6 +76,10 @@ public:
   void SetPitchLevelValue(float pitchValue);
   // Get the Pitch level value
   float GetPitchLevelValue();
+  // Set the Directed rotation
+  void SetDirectedRotation(double rotation);
+  // Get the Directed Rotation
+  double GetDirectedRotation();
 
 private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -108,8 +112,11 @@ private:
   AHRS* m_ahrs = new AHRS(frc::SPI::kMXP, 120);
   
   // Used to drive straight
-  float m_ahrsYawStraight;
-  float m_ahrsPitchLevel;
+  float m_ahrsYawStraight = 0;
+  float m_ahrsPitchLevel = 0;
+
+  // Used to use rotation given from something automatically, like the limelight
+  double m_directedRotation = 0.0;
 
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
