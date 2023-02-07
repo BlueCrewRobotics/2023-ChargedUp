@@ -18,7 +18,10 @@ AutoCmdAutonomous::AutoCmdAutonomous(SubLimeLightLower* subLimelightLower, SubDr
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   AddCommands(
-    AutoCmdDriveOntoRampAndStay(subDriveTrain)
+    // Drive onto the charge Station
+    AutoCmdDriveOntoChargeStation(subDriveTrain),
+    // Self-Balance on the charge station
+    AutoCmdBalanceOnChargeStation(subDriveTrain)
     
 
   );

@@ -16,7 +16,8 @@
 #include "commands/CmdShiftGear.h"
 
 // Autonomous commands
-#include "autocommands/AutoCmdDriveOntoRampAndStay.h"
+#include "autocommands/AutoCmdDriveOntoChargeStation.h"
+#include "autocommands/AutoCmdBalanceOnChargeStation.h"
 // Subsystem includes
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
