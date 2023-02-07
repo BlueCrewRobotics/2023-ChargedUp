@@ -2,7 +2,7 @@
 /*                       Blue Crew Robotics #6153                             */
 /*                            Charged Up 2023                                 */
 /*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
-
+/*
 #include "common/BC_InternalButton.h"
 
 BC_InternalButton::BC_InternalButton() {
@@ -18,3 +18,4 @@ void BC_InternalButton::Set(bool value) {
 
 }
 
+*/
