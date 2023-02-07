@@ -42,6 +42,4 @@ class CmdFindAndGoToTarget
   SubDriveTrain* m_driveTrain;
   SubLimeLightUpper* m_LimeLightUpper;
   frc::Joystick* m_driverController;
-
-  bool m_isFinished = false;
 };

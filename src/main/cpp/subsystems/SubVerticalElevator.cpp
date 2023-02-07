@@ -27,11 +27,14 @@ void SubVerticalElevator::ElevatorConfigure() {
 
 // Move the elevator up and down based on speed (will not go to a specific location/position, just goes up or down until you stop telling it to)
 void SubVerticalElevator::ElevateBySpeed(double elevatorSpeed) {
+    // Set the control mode to Velocity
+    elevatorMotor->SetControlMode((ctre::phoenix::motorcontrol::ControlMode) 2);
     // Set the motor speed
     elevatorMotor->Set(elevatorSpeed);
 }
 // Move the elevator to a specific location/position given encoder tics
 void SubVerticalElevator::ElevateToPosition(double elevatorPosition) {
+    /*
     // Get Current Position
     double currentElevatorPosition = elevatorMotor->GetEncoderValue();
     // Find the error from where we want to be
@@ -50,6 +53,11 @@ void SubVerticalElevator::ElevateToPosition(double elevatorPosition) {
     }
     // Actually pass the speed to the motor
     elevatorMotor->Set(elevatorSpeed);
+    */
+   // Set the controll mode to Position
+   elevatorMotor->SetControlMode((ctre::phoenix::motorcontrol::ControlMode) 1);
+   // Pass the encoder value to the elevator motor
+   elevatorMotor->Set(elevatorPosition);
 }
 
 // Get the elevator motor encoder value
