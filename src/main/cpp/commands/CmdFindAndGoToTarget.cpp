@@ -19,8 +19,8 @@
 #include "subsystems/SubLimeLightUpper.h"
 #include "Constants.h"
 
-CmdFindAndGoToTarget::CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper,  frc::Joystick *driverController) 
-  : m_driveTrain{driveTrain}, m_LimeLightUpper{LimeLightUpper}, m_driverController{driverController} {
+CmdFindAndGoToTarget::CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper) 
+  : m_driveTrain{driveTrain}, m_LimeLightUpper{LimeLightUpper} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(LimeLightUpper);  
 }

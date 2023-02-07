@@ -26,7 +26,7 @@
 class CmdFindAndGoToTarget
     : public frc2::CommandHelper<frc2::CommandBase, CmdFindAndGoToTarget> {
  public:
-  CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper, frc::Joystick *driverController);
+  CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper);
 
   void Initialize() override;
 
@@ -41,5 +41,4 @@ class CmdFindAndGoToTarget
  protected:
   SubDriveTrain* m_driveTrain;
   SubLimeLightUpper* m_LimeLightUpper;
-  frc::Joystick* m_driverController;
 };

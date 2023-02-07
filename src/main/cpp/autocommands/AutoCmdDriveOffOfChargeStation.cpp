@@ -29,7 +29,6 @@ void AutoCmdDriveOffOfChargeStation::Initialize() {
 void AutoCmdDriveOffOfChargeStation::Execute() {
   // Define variables
   double currentPitch = m_driveTrain->GetPitch();
-  double pitchTolerance = 0.65;
   double speed = 0.0;
   // Do we think we are already on the ChargeStation?
   

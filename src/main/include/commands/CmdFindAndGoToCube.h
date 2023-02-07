@@ -27,7 +27,7 @@
 class CmdFindAndGoToCube
    : public CmdFindAndGoToTarget {
  public:
-  CmdFindAndGoToCube(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper, frc::Joystick *driverController);
+  CmdFindAndGoToCube(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper);
 
   void Initialize() override;
 

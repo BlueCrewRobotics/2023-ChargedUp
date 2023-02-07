@@ -10,6 +10,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc2/command/button/CommandXboxController.h>
 
 #include "subsystems/SubDriveTrain.h"
 #include <frc/Joystick.h>
@@ -25,7 +26,7 @@
 class CmdDriveWithController
     : public frc2::CommandHelper<frc2::CommandBase, CmdDriveWithController> {
  public:
-  CmdDriveWithController(SubDriveTrain* driveTrain, frc::Joystick *driverController);
+  CmdDriveWithController(SubDriveTrain* driveTrain, frc2::CommandXboxController* driverController);
 
   void Initialize() override;
 
@@ -37,7 +38,7 @@ class CmdDriveWithController
 
  private:
   SubDriveTrain* m_driveTrain;
-  frc::Joystick* m_driverController;
+  frc2::CommandXboxController* m_driverController;
   BC_TriggerCal m_lReverseTriggerCal = BC_TriggerCal(true);
   BC_TriggerCal m_rForwardTiggerCal = BC_TriggerCal(false);
 

@@ -56,8 +56,9 @@ void AutoCmdTurnAround::Execute() {
     m_finished = true;
   }
   else {
-    m_finished - false;
+    m_finished = false;
   }
+  m_driveTrain->RotateDriveTrain(rotation);
 }
 
 // Called once the command ends or is interrupted.
