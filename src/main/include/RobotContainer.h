@@ -26,6 +26,7 @@
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
+#include "autocommands/AutoCmdAutonomous2.h"
 
 // Constants used throughout code
 #include "Constants.h"
@@ -57,6 +58,7 @@ class RobotContainer {
  private:
   // The robot's commands
   AutoCmdAutonomous m_autoAutonomous{&m_subLimeLightLower, &m_subDriveTrain};
+  AutoCmdAutonomous2 m_autoAutonomous2{&m_subLimeLightLower, &m_subDriveTrain};
 
   frc::SendableChooser<frc2::Command*> m_autoChooser;
   

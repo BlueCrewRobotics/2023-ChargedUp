@@ -18,7 +18,7 @@ RobotContainer::RobotContainer() {
 
   //Add commands to the autonomous drive station chooser
   m_autoChooser.SetDefaultOption("Auto 1", &m_autoAutonomous);
-  //m_autoChooser.AddOption("Auto 2", &m_autoAutonomous2);
+  m_autoChooser.AddOption("Auto 2", &m_autoAutonomous2);
 
   // Put the chooser on the dashboard
   frc::SmartDashboard::PutData("Autonomous", &m_autoChooser);
@@ -54,7 +54,7 @@ void RobotContainer::ConfigureBindings() {
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   
-  return &m_autoAutonomous;
+  return m_autoChooser.GetSelected();
 }
 
 void RobotContainer::ConfigureDrive() {
