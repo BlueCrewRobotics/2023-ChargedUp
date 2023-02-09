@@ -31,6 +31,63 @@ double SubLimeLightUpper::GetVerticalOffset() {
   return tblLimeLightUpper->GetNumber("ty",0.0);
 }
 
+double SubLimeLightUpper::GetTargetArea() {
+  return tblLimeLightUpper->GetNumber("ta",0.0);
+}
+
+double SubLimeLightUpper::GetTargetLatency() {
+  return tblLimeLightUpper->GetNumber("tl",0.0);
+}
+
+double SubLimeLightUpper::GetShortestSideOfTargetBoundingBox() {
+  return tblLimeLightUpper->GetNumber("tshort",0.0);
+}
+
+double SubLimeLightUpper::GetLongestSideOfTargetBoundingBox() {
+  return tblLimeLightUpper->GetNumber("tlong",0.0);
+}
+
+double SubLimeLightUpper::GetHorizontalSideLengthOfTargetBoundingBox() {
+  return tblLimeLightUpper->GetNumber("thor",0.0);
+}
+
+double SubLimeLightUpper::GetVerticalSideLengthOfTargetBoundingBox() {
+  return tblLimeLightUpper->GetNumber("tvert",0.0);
+}
+
+double SubLimeLightUpper::GetActivePipeline() {
+  return tblLimeLightUpper->GetNumber("getPipe",0.0);
+}
+
+void SubLimeLightUpper::SetCropValues(double X0, double X1, double Y0, double Y1) {
+  double cropValues[4];
+  cropValues[0] = X0;
+  cropValues[1] = X1;
+  cropValues[2] = Y0;
+  cropValues[3] = Y1;
+  nt::NetworkTableInstance::GetDefault().GetTable("limelight-upper")->GetEntry("crop").SetDoubleArray(cropValues);
+}
+
+double SubLimeLightUpper::GetAprilTagId() {
+  return tblLimeLightUpper->GetNumber("tid",0.0);
+}
+
+double SubLimeLightUpper::GetBotPoseTargetSpace() {
+  return tblLimeLightUpper->GetNumber("botpose_targetspace",0.0);
+}
+
+double SubLimeLightUpper::GetTargetPoseBotSpace() {
+  return tblLimeLightUpper->GetNumber("targetpose_robotspace",0.0);
+}
+
+double SubLimeLightUpper::GetTargetPoseCameraSpace() {
+  return tblLimeLightUpper->GetNumber("targetpose_cameraspace",0.0);
+}
+
+double SubLimeLightUpper::GetCameraPoseTargetspace() {
+  return tblLimeLightUpper->GetNumber("camerapose_targetspace",0.0);
+}
+
 /**
    Get the distance from the target
     
