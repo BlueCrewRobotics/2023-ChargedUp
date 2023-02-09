@@ -40,6 +40,66 @@ class SubLimeLightUpper : public frc2::SubsystemBase {
     */
   double GetVerticalOffset();
 
+/**
+      Get Target Area From 0% of the image to 100% of the image
+    */
+  double GetTargetArea();
+
+  /**
+   * The Pipelines Latency contribution(ms) Add at least 11 ms for image capture latency
+  */
+  double GetTargetLatency();
+
+ /**
+  * Sidelength of the shortest side of the fitted bounding box(pixels)
+ */
+  double GetShortestSideOfTargetBoundingBox();
+
+  /**
+  * Sidelength of the Longest side of the fitted bounding box(pixels)
+ */
+  double GetLongestSideOfTargetBoundingBox();
+
+  /**
+   * Horizontal Side length of the bouinding box
+  */
+ double GetHorizontalSideLengthOfTargetBoundingBox();
+
+  /**
+   * Vertical Side length of the bouinding box
+  */
+  double GetVerticalSideLengthOfTargetBoundingBox();
+
+  /**
+   * Get Id of the primary in-view AprilTag
+  */
+
+  double GetAprilTagId();
+
+ /**
+   * True active pipelineindex of the camera
+  */
+  double GetActivePipeline();
+
+  void SetCropValues(double X0, double X1, double Y0, double Y1);
+
+/**
+ * 3D transform of the robot in the coordinate system of the primary in-view AprilTag
+*/
+  double GetBotPoseTargetSpace();
+/**
+ * 3D transform of the primary in-view AprilTag in the coordinate system of the Robot
+*/
+  double GetTargetPoseBotSpace();
+/**
+ * 3D transform of the primary in-view AprilTag in the coordinate system of the Camera
+*/
+  double GetTargetPoseCameraSpace();
+/**
+ * 3D transform of the camera in the coordinate system of the primary in-view AprilTag
+*/
+  double GetCameraPoseTargetspace(); 
+  
   /** 
      Get the distance from the target
      
