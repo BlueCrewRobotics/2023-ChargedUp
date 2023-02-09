@@ -11,6 +11,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc/Joystick.h>
+#include <frc2/command/button/CommandXboxController.h>
 
 #include "subsystems/SubLimeLightUpper.h"
 #include "subsystems/SubDriveTrain.h"
@@ -27,7 +28,7 @@
 class CmdFindAndGoToCone
    : public CmdFindAndGoToTarget {
  public:
-  CmdFindAndGoToCone(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper);
+  CmdFindAndGoToCone(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper, frc2::CommandXboxController* driverController);
 
   void Initialize() override;
 

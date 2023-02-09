@@ -34,11 +34,11 @@ void RobotContainer::ConfigureBindings() {
   // Setup the command to shift gears when right bumper is pressed
   driverController_button_lbump.OnTrue(CmdShiftGear(&m_subDriveTrain).ToPtr());
 
-  driverController_button_x.WhileTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper).ToPtr());
-  driverController_button_y.WhileTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper).ToPtr());
+  driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
 
   // Set the default command for the Drive Train
-  m_subDriveTrain.SetDefaultCommand(CmdDriveWithController(&m_subDriveTrain, &driverController).ToPtr());
+  m_subDriveTrain.SetDefaultCommand(CmdDriveWithController(&m_subDriveTrain, &driverController));
 
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   // frc2::Trigger([this] {

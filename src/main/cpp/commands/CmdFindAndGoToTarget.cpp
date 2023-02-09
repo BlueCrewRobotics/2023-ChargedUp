@@ -19,8 +19,8 @@
 #include "subsystems/SubLimeLightUpper.h"
 #include "Constants.h"
 
-CmdFindAndGoToTarget::CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper) 
-  : m_driveTrain{driveTrain}, m_LimeLightUpper{LimeLightUpper} {
+CmdFindAndGoToTarget::CmdFindAndGoToTarget(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper, frc2::CommandXboxController* driverController) 
+  : m_driveTrain{driveTrain}, m_LimeLightUpper{LimeLightUpper}, m_driverController{driverController} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(LimeLightUpper);  
 }
@@ -79,6 +79,14 @@ void CmdFindAndGoToTarget::Execute() {
 
   // Pass speed and rotation to the drive train
   m_driveTrain->SetDirectedRotation(rotation);
+
+  // set m_finished to true if x or y aren't pressed
+  if(!m_driverController->GetXButton() && !m_driverController->GetYButton()) {
+    m_finished = true;
+  }
+  else {
+    m_finished = false;
+  }
 
 }
 
