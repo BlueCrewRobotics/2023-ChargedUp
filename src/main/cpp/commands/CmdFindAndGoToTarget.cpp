@@ -101,6 +101,6 @@ void CmdFindAndGoToTarget::End(bool interrupted) {
 
 // Returns true when the command should end.
 bool CmdFindAndGoToTarget::IsFinished() {
-  return false;
+  return m_finished;
 }
 
