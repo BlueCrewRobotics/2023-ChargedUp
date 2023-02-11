@@ -17,8 +17,8 @@
 #include "subsystems/SubLimeLightUpper.h"
 #include "Constants.h"
 
-CmdFindAndGoToCube::CmdFindAndGoToCube(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper) 
-  : CmdFindAndGoToTarget(driveTrain, LimeLightUpper) {
+CmdFindAndGoToCube::CmdFindAndGoToCube(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper, frc2::CommandXboxController* driverController) 
+  : CmdFindAndGoToTarget(driveTrain, LimeLightUpper, driverController) {
 }
 
 // Called when the command is initially scheduled.
