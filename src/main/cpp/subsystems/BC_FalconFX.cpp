@@ -130,3 +130,7 @@ double BC_FalconFX::GetError() {
 void BC_FalconFX::ResetEncoder() {
 	ptr_falconFX->SetSelectedSensorPosition(0,0,0);
 }
+
+void BC_FalconFX::SetNeutralDeadband(double deadband) {
+	ptr_falconFX->ConfigNeutralDeadband(deadband);
+}

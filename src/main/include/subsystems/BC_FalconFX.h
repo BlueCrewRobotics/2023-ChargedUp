@@ -61,6 +61,8 @@ class BC_FalconFX : public virtual frc::MotorController {
   double GetError();
   //Reset Encoder
   void ResetEncoder();
+  // Set the neutral deadband
+  void SetNeutralDeadband(double deadband);
 
 
  private:

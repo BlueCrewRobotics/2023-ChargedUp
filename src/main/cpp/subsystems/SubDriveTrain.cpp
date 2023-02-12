@@ -29,6 +29,10 @@ void SubDriveTrain::DriveTrainConfigure() {
   rightDriveMotor->SetInverted(true);
   leftDriveMotor->SetInverted(false);
 
+  // Set the Drive motors neutral deadband
+  rightDriveMotor->SetNeutralDeadband(0.001);
+  leftDriveMotor->SetNeutralDeadband(0.001);
+
   // Set the right and left followers
   leftFollowMotor->SetFollower(leftDriveMotor->GetMotorController());
   rightFollowMotor->SetFollower(rightDriveMotor->GetMotorController());
@@ -105,6 +109,7 @@ void SubDriveTrain::DriveTrainConfigure() {
   rightDriveMotor->SetConfig_kP(1, RIGHT_KP_1);
   rightDriveMotor->SetConfig_kI(1, RIGHT_KI_1);
   rightDriveMotor->SetConfig_kD(1, RIGHT_KD_1);
+
 
 
 }

@@ -117,7 +117,7 @@ private:
   double m_maxSpeed = VELOCITY_SP_MAX_LG;
 
   // Navx setup and increasing the update rate default is 60 range is 4-200. Loading of the RobioRio should be monitored
-  AHRS* m_ahrs = new AHRS(frc::SPI::kMXP, 120);
+  AHRS* m_ahrs = new AHRS(frc::SPI::kMXP, 100);
   
   // Used to drive straight
   float m_ahrsYawStraight = 0;
