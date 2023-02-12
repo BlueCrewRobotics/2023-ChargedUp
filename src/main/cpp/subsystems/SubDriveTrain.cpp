@@ -143,6 +143,10 @@ void SubDriveTrain::Drive(double speed, double rotation) {
 /*  use m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());    */
 /*  to set the direction you want to go in                            */
 
+/* THIS FUNCTION SHOULD BE A COMMAND. THIS NEEDS TO BE REMOVED FROM HERE.
+   SUBSYSTEMS ARE FOR LOW LEVEL FUNCTIONALITY, WHERE COMMANDS ARE USED FOR 
+   MORE COMPLICTATED MOVEMENTS AND CHECKING. */
+
 void SubDriveTrain::DriveStraight(double speed) {
   double rotation = 0.0;
   double headingError = m_ahrsYawStraight - m_ahrs->GetYaw();

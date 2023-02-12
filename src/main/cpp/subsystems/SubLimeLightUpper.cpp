@@ -65,6 +65,9 @@ void SubLimeLightUpper::SetCropValues(double X0, double X1, double Y0, double Y1
   cropValues[1] = X1;
   cropValues[2] = Y0;
   cropValues[3] = Y1;
+  /*
+    THIS IS NOT A GET FUNCTION, IT IS A SET FUNCTION AND NEEDS TO BE CORRECTED BELOW
+  */
   nt::NetworkTableInstance::GetDefault().GetTable("limelight-upper")->GetEntry("crop").SetDoubleArray(cropValues);
 }
 
@@ -100,6 +103,28 @@ double SubLimeLightUpper::GetCameraPoseTargetspace() {
     a2 = the angle of the target with respect to the camera ( LimeLightUpper will give this angle "ty" from network tables)
 
   */
+
+ /*  THIS SHOULD BE CLEANED UP.  THERE SHOULD BE ONLY ONE GetDistanceToTarget IN THE LIMELIGHT
+     CLASS.  THE GetDistanceToTarget SHOULD TAKE h1, h2, AND a1 AS FUNCTION VARIABLES.
+     THESE WILL BE PASSED TO THE FUNCTION FROM THE COMMANDS.  THIS ALLOWS US TO REUSE THE CLASS
+     IN THE FUTURE GAMES AND ALSO USE WITH MULTIPLE COMMAND AND DIFFERENT CAMERAS.  
+     WE SHOULD REFRAIN FROM PUTTING GAME SPECIFIC CODE IN THE CLASSES THAT WILL BE 
+     REUSED IN THE FUTURE.
+
+     Example:
+     
+     GetDistanceToTarget(double h1_heightOfCamera, double h2_heightOfCenterTarget,
+          double a1_angleOfCameraToGround) {
+
+            double distance = 0.0;
+            double a2_angleOfTargetToCamera = tblLimelightShooter->GetNumber("ty",0.0);    
+            distance = (h2_heightOfCenterTarget-h1_heightOfCamera) / (tan((a1_angleOfCameraToGround + a2_angleOfTargetToCamera)*3.1416/180));
+
+            return distance;
+          }
+
+
+ */
 double SubLimeLightUpper::GetDistanceToPurpleCubeTarget() {
   double d = 0.0; // feet
   double h1 = (54.3/12.0); // feet
