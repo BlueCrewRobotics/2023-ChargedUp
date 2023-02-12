@@ -50,8 +50,8 @@ constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
 constexpr int MOTOR_Vertical_ELEVATOR = 999;// <---PLACE HOLDER!!!----------------------------
 
-//SparkMax turret adressing
-constexpr int MOTOR_TURRET = 15;
+// Turret adressing
+constexpr int MOTOR_TURRET = 7;
 
 // Maximum velocity in units/100ms
 constexpr int VELOCITY_MAX = 20000;

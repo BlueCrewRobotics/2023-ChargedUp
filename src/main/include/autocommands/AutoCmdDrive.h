@@ -30,7 +30,8 @@ class AutoCmdDrive
   bool IsFinished() override;
   
  private:
-  SubDriveTrain* m_subDriveTrain;
   BC_MotionProfile* m_motionProfile;
+  SubDriveTrain* m_subDriveTrain;
+
 
 };
