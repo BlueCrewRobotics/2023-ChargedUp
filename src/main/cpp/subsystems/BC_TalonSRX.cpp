@@ -171,3 +171,16 @@ void BC_TalonSRX::ConfigureMotionCurveStrength(int curveStrength, int timeout) {
 int BC_TalonSRX::GetMotorPosition() {
 	return ptr_talonSRX->GetSelectedSensorPosition();
 }
+
+void BC_TalonSRX::SetChangeMotionControlFrameRate(int frameRate) {
+	ptr_talonSRX->ChangeMotionControlFramePeriod(frameRate);
+
+}
+
+void BC_TalonSRX::WriteMotionProfileToTalon(){
+	
+}
+
+void BC_TalonSRX::UpdateMotionStatus() {
+	ptr_talonSRX->GetMotionProfileStatus(m_statusTalonSRX);
+}

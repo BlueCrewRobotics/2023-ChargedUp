@@ -1,7 +1,3 @@
-/*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
-/*                       Blue Crew Robotics #6153                             */
-/*                           Charged Up 2023                                  */
-/*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -10,6 +6,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "common/BC_MotionProfile.h"
 #include "subsystems/SubDriveTrain.h"
 
 /**
@@ -19,10 +16,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdShiftGear
-    : public frc2::CommandHelper<frc2::CommandBase, CmdShiftGear> {
+class AutoCmdDrive
+    : public frc2::CommandHelper<frc2::CommandBase, AutoCmdDrive> {
  public:
-  explicit CmdShiftGear(SubDriveTrain* subsystem);
+  AutoCmdDrive(BC_MotionProfile* motionProfile, SubDriveTrain* subDriveTrain);
 
   void Initialize() override;
 
@@ -31,7 +28,9 @@ class CmdShiftGear
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-
+  
  private:
   SubDriveTrain* m_subDriveTrain;
+  BC_MotionProfile* m_motionProfile;
+
 };

@@ -66,13 +66,15 @@ m_driverController->GetBButton();
       // Store the yaw straight value while steering the robot.
       m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());
   //    std::cout << "CmdDriveWithController>> Updated desired yaw to: " << m_driveTrain->GetYawStraightValue() << std::endl;
-
+/*
       if(m_driveTrain->GetDriveTrainGear()==false) {
           rotation = m_driverController->GetRawAxis(AXIS_LX)*0.8;
       }
       else {
           rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
       }
+*/
+    rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
 
   //    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
     }

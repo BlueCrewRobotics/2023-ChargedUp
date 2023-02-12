@@ -16,6 +16,7 @@
 #include <frc/Solenoid.h>
 #include "Constants.h"
 #include "AHRS.h"
+#include "common/BC_MotionProfile.h"
 
 
 class SubDriveTrain : public frc2::SubsystemBase
@@ -41,9 +42,9 @@ public:
   // Set the follower
   void SetFollower(TalonFX *motor);
   // Set the gear solenoid position
-  void SetDriveTrainGear();
+  //void SetDriveTrainGear();
   // Get the gear shifter solenoid position
-  bool GetDriveTrainGear();
+  //bool GetDriveTrainGear();
   // Set max speed on drive motors
   void SetMaxSpeed(double maxSpeed);
   // Set the ramp for the motors
@@ -81,29 +82,36 @@ public:
   // Get the Directed Rotation
   double GetDirectedRotation();
 
+  // Write the motion profile to the buffered atream object
+  void WriteMotionProfileToBuffer(BC_MotionProfile* motionProfile); 
+
+  TalonSRXConfiguration leftDriveMotorConfigs;
+  TalonSRXConfiguration rightDriveMotorConfigs;
+  TalonSRXConfiguration leftFollowMotorConfigs;
+  TalonSRXConfiguration rightFollowMotorConfigs;
+
 private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  /*
+  
    // The below code is used for the falcon 500
    BC_FalconFX* leftDriveMotor = new BC_FalconFX(MOTOR_LEFT_MASTER);
    BC_FalconFX* rightDriveMotor = new BC_FalconFX(MOTOR_RIGHT_MASTER);
 
    BC_FalconFX* leftFollowMotor = new BC_FalconFX(MOTOR_LEFT_FOLLOWER);
    BC_FalconFX* rightFollowMotor = new BC_FalconFX(MOTOR_RIGHT_FOLLOWER);
- */
-
+ 
+/*
   // The below code is used for the Talon SRX controllers
   BC_TalonSRX *leftDriveMotor = new BC_TalonSRX(MOTOR_LEFT_MASTER);
   BC_TalonSRX *rightDriveMotor = new BC_TalonSRX(MOTOR_RIGHT_MASTER);
-
   BC_TalonSRX *leftFollowMotor = new BC_TalonSRX(MOTOR_LEFT_FOLLOWER);
   BC_TalonSRX *rightFollowMotor = new BC_TalonSRX(MOTOR_RIGHT_FOLLOWER);
-
+ */ 
   frc::DifferentialDrive *driveTrain = new frc::DifferentialDrive(*leftDriveMotor, *rightDriveMotor);
 
-  frc::Solenoid *m_gearSolenoid = new frc::Solenoid(PCM_0, frc::PneumaticsModuleType::CTREPCM, PCM_0_GEARSHIFT);
+  //frc::Solenoid *m_gearSolenoid = new frc::Solenoid(PCM_0, frc::PneumaticsModuleType::CTREPCM, PCM_0_GEARSHIFT);
   // frc::Solenoid* m_motorCooling = new frc::Solenoid(PCM_0,frc::PneumaticsModuleType::CTREPCM,PCM_0_MOTOR_COOLING);
 
   double m_maxSpeed = VELOCITY_SP_MAX_LG;

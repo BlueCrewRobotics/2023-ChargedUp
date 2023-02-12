@@ -15,6 +15,10 @@
 
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
+  
+  m_firstRoutine = new BC_MotionProfile(
+    m_autoRoutinePoints1,m_autoRoutineLength1,m_autoRoutineTimeStep,
+    m_autoRoutineVelocityMax,m_autoAccelerationMax,m_autoJerkMax,m_autoWheelbaseWidth);
 
   //Add commands to the autonomous drive station chooser
   m_autoChooser.SetDefaultOption("Auto 1", &m_autoAutonomous);
@@ -32,7 +36,7 @@ void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
   // Setup the command to shift gears when right bumper is pressed
-  driverController_button_lbump.OnTrue(CmdShiftGear(&m_subDriveTrain).ToPtr());
+  //driverController_button_lbump.OnTrue(CmdShiftGear(&m_subDriveTrain).ToPtr());
 
   driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
   driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());

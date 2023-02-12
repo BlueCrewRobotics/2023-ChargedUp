@@ -30,16 +30,18 @@ void SubDriveTrain::DriveTrainConfigure() {
   leftDriveMotor->SetInverted(false);
 
   // Set the right and left followers
-  leftFollowMotor->SetFollower(leftDriveMotor->GetMotorController(),false);
-  rightFollowMotor->SetFollower(rightDriveMotor->GetMotorController(),true);
+  leftFollowMotor->SetFollower(leftDriveMotor->GetMotorController());
+  rightFollowMotor->SetFollower(rightDriveMotor->GetMotorController());
+  
 
   // Set the feedback sensor
-  leftDriveMotor->SetSelectedFeedbackSensor(FeedbackDevice::QuadEncoder);
-  rightDriveMotor->SetSelectedFeedbackSensor(FeedbackDevice::QuadEncoder);
+  leftDriveMotor->SetSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
+  rightDriveMotor->SetSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
 
   // Set the current limts on the motor
   //leftDriveMotor->SetStatorCurrentLimit(true,50,50,0.5);
   //rightDriveMotor->SetStatorCurrentLimit(true,50,50,0.5);
+
   leftDriveMotor->SetSupplyCurrentLimit(true,CONTINUOUS_CURRENT_LIMIT,PEAK_CURRENT_LIMIT,DURATION_CURRENT_LIMIT);
   rightDriveMotor->SetSupplyCurrentLimit(true,CONTINUOUS_CURRENT_LIMIT,PEAK_CURRENT_LIMIT,DURATION_CURRENT_LIMIT);
 
@@ -188,7 +190,7 @@ void SubDriveTrain::DriveStraight(double speed) {
   driveTrain->SetDeadband(0.02);
   driveTrain->ArcadeDrive(speed, rotation, true);
 }
-
+/*
 void SubDriveTrain::SetDriveTrainGear() {
     bool gear = m_gearSolenoid->Get();
     gear = !gear;
@@ -199,7 +201,7 @@ void SubDriveTrain::SetDriveTrainGear() {
 bool SubDriveTrain::GetDriveTrainGear() {
     return m_gearSolenoid->Get();
 }
-
+*/
 void SubDriveTrain::SetMaxSpeed(double maxSpeed) {
     leftDriveMotor->SetMaxSpeed(maxSpeed);
     rightDriveMotor->SetMaxSpeed(maxSpeed);

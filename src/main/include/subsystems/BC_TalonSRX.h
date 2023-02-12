@@ -71,12 +71,26 @@ class BC_TalonSRX : public virtual frc::MotorController {
 		void ConfigureMotionAcceleration(int acceleration, int timeout);
 		void ConfigureMotionCurveStrength(int curveStrength, int timeout);
 		int GetMotorPosition();
+		// This changes the farme rate of the talon SRX
+		void SetChangeMotionControlFrameRate(int frameRate);
+		
+		void WriteMotionProfileToTalon();
+
+		// Motion profiling functions
+
+		// Update the motion profile status of the talon SRX
+		void UpdateMotionStatus(); 
 
 		TalonSRX* ptr_talonSRX = nullptr;  
+
+		// The motion profiling status indication of the talon SRX
+		MotionProfileStatus m_statusTalonSRX;
+
 	private:
 		double m_dSpeed = 0;
 		bool m_bSelectedGear = 0;
 		int m_iCount;
 		double m_dMaxSpeed = VELOCITY_SP_MAX_LG;
+
 
 };

@@ -17,7 +17,6 @@
 
 // Command includes
 #include "commands/CmdDriveWithController.h"
-#include "commands/CmdShiftGear.h"
 #include "commands/CmdConeRampPrepExtend.h"
 #include "commands/CmdConeRampPrepRetract.h"
 #include "commands/CmdFindAndGoToCube.h"
@@ -27,6 +26,10 @@
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
 #include "autocommands/AutoCmdAutonomous2.h"
+#include "autocommands/AutoCmdDrive.h"
+
+// Common classes
+#include "common/BC_MotionProfile.h"
 
 // Constants used throughout code
 #include "Constants.h"
@@ -53,6 +56,8 @@ class RobotContainer {
 
   // Configure the drive train run this function in RobotInit()
   void ConfigureDrive();
+
+  BC_MotionProfile* m_firstRoutine;
 
 
  private:
@@ -132,4 +137,29 @@ class RobotContainer {
   */
 
   void ConfigureBindings();
+
+// Autonomous fixed vaaraiables for all routines
+double m_autoTimeDuration = 10; // ms between calculated motion profile trajectories
+// Step time between calculations
+double m_autoRoutineTimeStep = 0.001;
+// Use the VELOCITY_MAX above of the max velocity of the autonomous routines
+double m_autoRoutineVelocityMax = VELOCITY_MAX;
+// Max acceleration used in autonomous routines
+double m_autoAccelerationMax = 1000;
+// Max Jerk used in autonomous routines
+double m_autoJerkMax = 12800;
+// The counts per foot when in a particular gear
+double m_autoEncoderCountsPerFt = 2048;  // This needs to be tested
+// wheel base distance
+double m_autoWheelbaseWidth = 2;
+
+// Autonomous routine 1 declaration
+int m_autoRoutineLength1 = 3;
+// Number of field positions needs to match the above length for the routine
+Waypoint m_autoRoutinePoints1[3] = {
+   //x, y, angle  field positions in encoder counts 1ft = ???counts
+   { 0, 0, 0 },
+   { 2048, 0, 0 },
+   { 4096, 0, 0 }};
+
 };

@@ -13,7 +13,6 @@
 
 // Command includes
 #include "commands/ExampleCommand.h"
-#include "commands/CmdShiftGear.h"
 
 // Autonomous commands
 #include "autocommands/AutoCmdDriveOntoChargeStation.h"

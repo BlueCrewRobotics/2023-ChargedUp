@@ -54,10 +54,10 @@ constexpr int MOTOR_Vertical_ELEVATOR = 999;// <---PLACE HOLDER!!!--------------
 constexpr int MOTOR_TURRET = 15;
 
 // Maximum velocity in units/100ms
-constexpr int VELOCITY_MAX = 3200;
-constexpr int VELOCITY_SP_MAX_HG = 3200;  // Maximum velocity in actual high gear
-constexpr int VELOCITY_SP_MAX_LG = 1500;  // Maximum velocity in actual low gear
-constexpr int VELOCITY_SP_MAX_LL = 750;   // Maximum velocity in low low virtual gear
+constexpr int VELOCITY_MAX = 20000;
+constexpr int VELOCITY_SP_MAX_HG = 20000;  // Maximum velocity in actual high gear
+constexpr int VELOCITY_SP_MAX_LG = 20000;  // Maximum velocity in actual low gear
+constexpr int VELOCITY_SP_MAX_LL = 5000;   // Maximum velocity in low low virtual gear
 constexpr int ELEVATOR_VELOCITY_MAX = 1000; // <---PLACE HOLDER!!!------ Maximum velocity of the elevator motor
 
 // Continuous current limit for Talons in amps
@@ -68,25 +68,25 @@ constexpr int PEAK_CURRENT_LIMIT = 30;
 constexpr int DURATION_CURRENT_LIMIT = 500;
 
 // PID constants PID[0] Used for low speed right side
-constexpr double RIGHT_KF_0 = 0.341; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
-constexpr double RIGHT_KP_0 = 1.4;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
-constexpr double RIGHT_KI_0 = 0.001;
+constexpr double RIGHT_KF_0 = 0.041; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
+constexpr double RIGHT_KP_0 = 0.096;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
+constexpr double RIGHT_KI_0 = 0.0;
 constexpr double RIGHT_KD_0 = 0.0;
 
 // PID constants PID[0] Used for low speed right side
-constexpr double LEFT_KF_0 = 0.341; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
-constexpr double LEFT_KP_0 = 1.4;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
-constexpr double LEFT_KI_0 = 0.001;
+constexpr double LEFT_KF_0 = 0.041; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
+constexpr double LEFT_KP_0 = 0.091;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
+constexpr double LEFT_KI_0 = 0.0;
 constexpr double LEFT_KD_0 = 0;
 
 // PID constants PID[1] uesd for high speed left side
-constexpr double RIGHT_KF_1 = 0.1598; 
+constexpr double RIGHT_KF_1 = 0.041; 
 constexpr double RIGHT_KP_1 = 0.0;
 constexpr double RIGHT_KI_1 = 0;
 constexpr double RIGHT_KD_1 = 0;
 
 // PID constants PID[1] uesd for high speed left side
-constexpr double LEFT_KF_1 = 0.1598;
+constexpr double LEFT_KF_1 = 0.041;
 constexpr double LEFT_KP_1 = 0.0;
 constexpr double LEFT_KI_1 = 0;
 constexpr double LEFT_KD_1 = 0;
@@ -126,9 +126,7 @@ constexpr int NAVX_CHARGED_UP_RAMP_PITCH = 11;
 constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
 constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;
 
-
-namespace OperatorConstants {
-
 constexpr int kDriverControllerPort = 0;
 
+namespace OperatorConstants {
 }  // namespace OperatorConstants
