@@ -43,63 +43,15 @@ double SubLimeLightLower::GetVerticalOffset() {
     a2 = the angle of the target with respect to the camera ( LimeLightLower will give this angle "ty" from network tables)
 
   */
-double SubLimeLightLower::GetDistanceToPurpleCubeTarget() {
-  double d = 0.0; // feet
-  double h1 = (17.25/12.0); // feet
-  double h2 = (4.5/12.0); // feet   // purple cube is 9" tall
-  double a1 =  -3.18;//37.95; // degrees
-  double a2 = tblLimeLightLower->GetNumber("ty",0.0);    
 
-  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
+   // angle up upper LimeLight: -24.8492
 
-  return d;
-}
-
-double SubLimeLightLower::GetDistanceToYellowConeTarget() {
-  double d = 0.0; // feet
-  double h1 = (17.25/12.0); // feet
-  double h2 = (6.5/12.0); // feet   // yellow cone is 13" tall standing, 8" tall on side
-  double a1 =  -3.18;//37.95; // degrees
-  double a2 = tblLimeLightLower->GetNumber("ty",0.0);    
-
-  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
-
-  return d;
-}
-
-double SubLimeLightLower::GetDistanceToTopPoleTarget() {  
+double SubLimeLightLower::GetDistanceToLower(double h1_hightOfCamera, double h2_hightOfCenterOfTarget, double a1_angleOfCamera) {  
   double d = 0.0;
-  double h1 = (17.25/12); // inches
-  double h2 = (43.75/12); // inches
-  double a1 = -3.18; // degrees
+
   double a2 = tblLimeLightLower->GetNumber("ty",0.0);
   
-  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
-  
-  return d;
-}
-
-   // angle up upper LimeLightLower: -24.8492
-
-double SubLimeLightLower::GetDistanceToTarget() {  
-  double d = 0.0;
-  double h1 = (17.25/12); // inches
-
-  double h2 = 0;
-  if(GetSelectedPipeline() == 8) {
-    h2 = 4.5/12.0;
-  }
-  else if(GetSelectedPipeline() == 9) {
-    h2 = 6.5/12.0;
-  }  
-  else if(GetSelectedPipeline() == 0) {
-    h2 = 43.75/12.0;
-  }  
-
-  double a1 = -3.18; // degrees
-  double a2 = tblLimeLightLower->GetNumber("ty",0.0);
-  
-  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
+  d = (h2_hightOfCenterOfTarget-h1_hightOfCamera) / (tan((a1_angleOfCamera + a2)*3.1416/180));
   
   return d;
 }

@@ -125,6 +125,20 @@ constexpr int NAVX_CHARGED_UP_RAMP_PITCH = 11;
 // Limelight related Constants
 constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
 constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;
+constexpr double LL_LIMELIGHT_UPPER_ANGLE = -24.8492;
+constexpr double LL_LIMELIGHT_LOWER_ANGLE = -3.18;
+constexpr double LL_LIMELIGHT_UPPER_HIGHT = 54.3;
+constexpr double LL_LIMELIGHT_LOWER_HIGHT = 17.25;
+constexpr double LL_YELLOW_CONE_CENTER_HIGHT = 6.5;
+constexpr double LL_PURPLE_CUBE_CENTER_HIGHT = 4.5;
+constexpr double LL_CONE_POLE_UPPER_HIGHT = 43.75;
+constexpr double LL_CONE_POLE_LOWER_HIGHT = 99999; // <- PLACE HOLDER
+
+// Target ID int values
+constexpr int TID_YELLOW_CONE_ID = 1;
+constexpr int TID_PURPLE_CUBE_ID = 2;
+constexpr int TID_CONE_POLE_UPPER_ID = 3;
+constexpr int TID_CONE_POLE_LOWER_ID = 4;
 
 constexpr int kDriverControllerPort = 0;
 

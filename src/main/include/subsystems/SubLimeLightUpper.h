@@ -133,13 +133,8 @@ class SubLimeLightUpper : public frc2::SubsystemBase {
 
 
  */
-  double GetDistanceToPurpleCubeTarget();
 
-  double GetDistanceToYellowConeTarget();
-
-  double GetDistanceToTopPoleTarget();
-
-  double GetDistanceToTarget();
+  double GetDistanceToTarget(double h1_hightOfCamera, double h2_hightOfCenter, double a1_angleOfCamera);
 
   /**
       Get the skew of the target
