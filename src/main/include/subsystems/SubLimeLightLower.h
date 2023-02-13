@@ -52,11 +52,6 @@ class SubLimeLightLower : public frc2::SubsystemBase {
      a2 = the angle of the target with respect to the camera ( LimeLightLower will give this angle "ty" from network tables)
 
     */
-  double GetDistanceToPurpleCubeTarget();
-
-  double GetDistanceToYellowConeTarget();
-
-  double GetDistanceToTopPoleTarget();
 
   double GetDistanceToTarget();
 

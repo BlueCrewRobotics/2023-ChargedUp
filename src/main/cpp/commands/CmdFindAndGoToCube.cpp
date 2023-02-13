@@ -25,4 +25,5 @@ CmdFindAndGoToCube::CmdFindAndGoToCube(SubDriveTrain* driveTrain, SubLimeLightUp
 void CmdFindAndGoToCube::Initialize() {
   // Set the limelight pipeline to the purple cube pipeline
   m_LimeLightUpper->SelectPipeline(LL_PIPELINE_PURPLE_CUBE_NUMBER);  
+  m_targetType = TID_PURPLE_CUBE_ID;
 }

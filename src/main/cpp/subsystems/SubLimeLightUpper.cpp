@@ -65,10 +65,7 @@ void SubLimeLightUpper::SetCropValues(double X0, double X1, double Y0, double Y1
   cropValues[1] = X1;
   cropValues[2] = Y0;
   cropValues[3] = Y1;
-  /*
-    THIS IS NOT A GET FUNCTION, IT IS A SET FUNCTION AND NEEDS TO BE CORRECTED BELOW
-  */
-  nt::NetworkTableInstance::GetDefault().GetTable("limelight-upper")->GetEntry("crop").SetDoubleArray(cropValues);
+  tblLimeLightUpper->GetEntry("crop").SetDoubleArray(cropValues);
 }
 
 double SubLimeLightUpper::GetAprilTagId() {
@@ -125,63 +122,21 @@ double SubLimeLightUpper::GetCameraPoseTargetspace() {
 
 
  */
-double SubLimeLightUpper::GetDistanceToPurpleCubeTarget() {
-  double d = 0.0; // feet
-  double h1 = (54.3/12.0); // feet
-  double h2 = (4.5/12.0); // feet   // purple cube is 9" tall
-  double a1 =  -24.8492;//37.95; // degrees
-  double a2 = tblLimeLightUpper->GetNumber("ty",0.0);    
 
-  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
+  // angle up upper LimeLightUpper: -24.8492
+  // angle of LimeLightLower: -3.18
+  // Hight of middle of cube: 4.5 inches
+  // Hight of middle of cone: 6.5 inches
+  // Hight of Upper Pole: 43.75 inches
+  // Hight of Upper LimeLight: 54.3 inches
+  // Hight of Lower LimeLight: 17.25 inches
 
-  return d;
-}
-
-double SubLimeLightUpper::GetDistanceToYellowConeTarget() {
-  double d = 0.0; // feet
-  double h1 = (54.3/12.0); // feet
-  double h2 = (6.5/12.0); // feet   // yellow cone is 13" tall standing, 8" tall on side
-  double a1 =  -24.8492;//37.95; // degrees
-  double a2 = tblLimeLightUpper->GetNumber("ty",0.0);    
-
-  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
-
-  return d;
-}
-
-double SubLimeLightUpper::GetDistanceToTopPoleTarget() {  
+double SubLimeLightUpper::GetDistanceToTarget(double h1_hightOfCamera, double h2_hightOfCenterOfTarget, double a1_angleOfCamera) {  
   double d = 0.0;
-  double h1 = (54.3/12); // inches
-  double h2 = (43.75/12); // inches
-  double a1 = -24.8492; // degrees
+
   double a2 = tblLimeLightUpper->GetNumber("ty",0.0);
   
-  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
-  
-  return d;
-}
-
-   // angle up upper LimeLightUpper: -24.8492
-
-double SubLimeLightUpper::GetDistanceToTarget() {  
-  double d = 0.0;
-  double h1 = (54.3/12); // inches
-
-  double h2 = 0;
-  if(GetSelectedPipeline() == 8) {
-    h2 = 4.5/12.0;
-  }
-  else if(GetSelectedPipeline() == 9) {
-    h2 = 6.5/12.0;
-  }  
-  else if(GetSelectedPipeline() == 0) {
-    h2 = 43.75/12.0;
-  }  
-
-  double a1 = -24.8492; // degrees
-  double a2 = tblLimeLightUpper->GetNumber("ty",0.0);
-  
-  d = (h2-h1) / (tan((a1 + a2)*3.1416/180));
+  d = (h2_hightOfCenterOfTarget-h1_hightOfCamera) / (tan((a1_angleOfCamera + a2)*3.1416/180));
   
   return d;
 }
@@ -257,7 +212,7 @@ void SubLimeLightUpper::SetCameraMode(int mode) {
   @param pipeline the pipeline to select for the vision targeting
 */
 void SubLimeLightUpper::SelectPipeline(int pipeline) {
-  tblLimeLightUpper->PutNumber("pipeline",pipeline);
+  tblLimeLightUpper->PutNumber("pipeline", pipeline);
 }
 
 int SubLimeLightUpper::GetSelectedPipeline() {

@@ -24,5 +24,6 @@ CmdFindAndGoToCone::CmdFindAndGoToCone(SubDriveTrain* driveTrain, SubLimeLightUp
 // Called when the command is initially scheduled.
 void CmdFindAndGoToCone::Initialize() {
   // Set the limelight Piepline to the yellow cone pipeline
-  m_LimeLightUpper->SelectPipeline(LL_PIPELINE_YELLOW_CONE_NUMBER);  
+  m_LimeLightUpper->SelectPipeline(LL_PIPELINE_YELLOW_CONE_NUMBER); 
+  m_targetType = TID_YELLOW_CONE_ID; 
 }

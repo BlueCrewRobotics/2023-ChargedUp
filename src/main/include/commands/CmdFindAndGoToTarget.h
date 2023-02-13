@@ -44,4 +44,5 @@ class CmdFindAndGoToTarget
   SubLimeLightUpper* m_LimeLightUpper;
   frc2::CommandXboxController* m_driverController;
   bool m_finished = false;
+  int m_targetType = 0;
 };

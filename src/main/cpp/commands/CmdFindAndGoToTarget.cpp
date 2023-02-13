@@ -91,8 +91,23 @@ void CmdFindAndGoToTarget::Execute() {
 }
 
 double CmdFindAndGoToTarget::getDistanceToTarget() {
-  return m_LimeLightUpper->GetDistanceToTarget();
+  double targetHight = 0.0;
+  if (m_targetType == TID_YELLOW_CONE_ID) {
+    targetHight = LL_YELLOW_CONE_CENTER_HIGHT;
+  }
+  else if (m_targetType == TID_PURPLE_CUBE_ID) {
+    targetHight = LL_PURPLE_CUBE_CENTER_HIGHT;
+  }
+  else if (m_targetType == TID_CONE_POLE_UPPER_ID) {
+    targetHight = LL_CONE_POLE_UPPER_HIGHT;
+  }
+  else if (m_targetType == TID_CONE_POLE_LOWER_ID) {
+    targetHight = LL_CONE_POLE_LOWER_HIGHT;
+  }
+
+  return m_LimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HIGHT, targetHight, LL_LIMELIGHT_UPPER_ANGLE);
 }
+
 
 // Called once the command ends or is interrupted.
 void CmdFindAndGoToTarget::End(bool interrupted) {
