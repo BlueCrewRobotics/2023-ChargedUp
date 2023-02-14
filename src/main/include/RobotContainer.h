@@ -59,7 +59,6 @@ class RobotContainer {
 
   BC_MotionProfile* m_firstRoutine;
 
-
  private:
   // The robot's commands
   AutoCmdAutonomous m_autoAutonomous{&m_subLimeLightLower, &m_subDriveTrain};
