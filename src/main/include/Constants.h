@@ -157,6 +157,54 @@ constexpr int AUX_DPAD_VALUE_LEFT_DOWN = 225;
 constexpr int AUX_DPAD_VALUE_LEFT_CENTER = 270;
 constexpr int AUX_DPAD_VALUE_LEFT_UP = 315;
 
+
+
+// Field Measurements (inches)
+//    When facing/looking directly at center point of april tag ...
+//      x = horizontal (left, right) distance from center point of april tag
+//      y = depth (in, out) distance from center point of april tag
+//      z = vertical (up, down) distance from center point of april tag
+struct fieldpos { float x, y, z; };
+
+//  Grid has two cone nodes on left, two cone nodes on right, two shelves in center
+//   _______________________________     ^
+//  |          |        |           |    |
+//  |     O    |        |     O     |    |
+//  |          | ------ |           |   (y)
+//  |     O    |        |     O     |    |
+//  |          | ---t-- |           |    |    (z) is distance above ground
+//  |          |        |           |    v
+//  |_______________________________|     <------- (x) ------>
+//
+// Constants for offset distances from april tag center
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE = { 0.0, 8.655, 5.25  };
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_SHELF_TOP = { 0.0, 23.035, 17.25 };
+
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_FLOOR_CENTER = { 0.0,  7.14, -18.24 };
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_FLOOR_RIGHT = { 16.75, 7.14, -18.24 };
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_FLOOR_LEFT = { -16.75, 7.14, -18.24 };
+
+// TODO: only have 2 of the 3 coordinates for these calculated so far...
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_LOWER = { 21.875, -1, 16.75 }; // x, y, z on these?
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_UPPER = { 21.875, -1, 27.75 };
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_LOWER = { -21.875, -1, 16.75 }; // x, y, z on these?
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_UPPER = { -21.875, -1, 27.75 };
+
+/*
+Lucy: did all of this info get translated into the above coordinates correctly?
+
+constexpr float FIELD_MEASURE_RELATIVE_TO_TAG_MIDDLE_SHELF_CENTER_VERTICAL = 5.25; // is this the height (Z)?
+constexpr float FIELD_MEASURE_RELATIVE_TO_TAG_MIDDLE_SHELF_CENTER_HORIZONTAL = 8.655; // is this actually the depth (y)?
+constexpr float FIELD_MEASURE_RELATIVE_TO_TAG_TOP_SHELF_CENTER_VERTICAL = 17.25;
+constexpr float FIELD_MEASURE_RELATIVE_TO_TAG_TOP_SHELF_CENTER_HORIZONTAL = 23.035;  // is this actually the depth?
+constexpr float FIELD_MEASURE_RELATIVE_TO_TAG_BOTTOM_CENTER_VERTICAL = -18.24;
+constexpr float FIELD_MEASURE_RELATIVE_TO_TAG_BOTTOM_CENTER_HORIZONTAL = -7.14; // is this actually the depth?
+
+constexpr float FIELD_MEASURE_RELATIVE_TO_TAG_FIRST_CONE_VERTICAL = 16.75;
+constexpr float FIELD_MEASURE_RELATIVE_TO_TAG_SECOND_CONE_VERTICAL = 27.75;
+constexpr float FIELD_MEASURE_RELATIVE_TO_TAG_CONE_HORIZONTAL = 21.875;
+*/
+
 constexpr int kDriverControllerPort = 0;
 
 namespace OperatorConstants {
