@@ -7,6 +7,7 @@
 #include <pathfinder.h>
 #include "Constants.h"
 #include <ctre/Phoenix.h>
+#include "subsystems/BC_FalconFX.h"
 
 class BC_MotionProfile {
  public:
@@ -17,7 +18,7 @@ class BC_MotionProfile {
 
   // Process the motion profile buffer.  This pushes the trajectory points from the API's top buffer to the talonSRX (bottom buffer on talon).
   // Use ProcessMotionProfileBuffer() Probably should be done at the command level
-  void PushToTalon();
+  void StartTheMotionProfile(bool pushToTalon, BC_FalconFX* rightTalon, BC_FalconFX* leftTalon);
 
 
   Segment* m_pathfinderTrajectory;
@@ -36,16 +37,9 @@ class BC_MotionProfile {
 
   double m_wheelBaseWidth;
 
-
-
   //These objects are reused to populate the beffered stream to send to talons
   TrajectoryPoint m_rightTalonTrajectoryPoint;
   TrajectoryPoint m_leftTalonTrajectoryPoint;  
-
-
-
-
-
 
 
 };

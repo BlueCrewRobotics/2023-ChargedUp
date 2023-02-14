@@ -74,7 +74,11 @@ void BC_MotionProfile::PopulateTopBuffer() {
     
 }
 
-void BC_MotionProfile::PushToTalon(){
-
+void BC_MotionProfile::StartTheMotionProfile(bool pushToTalon, BC_FalconFX* rightTalon, BC_FalconFX* leftTalon){
+    
+    if(pushToTalon == true ) {
+        rightTalon->GetMotorController()->StartMotionProfile(m_rightTalonBufferedPointStream,40,ctre::phoenix::motorcontrol::ControlMode::MotionProfile);
+        leftTalon->GetMotorController()->StartMotionProfile(m_leftTalonBufferedPointStream,40,ctre::phoenix::motorcontrol::ControlMode::MotionProfile);
+    }
 }
 
