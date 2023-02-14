@@ -146,6 +146,17 @@ constexpr int TID_PURPLE_CUBE_ID = 2;
 constexpr int TID_CONE_POLE_UPPER_ID = 3;
 constexpr int TID_CONE_POLE_LOWER_ID = 4;
 
+// aux controller D-pad values
+constexpr int AUX_DPAD_VALUE_MIDDLE_CENTER = -1;
+constexpr int AUX_DPAD_VALUE_MIDDLE_UP = 0;
+constexpr int AUX_DPAD_VALUE_RIGHT_UP = 45;
+constexpr int AUX_DPAD_VALUE_RIGHT_CENTER = 90;
+constexpr int AUX_DPAD_VALUE_RIGHT_DOWN = 135;
+constexpr int AUX_DPAD_VALUE_MIDDLE_DOWN = 180;
+constexpr int AUX_DPAD_VALUE_LEFT_DOWN = 225;
+constexpr int AUX_DPAD_VALUE_LEFT_CENTER = 270;
+constexpr int AUX_DPAD_VALUE_LEFT_UP = 315;
+
 constexpr int kDriverControllerPort = 0;
 
 namespace OperatorConstants {
