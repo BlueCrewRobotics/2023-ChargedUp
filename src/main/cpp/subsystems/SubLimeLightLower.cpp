@@ -46,12 +46,12 @@ double SubLimeLightLower::GetVerticalOffset() {
 
    // angle up upper LimeLight: -24.8492
 
-double SubLimeLightLower::GetDistanceToLower(double h1_hightOfCamera, double h2_hightOfCenterOfTarget, double a1_angleOfCamera) {  
+double SubLimeLightLower::GetDistanceToTarget(double h1_heightOfCamera, double h2_heightOfCenterOfTarget, double a1_angleOfCamera) {  
   double d = 0.0;
 
   double a2 = tblLimeLightLower->GetNumber("ty",0.0);
   
-  d = (h2_hightOfCenterOfTarget-h1_hightOfCamera) / (tan((a1_angleOfCamera + a2)*3.1416/180));
+  d = (h2_heightOfCenterOfTarget-h1_heightOfCamera) / (tan((a1_angleOfCamera + a2)*3.1416/180));
   
   return d;
 }

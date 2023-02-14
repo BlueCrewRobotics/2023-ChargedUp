@@ -53,7 +53,7 @@ class SubLimeLightLower : public frc2::SubsystemBase {
 
     */
 
-  double GetDistanceToTarget();
+  double GetDistanceToTarget(double h1_heightOfCamera, double h2_heightOfCenterOfTarget, double a1_angleOfCamera);
 
   /**
       Get the skew of the target

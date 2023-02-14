@@ -50,8 +50,14 @@ constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
 constexpr int MOTOR_Vertical_ELEVATOR = 999;// <---PLACE HOLDER!!!----------------------------
 
-// Turret adressing
+// Turret setup and adressing
 constexpr int MOTOR_TURRET = 7;
+constexpr int TURRET_MIN_ENCODER = -1000;
+constexpr int TURRET_MAX_ENCODER = 1000;
+constexpr int TURRET_KF_0 = 0;
+constexpr int TURRET_KP_0 = 25;
+constexpr int TURRET_KI_0 = 0;
+constexpr int TURRET_KD_0 = 0;
 
 // Maximum velocity in units/100ms
 constexpr int VELOCITY_MAX = 20000;
