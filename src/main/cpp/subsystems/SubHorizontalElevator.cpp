@@ -27,6 +27,7 @@ void SubHorizontalElevator::ConfigureMotor() {
 
 double SubHorizontalElevator::GetPosition() {
     // This should return the elevator position
+    return 0.0; // TODO return correct value
 }
 
 void SubHorizontalElevator::ServoToPosition(double position) {
