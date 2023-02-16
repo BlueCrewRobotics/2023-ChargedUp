@@ -30,7 +30,13 @@ void SubVerticalElevator::ElevateBySpeed(double elevatorSpeed) {
     // Set the control mode to Velocity
     elevatorMotor->SetControlMode((ctre::phoenix::motorcontrol::ControlMode) 2);
     // Set the motor speed
-    elevatorMotor->Set(elevatorSpeed);
+    int currentPos = GetElevatorEncoderValue();
+    if (currentPos > m_bottomSoftLimit && currentPos < m_topSoftLimit) {
+        elevatorMotor->Set(elevatorSpeed);
+    }
+    else {
+        elevatorMotor->Set(0);
+    }
 }
 // Move the elevator to a specific location/position given encoder tics
 void SubVerticalElevator::ElevateToPosition(double elevatorPosition) {
@@ -56,10 +62,16 @@ void SubVerticalElevator::ElevateToPosition(double elevatorPosition) {
     */
    // Set the controll mode to Position
    elevatorMotor->SetControlMode((ctre::phoenix::motorcontrol::ControlMode) 1);
+   if (elevatorPosition < m_bottomSoftLimit) {
+    elevatorPosition = m_bottomSoftLimit;
+   }
+   else if (elevatorPosition > m_topSoftLimit) {
+    elevatorPosition = m_topSoftLimit;
+   }
    // Pass the encoder value to the elevator motor
    elevatorMotor->Set(elevatorPosition);
 }
-
+   
 // Get the elevator motor encoder value
 double SubVerticalElevator::GetElevatorEncoderValue() {
     return elevatorMotor->GetEncoderValue();

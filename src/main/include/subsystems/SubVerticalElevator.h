@@ -37,4 +37,6 @@ class SubVerticalElevator : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
   BC_FalconFX* elevatorMotor = new BC_FalconFX(MOTOR_Vertical_ELEVATOR);
+  int m_topSoftLimit = 10840;
+  int m_bottomSoftLimit = 0;
 };
