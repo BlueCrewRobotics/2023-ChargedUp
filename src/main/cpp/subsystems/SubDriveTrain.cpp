@@ -281,6 +281,10 @@ float SubDriveTrain::GetPitchLevelValue() {
   return m_ahrsPitchLevel;
 }
 float SubDriveTrain::GetPitch() {
+  return m_ahrs->GetPitch();
+}
+
+float SubDriveTrain::GetRoll() {
   return m_ahrs->GetRoll();
 }
 

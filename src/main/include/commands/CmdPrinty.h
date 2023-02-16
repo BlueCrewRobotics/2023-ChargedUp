@@ -10,6 +10,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc2/command/button/CommandXboxController.h>
 
 #include "subsystems/SubDriveTrain.h"
 #include <frc/Joystick.h>
@@ -25,7 +26,7 @@
 class CmdPrinty
     : public frc2::CommandHelper<frc2::CommandBase, CmdPrinty> {
  public:
-  CmdPrinty(SubDriveTrain* driveTrain, frc::Joystick *driverController);
+  CmdPrinty(SubDriveTrain* driveTrain, frc2::CommandXboxController *driverController);
 
   void Initialize() override;
 
@@ -38,6 +39,6 @@ class CmdPrinty
  private:
   bool m_isFinished = false;
   SubDriveTrain* m_driveTrain;
-  frc::Joystick* m_driverController;
+  frc2::CommandXboxController* m_driverController;
 };
 

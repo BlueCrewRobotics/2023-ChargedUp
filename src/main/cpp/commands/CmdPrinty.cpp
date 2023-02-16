@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include "commands/CmdPrinty.h"
 
-CmdPrinty::CmdPrinty(SubDriveTrain* driveTrain, frc::Joystick *driverController) 
+CmdPrinty::CmdPrinty(SubDriveTrain* driveTrain, frc2::CommandXboxController* driverController) 
   : m_driveTrain{driveTrain}, m_driverController{driverController} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(driveTrain);
@@ -25,11 +25,13 @@ void CmdPrinty::Initialize() {
 void CmdPrinty::Execute() {
 
   // If BUTTONT_SELLECT (back button on xbox controller) is pressed, exit the command
-  if(m_driverController->GetRawButton(BUTTON_SELECT)==1) {
+  if(m_driverController->GetBackButton() == true) {
     m_isFinished = true;
   }
 
   std::cout << "current pitch: " << m_driveTrain->GetPitch() << std::endl;
+  std::cout << "current roll: " << m_driveTrain->GetRoll() << std::endl;
+  std::cout << "current yaw: " << m_driveTrain->GetYaw() << std::endl;
 }
 
 // Called once the command ends or is interrupted.
