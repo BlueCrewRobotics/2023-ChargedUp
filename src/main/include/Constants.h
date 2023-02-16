@@ -97,18 +97,22 @@ constexpr double LEFT_KP_1 = 0.0;
 constexpr double LEFT_KI_1 = 0;
 constexpr double LEFT_KD_1 = 0;
 
-// slabby encoder measurements...
+// ellie encode measurements ....
 //
-// we measured moving a straight line for 80 feet
-//  encoder 1 moved -197063 ticks
-//  encoder 2 moved -197489 ticks
+// DRIVE TRAIN:
+// we measured moving a straight line for 75 feet
+//  right side : 12,161 ticks per foot
+//  left side : 12,153 ticks per foot
 //
-//  encoder 1 moved -2463.2875 ticks per foot
-//  encoder 2 moved -2468.6125 ticks per foot
+//  right side: 1013.4 ticks per inch
+//  left side: 1012.75 ticks per inch
 //
-//  encoder 1 moved -205.2739583 ticks per inch
-//  encoder 2 moved -205.7177083 ticks per inch
-//  
+//  pitch: is negative with the back (battery end) lifted up
+//
+//  TURRET:
+//    180 degree rotation = 2768 encoder ticks
+//    1 degree = 15.4 encoder ticks
+//
 
 
 // PCM Module CAN ID
@@ -185,10 +189,10 @@ constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_FLOOR_RIGHT = { 16.75, 7.14, -18.24
 constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_FLOOR_LEFT = { -16.75, 7.14, -18.24 };
 
 // TODO: only have 2 of the 3 coordinates for these calculated so far...
-constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_LOWER = { 21.875, 8.42, 16.75 }; // x, y, z on these?
-constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_UPPER = { 21.875, 25.45, 27.75 };
-constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_LOWER = { -21.875, 8.42, 16.75 }; // x, y, z on these?
-constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_UPPER = { -21.875, 25.45, 27.75 };
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_LOWER = { 21.875, -1, 16.75 }; 
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_UPPER = { 21.875, -1, 27.75 };
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_LOWER = { -21.875, -1, 16.75 };
+constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_UPPER = { -21.875, -1, 27.75 };
 
 
 constexpr int kDriverControllerPort = 0;

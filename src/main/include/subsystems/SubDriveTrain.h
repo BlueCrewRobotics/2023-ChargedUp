@@ -73,6 +73,8 @@ public:
   void SetYawStraightValue(float yawValue);
   // Get navx pitch
   float GetPitch();
+  // Get navx pitch
+  float GetRoll();
   // Set the Pitch level value
   void SetPitchLevelValue(float pitchValue);
   // Get the Pitch level value
