@@ -12,18 +12,33 @@ void SubVerticalElevator::Periodic() {}
 // Configure the elevator motor and stuff
 void SubVerticalElevator::ConfigureMotor() {
     // Clear the sticky faults on the controllers (whatever that means)
-    elevatorMotor->ClearStickyFaults(0);
+    motor->ClearStickyFaults(0);
     // Invert the direction the motor spins if needed (idk why you would need this for the elevator but it's here because I put it here)
-    elevatorMotor->SetInverted(false);
+    motor->SetInverted(false);
     // Select the feedback device (encoder) for the motor
-    elevatorMotor->ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
+    motor->ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
+    motor->SetInverted(TalonFXInvertType::CounterClockwise);
+    
     // Set the current limit for the motor (you don't want to take up too much power and cause your robot to reset due to voltage drops)
-    elevatorMotor->ConfigSupplyCurrentLimit(SupplyCurrentLimitConfiguration(true,CONTINUOUS_CURRENT_LIMIT,PEAK_CURRENT_LIMIT,DURATION_CURRENT_LIMIT));
+    motor->ConfigSupplyCurrentLimit(SupplyCurrentLimitConfiguration(true,5,10,100));
+    
+    // Set the position limits
+    motor->ConfigForwardSoftLimitThreshold(2048,0);
+    motor->ConfigReverseSoftLimitThreshold(-2048,0);
+    motor->ConfigForwardSoftLimitEnable(true,0);
+    motor->ConfigReverseSoftLimitEnable(true,0);
+
+        // Setup Turret Motor
+    motor->Config_kF(0,0.0, 0);
+    motor->Config_kP(0,0.01, 0);
+    motor->Config_kI(0,0.0, 0);
+    motor->Config_kD(0,0.0, 0);
+
 }
 
 // Move the elevator up and down based on speed (will not go to a specific location/position, just goes up or down until you stop telling it to)
 void SubVerticalElevator::ControlMotorManually(double speed) {
-    elevatorMotor->Set(ControlMode::PercentOutput, speed);
+    motor->Set(ControlMode::PercentOutput, speed);
 }
 // Move the elevator to a specific location/position given encoder tics
 void SubVerticalElevator::ServoToPosition(double position) {
@@ -35,15 +50,15 @@ void SubVerticalElevator::ServoToPosition(double position) {
     position = m_topSoftLimit;
    }
    // Pass the encoder value to the elevator motor
-   elevatorMotor->Set(ControlMode::Position, position);
+   motor->Set(ControlMode::Position, position);
 }
    
 // Get the elevator motor encoder value
 double SubVerticalElevator::GetPosition() {
-    return elevatorMotor->SetSelectedSensorPosition(0,0,0);
+    return motor->SetSelectedSensorPosition(0,0,0);
 }
 
 // Reset the encoder position to 0
 void SubVerticalElevator::ResetPosition() {
-    elevatorMotor->SetSelectedSensorPosition(0,0,0);
+    motor->SetSelectedSensorPosition(0,0,0);
 }

@@ -17,10 +17,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdMoveVerticalElevator
-    : public frc2::CommandHelper<frc2::CommandBase, CmdMoveVerticalElevator> {
+class CmdVerticalElevatorStop
+    : public frc2::CommandHelper<frc2::CommandBase, CmdVerticalElevatorStop> {
  public:
-  CmdMoveVerticalElevator(SubVerticalElevator* SubVerticalElevator, frc2::CommandXboxController* auxController);
+  CmdVerticalElevatorStop(SubVerticalElevator* SubVerticalElevator, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 
