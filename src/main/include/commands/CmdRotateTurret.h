@@ -35,5 +35,4 @@ class CmdRotateTurret
   protected:
   SubTurret* m_subTurret;
   frc2::CommandXboxController* m_auxController;
-  bool manualRotate = false;
 };
