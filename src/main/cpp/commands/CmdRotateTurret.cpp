@@ -16,17 +16,13 @@ void CmdRotateTurret::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void CmdRotateTurret::Execute() {
   double rotationSpeed = 0.0;
-  if(m_auxController->GetRawAxis(AXIS_R_TRIG) > 0 || m_auxController->GetRawAxis(AXIS_L_TRIG) > 0) {
-    manualRotate = true;
+  if(m_auxController->GetRawAxis(AXIS_LX) > 0.2 || m_auxController->GetRawAxis(AXIS_LX) < -0.2) {
     // This is controlling the speed of the drive train
-    if(m_auxController->GetRawAxis(AXIS_R_TRIG) > 0) {
-      // percentage controller axis is activated
-      rotationDirection = TURRET_MANUAL_ROTATION_CLOCKWISE;
-    }
-    else { // jhouse: is it safe to assume the L axis is really exactly 'zero' when not pressed by human?  robot could falsely move a bit otherwise
-      // percentage controller axis is activated
-      rotationDirection = TURRET_MANUAL_ROTATION_COUNTERCLOCKWISE;
-    }
+    rotationSpeed = m_auxController->GetRawAxis(AXIS_LX) * 0.7;
+    m_subTurret->RotateTurretManual(rotationSpeed);
+  }
+  else if (m_auxController->GetAButton() == true) { // PLACEHOLDER BUTTON not sure what button we want to reset to home position yet
+    m_subTurret->RotateTurretToDegree(TURRET_HOME_POSITION);
   }
 
 }

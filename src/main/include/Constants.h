@@ -59,9 +59,6 @@ constexpr int TURRET_KP_0 = 25;
 constexpr int TURRET_KI_0 = 0;
 constexpr int TURRET_KD_0 = 0;
 constexpr int TURRET_ENCODER_TICS_PER_DEGREE = 15.37778;
-constexpr int TURRET_MANUAL_ROTATION_OFF = 0;
-constexpr int TURRET_MANUAL_ROTATION_CLOCKWISE = 1;
-constexpr int TURRET_MANUAL_ROTATION_COUNTERCLOCKWISE = 2;
 constexpr int TURRET_HOME_POSITION = 0;
 
 

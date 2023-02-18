@@ -45,7 +45,8 @@ void RobotContainer::ConfigureBindings() {
 
   // Set the default command for the Drive Train
   m_subDriveTrain.SetDefaultCommand(CmdDriveWithController(&m_subDriveTrain, &driverController));
-
+  // Set the default command for the Turret
+  m_subTurret.SetDefaultCommand(CmdRotateTurret(&m_subTurret, &auxController));
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   // frc2::Trigger([this] {
   //   return m_subsystem.ExampleCondition();
