@@ -201,7 +201,7 @@ constexpr int TID_CONE_POLE_LOWER_ID = 4;
          Start -
          Back -
 
-         DPAD - Node Selection (defined below in AUX_DPAD_VALUE_XXX constants)
+         DPAD - Node Selection (defined below in DPAD_VALUE_XXX constants)
 
 */
 

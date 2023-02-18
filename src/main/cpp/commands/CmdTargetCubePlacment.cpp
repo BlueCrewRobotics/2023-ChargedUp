@@ -21,31 +21,31 @@ void CmdTargetCubePlacment::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CmdTargetCubePlacment::Execute() {
-  if (m_povPosition == AUX_DPAD_VALUE_MIDDLE_CENTER) {
+  if (m_povPosition == DPAD_VALUE_MIDDLE_CENTER) {
     
   }
-  else if (m_povPosition == AUX_DPAD_VALUE_MIDDLE_UP) {
+  else if (m_povPosition == DPAD_VALUE_MIDDLE_UP) {
     
   }
-  else if (m_povPosition == AUX_DPAD_VALUE_MIDDLE_DOWN) {
+  else if (m_povPosition == DPAD_VALUE_MIDDLE_DOWN) {
     
   }
-  else if (m_povPosition == AUX_DPAD_VALUE_RIGHT_CENTER) {
+  else if (m_povPosition == DPAD_VALUE_RIGHT_CENTER) {
     
   }
-  else if (m_povPosition == AUX_DPAD_VALUE_RIGHT_UP) {
+  else if (m_povPosition == DPAD_VALUE_RIGHT_UP) {
     
   }
-  else if (m_povPosition == AUX_DPAD_VALUE_RIGHT_DOWN) {
+  else if (m_povPosition == DPAD_VALUE_RIGHT_DOWN) {
     
   }
-  else if (m_povPosition == AUX_DPAD_VALUE_LEFT_CENTER) {
+  else if (m_povPosition == DPAD_VALUE_LEFT_CENTER) {
     
   }
-  else if (m_povPosition == AUX_DPAD_VALUE_LEFT_UP) {
+  else if (m_povPosition == DPAD_VALUE_LEFT_UP) {
     
   }
-  else if (m_povPosition == AUX_DPAD_VALUE_LEFT_DOWN) {
+  else if (m_povPosition == DPAD_VALUE_LEFT_DOWN) {
     
   }
   else {
