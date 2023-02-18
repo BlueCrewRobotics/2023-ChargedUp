@@ -66,5 +66,7 @@ frc2::Command* RobotContainer::GetAutonomousCommand() {
 void RobotContainer::ConfigureDrive() {
   m_subDriveTrain.DriveTrainConfigure();
   m_subDriveTrain.GetPidFromDashboard();
+  // Move to propor location
+  m_subTurret.ConfigureTurret();
 }
 

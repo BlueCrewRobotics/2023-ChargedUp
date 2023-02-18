@@ -36,12 +36,12 @@ void SubTurret::ConfigureTurret() {
     motor->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 0);
   
     
-    motor->SetSensorPhase(false);
+    motor->SetSensorPhase(true);
     motor->SetInverted(false);
 
     motor->ConfigPeakCurrentDuration(20, 0);
-    motor->ConfigPeakCurrentLimit(5, 0);
-    motor->ConfigContinuousCurrentLimit(1, 0);
+    motor->ConfigPeakCurrentLimit(15, 0);
+    motor->ConfigContinuousCurrentLimit(9, 0);
     motor->EnableCurrentLimit(true);
 
     motor->SetSelectedSensorPosition(0,0,0);
@@ -79,6 +79,5 @@ void SubTurret::RotateToDegree(double position) {
 }
 
 void SubTurret::RotateManual(double speed) {
-
     motor->Set(ControlMode::PercentOutput, speed);
 }
