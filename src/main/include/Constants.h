@@ -49,6 +49,7 @@ constexpr int MOTOR_LEFT_MASTER = 2;
 constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
 constexpr int MOTOR_VERTICAL_ELEVATOR = 8;
+constexpr int MOTOR_HORIZONTAL_ELEVATOR = 9;
 
 // Turret setup and adressing
 constexpr int MOTOR_TURRET = 7;
@@ -117,6 +118,11 @@ constexpr double LEFT_KD_1 = 0;
 //    1 degree = 15.4 encoder ticks
 //
 
+// Vertical Elevator
+constexpr double VERTICAL_ELEV_MAX_LIMIT = 95000;
+
+// Horizontal elevator 
+constexpr double HORIZONTAL_ELEV_MAX_LIMIT = 20;
 
 // PCM Module CAN ID
 constexpr int PCM_0 = 9;

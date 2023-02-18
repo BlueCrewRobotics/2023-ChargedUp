@@ -40,8 +40,8 @@ class CmdTargetCubePlacment
 
  protected:
   SubDriveTrain* m_driveTrain;
-  SubLimeLightUpper* m_limeLightUpper;
   SubLimeLightLower* m_limeLightLower;
+  SubLimeLightUpper* m_limeLightUpper;
   frc2::CommandXboxController* m_auxController;
   bool m_finished = false;
   int m_povPosition = 0;

@@ -4,8 +4,10 @@
 
 #include "commands/CmdMoveHorizontalElevator.h"
 
-CmdMoveHorizontalElevator::CmdMoveHorizontalElevator(SubHorizontalElevator* SubHorizontalElevator, frc2::CommandXboxController auxController) {
+CmdMoveHorizontalElevator::CmdMoveHorizontalElevator(SubHorizontalElevator* subHorizontalElevator, frc2::CommandXboxController* auxController) 
+ : m_subHorizontalElevator{subHorizontalElevator}, m_auxController{auxController} {
   // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(subHorizontalElevator);
 }
 
 // Called when the command is initially scheduled.
