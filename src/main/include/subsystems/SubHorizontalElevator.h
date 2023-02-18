@@ -38,8 +38,11 @@ class SubHorizontalElevator : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
 
   // declared private and exposed only through public methods.
-  rev::CANSparkMax m_hElevatorMotor{15, rev::CANSparkMax::MotorType::kBrushless};
+  rev::CANSparkMax m_hElevatorMotor{MOTOR_HORIZONTAL_ELEVATOR, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxPIDController m_hElevatorController = m_hElevatorMotor.GetPIDController();
   rev::SparkMaxRelativeEncoder m_hElevatorEncoder = m_hElevatorMotor.GetEncoder();
+
+  double m_topSoftLimit = HORIZONTAL_ELEV_MAX_LIMIT;
+  double m_bottomSoftLimit = 0;  
 
 };

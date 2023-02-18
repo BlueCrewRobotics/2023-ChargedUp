@@ -20,7 +20,7 @@
 class CmdMoveHorizontalElevator
     : public frc2::CommandHelper<frc2::CommandBase, CmdMoveHorizontalElevator> {
  public:
-  CmdMoveHorizontalElevator(SubHorizontalElevator* SubHorizontalElevator, frc2::CommandXboxController auxController);
+  CmdMoveHorizontalElevator(SubHorizontalElevator* subHorizontalElevator, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 
@@ -31,6 +31,6 @@ class CmdMoveHorizontalElevator
   bool IsFinished() override;
 
   protected:
-  SubHorizontalElevator* mSubHorizontalElevator; 
-  frc2::CommandXboxController* mauxController; 
+  SubHorizontalElevator* m_subHorizontalElevator; 
+  frc2::CommandXboxController* m_auxController; 
 };

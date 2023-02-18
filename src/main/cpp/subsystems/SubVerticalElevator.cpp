@@ -23,8 +23,8 @@ void SubVerticalElevator::ConfigureMotor() {
     motor->ConfigSupplyCurrentLimit(SupplyCurrentLimitConfiguration(true,5,10,100));
     
     // Set the position limits
-    motor->ConfigForwardSoftLimitThreshold(2048,0);
-    motor->ConfigReverseSoftLimitThreshold(-2048,0);
+    motor->ConfigForwardSoftLimitThreshold(VERTICAL_ELEV_MAX_LIMIT,0);
+    motor->ConfigReverseSoftLimitThreshold(0.0,0);
     motor->ConfigForwardSoftLimitEnable(true,0);
     motor->ConfigReverseSoftLimitEnable(true,0);
 

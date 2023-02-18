@@ -4,9 +4,10 @@
 
 #include "commands/CmdMoveVerticalElevator.h"
 
-CmdMoveVerticalElevator::CmdMoveVerticalElevator(SubVerticalElevator* SubVerticalElevator, frc2::CommandXboxController* auxController) 
-: m_SubVerticalElevator{SubVerticalElevator}, m_auxController{auxController} {
+CmdMoveVerticalElevator::CmdMoveVerticalElevator(SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController) 
+: m_subVerticalElevator{subVerticalElevator}, m_auxController{auxController} {
   // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(subVerticalElevator);
 }
 
 // Called when the command is initially scheduled.
@@ -15,13 +16,13 @@ void CmdMoveVerticalElevator::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void CmdMoveVerticalElevator::Execute() {
     double rotationSpeed = 0.0;
-  if(m_auxController->GetRawAxis(AXIS_LY) > 0.2 || m_auxController->GetRawAxis(AXIS_LY) < -0.2) {
-    rotationSpeed = m_auxController->GetRawAxis(AXIS_LY) * 0.7;
-    m_SubVerticalElevator->ControlMotorManually(rotationSpeed); 
-  }
-  else if(m_auxController->GetAButton() == true) {
-    m_SubVerticalElevator->ResetPosition();
-  }
+    if(m_auxController->GetRawAxis(AXIS_LY) > 0.06 || m_auxController->GetRawAxis(AXIS_LY) < -0.06) {
+    rotationSpeed = m_auxController->GetRawAxis(AXIS_LY);
+    m_subVerticalElevator->ControlMotorManually(-rotationSpeed); 
+    }
+    else {
+      m_subVerticalElevator->ControlMotorManually(0.0);
+    }
 }
 
 // Called once the command ends or is interrupted.
