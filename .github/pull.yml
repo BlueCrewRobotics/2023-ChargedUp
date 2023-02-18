@@ -1,0 +1,8 @@
+version: "1"
+rules:
+  - base: main
+    upstream: BlueCrewRobotics:main
+    mergeMethod: hardreset
+  - base: development
+    upstream: BlueCrewRobotics:development
+    mergeMethod: hardreset
