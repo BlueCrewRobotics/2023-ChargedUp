@@ -48,7 +48,7 @@ constexpr int MOTOR_RIGHT_MASTER = 1;
 constexpr int MOTOR_LEFT_MASTER = 2;
 constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
-constexpr int MOTOR_Vertical_ELEVATOR = 999;// <---PLACE HOLDER!!!----------------------------
+constexpr int MOTOR_VERTICAL_ELEVATOR = 8;
 
 // Turret setup and adressing
 constexpr int MOTOR_TURRET = 7;

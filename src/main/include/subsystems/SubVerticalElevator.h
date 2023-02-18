@@ -18,26 +18,28 @@ class SubVerticalElevator : public frc2::SubsystemBase {
    */
   void Periodic() override;
 
-  // Move the elevator up/down given a speed
-  void ElevateBySpeed(double elevatorSpeed);
-  // Move the elevator to a specific position given encoder tics
-  void ElevateToPosition(double elevatorPosition);
   // Configure the Elevator
-  void ElevatorConfigure();
+  void ConfigureMotor();
   // Clear the sticky faults on the motor controller
   void ClearStickFaults();
-  // Set the max speed
-  void SetMaxSpeed(double maxSpeed);
+  // Servo to postion
+  void ServoToPosition(double position);
+  // Move the elevator up/down given a speed
+  void ControlMotorManually(double speed);
+  // Move the elevator to a specific position given encoder tics
+  void ElevateToPosition(double position);
+
+
   // Get the elevator encoder value
-  double GetElevatorEncoderValue();
-  // Get the error from where we want to be
-  double GetElevatorErrorValue();
+  double GetPosition();
   // Reset encoder value
-  void ResetEncoderValue();
+  void ResetPosition();
+
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  BC_FalconFX* elevatorMotor = new BC_FalconFX(MOTOR_Vertical_ELEVATOR);
+  TalonFX* elevatorMotor = new TalonFX(MOTOR_VERTICAL_ELEVATOR);
   int m_topSoftLimit = 10840;
   int m_bottomSoftLimit = 0;
 };

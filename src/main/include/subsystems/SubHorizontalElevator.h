@@ -29,6 +29,10 @@ class SubHorizontalElevator : public frc2::SubsystemBase {
    * Servo the elevator to position
   */
   void ServoToPosition(double position);
+  /*
+   * Drive the elevator to manually
+  */
+  void ControlMotorManually(double position); 
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
