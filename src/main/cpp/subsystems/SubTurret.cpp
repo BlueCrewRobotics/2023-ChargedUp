@@ -78,14 +78,7 @@ void SubTurret::RotateToDegree(double position) {
     motor->Set(ControlMode::Position, xPosition);
 }
 
-void SubTurret::RotateManual(double rotationSpeed) {
-    double speed = 0.0;
-    double currentPosition = motor->GetSelectedSensorPosition();
-    if(currentPosition > TURRET_MIN_ENCODER && currentPosition < TURRET_MAX_ENCODER) {
-        speed = currentPosition;
-    }
-    else {
-        speed = 0.0;
-    }
-    motor->Set(ControlMode::Velocity, speed);
+void SubTurret::RotateManual(double speed) {
+
+    motor->Set(ControlMode::PercentOutput, speed);
 }
