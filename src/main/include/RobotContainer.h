@@ -23,6 +23,7 @@
 #include "commands/CmdFindAndGoToCone.h"
 #include "commands/CmdPrinty.h"
 #include "commands/CmdRotateTurret.h"
+#include "commands/CmdMoveVerticalElevator.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
@@ -42,6 +43,8 @@
 #include "subsystems/SubLimeLightUpper.h"
 #include "subsystems/SubConeRampPrep.h"
 #include "subsystems/SubTurret.h"
+#include "subsystems/SubVerticalElevator.h"
+#include "subsystems/SubHorizontalElevator.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -79,6 +82,8 @@ class RobotContainer {
   SubLimeLightUpper m_subLimeLightUpper;
   SubConeRampPrep m_subConeRampPrep;
   SubTurret m_subTurret;
+  SubVerticalElevator m_subVerticalElevator;
+  SubHorizontalElevator m_subHorizontalElevator;
 
     // Setup driver controller
 //  frc::Joystick *driverController = new frc::Joystick(DRIVER_CONTROLLER);
