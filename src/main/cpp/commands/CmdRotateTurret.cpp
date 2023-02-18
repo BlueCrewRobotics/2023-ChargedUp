@@ -19,10 +19,10 @@ void CmdRotateTurret::Execute() {
   if(m_auxController->GetRawAxis(AXIS_LX) > 0.2 || m_auxController->GetRawAxis(AXIS_LX) < -0.2) {
     // This is controlling the speed of the drive train
     rotationSpeed = m_auxController->GetRawAxis(AXIS_LX) * 0.7;
-    m_subTurret->RotateTurretManual(rotationSpeed);
+    m_subTurret->RotateManual(rotationSpeed);
   }
   else if (m_auxController->GetAButton() == true) { // PLACEHOLDER BUTTON not sure what button we want to reset to home position yet
-    m_subTurret->RotateTurretToDegree(TURRET_HOME_POSITION);
+    m_subTurret->RotateToDegree(TURRET_HOME_POSITION);
   }
 
 }

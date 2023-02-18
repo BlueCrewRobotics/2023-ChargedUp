@@ -18,15 +18,15 @@ class SubTurret : public frc2::SubsystemBase {
    */
   void Periodic() override;
   void ConfigureTurret();
-  double GetTurretLocation();
-  double GetTurretDegrees();
-  void RotateTurretToDegree(double position);
-  void RotateTurretManual(double rotationSpeed);
+  double GetLocation();
+  double GetDegrees();
+  void RotateToDegree(double position);
+  void RotateManual(double rotationSpeed);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
 
-  TalonSRX *turretMotor = new TalonSRX(MOTOR_TURRET);
+  TalonSRX *motor = new TalonSRX(MOTOR_TURRET);
 
   // declared private and exposed only through public methods.
   //rev::CANSparkMax turretMotor{15, rev::CANSparkMax::MotorType::kBrushless}; // Change the zero to an address in robotmap

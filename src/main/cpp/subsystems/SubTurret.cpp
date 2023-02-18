@@ -15,51 +15,51 @@ void SubTurret::ConfigureTurret() {
     // Need the position limits set so the turret doesn't rotate too far an rip the wire off
 
     // Setup Turret Motor
-    turretMotor->Config_kF(0,TURRET_KF_0, 0);
-    turretMotor->Config_kP(0,TURRET_KP_0, 0);
-    turretMotor->Config_kI(0,TURRET_KI_0, 0);
-    turretMotor->Config_kD(0,TURRET_KD_0, 0);
+    motor->Config_kF(0,TURRET_KF_0, 0);
+    motor->Config_kP(0,TURRET_KP_0, 0);
+    motor->Config_kI(0,TURRET_KI_0, 0);
+    motor->Config_kD(0,TURRET_KD_0, 0);
 
-    turretMotor->ConfigMotionAcceleration(15 /*TURRET_ACCELERATION*/,0);
-    turretMotor->ConfigMotionCruiseVelocity(15 /*TURRET_CRUISE_VELOCITY*/,0);
+    motor->ConfigMotionAcceleration(15 /*TURRET_ACCELERATION*/,0);
+    motor->ConfigMotionCruiseVelocity(15 /*TURRET_CRUISE_VELOCITY*/,0);
 
     // Set the talon soft limits and enable limits
-    turretMotor->ConfigForwardSoftLimitThreshold(TURRET_MAX_ENCODER /*TURRET_LEFT_SOFT_LIMIT*/, 0);
-    turretMotor->ConfigReverseSoftLimitThreshold(TURRET_MIN_ENCODER /*TURRET_RIGHT_SOFT_LIMIT*/, 0);
-    turretMotor->ConfigForwardSoftLimitEnable(true /*TURRET_SOFT_LIMITS_ENABLE*/, 0);
-    turretMotor->ConfigReverseSoftLimitEnable(true /*TURRET_SOFT_LIMITS_ENABLE*/, 0);
+    motor->ConfigForwardSoftLimitThreshold(TURRET_MAX_ENCODER /*TURRET_LEFT_SOFT_LIMIT*/, 0);
+    motor->ConfigReverseSoftLimitThreshold(TURRET_MIN_ENCODER /*TURRET_RIGHT_SOFT_LIMIT*/, 0);
+    motor->ConfigForwardSoftLimitEnable(true /*TURRET_SOFT_LIMITS_ENABLE*/, 0);
+    motor->ConfigReverseSoftLimitEnable(true /*TURRET_SOFT_LIMITS_ENABLE*/, 0);
 
     // Configure the hard limit switches of the talon
-    //turretMotor->ConfigReverseLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyOpen, 0);
-    //turretMotor->ConfigForwardLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyOpen, 0);
+    //motor->ConfigReverseLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyOpen, 0);
+    //motor->ConfigForwardLimitSwitchSource(LimitSwitchSource_FeedbackConnector, LimitSwitchNormal_NormallyOpen, 0);
 
-    turretMotor->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 0);
+    motor->ConfigSelectedFeedbackSensor(FeedbackDevice::QuadEncoder, 0, 0);
   
     
-    turretMotor->SetSensorPhase(false);
-    turretMotor->SetInverted(false);
+    motor->SetSensorPhase(false);
+    motor->SetInverted(false);
 
-    turretMotor->ConfigPeakCurrentDuration(20, 0);
-    turretMotor->ConfigPeakCurrentLimit(5, 0);
-    turretMotor->ConfigContinuousCurrentLimit(1, 0);
-    turretMotor->EnableCurrentLimit(true);
+    motor->ConfigPeakCurrentDuration(20, 0);
+    motor->ConfigPeakCurrentLimit(5, 0);
+    motor->ConfigContinuousCurrentLimit(1, 0);
+    motor->EnableCurrentLimit(true);
 
-    turretMotor->SetSelectedSensorPosition(0,0,0);
+    motor->SetSelectedSensorPosition(0,0,0);
 
 }
 
-double SubTurret::GetTurretLocation() {
+double SubTurret::GetLocation() {
     // This should return the turret location
-    return turretMotor->GetSelectedSensorPosition();
+    return motor->GetSelectedSensorPosition();
 }
 
-double SubTurret::GetTurretDegrees() {
+double SubTurret::GetDegrees() {
     // This should return the turret location in degrees
-    return turretMotor->GetSelectedSensorPosition() / TURRET_ENCODER_TICS_PER_DEGREE;
+    return motor->GetSelectedSensorPosition() / TURRET_ENCODER_TICS_PER_DEGREE;
 }
 
 // Give this the position you want in degrees, clockwise is positive, counter-clockwise is negative
-void SubTurret::RotateTurretToDegree(double position) {
+void SubTurret::RotateToDegree(double position) {
     // This function will be used by the Cmd to rotate the turret
     // Use the position set function
     // Make sure you check that the position is within the range specified
@@ -75,17 +75,17 @@ void SubTurret::RotateTurretToDegree(double position) {
     }
 
     // Set the turret to the position
-    turretMotor->Set(ControlMode::Position, xPosition);
+    motor->Set(ControlMode::Position, xPosition);
 }
 
-void SubTurret::RotateTurretManual(double rotationSpeed) {
+void SubTurret::RotateManual(double rotationSpeed) {
     double speed = 0.0;
-    double currentPosition = turretMotor->GetSelectedSensorPosition();
+    double currentPosition = motor->GetSelectedSensorPosition();
     if(currentPosition > TURRET_MIN_ENCODER && currentPosition < TURRET_MAX_ENCODER) {
         speed = currentPosition;
     }
     else {
         speed = 0.0;
     }
-    turretMotor->Set(ControlMode::Velocity, speed);
+    motor->Set(ControlMode::Velocity, speed);
 }
