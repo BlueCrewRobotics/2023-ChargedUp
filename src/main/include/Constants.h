@@ -134,7 +134,6 @@ constexpr int PCM_1_PREP_CONERAMP = 1; // piston used on Cone Ramp Extention
 constexpr int NAVX_CHARGED_UP_RAMP_PITCH = 11;
 
 
-
 // Limelight related Constants
 constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
 constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;
@@ -153,17 +152,69 @@ constexpr int TID_PURPLE_CUBE_ID = 2;
 constexpr int TID_CONE_POLE_UPPER_ID = 3;
 constexpr int TID_CONE_POLE_LOWER_ID = 4;
 
-// aux controller D-pad values
-constexpr int AUX_DPAD_VALUE_MIDDLE_CENTER = -1;
-constexpr int AUX_DPAD_VALUE_MIDDLE_UP = 0;
-constexpr int AUX_DPAD_VALUE_RIGHT_UP = 45;
-constexpr int AUX_DPAD_VALUE_RIGHT_CENTER = 90;
-constexpr int AUX_DPAD_VALUE_RIGHT_DOWN = 135;
-constexpr int AUX_DPAD_VALUE_MIDDLE_DOWN = 180;
-constexpr int AUX_DPAD_VALUE_LEFT_DOWN = 225;
-constexpr int AUX_DPAD_VALUE_LEFT_CENTER = 270;
-constexpr int AUX_DPAD_VALUE_LEFT_UP = 315;
 
+/*
+   CONTROLS --
+
+      Primary
+
+         R Trigger - drive forward
+         L Trigger - drive backward
+         L Joystick X axis - drive rotation left/right
+         L Joystick Y axis - 
+
+         A - 
+         B - 
+         X - move to cube
+         Y - move to cone
+
+         R Joystick X axis -
+         R Joystick Y axis -
+
+         L Bumper -
+         R Bumber -
+
+         Start -
+         Back -
+
+         DPAD -
+
+      Auxiliary
+
+         R Trigger -
+         L Trigger -
+
+         L Joystick X axis - turret rotation
+         L Joystick Y axis -
+      
+         A -
+         B -
+         X -
+         Y -
+
+         R Joystick X axis -
+         R Joystick Y axis -
+
+         L Bumper -
+         R Bumber -
+
+         Start -
+         Back -
+
+         DPAD - Node Selection (defined below in AUX_DPAD_VALUE_XXX constants)
+
+*/
+
+// aux controller D-pad values
+constexpr int DPAD_VALUE_MIDDLE_CENTER = -1;
+constexpr int DPAD_VALUE_MIDDLE_UP = 0;
+constexpr int DPAD_VALUE_RIGHT_UP = 45;
+constexpr int DPAD_VALUE_RIGHT_CENTER = 90;
+constexpr int DPAD_VALUE_RIGHT_DOWN = 135;
+constexpr int DPAD_VALUE_MIDDLE_DOWN = 180;
+constexpr int DPAD_VALUE_LEFT_DOWN = 225;
+constexpr int DPAD_VALUE_LEFT_CENTER = 270;
+constexpr int DPAD_VALUE_LEFT_UP = 315;
 
 
 enum nodeTypes { Cone = 1, Cube = 2, Hybrid = 5, None = 0};
@@ -193,7 +244,6 @@ constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_FLOOR_CENTER = { 0.0,  7.14, -18.24
 constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_FLOOR_RIGHT = { 16.75, 7.14, -18.24, Hybrid };
 constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_FLOOR_LEFT = { -16.75, 7.14, -18.24, Hybrid };
 
-// TODO: only have 2 of the 3 coordinates for these calculated so far...
 constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_LOWER = { 21.875, 8.42, 16.75, Cone }; 
 constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_UPPER = { 21.875, 25.45, 27.75, Cone };
 constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_LOWER = { -21.875, 8.42, 16.75, Cone };
