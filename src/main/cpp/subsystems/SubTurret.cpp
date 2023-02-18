@@ -53,21 +53,43 @@ double SubTurret::GetTurretLocation() {
     return turretMotor->GetSelectedSensorPosition();
 }
 
-void SubTurret::RotateTurret(double position) {
+double SubTurret::GetTurretDegrees() {
+    // This should return the turret location in degrees
+    return turretMotor->GetSelectedSensorPosition() / TURRET_ENCODER_TICS_PER_DEGREE;
+}
+
+// Give this the position you want in degrees, clockwise is positive, counter-clockwise is negative
+void SubTurret::RotateTurretToDegree(double position) {
     // This function will be used by the Cmd to rotate the turret
     // Use the position set function
     // Make sure you check that the position is within the range specified
 
-    double xPosition = position;
+    double xPosition = position*TURRET_ENCODER_TICS_PER_DEGREE;
 
-  // Check that turret is within operating parameters
-  if(position < TURRET_MIN_ENCODER){
-      xPosition = TURRET_MIN_ENCODER;
-  }
-  if(position > TURRET_MAX_ENCODER){
-      xPosition = TURRET_MAX_ENCODER;
-  }
+    // Check that turret is within operating parameters
+    if(xPosition < TURRET_MIN_ENCODER){
+        xPosition = TURRET_MIN_ENCODER;
+    }
+    else if(xPosition > TURRET_MAX_ENCODER){
+        xPosition = TURRET_MAX_ENCODER;
+    }
 
+    // Set the turret to the position
+    turretMotor->Set(ControlMode::Position, xPosition);
+}
 
-      turretMotor->Set(ControlMode::Position, xPosition);
+void SubTurret::RotateTurretManual(int rotationDirection) {
+    double speed = 0.0;
+    if(rotationDirection != TURRET_MANUAL_ROTATION_OFF) {
+        if(rotationDirection == TURRET_MANUAL_ROTATION_CLOCKWISE) {
+            speed = 0.22;
+        }
+        else if(rotationDirection == TURRET_MANUAL_ROTATION_COUNTERCLOCKWISE) {
+            speed = -0.22;
+        }
+    }
+    else {
+        speed = 0.0;
+    }
+    turretMotor->Set(ControlMode::Velocity, speed);
 }
