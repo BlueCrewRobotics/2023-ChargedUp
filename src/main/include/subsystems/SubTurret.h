@@ -21,7 +21,7 @@ class SubTurret : public frc2::SubsystemBase {
   double GetTurretLocation();
   double GetTurretDegrees();
   void RotateTurretToDegree(double position);
-  void RotateTurretManual(int rotationDirection);
+  void RotateTurretManual(double rotationSpeed);
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be

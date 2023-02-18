@@ -78,15 +78,11 @@ void SubTurret::RotateTurretToDegree(double position) {
     turretMotor->Set(ControlMode::Position, xPosition);
 }
 
-void SubTurret::RotateTurretManual(int rotationDirection) {
+void SubTurret::RotateTurretManual(double rotationSpeed) {
     double speed = 0.0;
-    if(rotationDirection != TURRET_MANUAL_ROTATION_OFF) {
-        if(rotationDirection == TURRET_MANUAL_ROTATION_CLOCKWISE) {
-            speed = 0.22;
-        }
-        else if(rotationDirection == TURRET_MANUAL_ROTATION_COUNTERCLOCKWISE) {
-            speed = -0.22;
-        }
+    double currentPosition = turretMotor->GetSelectedSensorPosition();
+    if(currentPosition > TURRET_MIN_ENCODER && currentPosition < TURRET_MAX_ENCODER) {
+        speed = currentPosition;
     }
     else {
         speed = 0.0;
