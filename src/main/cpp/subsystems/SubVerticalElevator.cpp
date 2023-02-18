@@ -28,7 +28,7 @@ void SubVerticalElevator::ElevatorConfigure() {
 // Move the elevator up and down based on speed (will not go to a specific location/position, just goes up or down until you stop telling it to)
 void SubVerticalElevator::ElevateBySpeed(double elevatorSpeed) {
     // Set the control mode to Velocity
-    elevatorMotor->SetControlMode((ctre::phoenix::motorcontrol::ControlMode) 2);
+    elevatorMotor->SetControlMode(ctre::phoenix::motorcontrol::ControlMode::Velocity);
     // Set the motor speed
     int currentPos = GetElevatorEncoderValue();
     if (currentPos > m_bottomSoftLimit && currentPos < m_topSoftLimit) {
@@ -61,7 +61,7 @@ void SubVerticalElevator::ElevateToPosition(double elevatorPosition) {
     elevatorMotor->Set(elevatorSpeed);
     */
    // Set the controll mode to Position
-   elevatorMotor->SetControlMode((ctre::phoenix::motorcontrol::ControlMode) 1);
+   elevatorMotor->SetControlMode(ctre::phoenix::motorcontrol::ControlMode::Position);
    if (elevatorPosition < m_bottomSoftLimit) {
     elevatorPosition = m_bottomSoftLimit;
    }
