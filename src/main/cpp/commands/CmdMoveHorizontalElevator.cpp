@@ -14,7 +14,17 @@ CmdMoveHorizontalElevator::CmdMoveHorizontalElevator(SubHorizontalElevator* subH
 void CmdMoveHorizontalElevator::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void CmdMoveHorizontalElevator::Execute() {}
+void CmdMoveHorizontalElevator::Execute() {
+  double speed = 0.0;
+  if(m_auxController->GetRawAxis(AXIS_RY) > 0.06 || m_auxController->GetRawAxis(AXIS_RY) < -0.06) {
+    speed = -m_auxController->GetRawAxis(AXIS_RY);
+
+    m_subHorizontalElevator->ControlMotorManually(speed); 
+  }
+  else {
+    m_subHorizontalElevator->ControlMotorManually(0.0);
+  }
+}
 
 // Called once the command ends or is interrupted.
 void CmdMoveHorizontalElevator::End(bool interrupted) {}

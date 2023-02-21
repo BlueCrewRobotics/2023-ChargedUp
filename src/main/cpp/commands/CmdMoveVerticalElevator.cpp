@@ -15,10 +15,11 @@ void CmdMoveVerticalElevator::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdMoveVerticalElevator::Execute() {
-    double rotationSpeed = 0.0;
+    double speed = 0.0;
     if(m_auxController->GetRawAxis(AXIS_LY) > 0.06 || m_auxController->GetRawAxis(AXIS_LY) < -0.06) {
-    rotationSpeed = m_auxController->GetRawAxis(AXIS_LY);
-    m_subVerticalElevator->ControlMotorManually(-rotationSpeed); 
+      speed = -m_auxController->GetRawAxis(AXIS_LY);
+
+      m_subVerticalElevator->ControlMotorManually(speed); 
     }
     else {
       m_subVerticalElevator->ControlMotorManually(0.0);
@@ -30,5 +31,5 @@ void CmdMoveVerticalElevator::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool CmdMoveVerticalElevator::IsFinished() {
-  return true;
+  return false;
 }

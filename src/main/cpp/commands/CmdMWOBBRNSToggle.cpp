@@ -2,26 +2,26 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/CmdConeRampPrepExtend.h"
+#include "commands/CmdMWOBBRNSToggle.h"
 
-CmdConeRampPrepExtend::CmdConeRampPrepExtend(SubConeRampPrep* subConeRampPrep) : m_subConeRampPrep(subConeRampPrep) {
+CmdMWOBBRNSToggle::CmdMWOBBRNSToggle(SubMWOBBRNS* subMWOBBRNS) 
+  :m_subMWOBBRNS{subMWOBBRNS} {
   // Use addRequirements() here to declare subsystem dependencies.
-
+  AddRequirements(subMWOBBRNS);
 }
 
 // Called when the command is initially scheduled.
-void CmdConeRampPrepExtend::Initialize() {}
+void CmdMWOBBRNSToggle::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void CmdConeRampPrepExtend::Execute() {
-  m_subConeRampPrep->SetPrepConeRampPosition(true);
-  
+void CmdMWOBBRNSToggle::Execute() {
+  m_subMWOBBRNS->ExtensionToggle();
 }
 
 // Called once the command ends or is interrupted.
-void CmdConeRampPrepExtend::End(bool interrupted) {}
+void CmdMWOBBRNSToggle::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool CmdConeRampPrepExtend::IsFinished() {
-  return false;
+bool CmdMWOBBRNSToggle::IsFinished() {
+  return true;
 }

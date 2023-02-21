@@ -35,8 +35,8 @@ RobotContainer::RobotContainer() {
 void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
-  // Setup the command to shift gears when right bumper is pressed
-  //driverController_button_lbump.OnTrue(CmdShiftGear(&m_subDriveTrain).ToPtr());
+  // Setup the command to toggle the extension of the MWOBBRNS when right bumper is pressed
+  auxController_button_rbump.OnTrue(CmdMWOBBRNSToggle(&m_subMWOBBRNS).ToPtr());
 
   driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
   driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());

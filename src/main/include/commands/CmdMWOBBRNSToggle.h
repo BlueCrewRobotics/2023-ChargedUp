@@ -6,8 +6,10 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/SubConeRampPrep.h"
 
+#include "subsystems/SubMWOBBRNS.h"
+#include <frc2/command/button/CommandXboxController.h>
+#include "Constants.h"
 /**
  * An example command.
  *
@@ -15,10 +17,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdConeRampPrepRetract
-    : public frc2::CommandHelper<frc2::CommandBase, CmdConeRampPrepRetract> {
+class CmdMWOBBRNSToggle
+    : public frc2::CommandHelper<frc2::CommandBase, CmdMWOBBRNSToggle> {
  public:
-  CmdConeRampPrepRetract(SubConeRampPrep* subConeRampPrep);
+  CmdMWOBBRNSToggle(SubMWOBBRNS* subMWOBBRNS);
 
   void Initialize() override;
 
@@ -27,7 +29,7 @@ class CmdConeRampPrepRetract
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-
-private:
-  SubConeRampPrep* m_subConeRampPrep;
+ 
+ protected:
+  SubMWOBBRNS* m_subMWOBBRNS;
 };
