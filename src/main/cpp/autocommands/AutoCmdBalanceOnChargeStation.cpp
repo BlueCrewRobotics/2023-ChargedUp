@@ -37,11 +37,11 @@ void AutoCmdBalanceOnChargeStation::Execute() {
   m_driveTrain->SetRamp(1);
   if(currentPitch < m_levelPitchValue-pitchTolerance) {
     std::cout << "steadying forward current pitch: " << currentPitch << std::endl;
-    speed = -0.28;
+    speed = -0.14;
   }
   else if(currentPitch > m_levelPitchValue+pitchTolerance) {
     std::cout << "steadying backward, current pitch: " << currentPitch << std::endl;
-    speed = 0.28;
+    speed = 0.14;
   }
   else {
     m_timer.Start();

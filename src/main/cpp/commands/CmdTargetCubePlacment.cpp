@@ -17,6 +17,8 @@ void CmdTargetCubePlacment::Initialize() {
   m_povPosition = m_auxController->GetPOV();
   // Get the ID of the targeted april tag
   m_aprilTagID = m_limeLightUpper->GetAprilTagId();
+  // Set m_finished to false
+  m_finished = false;
 }
 
 // Called repeatedly when this Command is scheduled to run

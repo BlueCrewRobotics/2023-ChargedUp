@@ -40,7 +40,7 @@ void AutoCmdDriveOntoChargeStation::Execute() {
   // Do we think we are already on the ChargeStation?
   // Go forward until we start tilting
   if(!m_onChargeStation && currentPitch > m_levelPitchValue-5 && currentPitch < -m_levelPitchValue+5) {
-    speed = -0.86;
+    speed = -0.20;
   }
 
   // Drive forward until we are level again
@@ -52,10 +52,10 @@ void AutoCmdDriveOntoChargeStation::Execute() {
 
     if (currentPitch < m_levelPitchValue-1) {
       if(!m_timer.HasElapsed((units::time::second_t)2.0)) {
-        speed = -0.59;
+        speed = -0.12;
       }
       else {
-        speed = -0.30;
+        speed = -0.9;
       }
     }
     // if we are level again, set onChargeStation to true
