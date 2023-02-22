@@ -15,10 +15,10 @@ void CmdRotateTurret::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdRotateTurret::Execute() {
-  if(m_auxController->GetAButton() == false) {
+  if(m_auxController->GetAButton() == false) { // PLACEHOLDER BUTTON not sure what button we want to reset to home position yet
     double rotationSpeed = 0.0;
     if(m_auxController->GetRawAxis(AXIS_LX) > 0.06 || m_auxController->GetRawAxis(AXIS_LX) < -0.06) {
-      // This is controlling the speed of the drive train
+      // This is controlling the speed of the turret
       rotationSpeed = -m_auxController->GetRawAxis(AXIS_LX);
       m_subTurret->RotateManual(rotationSpeed);
     }
@@ -26,7 +26,7 @@ void CmdRotateTurret::Execute() {
       m_subTurret->RotateManual(0.0);
     }
   }
-  else { // PLACEHOLDER BUTTON not sure what button we want to reset to home position yet
+  else { 
     m_subTurret->RotateToDegree(TURRET_HOME_POSITION);
   }
 

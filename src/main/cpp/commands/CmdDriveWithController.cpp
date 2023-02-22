@@ -40,11 +40,11 @@ void CmdDriveWithController::Execute() {
   // This is controlling the speed of the drive train
   if(m_driverController->GetRawAxis(AXIS_R_TRIG) > 0) {
     // percentage controller axis is activated
-    speed = -1*m_driverController->GetRawAxis(AXIS_R_TRIG);
+    speed = m_driverController->GetRawAxis(AXIS_R_TRIG);
   }
   else { // jhouse: is it safe to assume the L axis is really exactly 'zero' when not pressed by human?  robot could falsely move a bit otherwise
     // percentage controller axis is activated
-    speed = m_driverController->GetRawAxis(AXIS_L_TRIG);
+    speed = -1*m_driverController->GetRawAxis(AXIS_L_TRIG);
   }
 
   // This is the steering section of the drive train
@@ -84,6 +84,12 @@ void CmdDriveWithController::Execute() {
   //    std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
 
       double headingError = m_driveTrain->GetYawStraightValue() - m_driveTrain->GetYaw();
+      if (headingError > 180) {
+        headingError = -(headingError - 360);
+      }
+      else if (headingError < -180) {
+        headingError = -(headingError + 360);
+      }
 
       if(headingError > 0.0) {
         // Normalize for quadrant I

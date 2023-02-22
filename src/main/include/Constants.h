@@ -79,12 +79,16 @@ constexpr int PEAK_CURRENT_LIMIT = 30;
 constexpr int DURATION_CURRENT_LIMIT = 500;
 
 // PID constants PID[0] Used for low speed right side
+// constexpr double RIGHT_KF_0 = 0.042; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
+// constexpr double RIGHT_KP_0 = 0.048;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
 constexpr double RIGHT_KF_0 = 0.042; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
 constexpr double RIGHT_KP_0 = 0.048;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
 constexpr double RIGHT_KI_0 = 0.0;
 constexpr double RIGHT_KD_0 = 0.0;
 
 // PID constants PID[0] Used for low speed right side
+// constexpr double LEFT_KF_0 = 0.041; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
+// constexpr double LEFT_KP_0 = 0.0455;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
 constexpr double LEFT_KF_0 = 0.041; // 0.0465; //0.13; // Kf = ((percent of output used for control)*1023) / (max encoder units)/100ms
 constexpr double LEFT_KP_0 = 0.0455;// 0.123; // Kp = ((percent of output used for control)*1023) / Error
 constexpr double LEFT_KI_0 = 0.0;
@@ -139,7 +143,7 @@ constexpr int PCM_0 = 9;
 
 // Solenoid Mappings for Shifter PCM
 constexpr int PCM_0_GEARSHIFT = 0;  // Drive train gear shifter
-constexpr int PCM_1_PREP_CONERAMP = 1; // piston used on Cone Ramp Extention
+constexpr int PCM_1_RampPreper = 1; // pistons used on the RampPreper
 
 // NavX related constants and info
 // 
