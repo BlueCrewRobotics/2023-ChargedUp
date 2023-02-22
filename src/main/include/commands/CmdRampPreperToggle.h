@@ -7,7 +7,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/SubMWOBBRNS.h"
+#include "subsystems/SubRampPreper.h"
 #include <frc2/command/button/CommandXboxController.h>
 #include "Constants.h"
 /**
@@ -17,10 +17,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdMWOBBRNSToggle
-    : public frc2::CommandHelper<frc2::CommandBase, CmdMWOBBRNSToggle> {
+class CmdRampPreperToggle
+    : public frc2::CommandHelper<frc2::CommandBase, CmdRampPreperToggle> {
  public:
-  CmdMWOBBRNSToggle(SubMWOBBRNS* subMWOBBRNS);
+  CmdRampPreperToggle(SubRampPreper* subRampPreper);
 
   void Initialize() override;
 
@@ -31,5 +31,5 @@ class CmdMWOBBRNSToggle
   bool IsFinished() override;
  
  protected:
-  SubMWOBBRNS* m_subMWOBBRNS;
+  SubRampPreper* m_subRampPreper;
 };

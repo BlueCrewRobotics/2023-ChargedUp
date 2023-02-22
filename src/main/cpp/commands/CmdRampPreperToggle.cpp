@@ -2,26 +2,26 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/CmdMWOBBRNSToggle.h"
+#include "commands/CmdRampPreperToggle.h"
 
-CmdMWOBBRNSToggle::CmdMWOBBRNSToggle(SubMWOBBRNS* subMWOBBRNS) 
-  :m_subMWOBBRNS{subMWOBBRNS} {
+CmdRampPreperToggle::CmdRampPreperToggle(SubRampPreper* subRampPreper) 
+  :m_subRampPreper{subRampPreper} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(subMWOBBRNS);
+  AddRequirements(subRampPreper);
 }
 
 // Called when the command is initially scheduled.
-void CmdMWOBBRNSToggle::Initialize() {}
+void CmdRampPreperToggle::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void CmdMWOBBRNSToggle::Execute() {
-  m_subMWOBBRNS->ExtensionToggle();
+void CmdRampPreperToggle::Execute() {
+  m_subRampPreper->ExtensionToggle();
 }
 
 // Called once the command ends or is interrupted.
-void CmdMWOBBRNSToggle::End(bool interrupted) {}
+void CmdRampPreperToggle::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool CmdMWOBBRNSToggle::IsFinished() {
+bool CmdRampPreperToggle::IsFinished() {
   return true;
 }

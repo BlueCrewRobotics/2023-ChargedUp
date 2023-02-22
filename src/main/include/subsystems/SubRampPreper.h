@@ -9,9 +9,9 @@
 
 #include "Constants.h"
 
-class SubMWOBBRNS : public frc2::SubsystemBase {
+class SubRampPreper : public frc2::SubsystemBase {
  public:
-  SubMWOBBRNS();
+  SubRampPreper();
 
   /**
    * Will be called periodically whenever the CommandScheduler runs.
@@ -22,5 +22,5 @@ class SubMWOBBRNS : public frc2::SubsystemBase {
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
-  frc::Solenoid* m_pistons = new frc::Solenoid(PCM_0,frc::PneumaticsModuleType::CTREPCM,PCM_1_MWOBBRNS);
+  frc::Solenoid* m_pistons = new frc::Solenoid(PCM_0,frc::PneumaticsModuleType::CTREPCM,PCM_1_RampPreper);
 };
