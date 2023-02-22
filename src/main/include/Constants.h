@@ -50,6 +50,7 @@ constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
 constexpr int MOTOR_VERTICAL_ELEVATOR = 8;
 constexpr int MOTOR_HORIZONTAL_ELEVATOR = 9;
+constexpr int MOTOR_WRIST_CLAW = 12;
 
 // Turret setup and adressing
 constexpr int MOTOR_TURRET = 7;
@@ -123,6 +124,15 @@ constexpr double VERTICAL_ELEV_MAX_LIMIT = 95000;
 
 // Horizontal elevator 
 constexpr double HORIZONTAL_ELEV_MAX_LIMIT = 20;
+
+// Wrist Claw 
+constexpr double WRIST_CLAW_MAX_LIMIT = 20;
+constexpr double WRIST_CLAW_MIN_LIMIT = 0;
+
+// Rev pneumatic hub
+constexpr int PNEUMATIC_HUB_ADDR = 13;
+constexpr int WRIST_CLAW_SOLENOID = 0; 
+
 
 // PCM Module CAN ID
 constexpr int PCM_0 = 9;
