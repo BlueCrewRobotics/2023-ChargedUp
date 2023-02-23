@@ -13,10 +13,18 @@ CmdTargetCubePlacment::CmdTargetCubePlacment(SubDriveTrain* driveTrain, SubLimeL
 
 // Called when the command is initially scheduled.
 void CmdTargetCubePlacment::Initialize() {
+  
   // Get the aux controller D-pad position
   m_povPosition = m_auxController->GetPOV();
+  
   // Get the ID of the targeted april tag
   m_aprilTagID = m_limeLightUpper->GetAprilTagId();
+  
+  // Get distance to aprilTag target
+  if(m_limeLightUpper->GetTarget() == true){
+    //double tagDistance = m_limeLightUpper->GetDistanceToTarget())
+  }
+  
   // Set m_finished to false
   m_finished = false;
 }
@@ -32,21 +40,23 @@ void CmdTargetCubePlacment::Execute() {
   else if (m_povPosition == DPAD_VALUE_MIDDLE_DOWN) {
     
   }
-  else if (m_povPosition == DPAD_VALUE_RIGHT_CENTER) {
+/*  else if (m_povPosition == DPAD_VALUE_RIGHT_CENTER) {
     
   }
   else if (m_povPosition == DPAD_VALUE_RIGHT_UP) {
     
   }
+  */
   else if (m_povPosition == DPAD_VALUE_RIGHT_DOWN) {
     
   }
-  else if (m_povPosition == DPAD_VALUE_LEFT_CENTER) {
+/*  else if (m_povPosition == DPAD_VALUE_LEFT_CENTER) {
     
   }
   else if (m_povPosition == DPAD_VALUE_LEFT_UP) {
     
   }
+  */
   else if (m_povPosition == DPAD_VALUE_LEFT_DOWN) {
     
   }

@@ -15,14 +15,16 @@ void CmdMoveVerticalElevator::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdMoveVerticalElevator::Execute() {
+    
     double speed = 0.0;
     if(m_auxController->GetRawAxis(AXIS_LY) > 0.06 || m_auxController->GetRawAxis(AXIS_LY) < -0.06) {
-      speed = -m_auxController->GetRawAxis(AXIS_LY);
-
+      speed = -m_auxController->GetRawAxis(AXIS_LY)*0.35;
+      m_subVerticalElevator->EnableHoldPosition(false);
       m_subVerticalElevator->ControlMotorManually(speed); 
     }
     else {
-      m_subVerticalElevator->ControlMotorManually(0.0);
+      m_subVerticalElevator->EnableHoldPosition(true);
+      //m_subVerticalElevator->ControlMotorManually(0.0);
     }
 }
 
