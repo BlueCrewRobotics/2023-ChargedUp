@@ -7,7 +7,17 @@
 SubVerticalElevator::SubVerticalElevator() = default;
 
 // This method will be called once per scheduler run
-void SubVerticalElevator::Periodic() {}
+void SubVerticalElevator::Periodic() {
+    
+    // Holding the position
+    if(m_enableHoldPosition == true){
+        motor->Set(ControlMode::Position,m_holdPosition);
+    }
+    if(m_enableHoldPosition == false){
+        m_holdPosition = motor->GetSelectedSensorPosition(0);
+    }
+
+}
 
 // Configure the elevator motor and stuff
 void SubVerticalElevator::ConfigureMotor() {
@@ -24,14 +34,14 @@ void SubVerticalElevator::ConfigureMotor() {
     
     // Set the position limits
     motor->ConfigForwardSoftLimitThreshold(VERTICAL_ELEV_MAX_LIMIT,0);
-    motor->ConfigReverseSoftLimitThreshold(0.0,0);
+    motor->ConfigReverseSoftLimitThreshold(1200,0);
     motor->ConfigForwardSoftLimitEnable(true,0);
     motor->ConfigReverseSoftLimitEnable(true,0);
 
         // Setup Turret Motor
     motor->Config_kF(0,0.0, 0);
     motor->Config_kP(0,0.01, 0);
-    motor->Config_kI(0,0.0, 0);
+    motor->Config_kI(0,0.00005, 0);
     motor->Config_kD(0,0.0, 0);
 
 }
@@ -62,3 +72,8 @@ double SubVerticalElevator::GetPosition() {
 void SubVerticalElevator::ResetPosition() {
     motor->SetSelectedSensorPosition(0,0,0);
 }
+
+void SubVerticalElevator::EnableHoldPosition(bool hold) {
+    m_enableHoldPosition = hold;
+}
+

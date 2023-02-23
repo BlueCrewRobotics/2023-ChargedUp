@@ -28,6 +28,8 @@ class SubVerticalElevator : public frc2::SubsystemBase {
   void ControlMotorManually(double speed);
   // Move the elevator to a specific position given encoder tics
   void ElevateToPosition(double position);
+  // Set or release the hold position
+  void EnableHoldPosition(bool hold);
 
 
   // Get the elevator encoder value
@@ -42,4 +44,10 @@ class SubVerticalElevator : public frc2::SubsystemBase {
   TalonFX* motor = new TalonFX(MOTOR_VERTICAL_ELEVATOR);
   double m_topSoftLimit = VERTICAL_ELEV_MAX_LIMIT;
   double m_bottomSoftLimit = 0;
+  
+  // Used for the hold position when the driver is not manually driving the elevator
+  double m_holdPosition;
+  // enable the hold position
+  bool m_enableHoldPosition;
+
 };
