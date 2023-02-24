@@ -7,7 +7,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <rev/CANSparkMax.h>
 #include <ctre/Phoenix.h>
-#include "Constants.h"
+#include "Constants/ConsTurret.h"
 
 class SubTurret : public frc2::SubsystemBase {
  public:
@@ -34,9 +34,9 @@ class SubTurret : public frc2::SubsystemBase {
   TalonSRX *motor = new TalonSRX(MOTOR_TURRET);
 
   // Used for the hold position when the driver is not manually driving the elevator
-  double m_holdPosition;
+  double m_holdPosition = 0.0;
   // enable the hold position
-  bool m_enableHoldPosition;
+  bool m_enableHoldPosition = true;
 
   // declared private and exposed only through public methods.
   //rev::CANSparkMax turretMotor{15, rev::CANSparkMax::MotorType::kBrushless}; // Change the zero to an address in robotmap

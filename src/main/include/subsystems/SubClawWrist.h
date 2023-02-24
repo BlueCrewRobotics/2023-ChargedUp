@@ -7,7 +7,8 @@
 #include <frc2/command/SubsystemBase.h>
 #include <rev/CANSparkMax.h>
 #include <ctre/Phoenix.h>
-#include "Constants.h"
+#include "Constants/ConsClawWrist.h"
+#include "Constants/ConsPneumatics.h"
 #include <frc/PneumaticHub.h>
 #include <frc/Solenoid.h>
 

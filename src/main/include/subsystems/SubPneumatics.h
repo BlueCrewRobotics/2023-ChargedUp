@@ -11,7 +11,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <frc/Compressor.h>
 #include <frc/Solenoid.h>
-#include "Constants.h"
+#include "Constants/ConsPneumatics.h"
 
 class SubPneumatics : public frc2::SubsystemBase {
  public:
@@ -29,6 +29,6 @@ class SubPneumatics : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
 
   //  Creates the compressor class on the heap
-  frc::Compressor *m_compressor = new frc::Compressor(PCM_0,frc::PneumaticsModuleType::CTREPCM);
+  frc::Compressor *m_compressor = new frc::Compressor(PNEUMATIC_HUB_ADDR,frc::PneumaticsModuleType::REVPH);
 
 };

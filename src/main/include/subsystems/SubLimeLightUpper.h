@@ -12,6 +12,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <networktables/NetworkTable.h>
 #include <networktables/NetworkTableInstance.h>
+#include "Constants/ConsLimeLights.h"
 
 
 class SubLimeLightUpper : public frc2::SubsystemBase {

@@ -14,7 +14,8 @@
 #include <frc/drive/DifferentialDrive.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/Solenoid.h>
-#include "Constants.h"
+#include "Constants/ConsDrivetrain.h"
+#include "Constants/ConsControllers.h"
 #include "AHRS.h"
 #include "common/BC_MotionProfile.h"
 
