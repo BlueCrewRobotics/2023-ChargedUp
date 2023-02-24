@@ -22,11 +22,21 @@ class SubTurret : public frc2::SubsystemBase {
   double GetDegrees();
   void RotateToDegree(double position);
   void RotateManual(double rotationSpeed);
+  // Servo to postion
+  void ServoToPosition(double position);
+  // Set or release the hold position
+  void EnableHoldPosition(bool hold);
+
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
 
   TalonSRX *motor = new TalonSRX(MOTOR_TURRET);
+
+  // Used for the hold position when the driver is not manually driving the elevator
+  double m_holdPosition;
+  // enable the hold position
+  bool m_enableHoldPosition;
 
   // declared private and exposed only through public methods.
   //rev::CANSparkMax turretMotor{15, rev::CANSparkMax::MotorType::kBrushless}; // Change the zero to an address in robotmap

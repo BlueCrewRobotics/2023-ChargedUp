@@ -153,6 +153,13 @@ constexpr int PCM_1_RampPreper = 1; // pistons used on the RampPreper
 //
 constexpr int NAVX_CHARGED_UP_RAMP_PITCH = 11;
 
+// Limelight height and mount angle
+constexpr double LL_UPPER_HEIGHT = 45.0; // inches needs to be verified
+constexpr double LL_UPPER_ANGLE = -20.0; // degrees needs to be verified
+
+constexpr double LL_LOWER_HEIGHT = 8.0;  // inches needs to be verified
+constexpr double LL_LOWER_ANGLE = 20.0; // degrees needs to be verified
+
 
 // Limelight related Constants
 constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
