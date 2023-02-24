@@ -2,6 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+#include <iostream>
 #include "subsystems/SubVerticalElevator.h"
 
 SubVerticalElevator::SubVerticalElevator() = default;
@@ -11,7 +12,11 @@ void SubVerticalElevator::Periodic() {
     
     // Holding the position
     if(m_enableHoldPosition == true){
-        motor->Set(ControlMode::Position,m_holdPosition);
+        
+        int curOffset =  m_holdPosition - motor->GetSelectedSensorPosition(0);
+        if(curOffset > VERTICAL_ELEV_POSITION_HOLD_TOLERANCE || curOffset < -VERTICAL_ELEV_POSITION_HOLD_TOLERANCE) {
+          motor->Set(ControlMode::Position,m_holdPosition);
+        }
     }
     if(m_enableHoldPosition == false){
         m_holdPosition = motor->GetSelectedSensorPosition(0);
@@ -38,7 +43,7 @@ void SubVerticalElevator::ConfigureMotor() {
     motor->ConfigForwardSoftLimitEnable(true,0);
     motor->ConfigReverseSoftLimitEnable(true,0);
 
-        // Setup Turret Motor
+    // Setup Vertical Elevator Motor
     motor->Config_kF(0,0.0, 0);
     motor->Config_kP(0,0.01, 0);
     motor->Config_kI(0,0.00005, 0);
@@ -75,5 +80,6 @@ void SubVerticalElevator::ResetPosition() {
 
 void SubVerticalElevator::EnableHoldPosition(bool hold) {
     m_enableHoldPosition = hold;
+    std::cout << "holding v elevator pos: " << m_holdPosition;
 }
 

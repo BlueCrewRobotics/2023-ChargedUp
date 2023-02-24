@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "common/Globals.h"
 
 /**
  * The Constants header provides a convenient place for teams to hold robot-wide
@@ -18,6 +19,26 @@
  * command-specific namespaces within this header, which can then be used where
  * they are needed.
  */
+
+
+enum pieceTypes { ConePiece = 1, CubePiece =2, NoPiece = 0 };
+enum nodeTypes { ConeNode = 1, CubeNode = 2, HybridNode = 5, NoNode = 0 };
+
+// Field Measurements (inches)
+//    When facing/looking directly at center point of april tag ...
+//      x = horizontal (left, right) distance from center point of april tag
+//      y = depth (in, out) distance from center point of april tag
+//      z = vertical (up, down) distance from center point of april tag
+struct fieldpos { float x, y, z; nodeTypes nodeType; };
+
+struct game_state {
+  pieceTypes selectedPieceType;
+  
+};
+
+
+static game_state g_gameState;
+
 
 
 namespace OperatorConstants {

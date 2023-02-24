@@ -53,7 +53,7 @@ constexpr int AXIS_RY = 5;
          R Joystick Y axis -
 
          L Bumper -
-         R Bumber -
+         R Bumber - ramp preper
 
          Start -
          Back -
@@ -68,10 +68,10 @@ constexpr int AXIS_RY = 5;
          L Joystick X axis - turret rotation
          L Joystick Y axis - move vertical elevator
       
-         A -
-         B -
-         X -
-         Y -
+         A - up a node pos (relative to selected piece type)
+         B - down a node pos (relative to selected piece type)
+         X - select cube piece type
+         Y - select cone piece type
 
          R Joystick X axis -
          R Joystick Y axis -

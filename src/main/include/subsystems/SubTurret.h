@@ -34,7 +34,7 @@ class SubTurret : public frc2::SubsystemBase {
   TalonSRX *motor = new TalonSRX(MOTOR_TURRET);
 
   // Used for the hold position when the driver is not manually driving the elevator
-  double m_holdPosition = 0.0;
+  double m_holdPosition = motor->GetSelectedSensorPosition(0);
   // enable the hold position
   bool m_enableHoldPosition = true;
 

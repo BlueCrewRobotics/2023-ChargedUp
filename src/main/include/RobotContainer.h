@@ -24,6 +24,8 @@
 #include "commands/CmdRotateTurret.h"
 #include "commands/CmdMoveVerticalElevator.h"
 #include "commands/CmdMoveHorizontalElevator.h"
+#include "commands/CmdVerticalElevatorServoToPosition.h"
+#include "commands/CmdSelectPieceType.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
@@ -32,6 +34,7 @@
 
 // Common classes
 #include "common/BC_MotionProfile.h"
+#include "common/Globals.h"
 
 // Constants used throughout code
 #include "Constants/ConsClawWrist.h"
@@ -54,6 +57,7 @@
 #include "subsystems/SubTurret.h"
 #include "subsystems/SubVerticalElevator.h"
 #include "subsystems/SubHorizontalElevator.h"
+#include "subsystems/SubPneumatics.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -84,6 +88,7 @@ class RobotContainer {
   //frc2::CommandXboxController m_driverController{
   //    OperatorConstants::kDriverControllerPort};
 
+ 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
   SubDriveTrain m_subDriveTrain;
@@ -93,6 +98,7 @@ class RobotContainer {
   SubTurret m_subTurret;
   SubVerticalElevator m_subVerticalElevator;
   SubHorizontalElevator m_subHorizontalElevator;
+  SubPneumatics m_subPneumatics;
 
     // Setup driver controller
 //  frc::Joystick *driverController = new frc::Joystick(DRIVER_CONTROLLER);
