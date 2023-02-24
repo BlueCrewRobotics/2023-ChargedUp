@@ -7,7 +7,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <rev/CANSparkMax.h>
 #include <ctre/Phoenix.h>
-#include "Constants.h"
+#include "Constants/ConsTurret.h"
 
 class SubTurret : public frc2::SubsystemBase {
  public:

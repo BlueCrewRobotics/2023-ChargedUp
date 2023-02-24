@@ -15,7 +15,6 @@
 #include "commands/CmdFindAndGoToTarget.h"
 #include "commands/CmdFindAndGoToCube.h"
 #include "subsystems/SubLimeLightUpper.h"
-#include "Constants.h"
 
 CmdFindAndGoToCube::CmdFindAndGoToCube(SubDriveTrain* driveTrain, SubLimeLightUpper* LimeLightUpper, frc2::CommandXboxController* driverController) 
   : CmdFindAndGoToTarget(driveTrain, LimeLightUpper, driverController) {

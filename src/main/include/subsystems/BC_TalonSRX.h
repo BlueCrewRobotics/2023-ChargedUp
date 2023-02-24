@@ -4,9 +4,9 @@
 /*-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=-=+=*/
 
 #pragma once
-
 #include <ctre/Phoenix.h>
-#include "Constants.h"
+#include "Constants/ConsDrivetrain.h"
+
 class BC_TalonSRX : public virtual frc::MotorController {
 
 	public: 

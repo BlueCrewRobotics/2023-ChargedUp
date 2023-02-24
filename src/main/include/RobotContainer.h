@@ -33,7 +33,7 @@
 #include "common/BC_MotionProfile.h"
 
 // Constants used throughout code
-#include "Constants.h"
+#include "Constants/ConsRobotWide.h"
 
 // Subsystems includes
 #include "subsystems/ExampleSubsystem.h"
