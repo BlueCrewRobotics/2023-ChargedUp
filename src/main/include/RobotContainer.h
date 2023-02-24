@@ -33,7 +33,16 @@
 #include "common/BC_MotionProfile.h"
 
 // Constants used throughout code
-#include "Constants.h"
+#include "Constants/ConsClawWrist.h"
+#include "Constants/ConsControllers.h"
+#include "Constants/ConsDrivetrain.h"
+#include "Constants/ConsHorizontalElevator.h"
+#include "Constants/ConsLimeLights.h"
+#include "Constants/ConsPneumatics.h"
+#include "Constants/ConsRampPreper.h"
+#include "Constants/ConsTurret.h"
+#include "Constants/ConsVerticalElevator.h"
+#include "Constants/ConsGlobal.h"
 
 // Subsystems includes
 #include "subsystems/ExampleSubsystem.h"

@@ -7,7 +7,7 @@
 #include <frc2/command/SubsystemBase.h>
 #include <ctre/Phoenix.h>
 #include "BC_FalconFX.h"
-#include "Constants.h"
+#include "Constants/ConsVerticalElevator.h"
 
 class SubVerticalElevator : public frc2::SubsystemBase {
  public:
@@ -43,11 +43,11 @@ class SubVerticalElevator : public frc2::SubsystemBase {
   // declared private and exposed only through public methods.
   TalonFX* motor = new TalonFX(MOTOR_VERTICAL_ELEVATOR);
   double m_topSoftLimit = VERTICAL_ELEV_MAX_LIMIT;
-  double m_bottomSoftLimit = 0;
+  double m_bottomSoftLimit = VERTICAL_ELEV_MIN_LIMIT;
   
   // Used for the hold position when the driver is not manually driving the elevator
-  double m_holdPosition;
+  double m_holdPosition = 0.0;
   // enable the hold position
-  bool m_enableHoldPosition;
+  bool m_enableHoldPosition = true;
 
 };
