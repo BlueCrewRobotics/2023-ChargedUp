@@ -7,7 +7,15 @@
 SubTurret::SubTurret() = default;
 
 // This method will be called once per scheduler run
-void SubTurret::Periodic() {}
+void SubTurret::Periodic() {
+        // Holding the position
+    if(m_enableHoldPosition == true){
+        motor->Set(ControlMode::Position,m_holdPosition);
+    }
+    if(m_enableHoldPosition == false){
+        m_holdPosition = motor->GetSelectedSensorPosition(0);
+    }
+}
 
 void SubTurret::ConfigureTurret() {
     // Add the code here for configuring the turret motor
@@ -82,4 +90,19 @@ void SubTurret::RotateToDegree(double position) {
 
 void SubTurret::RotateManual(double speed) {
     motor->Set(ControlMode::PercentOutput, speed);
+}
+
+void SubTurret::ServoToPosition(double position) {
+    if (position < TURRET_MIN_ENCODER) {
+    position = TURRET_MIN_ENCODER;
+   }
+   else if (position > TURRET_MAX_ENCODER) {
+    position = TURRET_MAX_ENCODER;
+   }
+   // Pass the encoder value to the elevator motor
+   motor->Set(ControlMode::Position, position);
+}
+
+void SubTurret::EnableHoldPosition(bool hold) {
+    m_enableHoldPosition = hold;
 }

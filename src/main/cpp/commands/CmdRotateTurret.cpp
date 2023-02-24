@@ -19,11 +19,13 @@ void CmdRotateTurret::Execute() {
     double rotationSpeed = 0.0;
     if(m_auxController->GetRawAxis(AXIS_LX) > 0.06 || m_auxController->GetRawAxis(AXIS_LX) < -0.06) {
       // This is controlling the speed of the turret
-      rotationSpeed = -m_auxController->GetRawAxis(AXIS_LX);
+      rotationSpeed = -m_auxController->GetRawAxis(AXIS_LX)*0.5;
+      m_subTurret->EnableHoldPosition(false);
       m_subTurret->RotateManual(rotationSpeed);
     }
     else {
-      m_subTurret->RotateManual(0.0);
+      m_subTurret->EnableHoldPosition(true);
+      //m_subTurret->RotateManual(0.0);
     }
   }
   else { 
