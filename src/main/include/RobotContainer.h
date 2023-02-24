@@ -23,6 +23,7 @@
 #include "commands/CmdPrinty.h"
 #include "commands/CmdRotateTurret.h"
 #include "commands/CmdMoveVerticalElevator.h"
+#include "commands/CmdMoveHorizontalElevator.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
