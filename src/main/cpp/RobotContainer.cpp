@@ -50,6 +50,8 @@ void RobotContainer::ConfigureBindings() {
   m_subTurret.SetDefaultCommand(CmdRotateTurret(&m_subTurret, &auxController));
   // Set the default command for the vertical elevator
   m_subVerticalElevator.SetDefaultCommand(CmdMoveVerticalElevator(&m_subVerticalElevator, &auxController));
+  //Set default command for the horizontal elevator
+  m_subHorizontalElevator.SetDefaultCommand(CmdMoveHorizontalElevator(&m_subHorizontalElevator, &auxController));
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   // frc2::Trigger([this] {
   //   return m_subsystem.ExampleCondition();
@@ -71,5 +73,6 @@ void RobotContainer::ConfigureDrive() {
   // Move to propor location
   m_subTurret.ConfigureTurret();
   m_subVerticalElevator.ConfigureMotor();
+  m_subHorizontalElevator.ConfigureMotor();
 }
 

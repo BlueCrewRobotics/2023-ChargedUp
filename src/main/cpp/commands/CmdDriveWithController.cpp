@@ -94,27 +94,29 @@ void CmdDriveWithController::Execute() {
       if(headingError > 0.0) {
         // Normalize for quadrant I
         rotation = (1.0 - ((180.0-(headingError))/180.0));
-        if(headingError > 5)
-          std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
+        if(headingError > 5) {
+         // std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
+        }
       }
       if(headingError  < 0.0) {
         // Normailize for quadrant II
         rotation = (-1.0 + (180.0+(headingError))/180.0);
-        if(headingError < -5)
-          std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
+        if(headingError < -5) {
+         // std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
+        }
       }
       
       // Correct for quadrents III and IV
       if(rotation > 1.0) {
         rotation = (rotation - 1.0) * -1.0;
         if(rotation > 1.0) {
-          std::cout << "CmdDriveWithController>> ****** Wooooooo"  << std::endl;
+          //std::cout << "CmdDriveWithController>> ****** Wooooooo"  << std::endl;
         }
       }
       else if(rotation < -1.0) {
         rotation = (rotation + 1.0) * -1.0;
         if(rotation < -1.0) {
-          std::cout << "CmdDriveWithController>> ****** Wooooooo"  << std::endl;
+          //std::cout << "CmdDriveWithController>> ****** Wooooooo"  << std::endl;
         }
       }
 
@@ -131,7 +133,7 @@ void CmdDriveWithController::Execute() {
       else if(rotation < 0.0 && rotation > -0.2) {
         rotation = rotation - 0.07;
       }
-      std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << " Goal-Yaw is: " << m_driveTrain->GetYawStraightValue() << std::endl;
+      //std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << " Goal-Yaw is: " << m_driveTrain->GetYawStraightValue() << std::endl;
     }
 
   }

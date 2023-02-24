@@ -66,7 +66,7 @@ constexpr int AXIS_RY = 5;
          L Trigger -
 
          L Joystick X axis - turret rotation
-         L Joystick Y axis -
+         L Joystick Y axis - move vertical elevator
       
          A -
          B -
