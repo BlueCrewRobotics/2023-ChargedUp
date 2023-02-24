@@ -26,6 +26,7 @@ void CmdMoveVerticalElevator::Execute() {
       m_subVerticalElevator->EnableHoldPosition(true);
       //m_subVerticalElevator->ControlMotorManually(0.0);
     }
+
 }
 
 // Called once the command ends or is interrupted.

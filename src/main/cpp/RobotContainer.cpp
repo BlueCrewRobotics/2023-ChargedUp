@@ -12,7 +12,6 @@
 
 #include "commands/ExampleCommand.h"
 
-
 RobotContainer::RobotContainer() {
   // Initialize all of your commands and subsystems here
   
@@ -40,6 +39,10 @@ void RobotContainer::ConfigureBindings() {
 
   driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
   driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+
+  auxController_button_x.OnTrue(CmdSelectPieceType(& auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
+  auxController_button_y.OnTrue(CmdSelectPieceType(& auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
+  auxController_button_a.OnTrue(CmdVerticalElevatorServoToPosition(&m_subVerticalElevator, & auxController, 0).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
 
   // used for testing via cout prints ... such as continuously printing pitch, roll, yaw 
   // driverController_button_a.OnTrue(CmdPrinty(&m_subDriveTrain, &driverController).ToPtr());
@@ -74,5 +77,6 @@ void RobotContainer::ConfigureDrive() {
   m_subTurret.ConfigureTurret();
   m_subVerticalElevator.ConfigureMotor();
   m_subHorizontalElevator.ConfigureMotor();
+  m_subPneumatics.ConfigureCompressor();
 }
 

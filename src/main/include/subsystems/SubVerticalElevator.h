@@ -46,7 +46,7 @@ class SubVerticalElevator : public frc2::SubsystemBase {
   double m_bottomSoftLimit = VERTICAL_ELEV_MIN_LIMIT;
   
   // Used for the hold position when the driver is not manually driving the elevator
-  double m_holdPosition = 0.0;
+  double m_holdPosition = motor->GetSelectedSensorPosition(0);
   // enable the hold position
   bool m_enableHoldPosition = true;
 
