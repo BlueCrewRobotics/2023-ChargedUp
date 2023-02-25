@@ -65,7 +65,10 @@ void SubVerticalElevator::ServoToPosition(double position) {
     position = m_topSoftLimit;
    }
    // Pass the encoder value to the elevator motor
+   EnableHoldPosition(false);
    motor->Set(ControlMode::Position, position);
+   m_holdPosition = position;
+   EnableHoldPosition(true);
 }
    
 // Get the elevator motor encoder value
@@ -80,6 +83,9 @@ void SubVerticalElevator::ResetPosition() {
 
 void SubVerticalElevator::EnableHoldPosition(bool hold) {
     m_enableHoldPosition = hold;
-    std::cout << "holding v elevator pos: " << m_holdPosition;
+}
+
+double SubVerticalElevator::GetHoldPositionDesired() {
+    return m_holdPosition;
 }
 

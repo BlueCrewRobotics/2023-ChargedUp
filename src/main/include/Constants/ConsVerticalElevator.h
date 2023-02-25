@@ -18,19 +18,9 @@ constexpr int VERTICAL_ELEV_POSITION_HOLD_TOLERANCE = 600;
 // Vertical Elevator motor address
 constexpr int MOTOR_VERTICAL_ELEVATOR = 8;
 
-/*
+constexpr double VERTICAL_ELEV_POS_CONE_NODE_LOWER = 76800;
+constexpr double VERTICAL_ELEV_POS_CONE_NODE_UPPER = VERTICAL_ELEV_MAX_LIMIT;
+constexpr double VERTICAL_ELEV_POS_CUBE_NODE_LOWER = 48000;
+constexpr double VERTICAL_ELEV_POS_CUBE_NODE_UPPER = 85500;
+constexpr double VERTICAL_ELEV_POS_HYBRID_NODE = VERTICAL_ELEV_MIN_LIMIT;
 
-
-Elevator Positions:
-
-        Lower Cone Node: 76800
-        Upper Cone Node: VERTICAL_ELEVATOR_MAX_LIMIT
-
-
-        Lower Cube Node:  48000
-        Upper Cube Node:  85500
-
-        Hybrid Node: VERTICAL_ELEVATOR_MIN_LIMIT
-
-
-*/

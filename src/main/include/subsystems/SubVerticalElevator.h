@@ -31,6 +31,7 @@ class SubVerticalElevator : public frc2::SubsystemBase {
   // Set or release the hold position
   void EnableHoldPosition(bool hold);
 
+  double GetHoldPositionDesired();
 
   // Get the elevator encoder value
   double GetPosition();

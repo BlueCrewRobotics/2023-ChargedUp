@@ -25,6 +25,8 @@
 #include "commands/CmdMoveVerticalElevator.h"
 #include "commands/CmdMoveHorizontalElevator.h"
 #include "commands/CmdVerticalElevatorServoToPosition.h"
+#include "commands/CmdVerticalElevatorServoUpNodePosition.h"
+#include "commands/CmdVerticalElevatorServoDownNodePosition.h"
 #include "commands/CmdSelectPieceType.h"
 
 // Auto commands
