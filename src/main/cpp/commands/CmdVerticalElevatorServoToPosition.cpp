@@ -4,8 +4,8 @@
 
 #include "commands/CmdVerticalElevatorServoToPosition.h"
 
-CmdVerticalElevatorServoToPosition::CmdVerticalElevatorServoToPosition(SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, double position) 
-: m_subVerticalElevator{subVerticalElevator}, m_auxController{auxController}, m_position{position} {
+CmdVerticalElevatorServoToPosition::CmdVerticalElevatorServoToPosition(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, double position) 
+: m_subRobotGlobals{subRobotGlobals}, m_subVerticalElevator{subVerticalElevator}, m_auxController{auxController}, m_position{position} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subVerticalElevator);
 }
@@ -17,6 +17,7 @@ void CmdVerticalElevatorServoToPosition::Initialize() {}
 void CmdVerticalElevatorServoToPosition::Execute() {
 
     m_subVerticalElevator->ServoToPosition(m_position);
+    m_subRobotGlobals->g_gameState.selectedPieceType = ConePiece;
 }
 
 // Called once the command ends or is interrupted.

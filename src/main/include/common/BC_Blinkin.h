@@ -47,23 +47,24 @@
 
 #include "frc/motorcontrol/Spark.h"
 
-constexpr double BREATH_BLUE = -0.15;
-constexpr double BREATH_RED = -0.17;
-constexpr double SOLID_RED = 0.61;
-constexpr double SOLID_ORANGE = 0.65;
-constexpr double SOLID_BLUE = 0.87;
-constexpr double SOLID_YELLOW = 0.69;
-constexpr double STROBE_RED = -0.11;
-constexpr double STROBE_BLUE = -0.09;
-constexpr double CONFETTI = -0.87;
-constexpr double BLUE_CHASE =  -0.29;
-constexpr double RAINBOW = -0.99;
-constexpr double FIRE_LARGE = -0.57;
-constexpr double COLOR_WAVE_FOREST = -0.37;
-constexpr double SOLID_BLACK = 0.99;
-constexpr double SOLID_PINK = 0.57;
-constexpr double SOLID_GREEN = 0.77;
-constexpr double SOLID_GOLD = 0.67;
+constexpr double BLINKIN_BREATH_BLUE = -0.15;
+constexpr double BLINKIN_BREATH_RED = -0.17;
+constexpr double BLINKIN_SOLID_RED = 0.61;
+constexpr double BLINKIN_SOLID_ORANGE = 0.65;
+constexpr double BLINKIN_SOLID_BLUE = 0.87;
+constexpr double BLINKIN_SOLID_YELLOW = 0.69;
+constexpr double BLINKIN_STROBE_RED = -0.11;
+constexpr double BLINKIN_STROBE_BLUE = -0.09;
+constexpr double BLINKIN_CONFETTI = -0.87;
+constexpr double BLINKIN_BLUE_CHASE =  -0.29;
+constexpr double BLINKIN_RAINBOW = -0.99;
+constexpr double BLINKIN_FIRE_LARGE = -0.57;
+constexpr double BLINKIN_COLOR_WAVE_FOREST = -0.37;
+constexpr double BLINKIN_SOLID_BLACK = 0.99;
+constexpr double BLINKIN_SOLID_PINK = 0.57;
+constexpr double BLINKIN_SOLID_GREEN = 0.77;
+constexpr double BLINKIN_SOLID_GOLD = 0.67;
+constexpr double BLINKIN_SOLID_VIOLET = 0.91;
 
 
 

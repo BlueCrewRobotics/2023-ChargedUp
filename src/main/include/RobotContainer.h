@@ -62,6 +62,7 @@
 #include "subsystems/SubHorizontalElevator.h"
 #include "subsystems/SubPneumatics.h"
 #include "subsystems/SubClawWrist.h"
+#include "subsystems/SubRobotGlobals.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -94,6 +95,7 @@ class RobotContainer {
 
  
   // The robot's subsystems are defined here...
+  SubRobotGlobals m_subRobotGlobals;
   ExampleSubsystem m_subsystem;
   SubDriveTrain m_subDriveTrain;
   SubLimeLightLower m_subLimeLightLower;

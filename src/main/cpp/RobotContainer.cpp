@@ -35,16 +35,16 @@ void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
   // Setup the command to toggle the extension of the RampPreper when right bumper is pressed
-  auxController_button_rbump.OnTrue(CmdRampPreperToggle(&m_subRampPreper).ToPtr());
+  driverController_button_rbump.OnTrue(CmdRampPreperToggle(&m_subRampPreper).ToPtr());
+  driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  driverController_button_b.OnTrue(CmdSelectPieceType(&m_subRobotGlobals).ToPtr());
+
   
   // Toggle whether or not the claw is engaged when the aux controller left bumper is pressed
   auxController_button_lbumb.OnTrue(CmdClawToggleEngage(&m_subClawWrist).ToPtr());
-
-  driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
-  driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
-
-  auxController_button_x.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
-  auxController_button_y.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
+  //auxController_button_x.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
+  //auxController_button_y.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
   auxController_button_b.OnTrue(CmdVerticalElevatorServoUpNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
   auxController_button_a.OnTrue(CmdVerticalElevatorServoDownNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
 
