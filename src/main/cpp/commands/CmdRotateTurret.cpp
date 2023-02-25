@@ -15,24 +15,20 @@ void CmdRotateTurret::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdRotateTurret::Execute() {
-  if(m_auxController->GetAButton() == false) { // PLACEHOLDER BUTTON not sure what button we want to reset to home position yet
-    double rotationSpeed = 0.0;
-    if(m_auxController->GetRawAxis(AXIS_LX) > 0.06 || m_auxController->GetRawAxis(AXIS_LX) < -0.06) {
-      // This is controlling the speed of the turret
-      rotationSpeed = -m_auxController->GetRawAxis(AXIS_LX)*0.5;
-      m_subTurret->EnableHoldPosition(false);
-      m_subTurret->RotateManual(rotationSpeed);
-    }
-    else {
-      m_subTurret->EnableHoldPosition(true);
-      //m_subTurret->RotateManual(0.0);
-    }
+  double rotationSpeed = 0.0;
+  if(m_auxController->GetRawAxis(AXIS_LX) > 0.06 || m_auxController->GetRawAxis(AXIS_LX) < -0.06) {
+    // This is controlling the speed of the turret
+    rotationSpeed = -m_auxController->GetRawAxis(AXIS_LX)*0.5;
+    m_subTurret->EnableHoldPosition(false);
+    m_subTurret->RotateManual(rotationSpeed);
   }
-  else { 
-    m_subTurret->RotateToDegree(TURRET_HOME_POSITION);
+  else {
+    m_subTurret->EnableHoldPosition(true);
+    //m_subTurret->RotateManual(0.0);
   }
-
 }
+
+
 
 // Called once the command ends or is interrupted.
 void CmdRotateTurret::End(bool interrupted) {}

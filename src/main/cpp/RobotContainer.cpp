@@ -45,8 +45,8 @@ void RobotContainer::ConfigureBindings() {
 
   auxController_button_x.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
   auxController_button_y.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
-  auxController_button_a.OnTrue(CmdVerticalElevatorServoUpNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
-  auxController_button_b.OnTrue(CmdVerticalElevatorServoDownNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
+  auxController_button_b.OnTrue(CmdVerticalElevatorServoUpNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
+  auxController_button_a.OnTrue(CmdVerticalElevatorServoDownNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
 
   // used for testing via cout prints ... such as continuously printing pitch, roll, yaw 
   // driverController_button_a.OnTrue(CmdPrinty(&m_subDriveTrain, &driverController).ToPtr());
