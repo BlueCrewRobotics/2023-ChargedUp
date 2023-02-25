@@ -11,6 +11,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/button/CommandXboxController.h>
+#include "subsystems/SubRobotGlobals.h"
 
 #include <frc/Joystick.h>
 //#include "common/BC_TriggerCal.h"
@@ -25,7 +26,7 @@
 class CmdSelectPieceType
     : public frc2::CommandHelper<frc2::CommandBase, CmdSelectPieceType> {
  public:
-  CmdSelectPieceType(frc2::CommandXboxController *auxController);
+  CmdSelectPieceType(SubRobotGlobals* subRobotGlobals);
 
   void Initialize() override;
 
@@ -37,6 +38,6 @@ class CmdSelectPieceType
 
  private:
   bool m_isFinished = false;
-  frc2::CommandXboxController* m_auxController;
+  SubRobotGlobals* m_subRobotGlobals;
 };
 

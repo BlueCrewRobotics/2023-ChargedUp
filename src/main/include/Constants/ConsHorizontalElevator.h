@@ -9,7 +9,8 @@
 #pragma once
 
 // Horizontal elevator limits
-constexpr double HORIZONTAL_ELEV_MAX_LIMIT = 20;
+constexpr double HORIZONTAL_ELEV_MAX_LIMIT = 60;
+constexpr double HORIZONTAL_ELEV_MIN_LIMIT = 0;
 
 // Horizontal elevator motor address
 constexpr int MOTOR_HORIZONTAL_ELEVATOR = 9;

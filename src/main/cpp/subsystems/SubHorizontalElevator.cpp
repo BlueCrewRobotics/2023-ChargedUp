@@ -13,8 +13,8 @@ void SubHorizontalElevator::ConfigureMotor() {
     // Add the code here for configuring the horizontal elevator motor
     // Need to set the position limits set so the elevator doesn't go too far and damage the it mechanically
     
-    m_hElevatorMotor.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse,0);
-    m_hElevatorMotor.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,30.0); // May have to be changed
+    m_hElevatorMotor.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse,HORIZONTAL_ELEV_MIN_LIMIT);
+    m_hElevatorMotor.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,HORIZONTAL_ELEV_MAX_LIMIT); // May have to be changed
 
     // set PID coefficients
     m_hElevatorController.SetP(0.02);

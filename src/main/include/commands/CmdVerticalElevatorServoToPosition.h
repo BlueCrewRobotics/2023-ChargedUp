@@ -9,6 +9,7 @@
 #include <frc2/command/button/CommandXboxController.h>
 #include "subsystems/SubVerticalElevator.h"
 #include "Constants/ConsControllers.h"
+#include "subsystems/SubRobotGlobals.h"
 
 /**
  * An example command.
@@ -20,7 +21,7 @@
 class CmdVerticalElevatorServoToPosition
     : public frc2::CommandHelper<frc2::CommandBase, CmdVerticalElevatorServoToPosition> {
  public:
-  CmdVerticalElevatorServoToPosition(SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, double position);
+  CmdVerticalElevatorServoToPosition(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, double position);
 
   void Initialize() override;
 
@@ -31,7 +32,9 @@ class CmdVerticalElevatorServoToPosition
   bool IsFinished() override;
 
   protected: 
+  SubRobotGlobals* m_subRobotGlobals;
   SubVerticalElevator* m_subVerticalElevator; 
   frc2::CommandXboxController* m_auxController;
   double m_position;
+
 };

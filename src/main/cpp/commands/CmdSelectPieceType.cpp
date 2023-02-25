@@ -14,20 +14,32 @@
 
 #include <iostream>
 
-CmdSelectPieceType::CmdSelectPieceType(frc2::CommandXboxController* auxController) 
-  : m_auxController{auxController} {
+CmdSelectPieceType::CmdSelectPieceType(SubRobotGlobals* subRobotGlobals) 
+  : m_subRobotGlobals{subRobotGlobals} {
   // Use addRequirements() here to declare subsystem dependencies.
 }
 
 // Called when the command is initially scheduled.
 void CmdSelectPieceType::Initialize() {
-  m_isFinished = false;
+  //m_isFinished = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void CmdSelectPieceType::Execute() {
 
-  if(m_auxController->GetXButtonPressed()) {
+  if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
+  {
+    m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece;
+    m_subRobotGlobals->SetColor(BLINKIN_SOLID_VIOLET);
+  }
+
+  if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece)
+  {
+    m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece;
+    m_subRobotGlobals->SetColor(BLINKIN_SOLID_YELLOW);
+  }
+
+/*  if(m_auxController->GetXButtonPressed()) {
     g_gameState.selectedPieceType = CubePiece;
 
     std::cout << "Selected Cube type" << std::endl;
@@ -39,6 +51,7 @@ void CmdSelectPieceType::Execute() {
   }
 
     m_isFinished = true;
+    */
 }
 
 // Called once the command ends or is interrupted.
@@ -46,9 +59,9 @@ void CmdSelectPieceType::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool CmdSelectPieceType::IsFinished() {
-  if(m_isFinished) {
+  /*if(m_isFinished) {
     m_isFinished = false;
     return true;
-  }
-  return false;
+  }*/
+  return true;
 }
