@@ -36,6 +36,9 @@ void RobotContainer::ConfigureBindings() {
 
   // Setup the command to toggle the extension of the RampPreper when right bumper is pressed
   auxController_button_rbump.OnTrue(CmdRampPreperToggle(&m_subRampPreper).ToPtr());
+  
+  // Toggle whether or not the claw is engaged when the aux controller left bumper is pressed
+  auxController_button_lbumb.OnTrue(CmdClawToggleEngage(&m_subClawWrist).ToPtr());
 
   driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
   driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());

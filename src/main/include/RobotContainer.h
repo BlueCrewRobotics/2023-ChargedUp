@@ -28,6 +28,7 @@
 #include "commands/CmdVerticalElevatorServoUpNodePosition.h"
 #include "commands/CmdVerticalElevatorServoDownNodePosition.h"
 #include "commands/CmdSelectPieceType.h"
+#include "commands/CmdClawToggleEngage.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
@@ -60,6 +61,7 @@
 #include "subsystems/SubVerticalElevator.h"
 #include "subsystems/SubHorizontalElevator.h"
 #include "subsystems/SubPneumatics.h"
+#include "subsystems/SubClawWrist.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -101,6 +103,7 @@ class RobotContainer {
   SubVerticalElevator m_subVerticalElevator;
   SubHorizontalElevator m_subHorizontalElevator;
   SubPneumatics m_subPneumatics;
+  SubClawWrist m_subClawWrist;
 
     // Setup driver controller
 //  frc::Joystick *driverController = new frc::Joystick(DRIVER_CONTROLLER);

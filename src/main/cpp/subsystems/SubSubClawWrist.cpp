@@ -54,3 +54,7 @@ void SubClawWrist::EngageClaw(bool engage) {
     m_wristClawSolenoid.Set(engage);
 }
 
+bool SubClawWrist::GetEngagedClaw() {
+    return m_wristClawSolenoid.Get();
+}
+
