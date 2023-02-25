@@ -43,6 +43,8 @@ class SubClawWrist : public frc2::SubsystemBase {
   */
  void EngageClaw(bool engage);
 
+ bool GetEngagedClaw();
+
  private:
   // Components (e.g. motor controllers and sensors) should generally be
 
@@ -53,7 +55,7 @@ class SubClawWrist : public frc2::SubsystemBase {
   rev::SparkMaxRelativeEncoder m_wristClawEncoder = m_motorWristClaw.GetEncoder();
 
   // Setup the solenoid for the claw to open and close
-  frc::Solenoid m_wristClawSolenoid{frc::PneumaticsModuleType::REVPH,WRIST_CLAW_SOLENOID};
+  frc::Solenoid m_wristClawSolenoid{PNEUMATIC_HUB_ADDR, frc::PneumaticsModuleType::REVPH,WRIST_CLAW_SOLENOID};
 
   double m_topSoftLimit = WRIST_CLAW_MAX_LIMIT;
   double m_bottomSoftLimit = WRIST_CLAW_MIN_LIMIT;  
