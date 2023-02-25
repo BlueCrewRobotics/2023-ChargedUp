@@ -6,6 +6,8 @@
 #include "commands/CmdVerticalElevatorServoToPosition.h"
 #include "Constants/ConsGlobal.h"
 
+#include <iostream>
+
 CmdVerticalElevatorServoDownNodePosition::CmdVerticalElevatorServoDownNodePosition(SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController) 
 : m_subVerticalElevator{subVerticalElevator}, m_auxController{auxController} {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -24,13 +26,13 @@ void CmdVerticalElevatorServoDownNodePosition::Execute() {
     double currentHeldPos = m_subVerticalElevator->GetHoldPositionDesired();
     double desiredHoldPos = -1;
 
-    double upperPos = VERTICAL_ELEV_POS_CONE_NODE_UPPER;
-    double midPos = VERTICAL_ELEV_POS_CONE_NODE_LOWER;
-    double lowerPos = VERTICAL_ELEV_POS_HYBRID_NODE;
+    double upperPos = 50000; // VERTICAL_ELEV_POS_CONE_NODE_UPPER;
+    double midPos = 40000; // VERTICAL_ELEV_POS_CONE_NODE_LOWER;
+    double lowerPos = 30000; // VERTICAL_ELEV_POS_HYBRID_NODE;
     if(g_gameState.selectedPieceType == CubePiece) {
-      upperPos = VERTICAL_ELEV_POS_CONE_NODE_UPPER;
-      midPos = VERTICAL_ELEV_POS_CONE_NODE_LOWER;
-      lowerPos = VERTICAL_ELEV_POS_HYBRID_NODE;
+      upperPos = 75000; // VERTICAL_ELEV_POS_CONE_NODE_UPPER;
+      midPos = 65000; // VERTICAL_ELEV_POS_CONE_NODE_LOWER;
+      lowerPos = 55000; // VERTICAL_ELEV_POS_HYBRID_NODE;
     }
 
     if(currentHeldPos >= upperPos) {
@@ -42,6 +44,7 @@ void CmdVerticalElevatorServoDownNodePosition::Execute() {
     else { // just don't go any lower...
       desiredHoldPos = lowerPos;
     }
+std::cout << "desiredPos: " << desiredHoldPos << std::endl;
 
     m_isFinished = true;
 

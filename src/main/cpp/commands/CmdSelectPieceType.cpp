@@ -12,6 +12,8 @@
 #include "commands/CmdSelectPieceType.h"
 #include "Constants/ConsGlobal.h"
 
+#include <iostream>
+
 CmdSelectPieceType::CmdSelectPieceType(frc2::CommandXboxController* auxController) 
   : m_auxController{auxController} {
   // Use addRequirements() here to declare subsystem dependencies.
@@ -27,9 +29,13 @@ void CmdSelectPieceType::Execute() {
 
   if(m_auxController->GetXButtonPressed()) {
     g_gameState.selectedPieceType = CubePiece;
+
+    std::cout << "Selected Cube type" << std::endl;
   }
   if(m_auxController->GetYButtonPressed()) {
     g_gameState.selectedPieceType = ConePiece;
+
+    std::cout << "Selected Cone type" << std::endl;
   }
 
     m_isFinished = true;

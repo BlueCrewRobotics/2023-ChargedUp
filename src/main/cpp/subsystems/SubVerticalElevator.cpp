@@ -42,12 +42,15 @@ void SubVerticalElevator::ConfigureMotor() {
     motor->ConfigReverseSoftLimitThreshold(1200,0);
     motor->ConfigForwardSoftLimitEnable(true,0);
     motor->ConfigReverseSoftLimitEnable(true,0);
+    motor->ConfigClosedloopRamp(0.0);
+
+    motor->ConfigClosedLoopPeakOutput(0, 0.15, 0);
 
     // Setup Vertical Elevator Motor
     motor->Config_kF(0,0.0, 0);
     motor->Config_kP(0,0.01, 0);
-    motor->Config_kI(0,0.00005, 0);
-    motor->Config_kD(0,0.0, 0);
+    motor->Config_kI(0,0.000001, 0);
+    motor->Config_kD(0,0.1, 0);
 
 }
 
