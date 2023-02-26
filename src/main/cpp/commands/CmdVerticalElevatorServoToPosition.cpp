@@ -15,9 +15,21 @@ void CmdVerticalElevatorServoToPosition::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdVerticalElevatorServoToPosition::Execute() {
-
-    m_subVerticalElevator->ServoToPosition(m_position);
-    m_subRobotGlobals->g_gameState.selectedPieceType = ConePiece;
+  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && (m_auxController->GetPOV() == 0) || (m_auxController->GetPOV() == 315) || (m_auxController->GetPOV() == 45) ){
+    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CONE_NODE_UPPER);
+  }
+  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && (m_auxController->GetPOV() == -1) || (m_auxController->GetPOV() == 270) || (m_auxController->GetPOV() == 90) ){
+    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CONE_NODE_LOWER);
+  }
+  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece || m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && (m_auxController->GetPOV() == 180) || (m_auxController->GetPOV() == 225) || (m_auxController->GetPOV() == 135) ){
+    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_HYBRID_NODE);
+  }
+  if((m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && (m_auxController->GetPOV() == 0) || (m_auxController->GetPOV() == 315) || (m_auxController->GetPOV() == 45) ){
+    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CUBE_NODE_UPPER);
+  }
+  if((m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && (m_auxController->GetPOV() == -1) || (m_auxController->GetPOV() == 270) || (m_auxController->GetPOV() == 90) ){
+    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CUBE_NODE_LOWER);
+  }
 }
 
 // Called once the command ends or is interrupted.
@@ -25,5 +37,5 @@ void CmdVerticalElevatorServoToPosition::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool CmdVerticalElevatorServoToPosition::IsFinished() {
-  return false;
+  return true;
 }

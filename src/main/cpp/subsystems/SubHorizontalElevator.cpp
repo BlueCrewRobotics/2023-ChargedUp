@@ -22,7 +22,7 @@ void SubHorizontalElevator::ConfigureMotor() {
     m_hElevatorController.SetD(0.0);
     m_hElevatorController.SetIZone(0.0);
     m_hElevatorController.SetFF(0.0);
-    m_hElevatorController.SetOutputRange(-0.5, 0.5); // This can be sped up possibly
+    m_hElevatorController.SetOutputRange(-0.3, 0.3); // This can be sped up possibly
 }
 
 double SubHorizontalElevator::GetPosition() {

@@ -36,15 +36,21 @@ void RobotContainer::ConfigureBindings() {
 
   // Setup the command to toggle the extension of the RampPreper when right bumper is pressed
   driverController_button_rbump.OnTrue(CmdRampPreperToggle(&m_subRampPreper).ToPtr());
-  driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
-  driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
-  driverController_button_b.OnTrue(CmdSelectPieceType(&m_subRobotGlobals).ToPtr());
+  //driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  //driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  driverController_button_a.OnTrue(CmdSelectPieceType(&m_subRobotGlobals).ToPtr());
 
   
   // Toggle whether or not the claw is engaged when the aux controller left bumper is pressed
-  auxController_button_lbumb.OnTrue(CmdClawToggleEngage(&m_subClawWrist).ToPtr());
+  auxController_button_lbump.OnTrue(CmdClawToggleEngage(&m_subClawWrist).ToPtr());
+  auxController_button_rbump.OnTrue(CmdClawWristExtend(&m_subClawWrist).ToPtr());
+  auxController_button_rbump.OnFalse(CmdClawWristRetract(&m_subClawWrist).ToPtr());
   //auxController_button_x.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
   //auxController_button_y.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
+
+  // Press and hold the Dpad position down and press the x button to move the elevator to the right height based on the global variable
+  auxController_button_x.OnTrue(CmdVerticalElevatorServoToPosition(&m_subRobotGlobals,&m_subVerticalElevator, &auxController,0/*This last variableis not used currently*/).ToPtr());
+
   auxController_button_b.OnTrue(CmdVerticalElevatorServoUpNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
   auxController_button_a.OnTrue(CmdVerticalElevatorServoDownNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
 
@@ -82,5 +88,6 @@ void RobotContainer::ConfigureDrive() {
   m_subVerticalElevator.ConfigureMotor();
   m_subHorizontalElevator.ConfigureMotor();
   m_subPneumatics.ConfigureCompressor();
+  m_subClawWrist.ConfigureMotor();
 }
 
