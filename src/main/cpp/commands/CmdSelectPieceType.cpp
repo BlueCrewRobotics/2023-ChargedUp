@@ -21,7 +21,6 @@ CmdSelectPieceType::CmdSelectPieceType(SubRobotGlobals* subRobotGlobals)
 
 // Called when the command is initially scheduled.
 void CmdSelectPieceType::Initialize() {
-  //m_isFinished = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -40,20 +39,6 @@ void CmdSelectPieceType::Execute() {
     m_subRobotGlobals->SetColor(BLINKIN_SOLID_YELLOW);
     std::cout << "Cone Selected" << std::endl;
   }
-
-/*  if(m_auxController->GetXButtonPressed()) {
-    g_gameState.selectedPieceType = CubePiece;
-
-    std::cout << "Selected Cube type" << std::endl;
-  }
-  if(m_auxController->GetYButtonPressed()) {
-    g_gameState.selectedPieceType = ConePiece;
-
-    std::cout << "Selected Cone type" << std::endl;
-  }
-
-    m_isFinished = true;
-    */
 }
 
 // Called once the command ends or is interrupted.
@@ -61,9 +46,5 @@ void CmdSelectPieceType::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool CmdSelectPieceType::IsFinished() {
-  /*if(m_isFinished) {
-    m_isFinished = false;
-    return true;
-  }*/
   return true;
 }

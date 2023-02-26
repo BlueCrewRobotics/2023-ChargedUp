@@ -29,5 +29,5 @@ class SubRobotGlobals : public frc2::SubsystemBase {
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-BC_Blinkin* m_blinkin = new BC_Blinkin(0);
+  BC_Blinkin* m_blinkin = new BC_Blinkin(0);
 };

@@ -37,7 +37,6 @@ class CmdSelectPieceType
   bool IsFinished() override;
 
  private:
-  bool m_isFinished = false;
   SubRobotGlobals* m_subRobotGlobals;
 };
 

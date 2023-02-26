@@ -39,12 +39,12 @@ constexpr int AXIS_RY = 5;
 
       Primary
 
-         R Trigger - drive forward
-         L Trigger - drive backward
+         R Trigger - drive forward (toward turret)
+         L Trigger - drive backward (toward battery)
          L Joystick X axis - drive rotation left/right
          L Joystick Y axis - 
 
-         A - 
+         A - Select cube/cone
          B - 
          X - move to cube
          Y - move to cone
@@ -74,10 +74,10 @@ constexpr int AXIS_RY = 5;
          Y - select cone piece type
 
          R Joystick X axis -
-         R Joystick Y axis -
+         R Joystick Y axis - move horizontal elevator
 
-         L Bumper -
-         R Bumber -
+         L Bumper - claw open/close
+         R Bumper - wrist down (release = up)
 
          Start -
          Back -
