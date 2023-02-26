@@ -39,7 +39,6 @@
 
 // Common classes
 #include "common/BC_MotionProfile.h"
-#include "common/Globals.h"
 
 // Constants used throughout code
 #include "Constants/ConsClawWrist.h"
