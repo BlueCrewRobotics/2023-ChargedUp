@@ -123,13 +123,14 @@ double SubLimeLightUpper::GetCameraPoseTargetspace() {
 
  */
 
-  // angle up upper LimeLightUpper: -24.8492
-  // angle of LimeLightLower: -3.18
+  // angle up upper LimeLightUpper: -28.2209
+  // angle of LimeLightLower: 23.8122
   // Hight of middle of cube: 4.5 inches
   // Hight of middle of cone: 6.5 inches
   // Hight of Upper Pole: 43.75 inches
-  // Hight of Upper LimeLight: 54.3 inches
-  // Hight of Lower LimeLight: 17.25 inches
+  // Hight of Upper LimeLight: 51.875 inches
+  // Hight of Lower LimeLight: 8.25 inches
+
 
 double SubLimeLightUpper::GetDistanceToTarget(double h1_heightOfCamera, double h2_heightOfCenterOfTarget, double a1_angleOfCamera) {  
   double d = 0.0;
@@ -160,10 +161,10 @@ double SubLimeLightUpper::GetSkew() {
     a2 = the angle of the target with respect to the camera ( LimeLightUpper will give this angle "ty" from network tables)
 
 
-h1 = 54
+h1 = 51.875
 h2 = 4.5
-a2 = -2.1
-d = 80
+a2 = -7.45
+d = 66
 
   */
 double SubLimeLightUpper::GetCameraMountAngle(double distance) {

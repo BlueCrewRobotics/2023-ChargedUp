@@ -40,11 +40,11 @@ void CmdDriveWithController::Execute() {
   // This is controlling the speed of the drive train
   if(m_driverController->GetRawAxis(AXIS_R_TRIG) > 0) {
     // percentage controller axis is activated
-    speed = m_driverController->GetRawAxis(AXIS_R_TRIG);
+    speed = -1*m_driverController->GetRawAxis(AXIS_R_TRIG);
   }
   else { // jhouse: is it safe to assume the L axis is really exactly 'zero' when not pressed by human?  robot could falsely move a bit otherwise
     // percentage controller axis is activated
-    speed = -1*m_driverController->GetRawAxis(AXIS_L_TRIG);
+    speed = m_driverController->GetRawAxis(AXIS_L_TRIG);
   }
 
   // This is the steering section of the drive train

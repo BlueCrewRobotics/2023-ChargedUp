@@ -10,13 +10,21 @@
 
 #include "ConsGlobal.h"
 
+  // angle up upper LimeLightUpper: -28.2209
+  // angle of LimeLightLower: 23.8122
+  // Hight of middle of cube: 4.5 inches
+  // Hight of middle of cone: 6.5 inches
+  // Hight of Upper Pole: 43.75 inches
+  // Hight of Upper LimeLight: 51.875 inches
+  // Hight of Lower LimeLight: 8.25 inches
+
 // Limelight related Constants
 constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
 constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;
-constexpr double LL_LIMELIGHT_UPPER_ANGLE = -24.8492;
-constexpr double LL_LIMELIGHT_LOWER_ANGLE = -3.18;
-constexpr double LL_LIMELIGHT_UPPER_HIGHT = 54.3;
-constexpr double LL_LIMELIGHT_LOWER_HIGHT = 17.25;
+constexpr double LL_LIMELIGHT_UPPER_ANGLE = -28.2209;
+constexpr double LL_LIMELIGHT_LOWER_ANGLE = 23.8122;
+constexpr double LL_LIMELIGHT_UPPER_HIGHT = 51.875;
+constexpr double LL_LIMELIGHT_LOWER_HIGHT = 8.25;
 constexpr double LL_YELLOW_CONE_CENTER_HIGHT = 6.5;
 constexpr double LL_PURPLE_CUBE_CENTER_HIGHT = 4.5;
 constexpr double LL_CONE_POLE_UPPER_HIGHT = 43.75;

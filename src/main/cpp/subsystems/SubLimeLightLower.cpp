@@ -45,6 +45,7 @@ double SubLimeLightLower::GetVerticalOffset() {
   */
 
    // angle up upper LimeLight: -24.8492
+   // angle up of lower limelight: 23.8122
 
 double SubLimeLightLower::GetDistanceToTarget(double h1_heightOfCamera, double h2_heightOfCenterOfTarget, double a1_angleOfCamera) {  
   double d = 0.0;
@@ -75,10 +76,10 @@ double SubLimeLightLower::GetSkew() {
     a2 = the angle of the target with respect to the camera ( LimeLightLower will give this angle "ty" from network tables)
 
 
-h1 = 54
-h2 = 4.5
-a2 = -2.1
-d = 80
+h1 = 8.25
+h2 = 15.5
+a2 = -16.5
+d = 56.5
 
   */
 double SubLimeLightLower::GetCameraMountAngle(double distance) {
