@@ -14,15 +14,16 @@ void SubClawWrist::ConfigureMotor() {
     // Need to set the position limits set so the elevator doesn't go too far and damage the it mechanically
     
     m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse,0);
-    m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,30.0); // May have to be changed
+    m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,35.0); // May have to be changed
+    m_motorWristClaw.SetSmartCurrentLimit(20);
 
     // set PID coefficients
-    m_wristClawController .SetP(0.02);
+    m_wristClawController .SetP(0.03);
     m_wristClawController .SetI(0.0);
     m_wristClawController .SetD(0.0);
     m_wristClawController .SetIZone(0.0);
     m_wristClawController .SetFF(0.0);
-    m_wristClawController .SetOutputRange(-0.5, 0.5); // This can be sped up possibly
+    m_wristClawController .SetOutputRange(-1.0, 1.0); // This can be sped up possibly
 }
 
 double SubClawWrist::GetPosition() {

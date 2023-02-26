@@ -32,7 +32,7 @@ enum nodeTypes { ConeNode = 1, CubeNode = 2, HybridNode = 5, NoNode = 0 };
 struct fieldpos { float x, y, z; nodeTypes nodeType; };
 
 struct game_state {
-  pieceTypes selectedPieceType;
+  pieceTypes selectedPieceType = ConePiece;
   
 };
 

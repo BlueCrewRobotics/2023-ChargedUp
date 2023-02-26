@@ -13,10 +13,10 @@ void SubVerticalElevator::Periodic() {
     // Holding the position
     if(m_enableHoldPosition == true){
         
-        int curOffset =  m_holdPosition - motor->GetSelectedSensorPosition(0);
-        if(curOffset > VERTICAL_ELEV_POSITION_HOLD_TOLERANCE || curOffset < -VERTICAL_ELEV_POSITION_HOLD_TOLERANCE) {
+        //int curOffset =  m_holdPosition - motor->GetSelectedSensorPosition(0);
+        //if(curOffset > VERTICAL_ELEV_POSITION_HOLD_TOLERANCE || curOffset < -VERTICAL_ELEV_POSITION_HOLD_TOLERANCE) {
           motor->Set(ControlMode::Position,m_holdPosition);
-        }
+        //}
     }
     if(m_enableHoldPosition == false){
         m_holdPosition = motor->GetSelectedSensorPosition(0);
@@ -44,13 +44,13 @@ void SubVerticalElevator::ConfigureMotor() {
     motor->ConfigReverseSoftLimitEnable(true,0);
     motor->ConfigClosedloopRamp(0.0);
 
-    motor->ConfigClosedLoopPeakOutput(0, 0.15, 0);
+    motor->ConfigClosedLoopPeakOutput(0, 0.1, 0);
 
     // Setup Vertical Elevator Motor
     motor->Config_kF(0,0.0, 0);
     motor->Config_kP(0,0.01, 0);
     motor->Config_kI(0,0.000001, 0);
-    motor->Config_kD(0,0.1, 0);
+    motor->Config_kD(0,0.0, 0);
 
 }
 
@@ -69,14 +69,15 @@ void SubVerticalElevator::ServoToPosition(double position) {
    }
    // Pass the encoder value to the elevator motor
    EnableHoldPosition(false);
-   motor->Set(ControlMode::Position, position);
+   //motor->Set(ControlMode::Position, position);
+   // By setting the m_holdPosition the peridodic function will do the servoing to the position
    m_holdPosition = position;
    EnableHoldPosition(true);
 }
    
 // Get the elevator motor encoder value
 double SubVerticalElevator::GetPosition() {
-    return motor->SetSelectedSensorPosition(0,0,0);
+    return motor->GetSelectedSensorPosition(0);
 }
 
 // Reset the encoder position to 0

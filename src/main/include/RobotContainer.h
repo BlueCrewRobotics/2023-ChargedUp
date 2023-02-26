@@ -29,6 +29,8 @@
 #include "commands/CmdVerticalElevatorServoDownNodePosition.h"
 #include "commands/CmdSelectPieceType.h"
 #include "commands/CmdClawToggleEngage.h"
+#include "commands/CmdClawWristExtend.h"
+#include "commands/CmdClawWristRetract.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
@@ -146,7 +148,7 @@ class RobotContainer {
   frc2::Trigger auxController_button_b = auxController.B();
   frc2::Trigger auxController_button_x = auxController.X();
   frc2::Trigger auxController_button_y = auxController.Y();
-  frc2::Trigger auxController_button_lbumb = auxController.LeftBumper();
+  frc2::Trigger auxController_button_lbump = auxController.LeftBumper();
   frc2::Trigger auxController_button_rbump = auxController.RightBumper();
   frc2::Trigger auxController_button_back = auxController.Back();
   frc2::Trigger auxController_button_start = auxController.Start();

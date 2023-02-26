@@ -29,14 +29,16 @@ void CmdSelectPieceType::Execute() {
 
   if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
   {
-    m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece;
+    m_subRobotGlobals->g_gameState.selectedPieceType = CubePiece;
     m_subRobotGlobals->SetColor(BLINKIN_SOLID_VIOLET);
+    std::cout << "Cube Selected" << std::endl;
   }
 
-  if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece)
+  else
   {
-    m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece;
+    m_subRobotGlobals->g_gameState.selectedPieceType = ConePiece;
     m_subRobotGlobals->SetColor(BLINKIN_SOLID_YELLOW);
+    std::cout << "Cone Selected" << std::endl;
   }
 
 /*  if(m_auxController->GetXButtonPressed()) {
