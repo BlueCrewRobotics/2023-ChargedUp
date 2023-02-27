@@ -27,5 +27,5 @@
 class AutoCmdAutonomous
     : public frc2::CommandHelper<frc2::SequentialCommandGroup, AutoCmdAutonomous> {
  public:
-  AutoCmdAutonomous(SubLimeLightLower* subLimelightLower, SubDriveTrain* subDriveTrain);
+  AutoCmdAutonomous(SubLimeLightLower* subLimelightLower, SubDriveTrain* subDriveTrain,  frc::Timer* timer);
 };

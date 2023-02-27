@@ -27,7 +27,7 @@ void AutoCmdBalanceOnChargeStation::Initialize() {
 void AutoCmdBalanceOnChargeStation::Execute() {
   // Define variables
   double currentPitch = m_driveTrain->GetPitch();
-  double pitchTolerance = 0.65;
+  double pitchTolerance = 0.95;
   double speed = 0.0;
 
 
@@ -35,13 +35,13 @@ void AutoCmdBalanceOnChargeStation::Execute() {
   speed = 0.0;
   
   m_driveTrain->SetRamp(1);
-  if(currentPitch < m_levelPitchValue-pitchTolerance) {
+  if(currentPitch > m_levelPitchValue-pitchTolerance) {
     std::cout << "steadying forward current pitch: " << currentPitch << std::endl;
-    speed = -0.14;
+    speed = 0.15;
   }
-  else if(currentPitch > m_levelPitchValue+pitchTolerance) {
+  else if(currentPitch < m_levelPitchValue+pitchTolerance) {
     std::cout << "steadying backward, current pitch: " << currentPitch << std::endl;
-    speed = 0.14;
+    speed = -0.15;
   }
   else {
     m_timer.Start();

@@ -69,6 +69,12 @@ constexpr double LEFT_KD_1 = 0;
 
 // NavX related constants and info
 // 
-// when slabby is sitting level, depending upon which 2 sets of wheels it is sitting on,
-// pitch is: -1.18 to -0.50
+
+constexpr double DRIVE_TRAIN_TICKS_PER_INCH_RIGHT_SIDE = 1013.4;
+
 constexpr int NAVX_CHARGED_UP_RAMP_PITCH = 11;
+
+// 0.75 to 1.3 with on floor depending upon drive train tipped forward or back
+constexpr double NAVX_CHARGED_UP_ON_FLOOR_PITCH = 1.05;
+
+

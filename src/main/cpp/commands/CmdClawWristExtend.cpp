@@ -16,7 +16,9 @@ void CmdClawWristExtend::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void CmdClawWristExtend::Execute() {
 
-  m_subClawWrist->ServoToPosition(22.5);
+  // TODO: toggle this somehow.
+//  m_subClawWrist->ServoToPosition(22.5); // picking from floor
+    m_subClawWrist->ServoToPosition(16.5); // picking from station
   
 }
 

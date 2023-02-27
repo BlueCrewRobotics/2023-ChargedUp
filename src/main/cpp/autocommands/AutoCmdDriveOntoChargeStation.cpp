@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "autocommands/AutoCmdDriveOntoChargeStation.h"
+#include "Constants/ConsDrivetrain.h"
 
 #include <iostream>
 #include <stdio.h>
@@ -20,12 +21,13 @@ void AutoCmdDriveOntoChargeStation::Initialize() {
   m_finished = false;
   m_timer.Reset();
   // if the robot is level-ish, set the levelPitchValue variable to the current pitch, if not then set it to something we know is about level
-  if (m_driveTrain->GetPitch() <= 0.5 && m_driveTrain->GetPitch() >= -2) {
+  if (m_driveTrain->GetPitch() <= 0.2 && m_driveTrain->GetPitch() >= 2) {
     m_driveTrain->SetPitchLevelValue(m_driveTrain->GetPitch());
     m_levelPitchValue = m_driveTrain->GetPitchLevelValue();
+    m_wellOntoRampPitchValue = -999;
   }
   else {
-    m_driveTrain->SetPitchLevelValue(-1.15);
+    m_driveTrain->SetPitchLevelValue(NAVX_CHARGED_UP_ON_FLOOR_PITCH);
     m_levelPitchValue = m_driveTrain->GetPitchLevelValue();
   }
   // Set the straight yaw heading
@@ -40,7 +42,7 @@ void AutoCmdDriveOntoChargeStation::Execute() {
   // Do we think we are already on the ChargeStation?
   // Go forward until we start tilting
   if(!m_onChargeStation && currentPitch > m_levelPitchValue-5 && currentPitch < -m_levelPitchValue+5) {
-    speed = -0.20;
+    speed = 0.5;
   }
 
   // Drive forward until we are level again
@@ -50,12 +52,15 @@ void AutoCmdDriveOntoChargeStation::Execute() {
       m_onChargeStation = true;
     }
 
-    if (currentPitch < m_levelPitchValue-1) {
+    if (currentPitch > m_wellOntoRampPitchValue - 3 ) {
       if(!m_timer.HasElapsed((units::time::second_t)2.0)) {
-        speed = -0.12;
+        speed = 0.4;
       }
       else {
-        speed = -0.9;
+        if(m_wellOntoRampPitchValue == -999) {
+          m_wellOntoRampPitchValue = currentPitch;
+        }
+        speed = 0.24;
       }
     }
     // if we are level again, set onChargeStation to true

@@ -47,5 +47,5 @@ void SubHorizontalElevator::ServoToPosition(double position) {
 }
 
 void SubHorizontalElevator::ControlMotorManually(double speed) {
-    m_hElevatorMotor.Set(speed);
+    m_hElevatorMotor.Set(speed*0.4);
 }
