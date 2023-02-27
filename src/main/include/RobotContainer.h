@@ -84,8 +84,11 @@ class RobotContainer {
   BC_MotionProfile* m_firstRoutine;
 
  private:
+   // Timers for automomous
+  frc::Timer m_autoTimer;
+
   // The robot's commands
-  AutoCmdAutonomous m_autoAutonomous{&m_subLimeLightLower, &m_subDriveTrain};
+  AutoCmdAutonomous m_autoAutonomous{&m_subLimeLightLower, &m_subDriveTrain, &m_autoTimer};
   AutoCmdAutonomous2 m_autoAutonomous2{&m_subLimeLightLower, &m_subDriveTrain};
 
   frc::SendableChooser<frc2::Command*> m_autoChooser;

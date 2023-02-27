@@ -7,6 +7,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "autocommands/AutoCmdAutonomous.h"
+#include "autocommands/AutoCmdTimer.h"
 
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.
@@ -14,12 +15,15 @@
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 
 // Add Pointer to Subsystems in Parenthesis (SubExampleThing* subExampleThing, SubOtherThing* subOtherThing)
-AutoCmdAutonomous::AutoCmdAutonomous(SubLimeLightLower* subLimelightLower, SubDriveTrain* subDriveTrain) {
+AutoCmdAutonomous::AutoCmdAutonomous(SubLimeLightLower* subLimelightLower, SubDriveTrain* subDriveTrain,  frc::Timer* timer) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   AddCommands(
     // Drive onto the charge Station
     AutoCmdDriveOntoChargeStation(subDriveTrain),
+
+    AutoCmdTimer(timer, 0.4),
+
     // Self-Balance on the charge station
     AutoCmdBalanceOnChargeStation(subDriveTrain)
     

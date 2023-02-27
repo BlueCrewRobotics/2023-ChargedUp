@@ -44,7 +44,13 @@ void SubClawWrist::ServoToPosition(double position) {
         position = m_motorWristClaw.GetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse);
     }
 
-    m_wristClawController .SetReference(position, rev::ControlType::kPosition); 
+    if(GetEngagedClaw() == false) { // go up/down slower when not holding piece
+        m_wristClawController.SetOutputRange(-0.4, 0.4);
+    }
+    else {
+        m_wristClawController.SetOutputRange(-0.7, 0.7);
+    }
+    m_wristClawController.SetReference(position, rev::ControlType::kPosition); 
 }
 
 void SubClawWrist::ControlMotorManually(double speed) {

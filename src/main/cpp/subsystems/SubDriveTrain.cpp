@@ -64,6 +64,10 @@ void SubDriveTrain::DriveTrainConfigure() {
   rightDriveMotor->ConfigureMotionMagic();
 
   // Set max speed
+  //leftDriveMotor->Set
+  //rightDriveMotor->SetMaxSpeed(VELOCITY_SP_MAX_LG);
+
+  // Set max speed
   leftDriveMotor->SetMaxSpeed(VELOCITY_SP_MAX_LG);
   rightDriveMotor->SetMaxSpeed(VELOCITY_SP_MAX_LG);
 
