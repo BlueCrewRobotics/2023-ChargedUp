@@ -16,22 +16,49 @@ SubDriveTrain::SubDriveTrain() = default;
 // This method will be called once per scheduler run
 void SubDriveTrain::Periodic() {}
 
-// Configure the TalonFX's on the Drive Train
-void SubDriveTrain::DriveTrainConfigure() {
-
+// Resets commonly changed things like max speed, motor safety, ramp, neutral band, etc. back to original configuration
+void SubDriveTrain::ResetDriveTrainConfiguration() {
   // Clear the Sticky Faults on the controllers
   leftDriveMotor->ClearStickyFault();
   rightDriveMotor->ClearStickyFault();
   leftFollowMotor->ClearStickyFault();
   rightFollowMotor->ClearStickyFault();
 
-  // Set the Drive motor inverted
-  rightDriveMotor->SetInverted(true);
-  leftDriveMotor->SetInverted(false);
-
   // Set the Drive motors neutral deadband
   rightDriveMotor->SetNeutralDeadband(0.001);
   leftDriveMotor->SetNeutralDeadband(0.001);
+
+  // Set nominal and peak outputs for the motor for the different profile slots
+  leftDriveMotor->SetNominalPeakOutput(0);
+  rightDriveMotor->SetNominalPeakOutput(0);
+  leftDriveMotor->SetNominalPeakOutput(1);
+  rightDriveMotor->SetNominalPeakOutput(1);
+
+  // Set the ramp
+  leftDriveMotor->SetRamp(0.15);
+  rightDriveMotor->SetRamp(0.15);
+
+  // Setup Motion acceleration and velocity
+  leftDriveMotor->ConfigureMotionMagic();
+  rightDriveMotor->ConfigureMotionMagic();
+
+    // Set max speed
+  //leftDriveMotor->Set
+  //rightDriveMotor->SetMaxSpeed(VELOCITY_SP_MAX_LG);
+
+  // Set max speed
+  leftDriveMotor->SetMaxSpeed(VELOCITY_SP_MAX_LG);
+  rightDriveMotor->SetMaxSpeed(VELOCITY_SP_MAX_LG);
+
+  driveTrain->SetSafetyEnabled(true);
+}
+
+// Configure the TalonFX's on the Drive Train
+void SubDriveTrain::DriveTrainConfigure() {
+
+  // Set the Drive motor inverted
+  rightDriveMotor->SetInverted(true);
+  leftDriveMotor->SetInverted(false);
 
   // Set the right and left followers
   leftFollowMotor->SetFollower(leftDriveMotor->GetMotorController());
@@ -49,27 +76,8 @@ void SubDriveTrain::DriveTrainConfigure() {
   leftDriveMotor->SetSupplyCurrentLimit(true,CONTINUOUS_CURRENT_LIMIT,PEAK_CURRENT_LIMIT,DURATION_CURRENT_LIMIT);
   rightDriveMotor->SetSupplyCurrentLimit(true,CONTINUOUS_CURRENT_LIMIT,PEAK_CURRENT_LIMIT,DURATION_CURRENT_LIMIT);
 
-  // Set nominal and peak outputs for the motor for the different profile slots
-  leftDriveMotor->SetNominalPeakOutput(0);
-  rightDriveMotor->SetNominalPeakOutput(0);
-  leftDriveMotor->SetNominalPeakOutput(1);
-  rightDriveMotor->SetNominalPeakOutput(1);
+  ResetDriveTrainConfiguration();
 
-  // Set the ramp
-  leftDriveMotor->SetRamp(0.15);
-  rightDriveMotor->SetRamp(0.15);
-
-  // Setup Motion acceleration and velocity
-  leftDriveMotor->ConfigureMotionMagic();
-  rightDriveMotor->ConfigureMotionMagic();
-
-  // Set max speed
-  //leftDriveMotor->Set
-  //rightDriveMotor->SetMaxSpeed(VELOCITY_SP_MAX_LG);
-
-  // Set max speed
-  leftDriveMotor->SetMaxSpeed(VELOCITY_SP_MAX_LG);
-  rightDriveMotor->SetMaxSpeed(VELOCITY_SP_MAX_LG);
 
   // PID constants for Profile 0 low gear Profile 1 high gear of Talon left
   frc::SmartDashboard::PutNumber("LEFT_KF_0",LEFT_KF_0);
@@ -113,9 +121,20 @@ void SubDriveTrain::DriveTrainConfigure() {
   rightDriveMotor->SetConfig_kP(1, RIGHT_KP_1);
   rightDriveMotor->SetConfig_kI(1, RIGHT_KI_1);
   rightDriveMotor->SetConfig_kD(1, RIGHT_KD_1);
+}
 
+// calls feed() on the driveTrain to avoid safety timeout (for another interval)
+void SubDriveTrain::ResetSafetyTimer() {
+  driveTrain->Feed();
+  rightDriveMotor->Get();
+}
 
-
+// Get current speed in ticks per 100/ms  
+double SubDriveTrain::GetRightSideSpeed() {
+  return rightDriveMotor->Get();
+}
+double SubDriveTrain::GetLeftSideSpeed() {
+  return leftDriveMotor->Get();
 }
 
 void SubDriveTrain::GetPidFromDashboard() {
@@ -226,12 +245,30 @@ void SubDriveTrain::SetRamp(double ramp) {
   rightDriveMotor->SetRamp(ramp);
 }
 
-void SubDriveTrain::AutonomousDriving(double leftrotations, double rightrotations) {
-  leftrotations = leftrotations * 2048;
-  rightrotations = rightrotations * 2048;
 
-  leftDriveMotor->DriveWithMotionMagic(leftrotations);
-  rightDriveMotor->DriveWithMotionMagic(rightrotations);
+// Autonomous driving - move to the given encoder positions
+void SubDriveTrain::AutonomousDrivingToPosition(double leftPosition, double rightPosition) {
+  leftDriveMotor->DriveWithMotionMagic(leftPosition);
+  rightDriveMotor->DriveWithMotionMagic(rightPosition);
+}
+
+// Autonomous driving - move the given number of rotations
+void SubDriveTrain::AutonomousDrivingByRotations(double leftRotations, double rightRotations) {
+
+  std::cout << "input rotations: " << leftRotations << std::endl;
+
+  leftRotations = leftRotations * 2048;
+  rightRotations = rightRotations * 2048;
+
+  std::cout << "encoder pos: " << leftDriveMotor->GetEncoderValue() << std::endl;
+
+  double leftPosition = leftRotations + leftDriveMotor->GetEncoderValue();
+  double rightPosition = rightRotations + rightDriveMotor->GetEncoderValue();
+
+  std::cout << "goto pos : " << leftPosition << std::endl;
+
+  leftDriveMotor->DriveWithMotionMagic(leftPosition);
+  rightDriveMotor->DriveWithMotionMagic(rightPosition);
 }
 
 void SubDriveTrain::RotateDriveTrain(double rotation) {

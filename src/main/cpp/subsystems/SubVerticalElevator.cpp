@@ -19,7 +19,7 @@ void SubVerticalElevator::Periodic() {
         }
     }
     if(m_enableHoldPosition == false){
-        m_holdPosition = motor->GetSelectedSensorPosition(0);
+        m_holdPosition = GetPosition();
     }
 
 }

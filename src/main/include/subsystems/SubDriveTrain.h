@@ -35,9 +35,18 @@ public:
   // Drive the robot straight using navx
   void DriveStraight(double speed);
   // Configure the drive controllers
+
+  // Get current speed in ticks per 100/ms  
+  double GetRightSideSpeed();
+  double GetLeftSideSpeed();
+
   void DriveTrainConfigure();
+  // Resets commonly changed things like max speed, motor safety, ramp, neutral band, etc. back to original configuration
+  void ResetDriveTrainConfiguration();
   // Get the PID control parameters from the dashboard
   void GetPidFromDashboard();
+  // calls feed() on the driveTrain to avoid safety timeout (for another interval)
+  void ResetSafetyTimer();
   // Clear the sticky faults on the motor controllers
   void ClearStickFaults();
   // Set the follower
@@ -50,8 +59,11 @@ public:
   void SetMaxSpeed(double maxSpeed);
   // Set the ramp for the motors
   void SetRamp(double ramp);
-  // Autonomous driving
-  void AutonomousDriving(double leftrotations, double rightrotations);
+  // Autonomous driving - move the given number of rotations, returns resulting position
+  void AutonomousDrivingByRotations(double leftRotations, double rightRotations);
+  // Autonomous driving - move to the given encoder positions, returns resulting position
+  void AutonomousDrivingToPosition(double leftPosition, double rightPosition);
+
   // Rotate the robot
   void RotateDriveTrain(double rotation);
   // Get left encoder value

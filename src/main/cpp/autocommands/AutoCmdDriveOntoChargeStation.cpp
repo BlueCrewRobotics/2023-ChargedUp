@@ -20,11 +20,11 @@ void AutoCmdDriveOntoChargeStation::Initialize() {
   m_onChargeStation = false;
   m_finished = false;
   m_timer.Reset();
+  m_wellOntoRampPitchValue = -999;
   // if the robot is level-ish, set the levelPitchValue variable to the current pitch, if not then set it to something we know is about level
   if (m_driveTrain->GetPitch() <= 0.2 && m_driveTrain->GetPitch() >= 2) {
     m_driveTrain->SetPitchLevelValue(m_driveTrain->GetPitch());
     m_levelPitchValue = m_driveTrain->GetPitchLevelValue();
-    m_wellOntoRampPitchValue = -999;
   }
   else {
     m_driveTrain->SetPitchLevelValue(NAVX_CHARGED_UP_ON_FLOOR_PITCH);
@@ -41,7 +41,7 @@ void AutoCmdDriveOntoChargeStation::Execute() {
   double speed = 0.0;
   // Do we think we are already on the ChargeStation?
   // Go forward until we start tilting
-  if(!m_onChargeStation && currentPitch > m_levelPitchValue-5 && currentPitch < -m_levelPitchValue+5) {
+  if(!m_onChargeStation && currentPitch > m_levelPitchValue-1 && currentPitch < m_levelPitchValue+5) {
     speed = 0.5;
   }
 
@@ -57,7 +57,7 @@ void AutoCmdDriveOntoChargeStation::Execute() {
         speed = 0.4;
       }
       else {
-        if(m_wellOntoRampPitchValue == -999) {
+        if(currentPitch > m_wellOntoRampPitchValue) {
           m_wellOntoRampPitchValue = currentPitch;
         }
         speed = 0.24;

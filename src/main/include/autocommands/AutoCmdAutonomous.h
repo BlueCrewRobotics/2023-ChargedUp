@@ -16,7 +16,10 @@
 
 // Autonomous commands
 #include "autocommands/AutoCmdDriveOntoChargeStation.h"
+#include "autocommands/AutoCmdDriveOntoChargeStationViaPosition.h"
 #include "autocommands/AutoCmdBalanceOnChargeStation.h"
+#include "autocommands/AutoCmdDriveByRotations.h"
+
 // Subsystem includes
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
