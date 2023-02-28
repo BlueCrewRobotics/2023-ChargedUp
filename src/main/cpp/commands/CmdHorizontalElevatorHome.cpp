@@ -4,7 +4,7 @@
 
 #include "commands/CmdHorizontalElevatorHome.h"
 
-CmdHorizontalElevatorHome::CmdHorizontalElevatorHome() {
+CmdHorizontalElevatorHome::CmdHorizontalElevatorHome(SubHorizontalElevator* subHorizontalElevator) {
   // Use addRequirements() here to declare subsystem dependencies.
 }
 

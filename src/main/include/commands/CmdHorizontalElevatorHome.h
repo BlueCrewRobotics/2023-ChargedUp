@@ -19,7 +19,7 @@
 class CmdHorizontalElevatorHome
     : public frc2::CommandHelper<frc2::CommandBase, CmdHorizontalElevatorHome> {
  public:
-  CmdHorizontalElevatorHome(SubHorizontalElevator* m_subHorizontalElevator);
+  CmdHorizontalElevatorHome(SubHorizontalElevator* subHorizontalElevator);
 
   void Initialize() override;
 
@@ -30,5 +30,5 @@ class CmdHorizontalElevatorHome
   bool IsFinished() override;
 
   protected:
-  SubHorizontalElevator* m_subVerticalElevator;
+  SubHorizontalElevator* m_subHorizontalElevator;
 };

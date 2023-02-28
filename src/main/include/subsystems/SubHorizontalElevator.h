@@ -34,9 +34,9 @@ class SubHorizontalElevator : public frc2::SubsystemBase {
   */
   void ControlMotorManually(double position); 
   // Enable the hold position
-  bool EnableHoldPosition(bool hold)
+  void EnableHoldPosition(bool hold);
   //Set the hold position
-  double SetHoldPosition(double position);
+  void SetHoldPosition(double position);
 
 
  private:
@@ -51,7 +51,7 @@ class SubHorizontalElevator : public frc2::SubsystemBase {
   double m_bottomSoftLimit = 0;  
 
   // Used for the hold position when the driver is not manually driving the elevator
-  double m_holdPosition = motor->GetSelectedSensorPosition(0);
+  double m_holdPosition = m_hElevatorEncoder.GetPosition();
   // enable the hold position
   bool m_enableHoldPosition = true;
 };
