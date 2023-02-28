@@ -13,10 +13,10 @@ void SubVerticalElevator::Periodic() {
     // Holding the position
     if(m_enableHoldPosition == true){
         
-        //int curOffset =  m_holdPosition - motor->GetSelectedSensorPosition(0);
-        //if(curOffset > VERTICAL_ELEV_POSITION_HOLD_TOLERANCE || curOffset < -VERTICAL_ELEV_POSITION_HOLD_TOLERANCE) {
+        int curOffset =  m_holdPosition - motor->GetSelectedSensorPosition(0);
+        if(curOffset > VERTICAL_ELEV_POSITION_HOLD_TOLERANCE || curOffset < -VERTICAL_ELEV_POSITION_HOLD_TOLERANCE) {
           motor->Set(ControlMode::Position,m_holdPosition);
-        //}
+        }
     }
     if(m_enableHoldPosition == false){
         m_holdPosition = motor->GetSelectedSensorPosition(0);
@@ -93,3 +93,12 @@ double SubVerticalElevator::GetHoldPositionDesired() {
     return m_holdPosition;
 }
 
+void SubVerticalElevator::SetHoldPosition(double position) {
+    if (position < m_bottomSoftLimit) {
+    position = m_bottomSoftLimit;
+    }
+    else if (position > m_topSoftLimit) {
+    position = m_topSoftLimit;
+     }
+    m_holdPosition = position;
+}
