@@ -92,19 +92,19 @@ void CmdFindAndGoToTarget::Execute() {
 double CmdFindAndGoToTarget::getDistanceToTarget() {
   double targetHight = 0.0;
   if (m_targetType == TID_YELLOW_CONE_ID) {
-    targetHight = LL_YELLOW_CONE_CENTER_HIGHT;
+    targetHight = LL_YELLOW_CONE_CENTER_HEIGHT;
   }
   else if (m_targetType == TID_PURPLE_CUBE_ID) {
-    targetHight = LL_PURPLE_CUBE_CENTER_HIGHT;
+    targetHight = LL_PURPLE_CUBE_CENTER_HEIGHT;
   }
   else if (m_targetType == TID_CONE_POLE_UPPER_ID) {
-    targetHight = LL_CONE_POLE_UPPER_HIGHT;
+    targetHight = LL_CONE_POLE_UPPER_HEIGHT;
   }
   else if (m_targetType == TID_CONE_POLE_LOWER_ID) {
-    targetHight = LL_CONE_POLE_LOWER_HIGHT;
+    targetHight = LL_CONE_POLE_LOWER_HEIGHT;
   }
 
-  return m_LimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HIGHT, targetHight, LL_LIMELIGHT_UPPER_ANGLE);
+  return m_LimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT, targetHight, LL_LIMELIGHT_UPPER_ANGLE);
 }
 
 
