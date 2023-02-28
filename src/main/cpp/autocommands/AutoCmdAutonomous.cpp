@@ -19,13 +19,18 @@ AutoCmdAutonomous::AutoCmdAutonomous(SubLimeLightLower* subLimelightLower, SubDr
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   AddCommands(
+
+
+//    AutoCmdDriveByRotations(subDriveTrain, 1, 1, timer)
+
     // Drive onto the charge Station
     AutoCmdDriveOntoChargeStation(subDriveTrain),
 
-    AutoCmdTimer(timer, 0.4),
+    AutoCmdTimer(timer, 2.4),
 
     // Self-Balance on the charge station
     AutoCmdBalanceOnChargeStation(subDriveTrain)
+    
     
 
   );

@@ -36,8 +36,11 @@ void RobotContainer::ConfigureBindings() {
 
   // Setup the command to toggle the extension of the RampPreper when right bumper is pressed
   driverController_button_rbump.OnTrue(CmdRampPreperToggle(&m_subRampPreper).ToPtr());
-  //driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
-  //driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  
+  driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  
+  // select type of piece we're interested in
   driverController_button_a.OnTrue(CmdSelectPieceType(&m_subRobotGlobals).ToPtr());
 
   
