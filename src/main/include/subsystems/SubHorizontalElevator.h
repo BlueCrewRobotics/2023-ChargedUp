@@ -33,6 +33,11 @@ class SubHorizontalElevator : public frc2::SubsystemBase {
    * Drive the elevator to manually
   */
   void ControlMotorManually(double position); 
+  // Enable the hold position
+  bool EnableHoldPosition(bool hold)
+  //Set the hold position
+  double SetHoldPosition(double position);
+
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -45,4 +50,8 @@ class SubHorizontalElevator : public frc2::SubsystemBase {
   double m_topSoftLimit = HORIZONTAL_ELEV_MAX_LIMIT;
   double m_bottomSoftLimit = 0;  
 
+  // Used for the hold position when the driver is not manually driving the elevator
+  double m_holdPosition = motor->GetSelectedSensorPosition(0);
+  // enable the hold position
+  bool m_enableHoldPosition = true;
 };
