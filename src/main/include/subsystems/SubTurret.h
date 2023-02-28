@@ -26,6 +26,8 @@ class SubTurret : public frc2::SubsystemBase {
   void ServoToPosition(double position);
   // Set or release the hold position
   void EnableHoldPosition(bool hold);
+  // Set hold position variable 
+  void SetHoldPosition(double position);
 
 
  private:

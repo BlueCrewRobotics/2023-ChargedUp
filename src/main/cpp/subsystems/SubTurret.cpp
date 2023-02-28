@@ -110,3 +110,13 @@ void SubTurret::ServoToPosition(double position) {
 void SubTurret::EnableHoldPosition(bool hold) {
     m_enableHoldPosition = hold;
 }
+
+void SubTurret::SetHoldPosition(double position) {
+    if (position < TURRET_MIN_ENCODER) {
+        position = TURRET_MIN_ENCODER;
+    }
+    else if (position > TURRET_MAX_ENCODER) {
+        position = TURRET_MAX_ENCODER;
+    }
+    m_holdPosition = position;
+}

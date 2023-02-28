@@ -30,6 +30,8 @@ class SubVerticalElevator : public frc2::SubsystemBase {
   void ElevateToPosition(double position);
   // Set or release the hold position
   void EnableHoldPosition(bool hold);
+  // Set hold position
+  void SetHoldPosition(double position);
 
   double GetHoldPositionDesired();
 
