@@ -39,6 +39,9 @@ class SubTurret : public frc2::SubsystemBase {
   double m_holdPosition = motor->GetSelectedSensorPosition(0);
   // enable the hold position
   bool m_enableHoldPosition = true;
+  
+  double m_maxSoftLimit = TURRET_MIN_ENCODER;
+  double m_minSoftLimit = TURRET_MAX_ENCODER;
 
   // declared private and exposed only through public methods.
   //rev::CANSparkMax turretMotor{15, rev::CANSparkMax::MotorType::kBrushless}; // Change the zero to an address in robotmap

@@ -87,9 +87,12 @@ void SubTurret::RotateToDegree(double position) {
     else if(xPosition > TURRET_MAX_ENCODER){
         xPosition = TURRET_MAX_ENCODER;
     }
+    // Disable the periodic hold position
+    EnableHoldPosition(false);
+    // By setting the m_holdPosition the peridodic function will do the servoing to the position
+    m_holdPosition = xPosition;
+    EnableHoldPosition(true);
 
-    // Set the turret to the position
-    motor->Set(ControlMode::Position, xPosition);
 }
 
 void SubTurret::RotateManual(double speed) {
@@ -98,13 +101,13 @@ void SubTurret::RotateManual(double speed) {
 
 void SubTurret::ServoToPosition(double position) {
     if (position < TURRET_MIN_ENCODER) {
-    position = TURRET_MIN_ENCODER;
-   }
-   else if (position > TURRET_MAX_ENCODER) {
-    position = TURRET_MAX_ENCODER;
-   }
-   // Pass the encoder value to the elevator motor
-   motor->Set(ControlMode::Position, position);
+        position = TURRET_MIN_ENCODER;
+    }
+    else if (position > TURRET_MAX_ENCODER) {
+        position = TURRET_MAX_ENCODER;
+    }
+    // Pass the encoder value to the elevator motor
+    motor->Set(ControlMode::Position, position);
 }
 
 void SubTurret::EnableHoldPosition(bool hold) {

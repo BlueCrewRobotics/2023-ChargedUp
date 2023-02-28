@@ -2,19 +2,19 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/CmdVerticalElevatorServoToPosition.h"
+#include "commands/CmdVerticalElevatorGridPiecePlacement.h"
 
-CmdVerticalElevatorServoToPosition::CmdVerticalElevatorServoToPosition(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, double position) 
-: m_subRobotGlobals{subRobotGlobals}, m_subVerticalElevator{subVerticalElevator}, m_auxController{auxController}, m_position{position} {
+CmdVerticalElevatorGridPiecePlacement::CmdVerticalElevatorGridPiecePlacement(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, SubLimeLightLower* subLimeLightLower, SubLimeLightUpper* subLimeLightUpper) 
+: m_subRobotGlobals{subRobotGlobals}, m_subVerticalElevator{subVerticalElevator}, m_auxController{auxController}, m_subLimeLightLower{subLimeLightLower}, m_subLimeLightUpper{subLimeLightUpper} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subVerticalElevator);
 }
 
 // Called when the command is initially scheduled.
-void CmdVerticalElevatorServoToPosition::Initialize() {}
+void CmdVerticalElevatorGridPiecePlacement::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void CmdVerticalElevatorServoToPosition::Execute() {
+void CmdVerticalElevatorGridPiecePlacement::Execute() {
   if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP) ){
     m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CONE_NODE_UPPER);
   }
@@ -33,9 +33,9 @@ void CmdVerticalElevatorServoToPosition::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void CmdVerticalElevatorServoToPosition::End(bool interrupted) {}
+void CmdVerticalElevatorGridPiecePlacement::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool CmdVerticalElevatorServoToPosition::IsFinished() {
+bool CmdVerticalElevatorGridPiecePlacement::IsFinished() {
   return true;
 }
