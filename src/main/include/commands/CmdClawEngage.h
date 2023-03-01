@@ -15,10 +15,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdClawToggleEngage
-    : public frc2::CommandHelper<frc2::CommandBase, CmdClawToggleEngage> {
+class CmdClawEngage
+    : public frc2::CommandHelper<frc2::CommandBase, CmdClawEngage> {
  public:
-  CmdClawToggleEngage(SubClawWrist* subClawWrist);
+  CmdClawEngage(SubClawWrist* subClawWrist);
 
   void Initialize() override;
 

@@ -4,23 +4,21 @@
 
 #include <stdio.h>
 #include <iostream>
-#include "commands/CmdClawToggleEngage.h"
+#include "commands/CmdClawEngage.h"
 
-CmdClawToggleEngage::CmdClawToggleEngage(SubClawWrist* subClawWrist) 
+CmdClawEngage::CmdClawEngage(SubClawWrist* subClawWrist) 
   : m_subClawWrist{subClawWrist}{
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subClawWrist);
 }
 
 // Called when the command is initially scheduled.
-void CmdClawToggleEngage::Initialize() {}
+void CmdClawEngage::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void CmdClawToggleEngage::Execute() {
+void CmdClawEngage::Execute() {
   
-  bool engage = m_subClawWrist->GetEngagedClaw();
-  engage =! engage;
-  m_subClawWrist->EngageClaw(engage);
+  m_subClawWrist->EngageClaw(false);
   std::cout << "Engaged Claw" << std::endl;
   
   /*
@@ -36,9 +34,9 @@ void CmdClawToggleEngage::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void CmdClawToggleEngage::End(bool interrupted) {}
+void CmdClawEngage::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool CmdClawToggleEngage::IsFinished() {
+bool CmdClawEngage::IsFinished() {
   return true;
 }

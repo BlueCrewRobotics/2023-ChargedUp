@@ -11,5 +11,3 @@
 // Rev pneumatic hub
 constexpr int PNEUMATIC_HUB_ADDR = 13;
 constexpr int WRIST_CLAW_SOLENOID = 0; 
-// Solenoid for the ramp preper pistons
-constexpr int PH_1_RAMP_PREPER_SOLENOID = 1; // pistons used on the RampPreper
