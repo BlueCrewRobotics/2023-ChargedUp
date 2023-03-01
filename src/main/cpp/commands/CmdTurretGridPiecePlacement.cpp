@@ -37,7 +37,7 @@ void CmdTurretGridPiecePlacement::Execute() {
     m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_3n6);
   }
 
-  // Check if the target is within range to place cube.  Might have to move verical elevator so aprilTag can be seen
+  // Check if the target is within range to place cube.  Might have to move veritcal elevator so aprilTag can be seen
   if(m_subLimeLightUpper->GetTarget()==true || m_subLimeLightLower->GetTarget()==true){
     // *************************************************************************************************************
     // Check if there is a target for the middle cube shelf
@@ -52,7 +52,7 @@ void CmdTurretGridPiecePlacement::Execute() {
         double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle;
         // Move turret to center target by updating the hold position.
         m_subTurret->RotateToDegree(newTurretPosition);
-
+        m_isFinished = true;
       }
     }
     else if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER))
@@ -66,6 +66,7 @@ void CmdTurretGridPiecePlacement::Execute() {
         double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle;
         // Move turret to center target by updating the hold position.
         m_subTurret->RotateToDegree(newTurretPosition);
+        m_isFinished = true;
       }
     }
     // **************************************************************************************************************
@@ -81,6 +82,7 @@ void CmdTurretGridPiecePlacement::Execute() {
         double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle;
         // Move turret to center target by updating the hold position.
         m_subTurret->RotateToDegree(newTurretPosition);
+        m_isFinished = true;
 
       }
     }
@@ -95,15 +97,16 @@ void CmdTurretGridPiecePlacement::Execute() {
         double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle;
         // Move turret to center target by updating the hold position.
         m_subTurret->RotateToDegree(newTurretPosition);
+        m_isFinished = true;
       }
     }
 
-    else{
-      if(m_aprilTagCycle == 3){
-        m_isFinished = true;
-      }
-      m_aprilTagCycle = m_aprilTagCycle++;
+
+    if(m_aprilTagCycle == 3){
+      m_isFinished = true;
     }
+    m_aprilTagCycle = m_aprilTagCycle++;
+    
 
   }
   
@@ -112,7 +115,7 @@ void CmdTurretGridPiecePlacement::Execute() {
    Determine if the cone piece location is within range to place the cone.
   */ 
     
-  if (m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP))
+  if (m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP))
   {
     m_subLimeLightLower->SelectPipeline(LL_PIPLINE_TARGET_UPPER_CONE);
     m_subLimeLightUpper->SelectPipeline(LL_PIPLINE_TARGET_UPPER_CONE);   
@@ -120,28 +123,6 @@ void CmdTurretGridPiecePlacement::Execute() {
 
   // Check if we have a target based on the game piece selection and DPAD pressed location
 
-  
-
-  // Check if the target is within range to place
-  if(m_subLimeLightUpper->GetTarget()==true){
-
-  }
-  
-  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP) ){
-    //m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CONE_NODE_UPPER);
-  }
-  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER) ){
-    //m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CONE_NODE_LOWER);
-  }
-  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece || m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_DOWN) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN) ){
-    //m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_HYBRID_NODE);
-  }
-  if((m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP) ){
-    //m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CUBE_NODE_UPPER);
-  }
-  if((m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER) ){
-    //m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CUBE_NODE_LOWER);
-  }
 }
 
 // Called once the command ends or is interrupted.

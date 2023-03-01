@@ -7,7 +7,15 @@
 SubClawWrist::SubClawWrist() = default;
 
 // This method will be called once per scheduler run
-void SubClawWrist::Periodic() {}
+void SubClawWrist::Periodic() {
+    // Holding the position
+    if(m_enableHoldPosition == true) {
+            m_wristClawController.SetReference(m_holdPosition, rev::ControlType::kPosition); 
+    }
+    if(m_enableHoldPosition == false) {
+        m_holdPosition = m_wristClawEncoder.GetPosition();
+    }
+}
 
 void SubClawWrist::ConfigureMotor() {
     // Add the code here for configuring the horizontal elevator motor
@@ -66,3 +74,16 @@ bool SubClawWrist::GetEngagedClaw() {
     return m_wristClawSolenoid.Get();
 }
 
+void SubClawWrist::EnableHoldPosition(bool hold) {
+    m_enableHoldPosition = hold;
+}
+
+void SubClawWrist::SetHoldPosition(double position) {
+    if(position < m_bottomSoftLimit) {
+        position = m_bottomSoftLimit;
+    }
+    else if(position > m_topSoftLimit) {
+        position = m_topSoftLimit;
+    }
+    m_holdPosition = position; 
+}

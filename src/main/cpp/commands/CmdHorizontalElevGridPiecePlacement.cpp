@@ -15,7 +15,7 @@ void CmdHorizontalElevGridPiecePlacement::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdHorizontalElevGridPiecePlacement::Execute() {
-  
+/*  
   if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP) ){
     //m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CONE_NODE_UPPER);
   }
@@ -31,6 +31,7 @@ void CmdHorizontalElevGridPiecePlacement::Execute() {
   if((m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER) ){
     //m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CUBE_NODE_LOWER);
   }
+  */
 }
 
 // Called once the command ends or is interrupted.
