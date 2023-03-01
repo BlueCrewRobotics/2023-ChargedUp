@@ -2,26 +2,29 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-#include "commands/CmdRampPreperToggle.h"
+#include "commands/CmdClawDisengage.h"
+#include <iostream>
+#include "commands/CmdClawEngage.h"
 
-CmdRampPreperToggle::CmdRampPreperToggle(SubRampPreper* subRampPreper) 
-  :m_subRampPreper{subRampPreper} {
+CmdClawDisengage::CmdClawDisengage(SubClawWrist* subClawWrist) 
+  :m_subClawWrist{subClawWrist} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(subRampPreper);
+  AddRequirements(subClawWrist);
 }
 
 // Called when the command is initially scheduled.
-void CmdRampPreperToggle::Initialize() {}
+void CmdClawDisengage::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
-void CmdRampPreperToggle::Execute() {
-  m_subRampPreper->ExtensionToggle();
+void CmdClawDisengage::Execute() {
+  m_subClawWrist->EngageClaw(true);
+  std::cout << "Engaged Claw" << std::endl;
 }
 
 // Called once the command ends or is interrupted.
-void CmdRampPreperToggle::End(bool interrupted) {}
+void CmdClawDisengage::End(bool interrupted) {}
 
 // Returns true when the command should end.
-bool CmdRampPreperToggle::IsFinished() {
+bool CmdClawDisengage::IsFinished() {
   return true;
 }

@@ -51,6 +51,7 @@ void SubClawWrist::ServoToPosition(double position) {
         m_wristClawController.SetOutputRange(-0.7, 0.7);
     }
     m_wristClawController.SetReference(position, rev::ControlType::kPosition); 
+    bool thing = false;
 }
 
 void SubClawWrist::ControlMotorManually(double speed) {

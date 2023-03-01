@@ -17,7 +17,6 @@
 
 // Command includes
 #include "commands/CmdDriveWithController.h"
-#include "commands/CmdRampPreperToggle.h"
 #include "commands/CmdFindAndGoToCube.h"
 #include "commands/CmdFindAndGoToCone.h"
 #include "commands/CmdPrinty.h"
@@ -27,10 +26,13 @@
 #include "commands/CmdVerticalElevatorServoToPosition.h"
 #include "commands/CmdVerticalElevatorServoUpNodePosition.h"
 #include "commands/CmdVerticalElevatorServoDownNodePosition.h"
+#include "commands/CmdPickUpFromSubstationShelfPrep.h"
 #include "commands/CmdSelectPieceType.h"
-#include "commands/CmdClawToggleEngage.h"
+#include "commands/CmdClawEngage.h"
+#include "commands/CmdClawDisengage.h"
 #include "commands/CmdClawWristExtend.h"
 #include "commands/CmdClawWristRetract.h"
+#include "commands/CmdClawWristMoveManual.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
@@ -47,7 +49,6 @@
 #include "Constants/ConsHorizontalElevator.h"
 #include "Constants/ConsLimeLights.h"
 #include "Constants/ConsPneumatics.h"
-#include "Constants/ConsRampPreper.h"
 #include "Constants/ConsTurret.h"
 #include "Constants/ConsVerticalElevator.h"
 #include "Constants/ConsGlobal.h"
@@ -57,7 +58,6 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubLimeLightLower.h"
 #include "subsystems/SubLimeLightUpper.h"
-#include "subsystems/SubRampPreper.h"
 #include "subsystems/SubTurret.h"
 #include "subsystems/SubVerticalElevator.h"
 #include "subsystems/SubHorizontalElevator.h"
@@ -104,7 +104,6 @@ class RobotContainer {
   SubDriveTrain m_subDriveTrain;
   SubLimeLightLower m_subLimeLightLower;
   SubLimeLightUpper m_subLimeLightUpper;
-  SubRampPreper m_subRampPreper;
   SubTurret m_subTurret;
   SubVerticalElevator m_subVerticalElevator;
   SubHorizontalElevator m_subHorizontalElevator;

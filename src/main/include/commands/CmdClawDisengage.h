@@ -6,10 +6,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-
-#include "subsystems/SubRampPreper.h"
-#include <frc2/command/button/CommandXboxController.h>
-#include "Constants/ConsControllers.h"
+#include "subsystems/SubClawWrist.h"
 /**
  * An example command.
  *
@@ -17,10 +14,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdRampPreperToggle
-    : public frc2::CommandHelper<frc2::CommandBase, CmdRampPreperToggle> {
+class CmdClawDisengage
+    : public frc2::CommandHelper<frc2::CommandBase, CmdClawDisengage> {
  public:
-  CmdRampPreperToggle(SubRampPreper* subRampPreper);
+  CmdClawDisengage(SubClawWrist* subClawWrist);
 
   void Initialize() override;
 
@@ -29,7 +26,6 @@ class CmdRampPreperToggle
   void End(bool interrupted) override;
 
   bool IsFinished() override;
- 
  protected:
-  SubRampPreper* m_subRampPreper;
+  SubClawWrist* m_subClawWrist;
 };
