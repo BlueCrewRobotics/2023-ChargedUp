@@ -67,9 +67,6 @@ constexpr double LEFT_KD_1 = 0;
 //
 //  pitch: is negative with the back (battery end) lifted up
 
-// NavX related constants and info
-// 
-
 constexpr double DRIVE_TRAIN_TICKS_PER_INCH_RIGHT_SIDE = 1013.4;
 constexpr double DRIVE_TRAIN_TICKS_PER_INCH_LEFT_SIDE = 1012.75;
 
