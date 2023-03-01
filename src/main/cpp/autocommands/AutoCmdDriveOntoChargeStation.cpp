@@ -44,16 +44,17 @@ void AutoCmdDriveOntoChargeStation::Execute() {
   if(!m_onChargeStation && currentPitch > m_levelPitchValue-1 && currentPitch < m_levelPitchValue+5) {
     speed = 0.5;
   }
-
   // Drive forward until we are level again
   else {
     if(m_onChargeStation == false) {
       m_timer.Start();
       m_onChargeStation = true;
     }
-
+    // wait until we "see" the ramp start dropping
+    // but only consider a drop in pitch as the ramp dropping after some time has elapsed 
+    // (so that the initial "bump" and "recoil" of hitting the ramp isn't caught)
     if (currentPitch > m_wellOntoRampPitchValue - 3 ) {
-      if(!m_timer.HasElapsed((units::time::second_t)2.0)) {
+      if(!m_timer.HasElapsed((units::time::second_t)1.5)) {
         speed = 0.4;
       }
       else {
