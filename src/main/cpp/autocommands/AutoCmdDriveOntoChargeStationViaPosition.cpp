@@ -66,12 +66,18 @@ void AutoCmdDriveOntoChargeStationViaPosition::Execute() {
     // wait until we "see" the ramp start dropping
     // but only consider a drop in pitch as the ramp dropping after some time has elapsed 
     // (so that the initial "bump" and "recoil" of hitting the ramp isn't caught)
-    if (!m_startedDropping && currentPitch > m_wellOntoRampPitchValue - 3 && m_timer.HasElapsed((units::time::second_t)2.0)) {
+    if (!m_startedDropping && currentPitch > m_wellOntoRampPitchValue - 3 && m_timer.HasElapsed((units::time::second_t)1.5)) {
       if(currentPitch > m_wellOntoRampPitchValue) {
         m_wellOntoRampPitchValue = currentPitch;
       }
     }
-    else if(m_startedDropping || m_timer.HasElapsed((units::time::second_t)2.0)) {
+    // check for end conditions: the ramp and dropped and we've stopped, or lots of time has passed (fail-safe)
+    else if(m_timer.HasElapsed((units::time::second_t)8.0)) {
+        // too much time has gone by, something's gone wrong, so we need to stop!
+        std::cout << "!Fail-Safe stop of AutoCmdDriveOntoChargeStationViaPosition!" << std::endl;
+        m_finished = true;
+    }
+    else if(m_startedDropping) {
       // have the motors (backing up) stopped, or near stopped?
       if(m_driveTrain->GetLeftSideSpeed() < 100) {
         m_finished = true;
