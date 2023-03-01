@@ -37,6 +37,10 @@ class SubClawWrist : public frc2::SubsystemBase {
    * Drive the wrist to manually
   */
   void ControlMotorManually(double position); 
+  // Enable the hold position
+  void EnableHoldPosition(bool hold);
+  //Set the hold position
+  void SetHoldPosition(double position);
 
   /*
    * Control the claw
@@ -59,5 +63,9 @@ class SubClawWrist : public frc2::SubsystemBase {
 
   double m_topSoftLimit = WRIST_CLAW_MAX_LIMIT;
   double m_bottomSoftLimit = WRIST_CLAW_MIN_LIMIT;  
+
+  double m_holdPosition = m_wristClawEncoder.GetPosition();
+
+  bool m_enableHoldPosition = true;
 
 };
