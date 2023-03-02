@@ -11,25 +11,32 @@
 SubLimeLightSwitcher::SubLimeLightSwitcher() = default;
 
 // This method will be called once per scheduler run
+/*
 void SubLimeLightSwitcher::Periodic() {
     if (m_subVerticalElevator->GetPosition() > VERTICAL_ELEV_POS_SWITCH_LIMELGIHT_THRESHOLD) {
+      if (m_usingUpperLimeLight == true) {
         tblLimeLight = nt::NetworkTableInstance::GetDefault().GetTable("limelight-lower");
+        m_usingUpperLimeLight = false;
+      }
     }
     else {
+      if (m_usingUpperLimeLight == false) {
         tblLimeLight = nt::NetworkTableInstance::GetDefault().GetTable("limelight-upper");
+        m_usingUpperLimeLight = true;
+      }
     }
 }
 
-double SubLimeLightSwitcher::GetDistanceToTarget(double h2_heightOfCenterTarget)  {  
+double SubLimeLightSwitcher::GetDistanceToTargetS(double h2_heightOfCenterTarget)  {  
   double d = 0.0;
   
   double h1_heightOfCamera = 0.0;
   double a1_angleOfCamera = 0.0;
-  if(tblLimeLight == nt::NetworkTableInstance::GetDefault().GetTable("limelight-lower")) {
+  if(m_usingUpperLimeLight == false) {
     h1_heightOfCamera = LL_LIMELIGHT_LOWER_HEIGHT;
     a1_angleOfCamera = LL_LIMELIGHT_LOWER_ANGLE;
   }
-  else if(tblLimeLight == nt::NetworkTableInstance::GetDefault().GetTable("limelight-upper")) {
+  else if(m_usingUpperLimeLight == true) {
     h1_heightOfCamera = LL_LIMELIGHT_UPPER_HEIGHT;
     a1_angleOfCamera = LL_LIMELIGHT_UPPER_ANGLE;
   }
@@ -42,3 +49,4 @@ double SubLimeLightSwitcher::GetDistanceToTarget(double h2_heightOfCenterTarget)
   
   return d;
 }
+*/

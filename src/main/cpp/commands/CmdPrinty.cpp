@@ -10,10 +10,10 @@
 #include <stdio.h>
 #include "commands/CmdPrinty.h"
 
-CmdPrinty::CmdPrinty(SubDriveTrain* driveTrain, SubTurret* subTurret, SubHorizontalElevator* subHorizontalElevator, SubLimeLightLower* subLimeLightLower, SubLimeLightUpper* subLimeLightUpper, SubLimeLightSwitcher* subLimeLightSwitcher, frc2::CommandXboxController* driverController) 
-  : m_driveTrain{driveTrain}, m_subTurret{subTurret}, m_subHorizontalElevator{subHorizontalElevator}, m_subLimeLightLower{subLimeLightLower}, m_subLimeLightUpper{subLimeLightUpper}, m_subLimeLightSwitcher{subLimeLightSwitcher}, m_driverController{driverController} {
+CmdPrinty::CmdPrinty(SubLimeLightLower* subLimeLightLower, SubLimeLightUpper* subLimeLightUpper, frc2::CommandXboxController* auxController) 
+  : m_subLimeLightLower{subLimeLightLower}, m_subLimeLightUpper{subLimeLightUpper}, m_auxController{auxController} {
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(driveTrain);
+
 }
 
 // Called when the command is initially scheduled.
@@ -25,7 +25,7 @@ void CmdPrinty::Initialize() {
 void CmdPrinty::Execute() {
 
   // If BUTTONT_SELLECT (back button on xbox controller) is pressed, exit the command
-  if(m_driverController->GetBackButton() == true) {
+  if(m_auxController->GetBackButton() == true) {
     m_isFinished = true;
   }
   /*
@@ -37,7 +37,7 @@ void CmdPrinty::Execute() {
   */
   std::cout << "LL Upper Current Distance From Target: " << m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT, TARGET_APRILTAG_SUBSTATION_HEIGHT, LL_LIMELIGHT_UPPER_ANGLE) << std::endl;
   std::cout << "LL Lower Current Distance From Target: " << m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT, TARGET_APRILTAG_SUBSTATION_HEIGHT, LL_LIMELIGHT_LOWER_ANGLE) << std::endl;
-  std::cout << "LL Switcher Current Distance From Target: " << m_subLimeLightSwitcher->GetDistanceToTarget(TARGET_APRILTAG_SUBSTATION_HEIGHT) << std::endl;
+//  std::cout << "LL Switcher Current Distance From Target: " << m_subLimeLightSwitcher->GetDistanceToTargetS(TARGET_APRILTAG_SUBSTATION_HEIGHT) << std::endl;
 }
 
 // Called once the command ends or is interrupted.
