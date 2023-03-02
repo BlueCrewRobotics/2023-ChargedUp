@@ -57,6 +57,7 @@
 #include "subsystems/SubDriveTrain.h"
 #include "subsystems/SubLimeLightLower.h"
 #include "subsystems/SubLimeLightUpper.h"
+#include "subsystems/SubLimeLightSwitcher.h"
 #include "subsystems/SubTurret.h"
 #include "subsystems/SubVerticalElevator.h"
 #include "subsystems/SubHorizontalElevator.h"
@@ -103,6 +104,7 @@ class RobotContainer {
   SubDriveTrain m_subDriveTrain;
   SubLimeLightLower m_subLimeLightLower;
   SubLimeLightUpper m_subLimeLightUpper;
+  SubLimeLightSwitcher m_subLimeLightSwitcher;
   SubTurret m_subTurret;
   SubVerticalElevator m_subVerticalElevator;
   SubHorizontalElevator m_subHorizontalElevator;

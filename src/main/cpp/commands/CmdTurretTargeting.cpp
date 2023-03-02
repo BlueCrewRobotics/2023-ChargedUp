@@ -13,19 +13,27 @@ CmdTurretTargeting::CmdTurretTargeting(SubLimeLightUpper* subLimeLight, SubTurre
 // Called when the command is initially scheduled.
 void CmdTurretTargeting::Initialize() {
   m_finished = false;
+  
 }
 
 // Called repeatedly when this Command is scheduled to run
 void CmdTurretTargeting::Execute() {
-  double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
-  if (targetAngle < -m_angleTolerance) {
-    m_subTurret->RotateManual(0.2);
-  }
-  else if (targetAngle > m_angleTolerance) {
-    m_subTurret->RotateManual(-0.2);
+  if (m_subLimeLightUpper->GetTarget() == true) {
+    double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
+    if (targetAngle < -m_angleTolerance) {
+      m_subTurret->RotateManual(0.2);
+    }
+    else if (targetAngle > m_angleTolerance) {
+      m_subTurret->RotateManual(-0.2);
+    }
+    else {
+      m_finished = true;
+      m_subTurret->RotateManual(0.0);
+    }
   }
   else {
     m_finished = true;
+    m_subTurret->RotateManual(0.0);
   }
 }
 

@@ -98,10 +98,10 @@ double CmdFindAndGoToTarget::getDistanceToTarget() {
     targetHight = LL_PURPLE_CUBE_CENTER_HEIGHT;
   }
   else if (m_targetType == TID_CONE_POLE_UPPER_ID) {
-    targetHight = LL_CONE_POLE_UPPER_HEIGHT;
+    targetHight = TARGET_CONE_POLE_UPPER_HEIGHT;
   }
   else if (m_targetType == TID_CONE_POLE_LOWER_ID) {
-    targetHight = LL_CONE_POLE_LOWER_HEIGHT;
+    targetHight = TARGET_CONE_POLE_LOWER_HEIGHT;
   }
 
   return m_LimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT, targetHight, LL_LIMELIGHT_UPPER_ANGLE);

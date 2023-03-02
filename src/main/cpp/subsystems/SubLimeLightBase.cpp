@@ -162,11 +162,14 @@ double SubLimeLightBase::GetSkew() {
     a2 = the angle of the target with respect to the camera ( LimeLightBase will give this angle "ty" from network tables)
 
 
-h1 = 51.875
-h2 = 4.5
+h1 = 8.25
+h2 = 27.25
 a2 = -7.45
-d = 66
 
+
+
+Lower d = 61.75
+Upper d = 60
   */
 double SubLimeLightBase::GetCameraMountAngle(double distance) {
   double d = distance;
