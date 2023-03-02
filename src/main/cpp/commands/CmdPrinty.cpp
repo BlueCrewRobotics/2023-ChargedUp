@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include "commands/CmdPrinty.h"
 
-CmdPrinty::CmdPrinty(SubDriveTrain* driveTrain, frc2::CommandXboxController* driverController) 
-  : m_driveTrain{driveTrain}, m_driverController{driverController} {
+CmdPrinty::CmdPrinty(SubDriveTrain* driveTrain, SubTurret* subTurret, SubHorizontalElevator* subHorizontalElevator, SubLimeLightLower* subLimeLightLower, SubLimeLightUpper* subLimeLightUpper, SubLimeLightSwitcher* subLimeLightSwitcher, frc2::CommandXboxController* driverController) 
+  : m_driveTrain{driveTrain}, m_subTurret{subTurret}, m_subHorizontalElevator{subHorizontalElevator}, m_subLimeLightLower{subLimeLightLower}, m_subLimeLightUpper{subLimeLightUpper}, m_subLimeLightSwitcher{subLimeLightSwitcher}, m_driverController{driverController} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(driveTrain);
 }
@@ -28,10 +28,16 @@ void CmdPrinty::Execute() {
   if(m_driverController->GetBackButton() == true) {
     m_isFinished = true;
   }
-
+  /*
   std::cout << "current pitch: " << m_driveTrain->GetPitch() << std::endl;
   std::cout << "current roll: " << m_driveTrain->GetRoll() << std::endl;
   std::cout << "current yaw: " << m_driveTrain->GetYaw() << std::endl;
+  std::cout << "Current Turret Angle: " << m_subTurret->GetDegrees() << std::endl;
+  std::cout << "Current Horizontal Elevator Position: " << m_subHorizontalElevator->GetPosition() << std::endl;
+  */
+  std::cout << "LL Upper Current Distance From Target: " << m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT, TARGET_APRILTAG_SUBSTATION_HEIGHT, LL_LIMELIGHT_UPPER_ANGLE) << std::endl;
+  std::cout << "LL Lower Current Distance From Target: " << m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT, TARGET_APRILTAG_SUBSTATION_HEIGHT, LL_LIMELIGHT_LOWER_ANGLE) << std::endl;
+  std::cout << "LL Switcher Current Distance From Target: " << m_subLimeLightSwitcher->GetDistanceToTarget(TARGET_APRILTAG_SUBSTATION_HEIGHT) << std::endl;
 }
 
 // Called once the command ends or is interrupted.

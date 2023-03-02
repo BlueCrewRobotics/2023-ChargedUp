@@ -19,3 +19,26 @@ void SubLimeLightSwitcher::Periodic() {
         tblLimeLight = nt::NetworkTableInstance::GetDefault().GetTable("limelight-upper");
     }
 }
+
+double SubLimeLightSwitcher::GetDistanceToTarget(double h2_heightOfCenterTarget)  {  
+  double d = 0.0;
+  
+  double h1_heightOfCamera = 0.0;
+  double a1_angleOfCamera = 0.0;
+  if(tblLimeLight == nt::NetworkTableInstance::GetDefault().GetTable("limelight-lower")) {
+    h1_heightOfCamera = LL_LIMELIGHT_LOWER_HEIGHT;
+    a1_angleOfCamera = LL_LIMELIGHT_LOWER_ANGLE;
+  }
+  else if(tblLimeLight == nt::NetworkTableInstance::GetDefault().GetTable("limelight-upper")) {
+    h1_heightOfCamera = LL_LIMELIGHT_UPPER_HEIGHT;
+    a1_angleOfCamera = LL_LIMELIGHT_UPPER_ANGLE;
+  }
+  else {
+    return d;
+  }
+  double a2 = tblLimeLight->GetNumber("ty",0.0);
+  
+  d = (h2_heightOfCenterTarget-h1_heightOfCamera) / (tan((a1_angleOfCamera + a2)*3.1416/180));
+  
+  return d;
+}

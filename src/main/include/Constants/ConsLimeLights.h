@@ -32,16 +32,19 @@ constexpr int LL_PIPLINE_TARGET_LOWER_CONE = 6;
 constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
 constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;
 // Limelight camera specifics
-constexpr double LL_LIMELIGHT_UPPER_ANGLE = -28.2209;
-constexpr double LL_LIMELIGHT_LOWER_ANGLE = 23.8122;
-constexpr double LL_LIMELIGHT_UPPER_HEIGHT = 51.875;
+constexpr double LL_LIMELIGHT_UPPER_ANGLE = -29.0762;
+constexpr double LL_LIMELIGHT_LOWER_ANGLE = 21.4527;
+constexpr double LL_LIMELIGHT_UPPER_HEIGHT = 51.5;
 constexpr double LL_LIMELIGHT_LOWER_HEIGHT = 8.25;
 // Game piece specifics
 constexpr double LL_YELLOW_CONE_CENTER_HEIGHT = 6.5;
 constexpr double LL_PURPLE_CUBE_CENTER_HEIGHT = 4.5;
 // Game grid placement specifics
-constexpr double LL_CONE_POLE_UPPER_HEIGHT = 43.75;
-constexpr double LL_CONE_POLE_LOWER_HEIGHT = 99999; // <- PLACE HOLDER
+constexpr double TARGET_CONE_POLE_UPPER_HEIGHT = 43.875;
+constexpr double TARGET_CONE_POLE_LOWER_HEIGHT = 24;
+
+// Substation shelf height
+constexpr double LL_SUBSTATION_SHELF_HEIGHT = 37.375;
 
 
 // Target ID int values

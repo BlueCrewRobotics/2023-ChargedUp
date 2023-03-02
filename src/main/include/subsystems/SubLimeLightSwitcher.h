@@ -27,6 +27,7 @@ class SubLimeLightSwitcher : public SubLimeLightBase {
    */
   void Periodic() override;
 
+  double GetDistanceToTarget(double h2_heightOfTarget);
  private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
