@@ -22,7 +22,7 @@ void SubClawWrist::ConfigureMotor() {
     // Need to set the position limits set so the elevator doesn't go too far and damage the it mechanically
     
     m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse,0);
-    m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,35.0); // May have to be changed
+    m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,WRIST_CLAW_MAX_LIMIT); 
     m_motorWristClaw.SetSmartCurrentLimit(20);
 
     // set PID coefficients
