@@ -45,8 +45,7 @@ void RobotContainer::ConfigureBindings() {
   // Toggle whether or not the claw is engaged when the aux controller left bumper is pressed
   auxController_button_lbump.OnTrue(CmdClawDisengage(&m_subClawWrist).ToPtr());
   auxController_button_lbump.OnFalse(CmdClawEngage(&m_subClawWrist).ToPtr());
-  auxController_button_rbump.OnTrue(CmdClawWristExtend(&m_subClawWrist).ToPtr());
-  auxController_button_rbump.OnFalse(CmdClawWristRetract(&m_subClawWrist).ToPtr());
+  auxController_button_rbump.OnTrue(CmdClawWristPositioning(&m_subClawWrist, &auxController).ToPtr());
   //auxController_button_x.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
   //auxController_button_y.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
 

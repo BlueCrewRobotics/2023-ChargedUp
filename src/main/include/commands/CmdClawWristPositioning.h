@@ -6,6 +6,8 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc2/command/button/CommandXboxController.h>
+
 #include "subsystems/SubClawWrist.h"
 
 /**
@@ -15,10 +17,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdClawWristRetract
-    : public frc2::CommandHelper<frc2::CommandBase, CmdClawWristRetract> {
+class CmdClawWristPositioning
+    : public frc2::CommandHelper<frc2::CommandBase, CmdClawWristPositioning> {
  public:
-  CmdClawWristRetract(SubClawWrist* subClawWrist);
+  CmdClawWristPositioning(SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 
@@ -30,5 +32,7 @@ class CmdClawWristRetract
 
  protected:
 
- SubClawWrist* m_subClawWrist;
+  SubClawWrist* m_subClawWrist;
+  frc2::CommandXboxController* m_auxController;
+
 };

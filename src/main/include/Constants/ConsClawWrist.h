@@ -9,8 +9,15 @@
 #pragma once
 
 // Claw Wrist motor limits
-constexpr double WRIST_CLAW_MAX_LIMIT = 20;
+constexpr double WRIST_CLAW_MAX_LIMIT = 24; // this is down hitting the floor when elevator is down, not pointing all the way down
 constexpr double WRIST_CLAW_MIN_LIMIT = 0;
+
+constexpr double WRIST_CLAW_FORWARD_POSITION = 16.5;
+constexpr double WRIST_CLAW_DROP_FOR_PLACEMENT_POSITION = 16.5;
+constexpr double WRIST_CLAW_UP_A_BIT_POSITION = 10;
+constexpr double WRIST_CLAW_DOWN_FOR_PICKING_UP_POSITION = 22.5;
+
 
 // Claw Wrist motor address
 constexpr int MOTOR_WRIST_CLAW = 12;
+
