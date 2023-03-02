@@ -23,6 +23,5 @@ class SubLimeLightUpper : public SubLimeLightBase {
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
-  void Periodic() override;
 };
 

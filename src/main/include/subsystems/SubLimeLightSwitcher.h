@@ -14,7 +14,7 @@
 #include <networktables/NetworkTableInstance.h>
 #include "Constants/ConsLimeLights.h"
 
-#include "SubVerticalElevator.h"
+//#include "SubVerticalElevator.h"
 #include "SubLimeLightBase.h"
 
 
@@ -25,13 +25,15 @@ class SubLimeLightSwitcher : public SubLimeLightBase {
   /**
    * Will be called periodically whenever the CommandScheduler runs.
    */
-  void Periodic() override;
+//  void Periodic() override;
 
-  double GetDistanceToTarget(double h2_heightOfTarget);
- private:
+//  double GetDistanceToTargetS(double h2_heightOfTarget);
+// private:
   // Components (e.g. motor controllers and sensors) should generally be
   // declared private and exposed only through public methods.
 
-  SubVerticalElevator* m_subVerticalElevator;
+//  SubVerticalElevator* m_subVerticalElevator;
+
+//  bool m_usingUpperLimeLight = true;
 };
 

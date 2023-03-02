@@ -12,8 +12,6 @@ SubLimeLightUpper::SubLimeLightUpper() {
   tblLimeLight = nt::NetworkTableInstance::GetDefault().GetTable("limelight-upper");
 }
 
-// This method will be called once per scheduler run
-void SubLimeLightUpper::Periodic() {
-}
+
 
 
