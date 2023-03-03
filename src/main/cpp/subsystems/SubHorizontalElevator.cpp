@@ -11,13 +11,14 @@ void SubHorizontalElevator::Periodic() {
 
     // Holding the position
     if(m_enableHoldPosition == true) {
-        int curOffset = m_holdPosition - m_hElevatorEncoder.GetPosition();
-        if(curOffset > HORIZONTAL_ELEV_MAX_LIMIT || curOffset < HORIZONTAL_ELEV_MIN_LIMIT) {
+        //int curOffset = m_holdPosition - m_hElevatorEncoder.GetPosition();
+        //if(curOffset > HORIZONTAL_ELEV_MAX_LIMIT || curOffset < HORIZONTAL_ELEV_MIN_LIMIT) {
             m_hElevatorController.SetReference(m_holdPosition, rev::ControlType::kPosition); 
-        }
+        //}
     }
     if(m_enableHoldPosition == false) {
         m_holdPosition = m_hElevatorEncoder.GetPosition();
+        
     }
 }
 
@@ -29,7 +30,7 @@ void SubHorizontalElevator::ConfigureMotor() {
     m_hElevatorMotor.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,HORIZONTAL_ELEV_MAX_LIMIT); // May have to be changed
 
     // set PID coefficients
-    m_hElevatorController.SetP(0.02);
+    m_hElevatorController.SetP(0.015);
     m_hElevatorController.SetI(0.0);
     m_hElevatorController.SetD(0.0);
     m_hElevatorController.SetIZone(0.0);
@@ -59,7 +60,7 @@ void SubHorizontalElevator::ServoToPosition(double position) {
 }
 
 void SubHorizontalElevator::ControlMotorManually(double speed) {
-    m_hElevatorMotor.Set(speed*0.4);
+    m_hElevatorMotor.Set(speed);
 }
 
 void SubHorizontalElevator::EnableHoldPosition(bool hold) {
@@ -74,4 +75,15 @@ void SubHorizontalElevator::SetHoldPosition(double position) {
         position = m_topSoftLimit;
     }
     m_holdPosition = position; 
+}
+
+void SubHorizontalElevator::SetMaxExtension(double maxLimit){
+    if(maxLimit > HORIZONTAL_ELEV_MAX_LIMIT){
+        maxLimit = HORIZONTAL_ELEV_MAX_LIMIT;
+    }
+    else {
+        m_topSoftLimit = maxLimit;
+        m_hElevatorMotor.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,m_topSoftLimit);
+    }
+    
 }

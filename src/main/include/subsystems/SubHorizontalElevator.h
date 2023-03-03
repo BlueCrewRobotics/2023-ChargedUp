@@ -37,6 +37,8 @@ class SubHorizontalElevator : public frc2::SubsystemBase {
   void EnableHoldPosition(bool hold);
   //Set the hold position
   void SetHoldPosition(double position);
+  // Set a new max limit based on the 48 inch extension
+  void SetMaxExtension(double maxLimit);
 
 
  private:

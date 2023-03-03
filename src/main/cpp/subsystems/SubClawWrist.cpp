@@ -9,12 +9,12 @@ SubClawWrist::SubClawWrist() = default;
 // This method will be called once per scheduler run
 void SubClawWrist::Periodic() {
     // Holding the position
-    if(m_enableHoldPosition == true) {
+/*  if(m_enableHoldPosition == true) {
             m_wristClawController.SetReference(m_holdPosition, rev::ControlType::kPosition); 
     }
     if(m_enableHoldPosition == false) {
         m_holdPosition = m_wristClawEncoder.GetPosition();
-    }
+    }*/
 }
 
 void SubClawWrist::ConfigureMotor() {
@@ -26,8 +26,8 @@ void SubClawWrist::ConfigureMotor() {
     m_motorWristClaw.SetSmartCurrentLimit(20);
 
     // set PID coefficients
-    m_wristClawController .SetP(0.03);
-    m_wristClawController .SetI(0.0);
+    m_wristClawController .SetP(0.02);
+    m_wristClawController .SetI(0.00001);
     m_wristClawController .SetD(0.0);
     m_wristClawController .SetIZone(0.0);
     m_wristClawController .SetFF(0.0);

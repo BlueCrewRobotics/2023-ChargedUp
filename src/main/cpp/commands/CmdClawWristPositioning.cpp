@@ -19,18 +19,20 @@ void CmdClawWristPositioning::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void CmdClawWristPositioning::Execute() {
 
+  m_subClawWrist->SetHoldPosition(false);
   if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP ){
-    m_subClawWrist->ServoToPosition(WRIST_CLAW_MAX_LIMIT);
+    m_subClawWrist->ServoToPosition(WRIST_CLAW_MIN_LIMIT);
   }
   else if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER ){
     m_subClawWrist->ServoToPosition(WRIST_CLAW_UP_A_BIT_POSITION);
   }
   else if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN ){
-    m_subClawWrist->ServoToPosition(WRIST_CLAW_DROP_FOR_PLACEMENT_POSITION);
+    m_subClawWrist->ServoToPosition(WRIST_CLAW_DOWN_FOR_PICKING_UP_POSITION);
   }
   else if(m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER ){
     m_subClawWrist->ServoToPosition(WRIST_CLAW_FORWARD_POSITION);
   }  
+  m_subClawWrist->SetHoldPosition(true);
 }
 
 // Called once the command ends or is interrupted.

@@ -35,8 +35,8 @@ void RobotContainer::ConfigureBindings() {
   // Configure your trigger bindings here
 
   
-  driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
-  driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  //driverController_button_x.OnTrue(CmdFindAndGoToCube(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
+  //driverController_button_y.OnTrue(CmdFindAndGoToCone(&m_subDriveTrain, &m_subLimeLightUpper, &driverController).ToPtr());
   
   // select type of piece we're interested in
   driverController_button_a.OnTrue(CmdSelectPieceType(&m_subRobotGlobals).ToPtr());
@@ -51,8 +51,8 @@ void RobotContainer::ConfigureBindings() {
 
   // Press and hold the Dpad position down and press the x button to move the elevator to the right height based on the global variable
   auxController_button_x.OnTrue(CmdVerticalElevatorServoToPosition(&m_subRobotGlobals,&m_subVerticalElevator, &auxController,0/*This last variableis not used currently*/).ToPtr());
-  auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subTurret, &m_subVerticalElevator, &m_subLimeLightUpper).ToPtr());
-//  auxController_button_a.OnTrue(CmdPrinty(&m_subLimeLightLower, &m_subLimeLightUpper, &auxController).ToPtr());
+  //auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subTurret, &m_subVerticalElevator, &m_subLimeLightUpper).ToPtr());
+  auxController_button_start.OnTrue(CmdVerticalElevatorServoToSubstationShelf(&m_subVerticalElevator).ToPtr());
 
 //  auxController_button_b.OnTrue(CmdVerticalElevatorServoUpNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
 //  auxController_button_a.OnTrue(CmdVerticalElevatorServoDownNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
@@ -67,9 +67,9 @@ void RobotContainer::ConfigureBindings() {
   // Set the default command for the vertical elevator
   m_subVerticalElevator.SetDefaultCommand(CmdMoveVerticalElevator(&m_subVerticalElevator, &auxController));
   // Set default command for the horizontal elevator
-  m_subHorizontalElevator.SetDefaultCommand(CmdMoveHorizontalElevator(&m_subHorizontalElevator, &auxController));
+  m_subHorizontalElevator.SetDefaultCommand(CmdMoveHorizontalElevator(&m_subHorizontalElevator, &auxController, &m_subTurret));
   // Set the default command for the claw wrist
-  m_subClawWrist.SetDefaultCommand(CmdClawWristMoveManual(&m_subClawWrist, &auxController));
+  //m_subClawWrist.SetDefaultCommand(CmdClawWristMoveManual(&m_subClawWrist, &auxController));
   // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
   // frc2::Trigger([this] {
   //   return m_subsystem.ExampleCondition();

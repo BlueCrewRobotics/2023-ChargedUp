@@ -29,7 +29,6 @@ void CmdDriveWithController::Execute() {
 
   // speed as a percentage
   double speed = 0.0;
-  m_driverController->GetBButton();
   // This sets up the virtual low gear
   if(m_driverController->GetRawButton(BUTTON_B)==1) {
     m_driveTrain->SetMaxSpeed(VELOCITY_SP_MAX_LL);
@@ -53,12 +52,12 @@ void CmdDriveWithController::Execute() {
   double rotation = 0.0;
 
   // Check if we want to auto-target using the limelight
-  if(m_driverController->GetRawButton(BUTTON_X) == true || m_driverController->GetRawButton(BUTTON_Y) == true) {
+/*  if(m_driverController->GetRawButton(BUTTON_X) == true || m_driverController->GetRawButton(BUTTON_Y) == true) {
     // Set the rotation to the rotation the limelight gives us
     rotation = m_driveTrain->GetDirectedRotation();
   }
   // Else use the navX to drive straight
-  else {
+  else */{
     // Booleans for detecting if we want the robot to move
     bool isMoveDesired = (speed > 0.02 || speed < -0.02);
     bool isTurnDesired = (m_driverController->GetRawAxis(AXIS_LX) > 0.02 || m_driverController->GetRawAxis(AXIS_LX) < -0.02);
@@ -68,15 +67,8 @@ void CmdDriveWithController::Execute() {
       // Store the yaw straight value while steering the robot.
       m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());
   //    std::cout << "CmdDriveWithController>> Updated desired yaw to: " << m_driveTrain->GetYawStraightValue() << std::endl;
-/*
-      if(m_driveTrain->GetDriveTrainGear()==false) {
-          rotation = m_driverController->GetRawAxis(AXIS_LX)*0.8;
-      }
-      else {
-          rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
-      }
-*/
-    rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
+
+      rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
 
   //    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
     }
