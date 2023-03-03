@@ -54,7 +54,7 @@ void AutoCmdDriveOntoChargeStation::Execute() {
     // but only consider a drop in pitch as the ramp dropping after some time has elapsed 
     // (so that the initial "bump" and "recoil" of hitting the ramp isn't caught)
     if (currentPitch > m_wellOntoRampPitchValue - 3 ) {
-      if(!m_timer.HasElapsed((units::time::second_t)1.5)) {
+      if(!m_timer.HasElapsed((units::time::second_t)1.6)) {
         speed = 0.4;
       }
       else {

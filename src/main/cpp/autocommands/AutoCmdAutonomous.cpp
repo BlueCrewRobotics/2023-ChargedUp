@@ -26,7 +26,7 @@ AutoCmdAutonomous::AutoCmdAutonomous(SubLimeLightLower* subLimelightLower, SubDr
     // Drive onto the charge Station
     AutoCmdDriveOntoChargeStation(subDriveTrain),
 
-    AutoCmdTimer(timer, 2.4),
+    AutoCmdTimer(timer, 1.5),
 
     // Self-Balance on the charge station
     AutoCmdBalanceOnChargeStation(subDriveTrain)
