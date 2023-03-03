@@ -76,6 +76,6 @@ constexpr double DRIVE_TRAIN_ROTATIONS_PER_INCH_RIGHT_SIDE = DRIVE_TRAIN_TICKS_P
 constexpr int NAVX_CHARGED_UP_RAMP_PITCH = 11;
 
 // 0.75 to 1.3 with on floor depending upon drive train tipped forward or back
-constexpr double NAVX_CHARGED_UP_ON_FLOOR_PITCH = 1.05;
+constexpr double NAVX_CHARGED_UP_ON_FLOOR_PITCH = 0.12;
 
 

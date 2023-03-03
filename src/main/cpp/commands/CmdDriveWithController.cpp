@@ -140,7 +140,7 @@ void CmdDriveWithController::Execute() {
 
   }
 
-  //std::cout << "current pitch: " << m_driveTrain->GetPitch() << std::endl;
+  std::cout << "current pitch: " << m_driveTrain->GetPitch() << std::endl;
   //std::cout << "current roll: " << m_driveTrain->GetRoll() << std::endl;
   //std::cout << "current yaw: " << m_driveTrain->GetYaw() << std::endl;
 
@@ -155,3 +155,4 @@ void CmdDriveWithController::End(bool interrupted) {}
 bool CmdDriveWithController::IsFinished() {
   return false;
 }
+
