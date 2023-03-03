@@ -10,10 +10,10 @@ SubTurret::SubTurret() = default;
 void SubTurret::Periodic() {
         // Holding the position
     if(m_enableHoldPosition == true){
-        int curOffset =  m_holdPosition - motor->GetSelectedSensorPosition(0);
-        if(curOffset > TURRET_POSITION_HOLD_TOLERANCE || curOffset < -TURRET_POSITION_HOLD_TOLERANCE) {
+        //int curOffset =  m_holdPosition - motor->GetSelectedSensorPosition(0);
+        //if(curOffset > TURRET_POSITION_HOLD_TOLERANCE || curOffset < -TURRET_POSITION_HOLD_TOLERANCE) {
           motor->Set(ControlMode::Position,m_holdPosition);
-        }
+        //}
     }
     if(m_enableHoldPosition == false){
         m_holdPosition = motor->GetSelectedSensorPosition(0);
@@ -58,7 +58,9 @@ void SubTurret::ConfigureTurret() {
     motor->ConfigClosedloopRamp(0);
     motor->ConfigOpenloopRamp(0);
 
-    motor->SetSelectedSensorPosition(0,0,0);
+    //motor->SetSelectedSensorPosition(0,0,0);
+    m_holdPosition = motor->GetSelectedSensorPosition(0);
+
 
 }
 

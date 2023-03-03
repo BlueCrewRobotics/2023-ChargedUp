@@ -15,8 +15,8 @@
 //
 // Turret setup and adressing
 constexpr int MOTOR_TURRET = 7;
-constexpr int TURRET_MIN_ENCODER = -3400; // clockwise (if looking down on robot)
-constexpr int TURRET_MAX_ENCODER = 3400;
+constexpr int TURRET_MIN_ENCODER = -3000; // clockwise (if looking down on robot)
+constexpr int TURRET_MAX_ENCODER = 3000;
 constexpr int TURRET_KF_0 = 0;
 constexpr int TURRET_KP_0 = 1.1;
 constexpr int TURRET_KI_0 = 0;

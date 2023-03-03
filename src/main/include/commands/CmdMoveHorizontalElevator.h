@@ -8,6 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 #include <frc2/command/button/CommandXboxController.h>
 #include "subsystems/SubHorizontalElevator.h"
+#include "subsystems/SubTurret.h"
 #include "Constants/ConsControllers.h"
 
 /**
@@ -20,7 +21,7 @@
 class CmdMoveHorizontalElevator
     : public frc2::CommandHelper<frc2::CommandBase, CmdMoveHorizontalElevator> {
  public:
-  CmdMoveHorizontalElevator(SubHorizontalElevator* subHorizontalElevator, frc2::CommandXboxController* auxController);
+  CmdMoveHorizontalElevator(SubHorizontalElevator* subHorizontalElevator, frc2::CommandXboxController* auxController, SubTurret* subTurret);
 
   void Initialize() override;
 
@@ -32,5 +33,7 @@ class CmdMoveHorizontalElevator
 
   protected:
   SubHorizontalElevator* m_subHorizontalElevator; 
-  frc2::CommandXboxController* m_auxController; 
+  frc2::CommandXboxController* m_auxController;
+  SubTurret* m_subTurret;
+
 };
