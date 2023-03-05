@@ -39,6 +39,8 @@
 #include "autocommands/AutoCmdAutonomous2.h"
 #include "autocommands/AutoCmdAutonomousDoNothing.h"
 #include "autocommands/AutoCmdAutonomousDriveOutOfCommunity.h"
+#include "autocommands/AutoCmdAutonomousDriveOverAndOntoChargeStation.h"
+
 
 #include "autocommands/AutoCmdDrive.h"
 
@@ -96,6 +98,7 @@ class RobotContainer {
   AutoCmdAutonomous2 m_autoAutonomous2{&m_subLimeLightLower, &m_subDriveTrain};
   AutoCmdAutonomousDoNothing m_autoAutonomousDoNothing{&m_subLimeLightLower, &m_subDriveTrain, &m_autoTimer};
   AutoCmdAutonomousDriveOutOfCommunity m_autoAutonomousDriveOutOfCommunity{&m_subLimeLightLower, &m_subDriveTrain, &m_autoTimer};
+  AutoCmdAutonomousDriveOverAndOntoChargeStation m_autoAutonomousDriveOverAndOntoChargeStation{&m_subDriveTrain, &m_autoTimer};
 
   frc::SendableChooser<frc2::Command*> m_autoChooser;
   

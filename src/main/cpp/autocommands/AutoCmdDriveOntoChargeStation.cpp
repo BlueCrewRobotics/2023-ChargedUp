@@ -42,7 +42,7 @@ void AutoCmdDriveOntoChargeStation::Execute() {
   // Do we think we are already on the ChargeStation?
   // Go forward until we start tilting
   if(!m_onChargeStation && currentPitch > m_levelPitchValue-1 && currentPitch < m_levelPitchValue+5) {
-    speed = 0.5;
+    speed = 0.55;
   }
   // Drive forward until we are level again
   else {
@@ -55,13 +55,13 @@ void AutoCmdDriveOntoChargeStation::Execute() {
     // (so that the initial "bump" and "recoil" of hitting the ramp isn't caught)
     if (currentPitch > m_wellOntoRampPitchValue - 3 ) {
       if(!m_timer.HasElapsed((units::time::second_t)1.6)) {
-        speed = 0.4;
+        speed = 0.45;
       }
       else {
         if(currentPitch > m_wellOntoRampPitchValue) {
           m_wellOntoRampPitchValue = currentPitch;
         }
-        speed = 0.24;
+        speed = 0.26;
       }
     }
     // if we are level again, set onChargeStation to true
