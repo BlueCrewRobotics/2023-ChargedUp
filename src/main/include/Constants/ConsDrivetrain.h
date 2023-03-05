@@ -15,10 +15,10 @@ constexpr int MOTOR_RIGHT_FOLLOWER = 3;
 constexpr int MOTOR_LEFT_FOLLOWER = 4;
 
 // Maximum velocity in units/100ms
-constexpr int VELOCITY_MAX = 20000;
-constexpr int VELOCITY_SP_MAX_HG = 20000;  // Maximum velocity in actual high gear
-constexpr int VELOCITY_SP_MAX_LG = 20000;  // Maximum velocity in actual low gear
-constexpr int VELOCITY_SP_MAX_LL = 5000;   // Maximum velocity in low low virtual gear
+constexpr int VELOCITY_MAX = 15000; // 20000
+constexpr int VELOCITY_SP_MAX_HG = 15000;  // 20000/ Maximum velocity in actual high gear
+constexpr int VELOCITY_SP_MAX_LG = 15000;  // 20000 Maximum velocity in actual low gear
+constexpr int VELOCITY_SP_MAX_LL = 4500;   // Maximum velocity in low low virtual gear
 
 // Continuous current limit for Talons in amps
 constexpr int CONTINUOUS_CURRENT_LIMIT = 20;

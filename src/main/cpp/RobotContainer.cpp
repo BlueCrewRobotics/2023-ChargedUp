@@ -20,8 +20,10 @@ RobotContainer::RobotContainer() {
     m_autoRoutineVelocityMax,m_autoAccelerationMax,m_autoJerkMax,m_autoWheelbaseWidth);
 
   //Add commands to the autonomous drive station chooser
-  m_autoChooser.SetDefaultOption("Auto 1", &m_autoAutonomous);
+  m_autoChooser.SetDefaultOption("Drive on Charging Station", &m_autoAutonomous);
   m_autoChooser.AddOption("Auto 2", &m_autoAutonomous2);
+  m_autoChooser.AddOption("Do Nothing", &m_autoAutonomousDoNothing);
+  m_autoChooser.AddOption("Don't Use until tested - Drive out of Community",&m_autoAutonomousDriveOutOfCommunity);
 
   // Put the chooser on the dashboard
   frc::SmartDashboard::PutData("Autonomous", &m_autoChooser);
@@ -50,7 +52,9 @@ void RobotContainer::ConfigureBindings() {
   //auxController_button_y.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
 
   // Press and hold the Dpad position down and press the x button to move the elevator to the right height based on the global variable
-  auxController_button_x.OnTrue(CmdVerticalElevatorServoToPosition(&m_subRobotGlobals,&m_subVerticalElevator, &auxController,0/*This last variableis not used currently*/).ToPtr());
+  // auxController_button_x.OnTrue(CmdVerticalElevatorServoToPosition(&m_subRobotGlobals,&m_subVerticalElevator, &auxController,0/*This last variableis not used currently*/).ToPtr());
+  auxController_button_x.OnTrue(SeqCmdPlaceGamePieceOnGrid(&m_subRobotGlobals,&m_subVerticalElevator, &m_subTurret,&m_subHorizontalElevator, &auxController,&m_subLimeLightLower,&m_subLimeLightUpper).ToPtr());
+
   //auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subTurret, &m_subVerticalElevator, &m_subLimeLightUpper).ToPtr());
   auxController_button_start.OnTrue(CmdVerticalElevatorServoToSubstationShelf(&m_subVerticalElevator).ToPtr());
 

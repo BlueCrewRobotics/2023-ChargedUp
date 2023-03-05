@@ -8,6 +8,7 @@
 #include <frc2/command/CommandHelper.h>
 #include "common/BC_MotionProfile.h"
 #include "subsystems/SubDriveTrain.h"
+#include <frc/Timer.h>
 
 /**
  * An example command.
@@ -19,8 +20,8 @@
 class AutoCmdDrive
     : public frc2::CommandHelper<frc2::CommandBase, AutoCmdDrive> {
  public:
-  AutoCmdDrive(BC_MotionProfile* motionProfile, SubDriveTrain* subDriveTrain);
-
+ // AutoCmdDrive(BC_MotionProfile* motionProfile, SubDriveTrain* subDriveTrain);
+  AutoCmdDrive(SubDriveTrain* subDriveTrain);
   void Initialize() override;
 
   void Execute() override;
@@ -30,8 +31,9 @@ class AutoCmdDrive
   bool IsFinished() override;
   
  private:
-  BC_MotionProfile* m_motionProfile;
+  //BC_MotionProfile* m_motionProfile;
   SubDriveTrain* m_subDriveTrain;
+  frc::Timer m_timer;
 
 
 };

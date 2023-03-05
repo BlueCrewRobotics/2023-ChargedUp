@@ -4,7 +4,9 @@
 
 #include "autocommands/AutoCmdDrive.h"
 
-AutoCmdDrive::AutoCmdDrive(BC_MotionProfile* motionProfile, SubDriveTrain* subDriveTrain)  : m_motionProfile{motionProfile} ,m_subDriveTrain{subDriveTrain} {
+//AutoCmdDrive::AutoCmdDrive(BC_MotionProfile* motionProfile, SubDriveTrain* subDriveTrain)  : m_motionProfile{motionProfile} ,m_subDriveTrain{subDriveTrain} {
+AutoCmdDrive::AutoCmdDrive( SubDriveTrain* subDriveTrain)  : m_subDriveTrain{subDriveTrain} {
+
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subDriveTrain);
   
@@ -13,6 +15,10 @@ AutoCmdDrive::AutoCmdDrive(BC_MotionProfile* motionProfile, SubDriveTrain* subDr
 
 // Called when the command is initially scheduled.
 void AutoCmdDrive::Initialize() {
+  m_timer.Reset();
+  m_timer.Start();
+  //m_leftFinished = m_leftRotations*2048 + m_subDriveTrain->GetLeftEncoderValue();
+  //m_rightFinished = m_rightRotations*2048 + m_subDriveTrain->GetRightEncoderValue();
 
 }
 
@@ -27,5 +33,10 @@ void AutoCmdDrive::End(bool interrupted) {}
 // Returns true when the command should end.
 bool AutoCmdDrive::IsFinished() {
   // Return true if motion profile is finished
-  return false;
+  if(m_timer.HasElapsed((units::time::second_t)3)==true) {
+    return true;
+  }
+  else {
+    return false;
+  }
 }
