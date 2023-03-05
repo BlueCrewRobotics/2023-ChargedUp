@@ -32,10 +32,14 @@
 #include "commands/CmdClawDisengage.h"
 #include "commands/CmdClawWristPositioning.h"
 #include "commands/CmdClawWristMoveManual.h"
+#include "commands/SeqCmdPlaceGamePieceOnGrid.h"
 
 // Auto commands
 #include "autocommands/AutoCmdAutonomous.h"
 #include "autocommands/AutoCmdAutonomous2.h"
+#include "autocommands/AutoCmdAutonomousDoNothing.h"
+#include "autocommands/AutoCmdAutonomousDriveOutOfCommunity.h"
+
 #include "autocommands/AutoCmdDrive.h"
 
 // Common classes
@@ -90,6 +94,8 @@ class RobotContainer {
   // The robot's commands
   AutoCmdAutonomous m_autoAutonomous{&m_subLimeLightLower, &m_subDriveTrain, &m_autoTimer};
   AutoCmdAutonomous2 m_autoAutonomous2{&m_subLimeLightLower, &m_subDriveTrain};
+  AutoCmdAutonomousDoNothing m_autoAutonomousDoNothing{&m_subLimeLightLower, &m_subDriveTrain, &m_autoTimer};
+  AutoCmdAutonomousDriveOutOfCommunity m_autoAutonomousDriveOutOfCommunity{&m_subLimeLightLower, &m_subDriveTrain, &m_autoTimer};
 
   frc::SendableChooser<frc2::Command*> m_autoChooser;
   

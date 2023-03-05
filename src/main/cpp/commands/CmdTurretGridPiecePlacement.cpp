@@ -26,15 +26,16 @@ void CmdTurretGridPiecePlacement::Execute() {
   */ 
   if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece && m_aprilTagCycle == 0){
     m_subLimeLightLower->SelectPipeline(LL_PIPELINE_APRILTAG_1n8);
-    m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_1n8);
+    //m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_1n8);
   }
   if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece && m_aprilTagCycle == 1){
     m_subLimeLightLower->SelectPipeline(LL_PIPELINE_APRILTAG_2n7);
-    m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_2n7);
+    //m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_2n7);
+    std::cout << "Got AprilTag 2 "<< std::endl;
   }
   if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece && m_aprilTagCycle == 2){
     m_subLimeLightLower->SelectPipeline(LL_PIPELINE_APRILTAG_3n6);
-    m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_3n6);
+    //m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_3n6);
   }
 
   // Check if the target is within range to place cube.  Might have to move veritcal elevator so aprilTag can be seen
@@ -47,13 +48,14 @@ void CmdTurretGridPiecePlacement::Execute() {
       double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
       double turretOffsetAngle = atan((tan(targetAngle)*distance)/(distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.y));
       // See if target placement location is within max range extension of horizontal evelvator 
-      if(100/* Change this 100 to the max reach distance of the horizontal elevator*/ - ((distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.y)/ cos(turretOffsetAngle)) < 0 ){
+  //    if(100/* Change this 100 to the max reach distance of the horizontal elevator*/ - ((distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.y)/ cos(turretOffsetAngle)) < 0 ){
         // Calculate the new current poistion to move too.
         double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle;
         // Move turret to center target by updating the hold position.
         m_subTurret->RotateToDegree(newTurretPosition);
+        std::cout << "Middle Center - Upper LL Rotate to: " << newTurretPosition << std::endl;
         m_isFinished = true;
-      }
+  //    }
     }
     else if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER))
     {
@@ -61,13 +63,14 @@ void CmdTurretGridPiecePlacement::Execute() {
       double targetAngle = m_subLimeLightLower->GetHorizontalOffset();
       double turretOffsetAngle = atan((tan(targetAngle)*distance)/(distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.y));
       // See if target placement location is within max range extension of horizontal evelvator 
-      if(100/* Change this 100 to the max reach distance of the horizontal elevator*/ - ((distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.y)/ cos(turretOffsetAngle)) < 0 ){
+ //     if(100/* Change this 100 to the max reach distance of the horizontal elevator*/ - ((distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.y)/ cos(turretOffsetAngle)) < 0 ){
         // Calculate the new current poistion to move too.
         double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle;
         // Move turret to center target by updating the hold position.
         m_subTurret->RotateToDegree(newTurretPosition);
+        std::cout << "Middle Center - Lower LL Rotate to: " << newTurretPosition << std::endl;
         m_isFinished = true;
-      }
+//      }
     }
     // **************************************************************************************************************
     // Check if there is a target for the upper cude shelf
@@ -77,14 +80,15 @@ void CmdTurretGridPiecePlacement::Execute() {
       double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
       double turretOffsetAngle = atan((tan(targetAngle)*distance)/(distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_TOP.y));
       // See if target placement location is within max range extension of horizontal evelvator 
-      if(100/* Change this 100 to the max reach distance of the horizontal elevator*/ - ((distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_TOP.y)/ cos(turretOffsetAngle)) < 0 ){
+//      if(100/* Change this 100 to the max reach distance of the horizontal elevator*/ - ((distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_TOP.y)/ cos(turretOffsetAngle)) < 0 ){
         // Calculate the new current poistion to move too.
         double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle;
         // Move turret to center target by updating the hold position.
         m_subTurret->RotateToDegree(newTurretPosition);
+        std::cout << "Middle Up - Upper LL Rotate to: " << newTurretPosition << std::endl;
         m_isFinished = true;
 
-      }
+//      }
     }
     else if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP))
     {
@@ -92,13 +96,14 @@ void CmdTurretGridPiecePlacement::Execute() {
       double targetAngle = m_subLimeLightLower->GetHorizontalOffset();
       double turretOffsetAngle = atan((tan(targetAngle)*distance)/(distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_TOP.y));
       // See if target placement location is within max range extension of horizontal evelvator 
-      if(100/* Change this 100 to the max reach distance of the horizontal elevator*/ - ((distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_TOP.y)/ cos(turretOffsetAngle)) < 0 ){
+//      if(100/* Change this 100 to the max reach distance of the horizontal elevator*/ - ((distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_TOP.y)/ cos(turretOffsetAngle)) < 0 ){
         // Calculate the new current poistion to move too.
         double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle;
         // Move turret to center target by updating the hold position.
         m_subTurret->RotateToDegree(newTurretPosition);
+        std::cout << "Middle Up - Lower LL Rotate to: " << newTurretPosition << std::endl;
         m_isFinished = true;
-      }
+//      }
     }
 
 
@@ -115,11 +120,11 @@ void CmdTurretGridPiecePlacement::Execute() {
    Determine if the cone piece location is within range to place the cone.
   */ 
     
-  if (m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP))
-  {
-    m_subLimeLightLower->SelectPipeline(LL_PIPLINE_TARGET_UPPER_CONE);
-    m_subLimeLightUpper->SelectPipeline(LL_PIPLINE_TARGET_UPPER_CONE);   
-  }
+//  if (m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP))
+//  {
+//    m_subLimeLightLower->SelectPipeline(LL_PIPLINE_TARGET_UPPER_CONE);
+//    m_subLimeLightUpper->SelectPipeline(LL_PIPLINE_TARGET_UPPER_CONE);   
+//  }
 
   // Check if we have a target based on the game piece selection and DPAD pressed location
 

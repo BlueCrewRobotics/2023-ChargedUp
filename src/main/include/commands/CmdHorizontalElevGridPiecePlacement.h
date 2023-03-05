@@ -12,6 +12,7 @@
 #include "subsystems/SubRobotGlobals.h"
 #include "subsystems/SubLimeLightLower.h"
 #include "subsystems/SubLimeLightUpper.h"
+#include "subsystems/SubTurret.h"
 
 
 /**
@@ -24,7 +25,7 @@
 class CmdHorizontalElevGridPiecePlacement
     : public frc2::CommandHelper<frc2::CommandBase, CmdHorizontalElevGridPiecePlacement> {
  public:
-  CmdHorizontalElevGridPiecePlacement(SubRobotGlobals* subRobotGlobals, SubHorizontalElevator* subHorizontal, frc2::CommandXboxController* auxController, SubLimeLightLower* subLimeLightLower, SubLimeLightUpper* subLimeLightUpper);
+  CmdHorizontalElevGridPiecePlacement(SubRobotGlobals* subRobotGlobals, SubHorizontalElevator* subHorizontal, frc2::CommandXboxController* auxController, SubLimeLightLower* subLimeLightLower, SubLimeLightUpper* subLimeLightUpper, SubTurret* subTurret);
 
   void Initialize() override;
 
@@ -40,6 +41,8 @@ class CmdHorizontalElevGridPiecePlacement
   frc2::CommandXboxController* m_auxController;
   SubLimeLightLower* m_subLimeLightLower;
   SubLimeLightUpper* m_subLimeLightUpper;
+  SubTurret* m_subTurret;
   double m_position;
+  double m_maxExtension;
 
 };

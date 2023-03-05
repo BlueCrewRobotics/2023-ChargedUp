@@ -14,6 +14,8 @@
 #include "subsystems/SubLimeLightUpper.h"
 #include "Constants/ConsGlobal.h"
 
+#include <iostream>
+
 
 /**
  * An example command.

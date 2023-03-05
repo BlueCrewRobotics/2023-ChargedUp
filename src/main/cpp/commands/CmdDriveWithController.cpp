@@ -68,11 +68,12 @@ void CmdDriveWithController::Execute() {
       m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());
   //    std::cout << "CmdDriveWithController>> Updated desired yaw to: " << m_driveTrain->GetYawStraightValue() << std::endl;
 
-      rotation = m_driverController->GetRawAxis(AXIS_LX)*0.7;
+      rotation = m_driverController->GetRawAxis(AXIS_LX)*0.4;
 
   //    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
     }
     // Drive straight by comparing the stored yaw to the actual navx2 yaw reading
+    /*
     else if(isMoveDesired) {    
     
   //    std::cout << "CmdDriveWithController>> headingError is: " << headingError  << std::endl;
@@ -129,10 +130,12 @@ void CmdDriveWithController::Execute() {
       }
       //std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << " Goal-Yaw is: " << m_driveTrain->GetYawStraightValue() << std::endl;
     }
+    */
 
   }
+  
 
-  std::cout << "current pitch: " << m_driveTrain->GetPitch() << std::endl;
+  //std::cout << "current pitch: " << m_driveTrain->GetPitch() << std::endl;
   //std::cout << "current roll: " << m_driveTrain->GetRoll() << std::endl;
   //std::cout << "current yaw: " << m_driveTrain->GetYaw() << std::endl;
 
