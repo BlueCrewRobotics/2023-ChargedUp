@@ -21,7 +21,8 @@ RobotContainer::RobotContainer() {
 
   //Add commands to the autonomous drive station chooser
   m_autoChooser.SetDefaultOption("Drive on Charging Station", &m_autoAutonomous);
-  m_autoChooser.AddOption("Auto 2", &m_autoAutonomous2);
+  m_autoChooser.AddOption("Auto 2 (Don't Use)", &m_autoAutonomous2);
+  m_autoChooser.AddOption("(Not Tested) Drive Over And Onto Charge Station", &m_autoAutonomousDriveOverAndOntoChargeStation);
   m_autoChooser.AddOption("Do Nothing", &m_autoAutonomousDoNothing);
   m_autoChooser.AddOption("Don't Use until tested - Drive out of Community",&m_autoAutonomousDriveOutOfCommunity);
 
