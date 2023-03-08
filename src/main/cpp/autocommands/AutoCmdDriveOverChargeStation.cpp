@@ -37,7 +37,7 @@ void AutoCmdDriveOverChargeStation::Execute() {
   if(!m_onChargeStation && currentPitch < m_levelPitchValue-5) {
     m_onChargeStation = true;
   }
-  if(m_onChargeStation && currentPitch > m_levelPitchValue-2 && currentPitch < m_levelPitchValue+2) {
+  if(m_onChargeStation && currentPitch > m_levelPitchValue-0.7 && currentPitch < m_levelPitchValue+0.7) {
     m_overChargeStation = true;
   }
   if(!m_overChargeStation) {
@@ -45,7 +45,7 @@ void AutoCmdDriveOverChargeStation::Execute() {
   }
   else {
     m_timer.Start();
-    if(!m_timer.HasElapsed((units::time::second_t)0.5)) {
+    if(!m_timer.HasElapsed((units::time::second_t)1)) {
       speed = -0.4;
     }
     else {

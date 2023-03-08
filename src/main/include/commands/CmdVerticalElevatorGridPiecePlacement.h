@@ -13,6 +13,8 @@
 #include "subsystems/SubLimeLightLower.h"
 #include "subsystems/SubLimeLightUpper.h"
 
+#include <iostream>
+
 
 /**
  * An example command.

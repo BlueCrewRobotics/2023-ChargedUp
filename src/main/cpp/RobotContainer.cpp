@@ -53,7 +53,7 @@ void RobotContainer::ConfigureBindings() {
   //auxController_button_y.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
 
   // Press and hold the Dpad position down and press the x button to move the elevator to the right height based on the global variable
-  // auxController_button_x.OnTrue(CmdVerticalElevatorServoToPosition(&m_subRobotGlobals,&m_subVerticalElevator, &auxController,0/*This last variableis not used currently*/).ToPtr());
+  //auxController_button_x.OnTrue(CmdVerticalElevatorServoToPosition(&m_subRobotGlobals,&m_subVerticalElevator, &auxController,0/*This last variableis not used currently*/).ToPtr());
   auxController_button_x.OnTrue(SeqCmdPlaceGamePieceOnGrid(&m_subRobotGlobals,&m_subVerticalElevator, &m_subTurret,&m_subHorizontalElevator, &auxController,&m_subLimeLightLower,&m_subLimeLightUpper).ToPtr());
 
   //auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subTurret, &m_subVerticalElevator, &m_subLimeLightUpper).ToPtr());
