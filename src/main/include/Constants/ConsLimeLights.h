@@ -33,9 +33,9 @@ constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
 constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;
 // Limelight camera specifics
 constexpr double LL_LIMELIGHT_UPPER_ANGLE = -29.0762;
-constexpr double LL_LIMELIGHT_LOWER_ANGLE = 21.4527;
+constexpr double LL_LIMELIGHT_LOWER_ANGLE =  20.59; //21.4527;
 constexpr double LL_LIMELIGHT_UPPER_HEIGHT = 51.5;
-constexpr double LL_LIMELIGHT_LOWER_HEIGHT = 8.25;
+constexpr double LL_LIMELIGHT_LOWER_HEIGHT = 8.5;  // Quick calculations says it should be 8.0 inches
 // Game piece specifics
 constexpr double LL_YELLOW_CONE_CENTER_HEIGHT = 6.5;
 constexpr double LL_PURPLE_CUBE_CENTER_HEIGHT = 4.5;
@@ -79,3 +79,6 @@ constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_LOWER = { 21.875, 8
 constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_UPPER = { 21.875, 25.45, 27.75, ConeNode };
 constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_LOWER = { -21.875, 8.42, 16.75, ConeNode };
 constexpr fieldpos FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_UPPER = { -21.875, 25.45, 27.75, ConeNode };
+
+// Cone node from AprilTag 22, 8.5, 18.875
+//                                  27.875 

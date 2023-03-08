@@ -90,10 +90,11 @@ void SubTurret::RotateToDegree(double position) {
         xPosition = TURRET_MAX_ENCODER;
     }
     // Disable the periodic hold position
-    EnableHoldPosition(false);
+    //EnableHoldPosition(false);
     // By setting the m_holdPosition the peridodic function will do the servoing to the position
     m_holdPosition = xPosition;
-    EnableHoldPosition(true);
+    
+    //EnableHoldPosition(true);
 
 }
 

@@ -13,6 +13,7 @@
 #include "subsystems/SubLimeLightLower.h"
 #include "subsystems/SubLimeLightUpper.h"
 #include "Constants/ConsGlobal.h"
+#include "frc/Timer.h"
 
 #include <iostream>
 
@@ -46,5 +47,6 @@ class CmdTurretGridPiecePlacement
   double m_position;
   int m_aprilTagCycle = 0;
   bool m_isFinished = false;
+  frc::Timer m_timer;
 
 };
