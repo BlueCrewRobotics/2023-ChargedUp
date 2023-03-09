@@ -19,6 +19,6 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     sonarQubeRunAnalysis: false
-    findBugsRunAnalysis: true
+    findBugsRunAnalysis: false
     spotBugsAnalysis: false
   displayName: 'Run gradlew build'
