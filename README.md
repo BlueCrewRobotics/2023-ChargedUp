@@ -1,2 +1,2 @@
 # 2023-ChargedUp
-Our Robot for 2023 season
+Our Robot for FRIST FRC 2023 season
