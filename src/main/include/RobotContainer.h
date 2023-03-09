@@ -20,7 +20,7 @@
 #include "commands/CmdFindAndGoToCube.h"
 #include "commands/CmdFindAndGoToCone.h"
 #include "commands/CmdPrinty.h"
-#include "commands/CmdRotateTurret.h"
+#include "commands/CmdTurretRotate.h"
 #include "commands/CmdMoveVerticalElevator.h"
 #include "commands/CmdMoveHorizontalElevator.h"
 #include "commands/CmdVerticalElevatorServoToPosition.h"
@@ -33,10 +33,10 @@
 #include "commands/CmdClawWristPositioning.h"
 #include "commands/CmdClawWristMoveManual.h"
 #include "commands/SeqCmdPlaceGamePieceOnGrid.h"
+#include "commands/SeqCmdTurretAndElevatorsServoToHome.h"
 
 // Auto commands
-#include "autocommands/AutoCmdAutonomous.h"
-#include "autocommands/AutoCmdAutonomous2.h"
+#include "autocommands/AutoCmdAutonomousDriveOntoChargeStationAndBalance.h"
 #include "autocommands/AutoCmdAutonomousDoNothing.h"
 #include "autocommands/AutoCmdAutonomousDriveOutOfCommunity.h"
 #include "autocommands/AutoCmdAutonomousDriveOverAndOntoChargeStation.h"
@@ -94,10 +94,9 @@ class RobotContainer {
   frc::Timer m_autoTimer;
 
   // The robot's commands
-  AutoCmdAutonomous m_autoAutonomous{&m_subLimeLightLower, &m_subDriveTrain, &m_autoTimer};
-  AutoCmdAutonomous2 m_autoAutonomous2{&m_subLimeLightLower, &m_subDriveTrain};
-  AutoCmdAutonomousDoNothing m_autoAutonomousDoNothing{&m_subLimeLightLower, &m_subDriveTrain, &m_autoTimer};
-  AutoCmdAutonomousDriveOutOfCommunity m_autoAutonomousDriveOutOfCommunity{&m_subLimeLightLower, &m_subDriveTrain, &m_autoTimer};
+  AutoCmdAutonomousDriveOntoChargeStationAndBalance m_autoAutonomous{&m_subDriveTrain, &m_autoTimer};
+  AutoCmdAutonomousDoNothing m_autoAutonomousDoNothing{};
+  AutoCmdAutonomousDriveOutOfCommunity m_autoAutonomousDriveOutOfCommunity{&m_subDriveTrain, &m_autoTimer};
   AutoCmdAutonomousDriveOverAndOntoChargeStation m_autoAutonomousDriveOverAndOntoChargeStation{&m_subDriveTrain, &m_autoTimer};
 
   frc::SendableChooser<frc2::Command*> m_autoChooser;

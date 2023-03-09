@@ -19,7 +19,6 @@ void CmdClawWristPositioning::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void CmdClawWristPositioning::Execute() {
 
-  m_subClawWrist->SetHoldPosition(false);
   if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP ){
     m_subClawWrist->ServoToPosition(WRIST_CLAW_MIN_LIMIT);
   }
@@ -32,7 +31,6 @@ void CmdClawWristPositioning::Execute() {
   else if(m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER ){
     m_subClawWrist->ServoToPosition(WRIST_CLAW_FORWARD_POSITION);
   }  
-  m_subClawWrist->SetHoldPosition(true);
 }
 
 // Called once the command ends or is interrupted.

@@ -15,23 +15,10 @@
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 
 // Add Pointer to Subsystems in Parenthesis (SubExampleThing* subExampleThing, SubOtherThing* subOtherThing)
-AutoCmdAutonomousDoNothing::AutoCmdAutonomousDoNothing(SubLimeLightLower* subLimelightLower, SubDriveTrain* subDriveTrain,  frc::Timer* timer) {
+AutoCmdAutonomousDoNothing::AutoCmdAutonomousDoNothing() {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   AddCommands(
-
-
-//    AutoCmdDriveByRotations(subDriveTrain, 1, 1, timer)
-
-    // Drive onto the charge Station
-    //AutoCmdDriveOntoChargeStation(subDriveTrain),
-
-    //AutoCmdTimer(timer, 1.5),
-
-    // Self-Balance on the charge station
-    //AutoCmdBalanceOnChargeStation(subDriveTrain)
-    
-    
 
   );
 }

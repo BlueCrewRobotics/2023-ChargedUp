@@ -21,7 +21,6 @@ RobotContainer::RobotContainer() {
 
   //Add commands to the autonomous drive station chooser
   m_autoChooser.SetDefaultOption("Drive on Charging Station", &m_autoAutonomous);
-  m_autoChooser.AddOption("Auto 2 (Don't Use)", &m_autoAutonomous2);
   m_autoChooser.AddOption("(Not Tested) Drive Over And Onto Charge Station", &m_autoAutonomousDriveOverAndOntoChargeStation);
   m_autoChooser.AddOption("Do Nothing", &m_autoAutonomousDoNothing);
   m_autoChooser.AddOption("Don't Use until tested - Drive out of Community",&m_autoAutonomousDriveOutOfCommunity);
@@ -58,6 +57,7 @@ void RobotContainer::ConfigureBindings() {
 
   //auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subTurret, &m_subVerticalElevator, &m_subLimeLightUpper).ToPtr());
   auxController_button_start.OnTrue(CmdVerticalElevatorServoToSubstationShelf(&m_subVerticalElevator).ToPtr());
+  auxController_button_back.OnTrue(SeqCmdTurretAndElevatorsServoToHome(&m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator).ToPtr());
 
 //  auxController_button_b.OnTrue(CmdVerticalElevatorServoUpNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
 //  auxController_button_a.OnTrue(CmdVerticalElevatorServoDownNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
@@ -68,7 +68,7 @@ void RobotContainer::ConfigureBindings() {
   // Set the default command for the Drive Train
   m_subDriveTrain.SetDefaultCommand(CmdDriveWithController(&m_subDriveTrain, &driverController));
   // Set the default command for the Turret
-  m_subTurret.SetDefaultCommand(CmdRotateTurret(&m_subTurret, &auxController));
+  m_subTurret.SetDefaultCommand(CmdTurretRotate(&m_subTurret, &auxController));
   // Set the default command for the vertical elevator
   m_subVerticalElevator.SetDefaultCommand(CmdMoveVerticalElevator(&m_subVerticalElevator, &auxController));
   // Set default command for the horizontal elevator

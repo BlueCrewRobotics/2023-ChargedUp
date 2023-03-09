@@ -54,7 +54,7 @@ constexpr int TID_CONE_POLE_UPPER_ID = 3;
 constexpr int TID_CONE_POLE_LOWER_ID = 4;
 
 // Target heights
-constexpr double TARGET_APRILTAG_GRID_HEIGHT = 18.125;
+constexpr double TARGET_APRILTAG_GRID_HEIGHT = 18.25;
 constexpr double TARGET_APRILTAG_SUBSTATION_HEIGHT = 27.375;
 
 //  Grid has two cone nodes on left, two cone nodes on right, two shelves in center

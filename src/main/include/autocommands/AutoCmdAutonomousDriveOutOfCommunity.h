@@ -14,18 +14,16 @@
 // Command includes
 #include "commands/ExampleCommand.h"
 
-// Autonomous commands
+// Autonomous Commands commands
 #include "autocommands/AutoCmdDrive.h"
 
 // Subsystem includes
 
 #include "subsystems/SubDriveTrain.h"
-#include "subsystems/SubPneumatics.h"
-#include "subsystems/SubLimeLightLower.h"
 
 
 class AutoCmdAutonomousDriveOutOfCommunity
     : public frc2::CommandHelper<frc2::SequentialCommandGroup, AutoCmdAutonomousDriveOutOfCommunity> {
  public:
-  AutoCmdAutonomousDriveOutOfCommunity(SubLimeLightLower* subLimelightLower, SubDriveTrain* subDriveTrain,  frc::Timer* timer);
+  AutoCmdAutonomousDriveOutOfCommunity(SubDriveTrain* subDriveTrain,  frc::Timer* timer);
 };

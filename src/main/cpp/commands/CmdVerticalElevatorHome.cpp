@@ -4,8 +4,8 @@
 
 #include "commands/CmdVerticalElevatorHome.h"
 
-CmdVerticalElevatorHome::CmdVerticalElevatorHome(SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController) 
-: m_subVerticalElevator{subVerticalElevator}, m_auxController{auxController}{
+CmdVerticalElevatorHome::CmdVerticalElevatorHome(SubVerticalElevator* subVerticalElevator) 
+: m_subVerticalElevator{subVerticalElevator} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subVerticalElevator);
 }
@@ -15,7 +15,7 @@ void CmdVerticalElevatorHome::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdVerticalElevatorHome::Execute() {
-  m_subVerticalElevator->SetHoldPosition(0);
+  m_subVerticalElevator->SetHoldPosition(VERTICAL_ELEV_MIN_LIMIT);
 }
 
 // Called once the command ends or is interrupted.
@@ -23,5 +23,5 @@ void CmdVerticalElevatorHome::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool CmdVerticalElevatorHome::IsFinished() {
-  return false;
+  return true;
 }

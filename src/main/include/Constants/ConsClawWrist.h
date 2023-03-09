@@ -14,7 +14,7 @@ constexpr double WRIST_CLAW_MIN_LIMIT = 0;
 
 constexpr double WRIST_CLAW_FORWARD_POSITION = 16.5;
 constexpr double WRIST_CLAW_DROP_FOR_PLACEMENT_POSITION = 16.5;
-constexpr double WRIST_CLAW_UP_A_BIT_POSITION = 10;
+constexpr double WRIST_CLAW_UP_A_BIT_POSITION = 7;
 constexpr double WRIST_CLAW_DOWN_FOR_PICKING_UP_POSITION = 22.5;
 
 
