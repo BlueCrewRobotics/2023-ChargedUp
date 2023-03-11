@@ -4,18 +4,23 @@
 
 #include "commands/CmdTurretHome.h"
 
-CmdTurretHome::CmdTurretHome(SubTurret* subTurret, frc2::CommandXboxController* auxController) 
-  : m_subTurret{subTurret}, m_auxController{auxController} {
+CmdTurretHome::CmdTurretHome(SubTurret* subTurret) 
+  : m_subTurret{subTurret} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subTurret);
 }
 
 // Called when the command is initially scheduled.
-void CmdTurretHome::Initialize() {}
+void CmdTurretHome::Initialize() {
+  m_finished = false;
+}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdTurretHome::Execute() {
-  m_subTurret->SetHoldPosition(0);
+  m_subTurret->SetHoldPosition(TURRET_HOME_POSITION);
+  if(m_subTurret->GetDegrees() < 5 && m_subTurret->GetDegrees() > -5) {
+    m_finished = true;
+  }
 }
 
 
@@ -25,5 +30,5 @@ void CmdTurretHome::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool CmdTurretHome::IsFinished() {
-  return false;
+  return m_finished;
 }

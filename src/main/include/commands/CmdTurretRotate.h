@@ -19,10 +19,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdRotateTurret
-    : public frc2::CommandHelper<frc2::CommandBase, CmdRotateTurret> {
+class CmdTurretRotate
+    : public frc2::CommandHelper<frc2::CommandBase, CmdTurretRotate> {
  public:
-  CmdRotateTurret(SubTurret* subTurret, frc2::CommandXboxController* auxController);
+  CmdTurretRotate(SubTurret* subTurret, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 

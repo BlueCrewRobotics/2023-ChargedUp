@@ -14,21 +14,18 @@
 // Command includes
 #include "commands/ExampleCommand.h"
 
-// Autonomous commands
+// DriveOntoChargeStationAndBalance commands
 #include "autocommands/AutoCmdDriveOntoChargeStation.h"
-#include "autocommands/AutoCmdDriveOntoChargeStationViaPosition.h"
 #include "autocommands/AutoCmdBalanceOnChargeStation.h"
-#include "autocommands/AutoCmdDriveByRotations.h"
 
 // Subsystem includes
 #include "subsystems/ExampleSubsystem.h"
 #include "subsystems/SubDriveTrain.h"
-#include "subsystems/SubPneumatics.h"
-#include "subsystems/SubLimeLightLower.h"
 
 
-class AutoCmdAutonomous
-    : public frc2::CommandHelper<frc2::SequentialCommandGroup, AutoCmdAutonomous> {
+
+class AutoCmdAutonomousDriveOntoChargeStationAndBalance
+    : public frc2::CommandHelper<frc2::SequentialCommandGroup, AutoCmdAutonomousDriveOntoChargeStationAndBalance> {
  public:
-  AutoCmdAutonomous(SubLimeLightLower* subLimelightLower, SubDriveTrain* subDriveTrain,  frc::Timer* timer);
+  AutoCmdAutonomousDriveOntoChargeStationAndBalance(SubDriveTrain* subDriveTrain,  frc::Timer* timer);
 };

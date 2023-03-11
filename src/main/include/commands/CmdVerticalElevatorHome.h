@@ -6,10 +6,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include <frc/Joystick.h>
-#include <frc2/command/button/CommandXboxController.h>
 #include "subsystems/SubVerticalElevator.h"
-#include "Constants/ConsControllers.h"
 
 /**
  * An example command.
@@ -21,7 +18,7 @@
 class CmdVerticalElevatorHome
     : public frc2::CommandHelper<frc2::CommandBase, CmdVerticalElevatorHome> {
  public:
-  CmdVerticalElevatorHome(SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController);
+  CmdVerticalElevatorHome(SubVerticalElevator* subVerticalElevator);
 
   void Initialize() override;
 
@@ -33,5 +30,4 @@ class CmdVerticalElevatorHome
 
   protected:
   SubVerticalElevator* m_subVerticalElevator; 
-  frc2::CommandXboxController* m_auxController; 
 };

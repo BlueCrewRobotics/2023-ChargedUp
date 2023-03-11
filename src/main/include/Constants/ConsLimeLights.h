@@ -15,7 +15,7 @@
   // Height of middle of cube: 4.5 inches
   // Height of middle of cone: 6.5 inches
   // Height of Upper Pole: 43.75 inches
-  // Height of Upper LimeLight: 51.875 inches
+  // Height of Upper LimeLight: 51.5 inches
   // Height of Lower LimeLight: 8.25 inches
 
 
@@ -32,10 +32,10 @@ constexpr int LL_PIPLINE_TARGET_LOWER_CONE = 6;
 constexpr int LL_PIPELINE_PURPLE_CUBE_NUMBER = 8;
 constexpr int LL_PIPELINE_YELLOW_CONE_NUMBER = 9;
 // Limelight camera specifics
-constexpr double LL_LIMELIGHT_UPPER_ANGLE = -29.0762;
-constexpr double LL_LIMELIGHT_LOWER_ANGLE =  20.59; //21.4527;
+constexpr double LL_LIMELIGHT_UPPER_ANGLE = -25.8262;
+constexpr double LL_LIMELIGHT_LOWER_ANGLE =  22.1038; 
 constexpr double LL_LIMELIGHT_UPPER_HEIGHT = 51.5;
-constexpr double LL_LIMELIGHT_LOWER_HEIGHT = 8.5;  // Quick calculations says it should be 8.0 inches
+constexpr double LL_LIMELIGHT_LOWER_HEIGHT = 8.25;  // Quick calculations says it should be 8.0 inches
 // Game piece specifics
 constexpr double LL_YELLOW_CONE_CENTER_HEIGHT = 6.5;
 constexpr double LL_PURPLE_CUBE_CENTER_HEIGHT = 4.5;
@@ -54,7 +54,7 @@ constexpr int TID_CONE_POLE_UPPER_ID = 3;
 constexpr int TID_CONE_POLE_LOWER_ID = 4;
 
 // Target heights
-constexpr double TARGET_APRILTAG_GRID_HEIGHT = 18.125;
+constexpr double TARGET_APRILTAG_GRID_HEIGHT = 18.25;
 constexpr double TARGET_APRILTAG_SUBSTATION_HEIGHT = 27.375;
 
 //  Grid has two cone nodes on left, two cone nodes on right, two shelves in center

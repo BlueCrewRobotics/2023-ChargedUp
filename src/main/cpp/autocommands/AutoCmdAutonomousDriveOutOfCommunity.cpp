@@ -15,7 +15,7 @@
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 
 // Add Pointer to Subsystems in Parenthesis (SubExampleThing* subExampleThing, SubOtherThing* subOtherThing)
-AutoCmdAutonomousDriveOutOfCommunity::AutoCmdAutonomousDriveOutOfCommunity(SubLimeLightLower* subLimelightLower, SubDriveTrain* subDriveTrain,  frc::Timer* timer) {
+AutoCmdAutonomousDriveOutOfCommunity::AutoCmdAutonomousDriveOutOfCommunity(SubDriveTrain* subDriveTrain,  frc::Timer* timer) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   AddCommands(

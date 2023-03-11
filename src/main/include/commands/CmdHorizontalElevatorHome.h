@@ -29,6 +29,7 @@ class CmdHorizontalElevatorHome
 
   bool IsFinished() override;
 
-  protected:
+ protected:
   SubHorizontalElevator* m_subHorizontalElevator;
+  bool m_finished = false;
 };

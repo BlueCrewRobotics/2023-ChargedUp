@@ -40,7 +40,7 @@ void SubHorizontalElevator::ConfigureMotor() {
 
 double SubHorizontalElevator::GetPosition() {
     // This should return the elevator position
-    return 0.0; // TODO return correct value
+    return m_hElevatorEncoder.GetPosition();
 }
 
 void SubHorizontalElevator::ServoToPosition(double position) {
