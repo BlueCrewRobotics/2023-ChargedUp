@@ -16,6 +16,9 @@ void CmdTurretGridPiecePlacement::Initialize() {
   m_isFinished = false;
   m_timer.Reset();
   m_timer.Start();
+  
+  
+  
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -31,10 +34,14 @@ void CmdTurretGridPiecePlacement::Execute() {
 
   if(m_timer.HasElapsed(((units::time::second_t)0.25)) == true && m_aprilTagCycle == 0){
     m_subLimeLightLower->SelectPipeline(LL_PIPELINE_APRILTAG_1n8);
+    m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_1n8);
       std::cout << "AprilTag 1 or 8 Selected "<< std::endl;
       m_aprilTagCycle = m_aprilTagCycle + 1;
+    
   }
   if(m_timer.HasElapsed(((units::time::second_t)0.5)) == true && m_aprilTagCycle == 1){
+    std::cout << "Limelight Upper angle: " << m_subLimeLightUpper->GetCameraMountAngle(42.125) << std::endl;
+    std::cout << "Limelight Upper distance: " << m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT, TARGET_APRILTAG_GRID_HEIGHT, LL_LIMELIGHT_UPPER_ANGLE) << std::endl;
     m_subLimeLightLower->SelectPipeline(LL_PIPELINE_APRILTAG_2n7);
       std::cout << "AprilTag 2 or 7 Selected"<< std::endl;
       m_aprilTagCycle = m_aprilTagCycle + 1;
@@ -61,6 +68,8 @@ void CmdTurretGridPiecePlacement::Execute() {
       m_subTurret->RotateToDegree(newTurretPosition);
       std::cout << "Middle Center Self - Lower LL Rotate to: " << newTurretPosition << std::endl;
       m_isFinished = true;
+      
+      
     }
     // **************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the upper cube self.

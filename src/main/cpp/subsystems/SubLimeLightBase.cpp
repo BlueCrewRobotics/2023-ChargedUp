@@ -173,8 +173,8 @@ Upper d = 60
   */
 double SubLimeLightBase::GetCameraMountAngle(double distance) {
   double d = distance;
-  double h1 = (54.3/12); // inches
-  double h2 = (43.75/12); // inches
+  double h1 = (LL_LIMELIGHT_UPPER_HEIGHT); // inches
+  double h2 = (TARGET_APRILTAG_GRID_HEIGHT); // inches
   double a1 = 0.0; // degrees
   double a2 = tblLimeLight->GetNumber("ty",0.0);
   
