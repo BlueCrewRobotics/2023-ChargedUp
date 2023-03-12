@@ -7,7 +7,11 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
-#include "subsystems/SubDriveTrain.h"
+#include <frc2/command/button/CommandXboxController.h>
+#include "subsystems/SubClawWrist.h"
+#include "Constants/ConsControllers.h"
+#include "Constants/ConsGlobal.h"
+#include "subsystems/SubRobotGlobals.h"
 
 /**
  * An example command.
@@ -16,10 +20,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AutoCmdDriveOverChargeStation
-    : public frc2::CommandHelper<frc2::CommandBase, AutoCmdDriveOverChargeStation> {
+class CmdIntakeSpin
+    : public frc2::CommandHelper<frc2::CommandBase, CmdIntakeSpin> {
  public:
-  AutoCmdDriveOverChargeStation(SubDriveTrain* subDriveTrain);
+  CmdIntakeSpin(SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController, SubRobotGlobals* subRobotGlobals);
 
   void Initialize() override;
 
@@ -30,12 +34,9 @@ class AutoCmdDriveOverChargeStation
   bool IsFinished() override;
 
  private:
-
-  SubDriveTrain* m_driveTrain;
-  bool m_onChargeStation = false;
-  bool m_overChargeStation = false;
-  bool m_pitchedDown = false;
+  SubClawWrist* m_subIntakeWrist;
+  frc2::CommandXboxController* m_auxController;
+  SubRobotGlobals* m_subRobotGlobals;
   bool m_finished = false;
-  double m_levelPitchValue = 0.0;
-  frc::Timer m_timer;
+  bool m_pullIn = false;
 };

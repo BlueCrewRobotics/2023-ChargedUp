@@ -11,6 +11,7 @@
 #include "Constants/ConsPneumatics.h"
 #include <frc/PneumaticHub.h>
 #include <frc/Solenoid.h>
+#include "BC_FalconFX.h"
 
 
 class SubClawWrist : public frc2::SubsystemBase {
@@ -45,9 +46,14 @@ class SubClawWrist : public frc2::SubsystemBase {
   /*
    * Control the claw
   */
- void EngageClaw(bool engage);
+  void EngageClaw(bool engage);
 
- bool GetEngagedClaw();
+  bool GetEngagedClaw();
+
+  // Control the intake
+  void SpinIntake(double speed);
+
+  double GetIntakeOutput();
 
  private:
   // Components (e.g. motor controllers and sensors) should generally be
@@ -57,6 +63,9 @@ class SubClawWrist : public frc2::SubsystemBase {
   rev::CANSparkMax m_motorWristClaw{MOTOR_WRIST_CLAW, rev::CANSparkMax::MotorType::kBrushless};
   rev::SparkMaxPIDController m_wristClawController = m_motorWristClaw.GetPIDController();
   rev::SparkMaxRelativeEncoder m_wristClawEncoder = m_motorWristClaw.GetEncoder();
+
+  // Setup the Falcon motor for the intake
+  TalonFX* m_motorIntake = new TalonFX(MOTOR_INTAKE);
 
   // Setup the solenoid for the claw to open and close
   frc::Solenoid m_wristClawSolenoid{PNEUMATIC_HUB_ADDR, frc::PneumaticsModuleType::REVPH,WRIST_CLAW_SOLENOID};

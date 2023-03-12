@@ -20,4 +20,4 @@ constexpr double WRIST_CLAW_DOWN_FOR_PICKING_UP_POSITION = 22.5;
 
 // Claw Wrist motor address
 constexpr int MOTOR_WRIST_CLAW = 12;
-
+constexpr int MOTOR_INTAKE = 16;
