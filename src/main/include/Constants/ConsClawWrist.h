@@ -11,6 +11,7 @@
 // Claw Wrist motor limits
 constexpr double WRIST_CLAW_MAX_LIMIT = 24; // this is down hitting the floor when elevator is down, not pointing all the way down
 constexpr double WRIST_CLAW_MIN_LIMIT = 0;
+constexpr double INTAKE_MOTOR_MAX_SPEED = 2048;
 
 constexpr double WRIST_CLAW_FORWARD_POSITION = 16.5;
 constexpr double WRIST_CLAW_DROP_FOR_PLACEMENT_POSITION = 16.5;

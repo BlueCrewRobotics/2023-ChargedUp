@@ -82,7 +82,8 @@ bool SubClawWrist::GetEngagedClaw() {
 }
 
 void SubClawWrist::SpinIntake(double speed) {
-    m_motorIntake->Set(ControlMode::PercentOutput, speed);
+    speed = speed * INTAKE_MOTOR_MAX_SPEED;
+    m_motorIntake->Set(ControlMode::Velocity, speed);
 }
 
 double SubClawWrist::GetIntakeOutput() {

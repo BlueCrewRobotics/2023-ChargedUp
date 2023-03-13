@@ -19,6 +19,9 @@ void CmdIntakeSpin::Initialize() {
   else if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN) {
     m_pullIn = false;
   }
+  else if(m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) {
+    m_eject = true;
+  }
   else {
     m_finished = true;
   }
@@ -37,10 +40,26 @@ void CmdIntakeSpin::Execute() {
     m_finished = true;
   }
   if (m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) {
-    speed = 0.2;
+    if(m_pullIn) {
+      speed = 0.2;
+    }
+    else if (m_eject) {
+      speed = -0.4;
+    }
+    else {
+      speed = -0.2;
+    }
   }
   else if (m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) {
-    speed = 0.1;
+    if(m_pullIn) {
+      speed = 0.1;
+    }
+    else if (m_eject) {
+      speed = -0.4;
+    }
+    else {
+      speed = -0.1;
+    }
   }
   m_subIntakeWrist->SpinIntake(speed);
 }

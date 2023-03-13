@@ -38,5 +38,6 @@ class CmdIntakeSpin
   frc2::CommandXboxController* m_auxController;
   SubRobotGlobals* m_subRobotGlobals;
   bool m_finished = false;
-  bool m_pullIn = false;
+  bool m_pullIn = true;
+  bool m_eject = false;
 };
