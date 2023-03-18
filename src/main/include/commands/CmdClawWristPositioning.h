@@ -9,6 +9,7 @@
 #include <frc2/command/button/CommandXboxController.h>
 
 #include "subsystems/SubClawWrist.h"
+#include "subsystems/SubRobotGlobals.h"
 
 /**
  * An example command.
@@ -20,7 +21,7 @@
 class CmdClawWristPositioning
     : public frc2::CommandHelper<frc2::CommandBase, CmdClawWristPositioning> {
  public:
-  CmdClawWristPositioning(SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController);
+  CmdClawWristPositioning(SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController, SubRobotGlobals* subRobotGlobals);
 
   void Initialize() override;
 
@@ -34,5 +35,6 @@ class CmdClawWristPositioning
 
   SubClawWrist* m_subClawWrist;
   frc2::CommandXboxController* m_auxController;
+  SubRobotGlobals* m_subRobotGlobals;
 
 };

@@ -7,8 +7,8 @@
 #include "Constants/ConsControllers.h"
 #include "commands/CmdClawWristPositioning.h"
 
-CmdClawWristPositioning::CmdClawWristPositioning(SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController) 
-  : m_subClawWrist{subClawWrist}, m_auxController{auxController}{
+CmdClawWristPositioning::CmdClawWristPositioning(SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController, SubRobotGlobals* subRobotGlobals) 
+  : m_subClawWrist{subClawWrist}, m_auxController{auxController}, m_subRobotGlobals{subRobotGlobals}{
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subClawWrist);
 }
@@ -18,7 +18,8 @@ void CmdClawWristPositioning::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdClawWristPositioning::Execute() {
-
+  // OLD POSITIONS FOR CLAW
+/*
   if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP ){
     m_subClawWrist->ServoToPosition(WRIST_CLAW_MIN_LIMIT);
   }
@@ -31,6 +32,37 @@ void CmdClawWristPositioning::Execute() {
   else if(m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER ){
     m_subClawWrist->ServoToPosition(WRIST_CLAW_FORWARD_POSITION);
   }  
+*/
+
+  // NEW POSITIONS FOR INTAKE
+  if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP ){
+    m_subClawWrist->ServoToPosition(WRIST_CLAW_MIN_LIMIT);
+  }
+  if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) {
+    if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) {
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_PLACE_CONE);
+    }
+    else if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN) {
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_MAX_LIMIT);
+    }
+    else if(m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER) {
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_UPRIGHT_CONE);
+    }  
+    else if(m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) {
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_TIPPED_OVER_CONE);
+    }  
+  }
+  else if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) {
+    if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) {
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_PLACE_CUBE);
+    }
+    else if(m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER) {
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_CUBE);
+    }
+    else if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN) {
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_TILTED_DOWN);
+    }
+  }
 }
 
 // Called once the command ends or is interrupted.

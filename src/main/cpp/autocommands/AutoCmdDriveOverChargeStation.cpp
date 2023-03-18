@@ -44,13 +44,16 @@ void AutoCmdDriveOverChargeStation::Execute() {
   else if(m_onChargeStation && m_pitchedDown && currentPitch > m_levelPitchValue-0.7 && currentPitch < m_levelPitchValue+0.7) {
     m_overChargeStation = true;
   }
-  if(!m_overChargeStation) {
-    speed = -0.55;
+  if(!m_overChargeStation && !m_onChargeStation) {
+    speed = -0.5;
+  }
+  else if (!m_overChargeStation && m_onChargeStation) {
+    speed = -0.4;
   }
   else {
     m_timer.Start();
     if(!m_timer.HasElapsed((units::time::second_t)1)) {
-      speed = -0.4;
+      speed = -0.3;
     }
     else {
       speed = 0.0;

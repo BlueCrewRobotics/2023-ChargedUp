@@ -30,6 +30,8 @@
 #include "commands/CmdSelectPieceType.h"
 #include "commands/CmdClawEngage.h"
 #include "commands/CmdClawDisengage.h"
+#include "commands/CmdIntakeSpin.h"
+
 #include "commands/CmdClawWristPositioning.h"
 #include "commands/CmdClawWristMoveManual.h"
 #include "commands/SeqCmdPlaceGamePieceOnGrid.h"
