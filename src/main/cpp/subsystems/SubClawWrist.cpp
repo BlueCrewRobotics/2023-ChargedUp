@@ -15,10 +15,9 @@ void SubClawWrist::Periodic() {
 }
 
 void SubClawWrist::ConfigureMotor() {
-    // Add the code here for configuring the horizontal elevator motor
-    // Need to set the position limits set so the elevator doesn't go too far and damage the it mechanically
-    
-    m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse,0);
+    /******* Setup the wrist motor *******/
+    // Setup the soft limits
+    m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse,WRIST_CLAW_MIN_LIMIT);
     m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,WRIST_CLAW_MAX_LIMIT); 
     m_motorWristClaw.SetSmartCurrentLimit(20);
 
@@ -29,6 +28,23 @@ void SubClawWrist::ConfigureMotor() {
     m_wristClawController .SetIZone(0.0);
     m_wristClawController .SetFF(0.0);
     m_wristClawController .SetOutputRange(-1.0, 1.0); // This can be sped up possibly
+
+    /******* Setup the intake motor *******/
+    m_motorIntake->ClearStickyFaults();
+    m_motorIntake->SetInverted(false);
+    // Select the feedback device (encoder) for the motor
+    m_motorIntake->ConfigSelectedFeedbackSensor(FeedbackDevice::IntegratedSensor);
+    m_motorIntake->SetInverted(TalonFXInvertType::CounterClockwise);
+
+    // Set PID coefficients
+    m_motorIntake->Config_kF(0,0.0, 0);
+    m_motorIntake->Config_kP(0,0.01, 0);
+    m_motorIntake->Config_kI(0,0.0000, 0);
+    m_motorIntake->Config_kD(0,0.0, 0);
+    m_motorIntake->SetNeutralMode(Brake);
+    m_motorIntake->ConfigNeutralDeadband(0.001);
+    // Set output limit
+    m_motorIntake->ConfigSupplyCurrentLimit(SupplyCurrentLimitConfiguration(true,10,12,100));
 }
 
 double SubClawWrist::GetPosition() {
@@ -68,6 +84,15 @@ void SubClawWrist::EngageClaw(bool engage) {
 
 bool SubClawWrist::GetEngagedClaw() {
     return m_wristClawSolenoid.Get();
+}
+
+void SubClawWrist::SpinIntake(double speed) {
+//    speed = speed * INTAKE_MOTOR_MAX_SPEED;
+    m_motorIntake->Set(ControlMode::PercentOutput, speed);
+}
+
+double SubClawWrist::GetIntakeOutput() {
+    return m_motorIntake->GetSupplyCurrent();
 }
 
 void SubClawWrist::EnableHoldPosition(bool hold) {

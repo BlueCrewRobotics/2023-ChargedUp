@@ -17,6 +17,7 @@ void AutoCmdDriveOverChargeStation::Initialize() {
   m_finished = false;
   m_timer.Reset();
   m_overChargeStation = false;
+  m_pitchedDown = false;
   // if the robot is level-ish, set the levelPitchValue variable to the current pitch, if not then set it to something we know is about level
   if (m_driveTrain->GetPitch() <= 0.2 && m_driveTrain->GetPitch() >= 2) {
     m_driveTrain->SetPitchLevelValue(m_driveTrain->GetPitch());
@@ -37,16 +38,22 @@ void AutoCmdDriveOverChargeStation::Execute() {
   if(!m_onChargeStation && currentPitch < m_levelPitchValue-5) {
     m_onChargeStation = true;
   }
-  if(m_onChargeStation && currentPitch > m_levelPitchValue-0.7 && currentPitch < m_levelPitchValue+0.7) {
+  else if (m_onChargeStation && !m_pitchedDown && currentPitch > m_levelPitchValue+5) {
+    m_pitchedDown = true;
+  }
+  else if(m_onChargeStation && m_pitchedDown && currentPitch > m_levelPitchValue-0.7 && currentPitch < m_levelPitchValue+0.7) {
     m_overChargeStation = true;
   }
-  if(!m_overChargeStation) {
-    speed = -0.55;
+  if(!m_overChargeStation && !m_onChargeStation) {
+    speed = -0.5;
+  }
+  else if (!m_overChargeStation && m_onChargeStation) {
+    speed = -0.4;
   }
   else {
     m_timer.Start();
     if(!m_timer.HasElapsed((units::time::second_t)1)) {
-      speed = -0.4;
+      speed = -0.3;
     }
     else {
       speed = 0.0;
