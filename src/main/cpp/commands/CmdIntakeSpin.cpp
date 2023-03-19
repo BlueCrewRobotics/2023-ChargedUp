@@ -7,7 +7,7 @@
 CmdIntakeSpin::CmdIntakeSpin(SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController, SubRobotGlobals* subRobotGlobals) 
   :m_subIntakeWrist{subClawWrist}, m_auxController{auxController}, m_subRobotGlobals{subRobotGlobals}{
   // Use addRequirements() here to declare subsystem dependencies.
-  AddRequirements(subClawWrist);
+  //AddRequirements(subClawWrist);
 }
 
 // Called when the command is initially scheduled.

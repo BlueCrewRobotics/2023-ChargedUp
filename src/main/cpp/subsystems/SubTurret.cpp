@@ -55,7 +55,7 @@ void SubTurret::ConfigureTurret() {
     motor->ConfigContinuousCurrentLimit(9, 0);
     motor->EnableCurrentLimit(true);
 
-    motor->ConfigClosedloopRamp(0);
+    motor->ConfigClosedloopRamp(0.2);
     motor->ConfigOpenloopRamp(0);
 
     //motor->SetSelectedSensorPosition(0,0,0);
