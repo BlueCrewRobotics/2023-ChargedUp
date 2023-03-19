@@ -24,6 +24,7 @@ RobotContainer::RobotContainer() {
   m_autoChooser.AddOption("(Not Tested) Drive Over And Onto Charge Station", &m_autoAutonomousDriveOverAndOntoChargeStation);
   m_autoChooser.AddOption("Do Nothing", &m_autoAutonomousDoNothing);
   m_autoChooser.AddOption("Don't Use until tested - Drive out of Community",&m_autoAutonomousDriveOutOfCommunity);
+  m_autoChooser.AddOption("Place Cube", &m_autoAutonomousPlaceCube);
 
   // Put the chooser on the dashboard
   frc::SmartDashboard::PutData("Autonomous", &m_autoChooser);
@@ -57,7 +58,7 @@ void RobotContainer::ConfigureBindings() {
 
   //auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subTurret, &m_subVerticalElevator, &m_subLimeLightUpper).ToPtr());
   auxController_button_start.OnTrue(CmdVerticalElevatorServoToSubstationShelf(&m_subVerticalElevator).ToPtr());
-  auxController_button_back.OnTrue(SeqCmdTurretAndElevatorsServoToHome(&m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator).ToPtr());
+  auxController_button_back.OnTrue(SeqCmdTurretAndElevatorsServoToHome(&m_subClawWrist, &m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator).ToPtr());
 
 //  auxController_button_b.OnTrue(CmdVerticalElevatorServoUpNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
 //  auxController_button_a.OnTrue(CmdVerticalElevatorServoDownNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
