@@ -20,14 +20,18 @@ void SubClawWrist::ConfigureMotor() {
     m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse,WRIST_CLAW_MIN_LIMIT);
     m_motorWristClaw.SetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kForward,WRIST_CLAW_MAX_LIMIT); 
     m_motorWristClaw.SetSmartCurrentLimit(20);
+    m_motorWristClaw.SetClosedLoopRampRate(0.2);
 
     // set PID coefficients
-    m_wristClawController .SetP(0.02);
-    m_wristClawController .SetI(0.00001);
-    m_wristClawController .SetD(0.0);
-    m_wristClawController .SetIZone(0.0);
-    m_wristClawController .SetFF(0.0);
-    m_wristClawController .SetOutputRange(-1.0, 1.0); // This can be sped up possibly
+    m_wristClawController.SetP(0.025); //0.02
+    m_wristClawController.SetI(0.000001);
+    m_wristClawController.SetD(2.0);
+    m_wristClawController.SetIZone(0.0);
+    m_wristClawController.SetFF(0.0);
+    m_wristClawController.SetOutputRange(-1.0, 1.0); // This can be sped up possibly
+
+
+
 
     /******* Setup the intake motor *******/
     m_motorIntake->ClearStickyFaults();

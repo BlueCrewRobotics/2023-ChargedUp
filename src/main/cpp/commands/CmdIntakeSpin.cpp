@@ -43,26 +43,29 @@ void CmdIntakeSpin::Execute() {
   else if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece && m_subIntakeWrist->GetIntakeOutput() > 1) {
     m_finished = true;
   }*/
+
+  // Cone speed selected
   if (m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) {
     if(m_pullIn) {
-      speed = -0.1;
+      speed = -0.3;
     }
     else if (m_eject) {
       speed = 0.4;
     }
     else {
-      speed = 0.1;
+      speed = 0.15;
     }
   }
+  // Cube speed selected
   else if (m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) {
     if(m_pullIn) {
-      speed = -0.1;
+      speed = -0.2;
     }
     else if (m_eject) {
       speed = 0.4;
     }
     else {
-      speed = 0.1;
+      speed = 0.15;
     }
   }
   

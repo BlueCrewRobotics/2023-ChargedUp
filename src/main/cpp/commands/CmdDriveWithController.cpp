@@ -30,6 +30,7 @@ void CmdDriveWithController::Execute() {
   // speed as a percentage
   double speed = 0.0;
   // This sets up the virtual low gear
+  /*
   if(m_driverController->GetRawButton(BUTTON_B)==1) {
     m_driveTrain->SetMaxSpeed(VELOCITY_SP_MAX_LL);
   }
@@ -37,6 +38,7 @@ void CmdDriveWithController::Execute() {
     m_driveTrain->SetMaxSpeed(VELOCITY_SP_MAX_LG);
 
   }
+  */
 
   // This is controlling the speed of the drive train
   if(m_driverController->GetRawAxis(AXIS_R_TRIG) > 0) {

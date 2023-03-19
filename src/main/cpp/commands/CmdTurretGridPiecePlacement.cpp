@@ -41,13 +41,14 @@ void CmdTurretGridPiecePlacement::Execute() {
   }
   if(m_timer.HasElapsed(((units::time::second_t)0.5)) == true && m_aprilTagCycle == 1){
     std::cout << "Limelight Upper angle: " << m_subLimeLightUpper->GetCameraMountAngle(42.125) << std::endl;
-    std::cout << "Limelight Upper distance: " << m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT, TARGET_APRILTAG_GRID_HEIGHT, LL_LIMELIGHT_UPPER_ANGLE) << std::endl;
     m_subLimeLightLower->SelectPipeline(LL_PIPELINE_APRILTAG_2n7);
+    m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_2n7);
       std::cout << "AprilTag 2 or 7 Selected"<< std::endl;
       m_aprilTagCycle = m_aprilTagCycle + 1;
   }
   if(m_timer.HasElapsed(((units::time::second_t)0.75)) == true && m_aprilTagCycle == 2){
     m_subLimeLightLower->SelectPipeline(LL_PIPELINE_APRILTAG_3n6);
+    m_subLimeLightUpper->SelectPipeline(LL_PIPELINE_APRILTAG_3n6);
       std::cout << "AprilTag 3 or 6 Selected"<< std::endl;
       m_aprilTagCycle = m_aprilTagCycle + 1;
   }
@@ -55,18 +56,69 @@ void CmdTurretGridPiecePlacement::Execute() {
   // Check if there is an AprilTag target and move the turret to the middle cube self.
     if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) && m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece)
     {
+      // Calculate the andgle of inside edge of the target using pixels
+      double pixels = m_subLimeLightLower->GetHorizontalSideLengthOfTargetBoundingBox();
+      std::cout << "Middle Center Self - Lower LL bounding box number of pixels: " << pixels << std::endl;
+      double pixelsFromCenterToTarget = m_subLimeLightLower->GetHorizontalOffset() * 5.369;
+      double angleFromCenter = m_subLimeLightLower->GetHorizontalOffset()*(pixelsFromCenterToTarget-(pixels/2))/pixelsFromCenterToTarget;
+      double insideAngle = m_subLimeLightLower->GetHorizontalOffset() - angleFromCenter;
+      
+      std::cout << "Lucien's Variables: Pixel offest            :" << pixelsFromCenterToTarget << std::endl;
+      std::cout << "Lucien's Variables: Center Angle            :" << angleFromCenter  << std::endl;
+      std::cout << "Lucien's Variables: Inside Angle            :" << insideAngle << std::endl;
+      
+      // Get the distance to the target
       double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
       std::cout << "Middle Center Self - Lower LL distance: " << distance << std::endl;
+
+      // Find the coordinate transform angle
+      double C_Angle = 180 - ((asin(distance*sin(insideAngle * 3.1415/180)/3)) * 180/3.1415);
+      double A_Angle = (180 - insideAngle - C_Angle);
+      double sideA = 3*sin(A_Angle * 3.1415/180)/sin(insideAngle*3.1415/180);
+      double rotationNum = sideA*sin((m_subLimeLightLower->GetHorizontalOffset()+insideAngle)*3.1415/180) - distance*sin(m_subLimeLightLower->GetHorizontalOffset()*3.1415/180);
+      double rotationDem = sideA*cos((m_subLimeLightLower->GetHorizontalOffset()+insideAngle)*3.1415/180) - distance*cos(m_subLimeLightLower->GetHorizontalOffset()*3.1415/180);
+      double coordTransformAngle = atan(rotationNum/rotationDem) * 180/3.1415; // Might be limelight offset minus or plus the coordTransform Angle
+      
+
+      // https://www.desmos.com/calculator/sggkyenxqg
+
+      std::cout << "Lucien's Variables: C_Angle                 :" << C_Angle << std::endl;
+      std::cout << "Lucien's Variables: A_Angle                 :" << A_Angle << std::endl;
+      std::cout << "Lucien's Variables: Side A                  :" << sideA << std::endl;
+      std::cout << "Lucien's Variables: Rotation Numerator      :" << rotationNum << std::endl;
+      std::cout << "Lucien's Variables: Rotation Denominator    :" << rotationDem << std::endl;
+      std::cout << "Lucien's Variables: Rotation Transform Angle:" << coordTransformAngle << std::endl;
+      
+
+      // Find selected vector in robot coordinate frame
+      // DEFINE VECTORS SOMEWHERE
+      double placementX = 0; // Example vector from april tag to target location
+      double placementY = 8.5;
+
+      double rotatedPlacementX = placementX * cos(-1 * coordTransformAngle * 3.1415/180) - placementY * sin(-1 * coordTransformAngle * 3.1415/180);
+      double rotatedPlacementY = placementX * sin(-1 * coordTransformAngle * 3.1415/180) + placementY * cos(-1 * coordTransformAngle * 3.1415/180);
+      std::cout << "Lucien's Variables: Rotated Placement X    :" << rotatedPlacementX  << std::endl;
+      std::cout << "Lucien's Variables: Rotated Placement Y    :" << rotatedPlacementY << std::endl;
+
+      // Find resulting vector and calculate turrent position
+      double finalLocationX = rotatedPlacementX + distance*sin(m_subLimeLightLower->GetHorizontalOffset()*3.1415/180);
+      double finalLocationY = rotatedPlacementY + distance*cos(m_subLimeLightLower->GetHorizontalOffset()*3.1415/180);
+      std::cout << "Lucien's Variables: Final Location X    :" << finalLocationX  << std::endl;
+      std::cout << "Lucien's Variables: Final Location Y    :" << finalLocationY << std::endl;
+
+      double turretRotationAngle = atan(finalLocationY/finalLocationX) * 180/3.1415; // In degrees
+      std::cout << "Middle Center Self - Lower LL New Turret Rotation Angle: " << turretRotationAngle  << std::endl;      
+
       double targetAngle = m_subLimeLightLower->GetHorizontalOffset();
       std::cout << "Middle Center Self - Lower LL target angle: " << targetAngle << std::endl;
-      double turretOffsetAngle = (atan((tan(targetAngle*3.1415/180)*distance)/(distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.y)))*180/3.1415;
-      std::cout << "Middle Center Self - Lower LL offset angle: " << turretOffsetAngle << std::endl;
+      //double turretOffsetAngle = (atan((tan(targetAngle*3.1415/180)*distance)/(distance + FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.y)))*180/3.1415;
+      //std::cout << "Middle Center Self - Lower LL offset angle: " << turretOffsetAngle << std::endl;
       // Calculate the new current poistion to move too.
-      double newTurretPosition = m_subTurret->GetDegrees() - turretOffsetAngle;
+      //double newTurretPosition = m_subTurret->GetDegrees() - turretOffsetAngle;
       std::cout << "Middle Center Self - Lower LL current angle: " << m_subTurret->GetDegrees() << std::endl;
       // Move turret to center target by updating the hold position.
-      m_subTurret->RotateToDegree(newTurretPosition);
-      std::cout << "Middle Center Self - Lower LL Rotate to: " << newTurretPosition << std::endl;
+      //m_subTurret->RotateToDegree((m_subTurret->GetDegrees() - turretRotationAngle)/*newTurretPosition*/);
+      std::cout << "Middle Center Self - Lower LL Rotate to: " << ((m_subTurret->GetDegrees() - turretRotationAngle)) << std::endl;
       m_isFinished = true;
       
       
@@ -170,13 +222,61 @@ void CmdTurretGridPiecePlacement::Execute() {
     
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the lower left hybrid location
+    if(m_subLimeLightUpper->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_DOWN))
+    {
+      double distance = m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
+      std::cout << "Lower Left Hybrid - Lower LL distance: " << distance << std::endl;
+      double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
+      std::cout << "Lower Left Hybrid - Lower LL target angle: " << targetAngle << std::endl;
+      double turretOffsetAngle = (atan((tan(targetAngle*3.1415/180)*distance)/(distance + FIELD_POS_OFFSET_FROM_TAG_FLOOR_LEFT.y)))*180/3.1415;
+      std::cout << "Lower Left Hybrid - Lower LL offset angle: " << turretOffsetAngle << std::endl;
+      // Calculate the new current poistion to move too.
+      double newTurretPosition = m_subTurret->GetDegrees() - turretOffsetAngle;
+      std::cout << "Lower Left Hybrid - Lower LL current angle: " << m_subTurret->GetDegrees() << std::endl;
+      // Move turret to center target by updating the hold position.
+      m_subTurret->RotateToDegree(newTurretPosition);
+      std::cout << "Lower Left Hybrid - Lower LL Rotate to: " << newTurretPosition << std::endl;
+      m_isFinished = true;
+      //std::cout << "Limelight Upper distance: " << m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT, TARGET_APRILTAG_GRID_HEIGHT, LL_LIMELIGHT_UPPER_ANGLE) << std::endl;
+    }
 
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the lower middle hybrid location
+    if(m_subLimeLightUpper->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN))
+    {
+      double distance = m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
+      std::cout << "Lower Center Hybrid - Lower LL distance: " << distance << std::endl;
+      double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
+      std::cout << "Lower Center Hybrid - Lower LL target angle: " << targetAngle << std::endl;
+      double turretOffsetAngle = (atan((tan(targetAngle*3.1415/180)*distance)/(distance + FIELD_POS_OFFSET_FROM_TAG_FLOOR_CENTER.y)))*180/3.1415;
+      std::cout << "Lower Center Hybrid - Lower LL offset angle: " << turretOffsetAngle << std::endl;
+      // Calculate the new current poistion to move too.
+      double newTurretPosition = m_subTurret->GetDegrees() - turretOffsetAngle;
+      std::cout << "Lower Center Hybrid - Lower LL current angle: " << m_subTurret->GetDegrees() << std::endl;
+      // Move turret to center target by updating the hold position.
+      m_subTurret->RotateToDegree(newTurretPosition);
+      std::cout << "Lower Center Hybrid - Lower LL Rotate to: " << newTurretPosition << std::endl;
+      m_isFinished = true;
+    }
 
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the lower right hybrid location
-
+    if(m_subLimeLightUpper->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN))
+    {
+      double distance = m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
+      std::cout << "Lower Right Hybrid - Lower LL distance: " << distance << std::endl;
+      double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
+      std::cout << "Lower Right Hybrid - Lower LL target angle: " << targetAngle << std::endl;
+      double turretOffsetAngle = (atan((tan(targetAngle*3.1415/180)*distance)/(distance + FIELD_POS_OFFSET_FROM_TAG_FLOOR_RIGHT.y)))*180/3.1415;
+      std::cout << "Lower Right Hybrid - Lower LL offset angle: " << turretOffsetAngle << std::endl;
+      // Calculate the new current poistion to move too.
+      double newTurretPosition = m_subTurret->GetDegrees() - turretOffsetAngle;
+      std::cout << "Lower Right Hybrid - Lower LL current angle: " << m_subTurret->GetDegrees() << std::endl;
+      // Move turret to center target by updating the hold position.
+      m_subTurret->RotateToDegree(newTurretPosition);
+      std::cout << "Lower Right Hybrid - Lower LL Rotate to: " << newTurretPosition << std::endl;
+      m_isFinished = true;
+    }
     
 
 
