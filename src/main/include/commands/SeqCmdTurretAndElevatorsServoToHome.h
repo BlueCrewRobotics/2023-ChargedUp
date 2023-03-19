@@ -10,10 +10,12 @@
 #include "commands/CmdHorizontalElevatorHome.h"
 #include "commands/CmdTurretHome.h"
 #include "commands/CmdVerticalElevatorHome.h"
+#include "commands/CmdWristHome.h"
+
 
 class SeqCmdTurretAndElevatorsServoToHome
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  SeqCmdTurretAndElevatorsServoToHome> {
  public:
-  SeqCmdTurretAndElevatorsServoToHome(SubHorizontalElevator* subHorizontalElevator, SubTurret* subTurret, SubVerticalElevator* subVerticalElevator);
+  SeqCmdTurretAndElevatorsServoToHome(SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator, SubTurret* subTurret, SubVerticalElevator* subVerticalElevator);
 };

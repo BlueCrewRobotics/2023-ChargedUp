@@ -42,6 +42,7 @@
 #include "autocommands/AutoCmdAutonomousDoNothing.h"
 #include "autocommands/AutoCmdAutonomousDriveOutOfCommunity.h"
 #include "autocommands/AutoCmdAutonomousDriveOverAndOntoChargeStation.h"
+#include "autocommands/AutoCmdAutonomousPlaceCube.h"
 
 
 #include "autocommands/AutoCmdDrive.h"
@@ -100,6 +101,7 @@ class RobotContainer {
   AutoCmdAutonomousDoNothing m_autoAutonomousDoNothing{};
   AutoCmdAutonomousDriveOutOfCommunity m_autoAutonomousDriveOutOfCommunity{&m_subDriveTrain, &m_autoTimer};
   AutoCmdAutonomousDriveOverAndOntoChargeStation m_autoAutonomousDriveOverAndOntoChargeStation{&m_subDriveTrain, &m_autoTimer};
+  AutoCmdAutonomousPlaceCube m_autoAutonomousPlaceCube{&m_subVerticalElevator, &m_subTurret, &m_subHorizontalElevator, &m_subClawWrist, &m_autoTimer};
 
   frc::SendableChooser<frc2::Command*> m_autoChooser;
   
