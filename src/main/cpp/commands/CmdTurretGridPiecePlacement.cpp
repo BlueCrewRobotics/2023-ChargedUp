@@ -56,7 +56,7 @@ void CmdTurretGridPiecePlacement::Execute() {
   // Check if there is an AprilTag target and move the turret to the middle cube self.
     if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) && m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece)
     {
-      // Calculate the andgle of inside edge of the target using pixels
+/*      // Calculate the angle of inside edge of the target using pixels
       double pixels = m_subLimeLightLower->GetHorizontalSideLengthOfTargetBoundingBox();
       std::cout << "Middle Center Self - Lower LL bounding box number of pixels: " << pixels << std::endl;
       double pixelsFromCenterToTarget = m_subLimeLightLower->GetHorizontalOffset() * 5.369;
@@ -117,17 +117,79 @@ void CmdTurretGridPiecePlacement::Execute() {
       //double newTurretPosition = m_subTurret->GetDegrees() - turretOffsetAngle;
       std::cout << "Middle Center Self - Lower LL current angle: " << m_subTurret->GetDegrees() << std::endl;
       // Move turret to center target by updating the hold position.
-      //m_subTurret->RotateToDegree((m_subTurret->GetDegrees() - turretRotationAngle)/*newTurretPosition*/);
+      //m_subTurret->RotateToDegree((m_subTurret->GetDegrees() - turretRotationAngle));
       std::cout << "Middle Center Self - Lower LL Rotate to: " << ((m_subTurret->GetDegrees() - turretRotationAngle)) << std::endl;
       m_isFinished = true;
-      
-      
+*/      
+      // Get the distance to the target
+      double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
+      std::cout << "Middle Center Self - Lower LL distance: " << distance << std::endl;
+      // Get the angle to the target
+      double angleFromCenter = m_subLimeLightLower->GetHorizontalOffset();
+      std::cout << "Middle Center Self - Lower LL Target Angle: " << angleFromCenter << std::endl;
+      // Calculate the existing target X offest
+      double Xoffset = sin(angleFromCenter*3.14/180)*distance;
+      std::cout << "Middle Center Self - Lower LL X Offset: " << Xoffset << std::endl;
+      // Calculate the existing target Y offset
+      double Yoffset = cos(angleFromCenter*3.14/180)*distance;
+      std::cout << "Middle Center Self - Lower LL Y Offset: " << Yoffset << std::endl;
+
+      // Calulate the new targeted X offset
+      double XoffsetNew = FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.x + Xoffset;
+      std::cout << "Middle Center Self - Lower LL New X Offset: " << XoffsetNew << std::endl;
+      // Calulate the new targeted Y offset
+      double YoffsetNew = FIELD_POS_OFFSET_FROM_TAG_SHELF_MIDDLE.y + Yoffset;
+      std::cout << "Middle Center Self - Lower LL New Y Offset: " << YoffsetNew << std::endl;
+
+      // Calculate the new targeted angle
+      double turretOffsetAngle = atan(XoffsetNew/YoffsetNew)*180/3.14;
+      std::cout << "Middle Center Self - Lower LL Turret Angle Offset: " << turretOffsetAngle  << std::endl;
+
+      //Calculate the new turret angle.
+      double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle*-1;
+      std::cout << "Middle Center Self - Lower LL current turret angle: " << m_subTurret->GetDegrees() << std::endl;
+      std::cout << "Middle Center Self - Lower LL new turret angle: " << newTurretPosition << std::endl;
+
+      m_subTurret->RotateToDegree(newTurretPosition);
+      m_isFinished = true;  
     }
+
     // **************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the upper cube self.
     if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP) && m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece)
     {
+      // Get the distance to the target
       double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
+      std::cout << "Middle Upper Self - Lower LL distance: " << distance << std::endl;
+      // Get the angle to the target
+      double angleFromCenter = m_subLimeLightLower->GetHorizontalOffset();
+      std::cout << "Middle Upper Self - Lower LL Target Angle: " << angleFromCenter << std::endl;
+      // Calculate the existing target X offest
+      double Xoffset = sin(angleFromCenter*3.14/180)*distance;
+      std::cout << "Middle Upper Self - Lower LL X Offset: " << Xoffset << std::endl;
+      // Calculate the existing target Y offset
+      double Yoffset = cos(angleFromCenter*3.14/180)*distance;
+      std::cout << "Middle Upper Self - Lower LL Y Offset: " << Yoffset << std::endl;
+
+      // Calulate the new targeted X offset
+      double XoffsetNew = FIELD_POS_OFFSET_FROM_TAG_SHELF_TOP.x + Xoffset;
+      std::cout << "Middle Upper Self - Lower LL New X Offset: " << XoffsetNew << std::endl;
+      // Calulate the new targeted Y offset
+      double YoffsetNew = FIELD_POS_OFFSET_FROM_TAG_SHELF_TOP.y + Yoffset;
+      std::cout << "Middle Upper Self - Lower LL New Y Offset: " << YoffsetNew << std::endl;
+
+      // Calculate the new targeted angle
+      double turretOffsetAngle = atan(XoffsetNew/YoffsetNew)*180/3.14;
+      std::cout << "Middle Upper Self - Lower LL Turret Angle Offset: " << turretOffsetAngle  << std::endl;
+
+      //Calculate the new turret angle.
+      double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle*-1;
+      std::cout << "Middle Upper Self - Lower LL current turret angle: " << m_subTurret->GetDegrees() << std::endl;
+      std::cout << "Middle Upper Self - Lower LL new turret angle: " << newTurretPosition << std::endl;
+
+      m_subTurret->RotateToDegree(newTurretPosition);
+      m_isFinished = true;  
+    /*  double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
       std::cout << "Middle Upper Self - Lower LL distance: " << distance << std::endl;
       double targetAngle = m_subLimeLightLower->GetHorizontalOffset();
       std::cout << "Middle Upper Self - Lower LL target angle: " << targetAngle << std::endl;
@@ -140,11 +202,44 @@ void CmdTurretGridPiecePlacement::Execute() {
       m_subTurret->RotateToDegree(newTurretPosition);
       std::cout << "Middle Upper Self - Lower LL Rotate to: " << newTurretPosition << std::endl;
       m_isFinished = true;
+      */
     }
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the upper right cone poll if cone is selected
-    if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP) && m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
+    if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) && m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
     {
+      // Get the distance to the target
+      double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
+      std::cout << "Right Upper Cone - Lower LL distance: " << distance << std::endl;
+      // Get the angle to the target
+      double angleFromCenter = m_subLimeLightLower->GetHorizontalOffset();
+      std::cout << "Right Upper Cone  - Lower LL Target Angle: " << angleFromCenter << std::endl;
+      // Calculate the existing target X offest
+      double Xoffset = sin(angleFromCenter*3.14/180)*distance;
+      std::cout << "Right Upper Cone  - Lower LL X Offset: " << Xoffset << std::endl;
+      // Calculate the existing target Y offset
+      double Yoffset = cos(angleFromCenter*3.14/180)*distance;
+      std::cout << "Right Upper Cone  - Lower LL Y Offset: " << Yoffset << std::endl;
+
+      // Calulate the new targeted X offset
+      double XoffsetNew = FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_UPPER.x + Xoffset;
+      std::cout << "Right Upper Cone  - Lower LL New X Offset: " << XoffsetNew << std::endl;
+      // Calulate the new targeted Y offset
+      double YoffsetNew = FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_UPPER.y + Yoffset;
+      std::cout << "Right Upper Cone  - Lower LL New Y Offset: " << YoffsetNew << std::endl;
+
+      // Calculate the new targeted angle
+      double turretOffsetAngle = atan(XoffsetNew/YoffsetNew)*180/3.14;
+      std::cout << "Right Upper Cone  - Lower LL Turret Angle Offset: " << turretOffsetAngle  << std::endl;
+
+      //Calculate the new turret angle.
+      double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle*-1;
+      std::cout << "Right Upper Cone  - Lower LL current turret angle: " << m_subTurret->GetDegrees() << std::endl;
+      std::cout << "Right Upper Cone  - Lower LL new turret angle: " << newTurretPosition << std::endl;
+
+      m_subTurret->RotateToDegree(newTurretPosition);
+      m_isFinished = true;  
+    /*  
       double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
       std::cout << "Upper Right Cone Poll - Lower LL distance: " << distance << std::endl;
       double targetAngle = m_subLimeLightLower->GetHorizontalOffset();
@@ -158,12 +253,45 @@ void CmdTurretGridPiecePlacement::Execute() {
       m_subTurret->RotateToDegree(newTurretPosition);
       std::cout << "Upper Right Cone Poll - Lower LL Rotate to: " << newTurretPosition << std::endl;
       m_isFinished = true;
+      */
     }
 
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the middle right cone poll if cone is selected
-    if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER) && m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
+    if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) && m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
     {
+      // Get the distance to the target
+      double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
+      std::cout << "Right Lower Cone  - Lower LL distance: " << distance << std::endl;
+      // Get the angle to the target
+      double angleFromCenter = m_subLimeLightLower->GetHorizontalOffset();
+      std::cout << "Right Lower Cone - Lower LL Target Angle: " << angleFromCenter << std::endl;
+      // Calculate the existing target X offest
+      double Xoffset = sin(angleFromCenter*3.14/180)*distance;
+      std::cout << "Right Lower Cone - Lower LL X Offset: " << Xoffset << std::endl;
+      // Calculate the existing target Y offset
+      double Yoffset = cos(angleFromCenter*3.14/180)*distance;
+      std::cout << "Right Lower Cone- Lower LL Y Offset: " << Yoffset << std::endl;
+
+      // Calulate the new targeted X offset
+      double XoffsetNew = FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_LOWER.x + Xoffset;
+      std::cout << "Right Lower Cone - Lower LL New X Offset: " << XoffsetNew << std::endl;
+      // Calulate the new targeted Y offset
+      double YoffsetNew = FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_RIGHT_LOWER.y + Yoffset;
+      std::cout << "Right Lower Cone - Lower LL New Y Offset: " << YoffsetNew << std::endl;
+
+      // Calculate the new targeted angle
+      double turretOffsetAngle = atan(XoffsetNew/YoffsetNew)*180/3.14;
+      std::cout << "Right Lower Cone - Lower LL Turret Angle Offset: " << turretOffsetAngle  << std::endl;
+
+      //Calculate the new turret angle.
+      double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle*-1;
+      std::cout << "Right Lower Cone - Lower LL current turret angle: " << m_subTurret->GetDegrees() << std::endl;
+      std::cout << "Right Lower Cone - Lower LL new turret angle: " << newTurretPosition << std::endl;
+
+      m_subTurret->RotateToDegree(newTurretPosition);
+      m_isFinished = true;  
+      /*
       double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
       std::cout << "Middle Right Cone Poll - Lower LL distance: " << distance << std::endl;
       double targetAngle = m_subLimeLightLower->GetHorizontalOffset();
@@ -177,12 +305,45 @@ void CmdTurretGridPiecePlacement::Execute() {
       m_subTurret->RotateToDegree(newTurretPosition);
       std::cout << "Middle Right Cone Poll - Lower LL Rotate to: " << newTurretPosition << std::endl;
       m_isFinished = true;
+      */
     }
 
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the upper left cone poll if cone is selected
-    if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) && m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
+    if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP) && m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
     {
+            // Get the distance to the target
+      double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
+      std::cout << "Left Upper Cone - Lower LL distance: " << distance << std::endl;
+      // Get the angle to the target
+      double angleFromCenter = m_subLimeLightLower->GetHorizontalOffset();
+      std::cout << "Left Upper Cone - Lower LL Target Angle: " << angleFromCenter << std::endl;
+      // Calculate the existing target X offest
+      double Xoffset = sin(angleFromCenter*3.14/180)*distance;
+      std::cout << "Left Upper Cone - Lower LL X Offset: " << Xoffset << std::endl;
+      // Calculate the existing target Y offset
+      double Yoffset = cos(angleFromCenter*3.14/180)*distance;
+      std::cout << "Left Upper Cone - Lower LL Y Offset: " << Yoffset << std::endl;
+
+      // Calulate the new targeted X offset
+      double XoffsetNew = FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_UPPER.x + Xoffset;
+      std::cout << "Left Upper Cone - Lower LL New X Offset: " << XoffsetNew << std::endl;
+      // Calulate the new targeted Y offset
+      double YoffsetNew = FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_UPPER.y + Yoffset;
+      std::cout << "Left Upper Cone - Lower LL New Y Offset: " << YoffsetNew << std::endl;
+
+      // Calculate the new targeted angle
+      double turretOffsetAngle = atan(XoffsetNew/YoffsetNew)*180/3.14;
+      std::cout << "Left Upper Cone - Lower LL Turret Angle Offset: " << turretOffsetAngle  << std::endl;
+
+      //Calculate the new turret angle.
+      double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle*-1;
+      std::cout << "Left Upper Cone - Lower LL current turret angle: " << m_subTurret->GetDegrees() << std::endl;
+      std::cout << "Left Upper Cone - Lower LL new turret angle: " << newTurretPosition << std::endl;
+
+      m_subTurret->RotateToDegree(newTurretPosition);
+      m_isFinished = true;  
+      /*
       double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
       std::cout << "Upper Left Cone Poll - Lower LL distance: " << distance << std::endl;
       double targetAngle = m_subLimeLightLower->GetHorizontalOffset();
@@ -196,12 +357,45 @@ void CmdTurretGridPiecePlacement::Execute() {
       m_subTurret->RotateToDegree(newTurretPosition);
       std::cout << "Upper Left Cone Poll - Lower LL Rotate to: " << newTurretPosition << std::endl;
       m_isFinished = true;
+      */
     }
 
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the middle left cone poll if cone is selected
-    if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) && m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
+    if(m_subLimeLightLower->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER) && m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece)
     {
+            // Get the distance to the target
+      double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
+      std::cout << "Left Lower Cone - Lower LL distance: " << distance << std::endl;
+      // Get the angle to the target
+      double angleFromCenter = m_subLimeLightLower->GetHorizontalOffset();
+      std::cout << "Left Lower Cone - Lower LL Target Angle: " << angleFromCenter << std::endl;
+      // Calculate the existing target X offest
+      double Xoffset = sin(angleFromCenter*3.14/180)*distance;
+      std::cout << "Left Lower Cone - Lower LL X Offset: " << Xoffset << std::endl;
+      // Calculate the existing target Y offset
+      double Yoffset = cos(angleFromCenter*3.14/180)*distance;
+      std::cout << "Left Lower Cone - Lower LL Y Offset: " << Yoffset << std::endl;
+
+      // Calulate the new targeted X offset
+      double XoffsetNew = FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_LOWER.x + Xoffset;
+      std::cout << "Left Lower Cone - Lower LL New X Offset: " << XoffsetNew << std::endl;
+      // Calulate the new targeted Y offset
+      double YoffsetNew = FIELD_POS_OFFSET_FROM_TAG_CONE_NODE_LEFT_LOWER.y + Yoffset;
+      std::cout << "Left Lower Cone - Lower LL New Y Offset: " << YoffsetNew << std::endl;
+
+      // Calculate the new targeted angle
+      double turretOffsetAngle = atan(XoffsetNew/YoffsetNew)*180/3.14;
+      std::cout << "Left Lower Cone - Lower LL Turret Angle Offset: " << turretOffsetAngle  << std::endl;
+
+      //Calculate the new turret angle.
+      double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle*-1;
+      std::cout << "Left Lower Cone - Lower LL current turret angle: " << m_subTurret->GetDegrees() << std::endl;
+      std::cout << "Left Lower Cone - Lower LL new turret angle: " << newTurretPosition << std::endl;
+
+      m_subTurret->RotateToDegree(newTurretPosition);
+      m_isFinished = true;  
+      /*
       double distance = m_subLimeLightLower->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
       std::cout << "Middle Left Cone Poll - Lower LL distance: " << distance << std::endl;
       double targetAngle = m_subLimeLightLower->GetHorizontalOffset();
@@ -215,6 +409,7 @@ void CmdTurretGridPiecePlacement::Execute() {
       m_subTurret->RotateToDegree(newTurretPosition);
       std::cout << "Middle Left Cone Poll - Lower LL Rotate to: " << newTurretPosition << std::endl;
       m_isFinished = true;
+      */
     }
 
 
@@ -222,8 +417,40 @@ void CmdTurretGridPiecePlacement::Execute() {
     
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the lower left hybrid location
-    if(m_subLimeLightUpper->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_DOWN))
+    if(m_subLimeLightUpper->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN))
     {
+      // Get the distance to the target
+      double distance = m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_UPPER_ANGLE);
+      std::cout << "Left Hybrid - Lower LL distance: " << distance << std::endl;
+      // Get the angle to the target
+      double angleFromCenter = m_subLimeLightUpper->GetHorizontalOffset();
+      std::cout << "Left Hybrid - Lower LL Target Angle: " << angleFromCenter << std::endl;
+      // Calculate the existing target X offest
+      double Xoffset = sin(angleFromCenter*3.14/180)*distance;
+      std::cout << "Left Hybrid - Lower LL X Offset: " << Xoffset << std::endl;
+      // Calculate the existing target Y offset
+      double Yoffset = cos(angleFromCenter*3.14/180)*distance;
+      std::cout << "Left Hybrid - Lower LL Y Offset: " << Yoffset << std::endl;
+
+      // Calulate the new targeted X offset
+      double XoffsetNew = FIELD_POS_OFFSET_FROM_TAG_FLOOR_LEFT.x + Xoffset;
+      std::cout << "Left Hybrid - Lower LL New X Offset: " << XoffsetNew << std::endl;
+      // Calulate the new targeted Y offset
+      double YoffsetNew = FIELD_POS_OFFSET_FROM_TAG_FLOOR_LEFT.y + Yoffset;
+      std::cout << "Left Hybrid - Lower LL New Y Offset: " << YoffsetNew << std::endl;
+
+      // Calculate the new targeted angle
+      double turretOffsetAngle = atan(XoffsetNew/YoffsetNew)*180/3.14;
+      std::cout << "Left Hybrid - Lower LL Turret Angle Offset: " << turretOffsetAngle  << std::endl;
+
+      //Calculate the new turret angle.
+      double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle*-1;
+      std::cout << "Left Hybrid - Lower LL current turret angle: " << m_subTurret->GetDegrees() << std::endl;
+      std::cout << "Left Hybrid - Lower LL new turret angle: " << newTurretPosition << std::endl;
+
+      m_subTurret->RotateToDegree(newTurretPosition);
+      m_isFinished = true;  
+      /*
       double distance = m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
       std::cout << "Lower Left Hybrid - Lower LL distance: " << distance << std::endl;
       double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
@@ -238,12 +465,45 @@ void CmdTurretGridPiecePlacement::Execute() {
       std::cout << "Lower Left Hybrid - Lower LL Rotate to: " << newTurretPosition << std::endl;
       m_isFinished = true;
       //std::cout << "Limelight Upper distance: " << m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT, TARGET_APRILTAG_GRID_HEIGHT, LL_LIMELIGHT_UPPER_ANGLE) << std::endl;
+      */
     }
 
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the lower middle hybrid location
     if(m_subLimeLightUpper->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN))
     {
+      // Get the distance to the target
+      double distance = m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_UPPER_ANGLE);
+      std::cout << "Center Hybrid - Lower LL distance: " << distance << std::endl;
+      // Get the angle to the target
+      double angleFromCenter = m_subLimeLightUpper->GetHorizontalOffset();
+      std::cout << "Center Hybrid - Lower LL Target Angle: " << angleFromCenter << std::endl;
+      // Calculate the existing target X offest
+      double Xoffset = sin(angleFromCenter*3.14/180)*distance;
+      std::cout << "Center Hybrid - Lower LL X Offset: " << Xoffset << std::endl;
+      // Calculate the existing target Y offset
+      double Yoffset = cos(angleFromCenter*3.14/180)*distance;
+      std::cout << "Center Hybrid - Lower LL Y Offset: " << Yoffset << std::endl;
+
+      // Calulate the new targeted X offset
+      double XoffsetNew = FIELD_POS_OFFSET_FROM_TAG_FLOOR_CENTER.x + Xoffset;
+      std::cout << "Center Hybrid - Lower LL New X Offset: " << XoffsetNew << std::endl;
+      // Calulate the new targeted Y offset
+      double YoffsetNew = FIELD_POS_OFFSET_FROM_TAG_FLOOR_CENTER.y + Yoffset;
+      std::cout << "Center Hybrid - Lower LL New Y Offset: " << YoffsetNew << std::endl;
+
+      // Calculate the new targeted angle
+      double turretOffsetAngle = atan(XoffsetNew/YoffsetNew)*180/3.14;
+      std::cout << "Center Hybrid - Lower LL Turret Angle Offset: " << turretOffsetAngle  << std::endl;
+
+      //Calculate the new turret angle.
+      double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle*-1;
+      std::cout << "Center Hybrid - Lower LL current turret angle: " << m_subTurret->GetDegrees() << std::endl;
+      std::cout << "Center Hybrid - Lower LL new turret angle: " << newTurretPosition << std::endl;
+
+      m_subTurret->RotateToDegree(newTurretPosition);
+      m_isFinished = true;  
+      /*
       double distance = m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
       std::cout << "Lower Center Hybrid - Lower LL distance: " << distance << std::endl;
       double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
@@ -257,12 +517,45 @@ void CmdTurretGridPiecePlacement::Execute() {
       m_subTurret->RotateToDegree(newTurretPosition);
       std::cout << "Lower Center Hybrid - Lower LL Rotate to: " << newTurretPosition << std::endl;
       m_isFinished = true;
+      */
     }
 
     // ****************************************************************************************************************
     // Check if there is an AprilTag target and move the turret to the lower right hybrid location
-    if(m_subLimeLightUpper->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN))
+    if(m_subLimeLightUpper->GetTarget()==true && (m_auxController->GetPOV() == DPAD_VALUE_LEFT_DOWN))
     {
+      // Get the distance to the target
+      double distance = m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_UPPER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_UPPER_ANGLE);
+      std::cout << "Right Hybrid - Lower LL distance: " << distance << std::endl;
+      // Get the angle to the target
+      double angleFromCenter = m_subLimeLightUpper->GetHorizontalOffset();
+      std::cout << "Right Center Self - Lower LL Target Angle: " << angleFromCenter << std::endl;
+      // Calculate the existing target X offest
+      double Xoffset = sin(angleFromCenter*3.14/180)*distance;
+      std::cout << "Right Center Self - Lower LL X Offset: " << Xoffset << std::endl;
+      // Calculate the existing target Y offset
+      double Yoffset = cos(angleFromCenter*3.14/180)*distance;
+      std::cout << "Right Center Self - Lower LL Y Offset: " << Yoffset << std::endl;
+
+      // Calulate the new targeted X offset
+      double XoffsetNew = FIELD_POS_OFFSET_FROM_TAG_FLOOR_RIGHT.x + Xoffset;
+      std::cout << "Right Center Self - Lower LL New X Offset: " << XoffsetNew << std::endl;
+      // Calulate the new targeted Y offset
+      double YoffsetNew = FIELD_POS_OFFSET_FROM_TAG_FLOOR_RIGHT.y + Yoffset;
+      std::cout << "Right Center Self - Lower LL New Y Offset: " << YoffsetNew << std::endl;
+
+      // Calculate the new targeted angle
+      double turretOffsetAngle = atan(XoffsetNew/YoffsetNew)*180/3.14;
+      std::cout << "Right Center Self - Lower LL Turret Angle Offset: " << turretOffsetAngle  << std::endl;
+
+      //Calculate the new turret angle.
+      double newTurretPosition = m_subTurret->GetDegrees() + turretOffsetAngle*-1;
+      std::cout << "Right Center Self - Lower LL current turret angle: " << m_subTurret->GetDegrees() << std::endl;
+      std::cout << "Right Center Self - Lower LL new turret angle: " << newTurretPosition << std::endl;
+
+      m_subTurret->RotateToDegree(newTurretPosition);
+      m_isFinished = true;  
+      /*
       double distance = m_subLimeLightUpper->GetDistanceToTarget(LL_LIMELIGHT_LOWER_HEIGHT,TARGET_APRILTAG_GRID_HEIGHT,LL_LIMELIGHT_LOWER_ANGLE);
       std::cout << "Lower Right Hybrid - Lower LL distance: " << distance << std::endl;
       double targetAngle = m_subLimeLightUpper->GetHorizontalOffset();
@@ -276,11 +569,12 @@ void CmdTurretGridPiecePlacement::Execute() {
       m_subTurret->RotateToDegree(newTurretPosition);
       std::cout << "Lower Right Hybrid - Lower LL Rotate to: " << newTurretPosition << std::endl;
       m_isFinished = true;
+      */
     }
     
 
 
-  if(m_aprilTagCycle == 3){
+  if((m_aprilTagCycle == 3) && (m_timer.HasElapsed(((units::time::second_t)1.0))== true)){
     m_aprilTagCycle =0;
     m_isFinished = true;
   }
