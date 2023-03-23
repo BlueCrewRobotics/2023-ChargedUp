@@ -6,7 +6,12 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/SubVerticalElevator.h"
+
+#include <frc2/command/button/CommandXboxController.h>
+
+#include "subsystems/SubTurret.h"
+#include "subsystems/SubDriveTrain.h"
+#include "Constants/ConsControllers.h"
 
 /**
  * An example command.
@@ -15,10 +20,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdVerticalElevatorServoToSubstationShelf
-    : public frc2::CommandHelper<frc2::CommandBase, CmdVerticalElevatorServoToSubstationShelf> {
+class CmdTurretServoToPerpendicularToGrid
+    : public frc2::CommandHelper<frc2::CommandBase, CmdTurretServoToPerpendicularToGrid> {
  public:
-  CmdVerticalElevatorServoToSubstationShelf(SubVerticalElevator* subVerticalElevator);
+  CmdTurretServoToPerpendicularToGrid(SubTurret* subTurret, SubDriveTrain* SubDriveTrain, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 
@@ -27,10 +32,12 @@ class CmdVerticalElevatorServoToSubstationShelf
   void End(bool interrupted) override;
 
   bool IsFinished() override;
- 
- protected:
-
-  SubVerticalElevator* m_subVerticalElevator;
+ private:
+  SubTurret* m_subTurret;
+  SubDriveTrain* m_subDriveTrain;
+  frc2::CommandXboxController* m_auxController;
   bool m_finished = false;
-  bool m_isPositionSet = false;
+  bool m_goingClockwise;
+  double m_robotYaw = 0.0;
+  double m_newTurretAngle = 0.0;
 };

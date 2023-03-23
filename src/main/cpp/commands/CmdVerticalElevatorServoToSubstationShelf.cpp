@@ -13,11 +13,18 @@ CmdVerticalElevatorServoToSubstationShelf::CmdVerticalElevatorServoToSubstationS
 // Called when the command is initially scheduled.
 void CmdVerticalElevatorServoToSubstationShelf::Initialize() {
   m_finished = false;
+  m_isPositionSet = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
 void CmdVerticalElevatorServoToSubstationShelf::Execute() {
-  m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_SUBSTATION_SHELF);
+  if(!m_isPositionSet) {
+    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_SUBSTATION_SHELF);
+    m_isPositionSet = true;
+  }
+  if(m_subVerticalElevator->GetPosition() > 70000) {
+    m_finished = true;
+  }
 }
 
 // Called once the command ends or is interrupted.
@@ -25,5 +32,5 @@ void CmdVerticalElevatorServoToSubstationShelf::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool CmdVerticalElevatorServoToSubstationShelf::IsFinished() {
-  return true;
+  return m_finished;
 }

@@ -18,7 +18,7 @@ void CmdHorizontalElevatorHome::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void CmdHorizontalElevatorHome::Execute() {
   m_subHorizontalElevator->SetHoldPosition(HORIZONTAL_ELEV_MIN_LIMIT);
-  if(m_subHorizontalElevator->GetPosition() < 5) {
+  if(m_subHorizontalElevator->GetPosition() < 8) {
     m_finished = true;
   }
 }

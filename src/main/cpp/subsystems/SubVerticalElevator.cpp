@@ -42,9 +42,9 @@ void SubVerticalElevator::ConfigureMotor() {
     motor->ConfigReverseSoftLimitThreshold(1200,0);
     motor->ConfigForwardSoftLimitEnable(true,0);
     motor->ConfigReverseSoftLimitEnable(true,0);
-    motor->ConfigClosedloopRamp(0.0);
+    motor->ConfigClosedloopRamp(0.2);
 
-    motor->ConfigClosedLoopPeakOutput(0, 0.2, 0);
+    motor->ConfigClosedLoopPeakOutput(0, 0.6, 0);
     motor->SetNeutralMode(Brake);
     motor->ConfigNeutralDeadband(0.001);
 

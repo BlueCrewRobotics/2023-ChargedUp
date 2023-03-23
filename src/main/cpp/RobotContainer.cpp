@@ -21,10 +21,12 @@ RobotContainer::RobotContainer() {
 
   //Add commands to the autonomous drive station chooser
   m_autoChooser.SetDefaultOption("Drive on Charging Station", &m_autoAutonomous);
-  m_autoChooser.AddOption("(Not Tested) Drive Over And Onto Charge Station", &m_autoAutonomousDriveOverAndOntoChargeStation);
+  m_autoChooser.AddOption("Drive Over And Onto Charge Station", &m_autoAutonomousDriveOverAndOntoChargeStation);
+  m_autoChooser.AddOption("Place Cube", &m_autoAutonomousPlaceCube);
+  m_autoChooser.AddOption("Place Cube And Drive Onto Charge Station", &m_autoAutonomousPlaceCubeAndDriveOntoChargeStation);
+  m_autoChooser.AddOption("Place Cube And Drive Over And Onto Charge Station", &m_autoAutonomousPlaceCubeAndDriveOverAndOntoChargeStation);
   m_autoChooser.AddOption("Do Nothing", &m_autoAutonomousDoNothing);
   m_autoChooser.AddOption("Don't Use until tested - Drive out of Community",&m_autoAutonomousDriveOutOfCommunity);
-  m_autoChooser.AddOption("Place Cube", &m_autoAutonomousPlaceCube);
 
   // Put the chooser on the dashboard
   frc::SmartDashboard::PutData("Autonomous", &m_autoChooser);
@@ -55,9 +57,10 @@ void RobotContainer::ConfigureBindings() {
   // Press and hold the Dpad position down and press the x button to move the elevator to the right height based on the global variable
   //auxController_button_x.OnTrue(CmdVerticalElevatorServoToPosition(&m_subRobotGlobals,&m_subVerticalElevator, &auxController,0/*This last variableis not used currently*/).ToPtr());
   auxController_button_x.OnTrue(SeqCmdPlaceGamePieceOnGrid(&m_subRobotGlobals,&m_subVerticalElevator, &m_subTurret,&m_subHorizontalElevator, &auxController,&m_subLimeLightLower,&m_subLimeLightUpper).ToPtr());
+//  auxController_button_b.OnTrue(SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement(&m_subRobotGlobals, &m_subVerticalElevator, &auxController, &m_subLimeLightLower, &m_subLimeLightUpper, &m_subTurret, &m_subDriveTrain, &m_subClawWrist).ToPtr());
 
-  //auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subTurret, &m_subVerticalElevator, &m_subLimeLightUpper).ToPtr());
-  auxController_button_start.OnTrue(CmdVerticalElevatorServoToSubstationShelf(&m_subVerticalElevator).ToPtr());
+  auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subVerticalElevator, &m_subClawWrist, &m_subRobotGlobals).ToPtr());
+  //auxController_button_start.OnTrue(CmdVerticalElevatorServoToSubstationShelf(&m_subVerticalElevator).ToPtr());
   auxController_button_back.OnTrue(SeqCmdTurretAndElevatorsServoToHome(&m_subClawWrist, &m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator).ToPtr());
 
 //  auxController_button_b.OnTrue(CmdVerticalElevatorServoUpNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);

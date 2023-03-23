@@ -34,12 +34,14 @@ constexpr double WRIST_CLAW_MAX_LIMIT = 34.5; // this is pointing all the way do
 constexpr double WRIST_CLAW_MIN_LIMIT = 0;
 constexpr double WRIST_CLAW_TILTED_DOWN = 27; // this is down hitting the floor when elevator is down, not pointing all the way down
 
-constexpr double WRIST_CLAW_PICKUP_UPRIGHT_CONE = 12;
-constexpr double WRIST_CLAW_PICKUP_TIPPED_OVER_CONE = 22.5;
+constexpr double WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_SHELF = 13;
+constexpr double WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR = 16.8;
+constexpr double WRIST_CLAW_PICKUP_TIPPED_OVER_CONE = 23.5;
 constexpr double WRIST_CLAW_PLACE_CONE = 9;
 
-constexpr double WRIST_CLAW_PICKUP_CUBE = 15;
-constexpr double WRIST_CLAW_PLACE_CUBE = 10;
+constexpr double WRIST_CLAW_PICKUP_CUBE_OFF_SHELF = 15.0;
+constexpr double WRIST_CLAW_PICKUP_CUBE_OFF_FLOOR = 20;
+constexpr double WRIST_CLAW_PLACE_CUBE = 9;
 
 
 // Intake motor max speed

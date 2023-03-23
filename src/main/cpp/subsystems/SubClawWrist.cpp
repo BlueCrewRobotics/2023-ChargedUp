@@ -10,7 +10,7 @@ SubClawWrist::SubClawWrist() = default;
 void SubClawWrist::Periodic() {
     // Holding the position
     if(m_enableHoldPosition == true) {
-        m_wristClawController.SetReference(m_holdPosition, rev::ControlType::kPosition); 
+        m_wristClawController.SetReference(m_holdPosition, rev::CANSparkMax::ControlType::kPosition); 
     }
 }
 
@@ -28,7 +28,7 @@ void SubClawWrist::ConfigureMotor() {
     m_wristClawController.SetD(2.0);
     m_wristClawController.SetIZone(0.0);
     m_wristClawController.SetFF(0.0);
-    m_wristClawController.SetOutputRange(-1.0, 1.0); // This can be sped up possibly
+    m_wristClawController.SetOutputRange(-1.0, 1.0);
 
 
 

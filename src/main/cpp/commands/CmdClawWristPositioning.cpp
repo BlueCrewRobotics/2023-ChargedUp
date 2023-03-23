@@ -46,10 +46,13 @@ void CmdClawWristPositioning::Execute() {
       m_subClawWrist->ServoToPosition(WRIST_CLAW_MAX_LIMIT);
     }
     else if(m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER) {
-      m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_UPRIGHT_CONE);
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_SHELF);
     }  
     else if(m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) {
       m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_TIPPED_OVER_CONE);
+    } 
+    else if(m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) {
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR);
     }  
   }
   else if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) {
@@ -57,10 +60,10 @@ void CmdClawWristPositioning::Execute() {
       m_subClawWrist->ServoToPosition(WRIST_CLAW_PLACE_CUBE);
     }
     else if(m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER) {
-      m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_CUBE);
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_CUBE_OFF_SHELF);
     }
     else if(m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN) {
-      m_subClawWrist->ServoToPosition(WRIST_CLAW_TILTED_DOWN);
+      m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_CUBE_OFF_FLOOR);
     }
   }
 }

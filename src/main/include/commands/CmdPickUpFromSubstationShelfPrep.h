@@ -5,14 +5,14 @@
 #pragma once
 
 #include <frc2/command/CommandHelper.h>
-#include <frc2/command/ParallelCommandGroup.h>
+#include <frc2/command/SequentialCommandGroup.h>
 
-#include "CmdTurretTargeting.h"
+#include "CmdClawWristSubstationPrep.h"
 #include "CmdVerticalElevatorServoToSubstationShelf.h"
 
 class CmdPickUpFromSubstationShelfPrep
-    : public frc2::CommandHelper<frc2::ParallelCommandGroup,
+    : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  CmdPickUpFromSubstationShelfPrep> {
  public:
-  CmdPickUpFromSubstationShelfPrep(SubTurret* subTurret, SubVerticalElevator* subVerticalElevator, SubLimeLightUpper* subLimeLightUpper);
+  CmdPickUpFromSubstationShelfPrep(SubVerticalElevator* subVerticalElevator, SubClawWrist* subClawWrist, SubRobotGlobals* subRobotGlobals);
 };

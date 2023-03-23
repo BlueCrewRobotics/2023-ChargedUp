@@ -18,7 +18,7 @@ void CmdTurretHome::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void CmdTurretHome::Execute() {
   m_subTurret->SetHoldPosition(TURRET_HOME_POSITION);
-  if(m_subTurret->GetDegrees() < 5 && m_subTurret->GetDegrees() > -5) {
+  if(m_subTurret->GetDegrees() < 9 && m_subTurret->GetDegrees() > -9) {
     m_finished = true;
   }
 }

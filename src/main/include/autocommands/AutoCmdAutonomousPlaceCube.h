@@ -10,6 +10,11 @@
 #include <frc/Timer.h>
 
 #include "AutoCmdPlaceCube.h"
+#include "AutoCmdHorizontalElevatorServoToPosition.h"
+#include "AutoCmdVerticalElevatorServoToPosition.h"
+#include "AutoCmdTurretServoToDegree.h"
+#include "AutoCmdWristServoToPosition.h"
+#include "AutoCmdIntakeSpin.h"
 #include "commands/SeqCmdTurretAndElevatorsServoToHome.h"
 
 class AutoCmdAutonomousPlaceCube
