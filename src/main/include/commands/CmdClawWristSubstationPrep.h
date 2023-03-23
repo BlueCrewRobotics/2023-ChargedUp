@@ -6,9 +6,9 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "subsystems/SubClawWrist.h"
-#include "subsystems/SubRobotGlobals.h"
 
+#include "subsystems/SubRobotGlobals.h"
+#include "subsystems/SubClawWrist.h"
 
 /**
  * An example command.
@@ -17,10 +17,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdClawWristGridPiecePlacement
-    : public frc2::CommandHelper<frc2::CommandBase, CmdClawWristGridPiecePlacement> {
+class CmdClawWristSubstationPrep
+    : public frc2::CommandHelper<frc2::CommandBase, CmdClawWristSubstationPrep> {
  public:
-  CmdClawWristGridPiecePlacement(SubRobotGlobals* subRobotGlobals, SubClawWrist* subClawWrist);
+  CmdClawWristSubstationPrep(SubClawWrist* subClawWrist, SubRobotGlobals* subRobotGlobals);
 
   void Initialize() override;
 
@@ -30,7 +30,7 @@ class CmdClawWristGridPiecePlacement
 
   bool IsFinished() override;
 
- private: 
+ private:
+  SubClawWrist* m_subClawWrist;
   SubRobotGlobals* m_subRobotGlobals;
-  SubClawWrist* m_subClawWrist; 
 };

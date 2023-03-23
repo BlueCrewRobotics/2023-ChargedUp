@@ -18,9 +18,7 @@ CmdDriveWithController::CmdDriveWithController(SubDriveTrain* driveTrain, frc2::
 }
 
 // Called when the command is initially scheduled.
-void CmdDriveWithController::Initialize() {
-  m_driveTrain->ZeroYaw();
-}
+void CmdDriveWithController::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdDriveWithController::Execute() {

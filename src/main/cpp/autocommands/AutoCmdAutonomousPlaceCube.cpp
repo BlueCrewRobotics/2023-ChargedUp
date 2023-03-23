@@ -11,7 +11,12 @@ AutoCmdAutonomousPlaceCube::AutoCmdAutonomousPlaceCube(SubVerticalElevator* subV
   // Add your commands here, e.g.
   // AddCommands(FooCommand{}, BarCommand{});
   AddCommands(
-    AutoCmdPlaceCube{subVerticalElevator, subTurret, subHorizontalElevator, subClawWrist, timer},
+//    AutoCmdPlaceCube{subVerticalElevator, subTurret, subHorizontalElevator, subClawWrist, timer},
+    AutoCmdVerticalElevatorServoToPosition{subVerticalElevator, VERTICAL_ELEV_POS_CUBE_NODE_UPPER, 50000},
+    AutoCmdTurretServoToDegree{subTurret, 183, 160},
+    AutoCmdHorizontalElevatorServoToPosition{subHorizontalElevator, 34, 26},
+    AutoCmdWristServoToPosition{subClawWrist, WRIST_CLAW_PLACE_CUBE, 7.5},
+    AutoCmdIntakeSpin{subClawWrist, 0.6, timer, 0.1},
     SeqCmdTurretAndElevatorsServoToHome{subClawWrist, subHorizontalElevator, subTurret, subVerticalElevator}
   );
 }

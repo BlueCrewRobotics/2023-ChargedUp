@@ -18,13 +18,18 @@ void CmdMoveVerticalElevator::Execute() {
     
     double speed = 0.0;
     if(m_auxController->GetRawAxis(AXIS_LY) > 0.06 || m_auxController->GetRawAxis(AXIS_LY) < -0.06) {
-      speed = -m_auxController->GetRawAxis(AXIS_LY)*0.35;
+      speed = -m_auxController->GetRawAxis(AXIS_LY)*0.7; // <- Actually only 0.49 because we square it
+      if(speed < 0) {
+        speed = speed*-speed;
+      }
+      else {
+        speed = speed*speed;
+      }
       m_subVerticalElevator->EnableHoldPosition(false);
       m_subVerticalElevator->ControlMotorManually(speed); 
     }
     else {
       m_subVerticalElevator->EnableHoldPosition(true);
-      //m_subVerticalElevator->ControlMotorManually(0.0);
     }
 
 }

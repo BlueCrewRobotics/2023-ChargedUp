@@ -4,19 +4,24 @@
 
 #include "commands/CmdClawWristGridPiecePlacement.h"
 
-CmdClawWristGridPiecePlacement::CmdClawWristGridPiecePlacement(SubRobotGlobals* subRobotGlobals, SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController, SubLimeLightLower* subLimeLightLower, SubLimeLightUpper* subLimeLightUpper) 
-: m_subRobotGlobals{subRobotGlobals}, m_subClawWrist{subClawWrist}, m_auxController{auxController}, m_subLimeLightLower{subLimeLightLower}, m_subLimeLightUpper{subLimeLightUpper} {
+CmdClawWristGridPiecePlacement::CmdClawWristGridPiecePlacement(SubRobotGlobals* subRobotGlobals, SubClawWrist* subClawWrist) 
+: m_subRobotGlobals{subRobotGlobals}, m_subClawWrist{subClawWrist} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subClawWrist);
 }
 
 // Called when the command is initially scheduled.
-void CmdClawWristGridPiecePlacement::Initialize() {}
+void CmdClawWristGridPiecePlacement::Initialize() {
+  if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) {
+    m_subClawWrist->ServoToPosition(WRIST_CLAW_PLACE_CONE);
+  }
+  else if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) {
+    m_subClawWrist->ServoToPosition(WRIST_CLAW_PLACE_CUBE);
+  }
+}
 
 // Called repeatedly when this Command is scheduled to run
-void CmdClawWristGridPiecePlacement::Execute() {
-
-}
+void CmdClawWristGridPiecePlacement::Execute() {}
 
 // Called once the command ends or is interrupted.
 void CmdClawWristGridPiecePlacement::End(bool interrupted) {}

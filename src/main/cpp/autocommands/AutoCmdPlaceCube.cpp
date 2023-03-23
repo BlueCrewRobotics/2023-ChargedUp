@@ -21,6 +21,7 @@ void AutoCmdPlaceCube::Initialize() {
   m_WristIsDown = false;
   m_cubeIsPlaced = false;
   m_finished = false;
+  m_timer->Stop();
   m_timer->Reset();
 }
 
@@ -28,32 +29,32 @@ void AutoCmdPlaceCube::Initialize() {
 void AutoCmdPlaceCube::Execute() {
   if(!m_verticalElevatorIsUp) {
     m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CUBE_NODE_UPPER);
-    if(m_subVerticalElevator->GetPosition() > 40000) {
+    if(m_subVerticalElevator->GetPosition() > 60000) {
       m_verticalElevatorIsUp = true;
     }
   }
   else if(!m_turretIsTurned) {
-    m_subTurret->RotateToDegree(180);
-    if(m_subTurret->GetDegrees() > 100) {
+    m_subTurret->RotateToDegree(183);
+    if(m_subTurret->GetDegrees() > 140) {
       m_turretIsTurned = true;
     }
   }
   else if (!m_horizontalElevatorIsOut) {
-    m_subHorizontalElevator->ServoToPosition(40);
-    if(m_subHorizontalElevator->GetPosition() > 20) {
+    m_subHorizontalElevator->SetHoldPosition(34);
+    if(m_subHorizontalElevator->GetPosition() > 26) {
       m_horizontalElevatorIsOut = true;
     }
   }
   else if(!m_WristIsDown) {
     m_subClawWrist->ServoToPosition(WRIST_CLAW_PLACE_CUBE);
-    if(m_subClawWrist->GetPosition() > 8) {
+    if(m_subClawWrist->GetPosition() > 7.8) {
       m_WristIsDown = true;
       m_timer->Start();
     }
   }
   else if(!m_cubeIsPlaced) {
-    m_subClawWrist->SpinIntake(0.2);
-    if(m_timer->HasElapsed((units::time::second_t)0.5)==true) {
+    m_subClawWrist->SpinIntake(0.5);
+    if(m_timer->HasElapsed((units::time::second_t)0.16)==true) {
       m_cubeIsPlaced = true;
       m_subClawWrist->SpinIntake(0.0);
     }
@@ -61,7 +62,10 @@ void AutoCmdPlaceCube::Execute() {
 }
 
 // Called once the command ends or is interrupted.
-void AutoCmdPlaceCube::End(bool interrupted) {}
+void AutoCmdPlaceCube::End(bool interrupted) {
+  m_timer->Stop();
+  m_timer->Reset();
+}
 
 // Returns true when the command should end.
 bool AutoCmdPlaceCube::IsFinished() {

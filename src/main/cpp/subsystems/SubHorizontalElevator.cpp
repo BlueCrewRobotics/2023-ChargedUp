@@ -13,7 +13,8 @@ void SubHorizontalElevator::Periodic() {
     if(m_enableHoldPosition == true) {
         //int curOffset = m_holdPosition - m_hElevatorEncoder.GetPosition();
         //if(curOffset > HORIZONTAL_ELEV_MAX_LIMIT || curOffset < HORIZONTAL_ELEV_MIN_LIMIT) {
-            m_hElevatorController.SetReference(m_holdPosition, rev::ControlType::kPosition); 
+//            m_hElevatorController.SetReference(m_holdPosition, rev::ControlType::kPosition); 
+            m_hElevatorController.SetReference(m_holdPosition, rev::CANSparkMax::ControlType::kPosition);
         //}
     }
     if(m_enableHoldPosition == false) {
@@ -35,7 +36,7 @@ void SubHorizontalElevator::ConfigureMotor() {
     m_hElevatorController.SetD(0.0);
     m_hElevatorController.SetIZone(0.0);
     m_hElevatorController.SetFF(0.0);
-    m_hElevatorController.SetOutputRange(-0.3, 0.3); // This can be sped up possibly
+    m_hElevatorController.SetOutputRange(-0.4, 0.4); // This can be sped up possibly
 }
 
 double SubHorizontalElevator::GetPosition() {
@@ -56,7 +57,8 @@ void SubHorizontalElevator::ServoToPosition(double position) {
         position = m_hElevatorMotor.GetSoftLimit(rev::CANSparkMax::SoftLimitDirection::kReverse);
     }
 
-    m_hElevatorController.SetReference(position, rev::ControlType::kPosition); 
+    //m_hElevatorController.SetReference(position, rev::ControlType::kPosition); 
+    m_hElevatorController.SetReference(m_holdPosition, rev::CANSparkMax::ControlType::kPosition);
 }
 
 void SubHorizontalElevator::ControlMotorManually(double speed) {

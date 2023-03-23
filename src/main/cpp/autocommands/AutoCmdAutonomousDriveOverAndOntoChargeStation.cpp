@@ -12,7 +12,7 @@ AutoCmdAutonomousDriveOverAndOntoChargeStation::AutoCmdAutonomousDriveOverAndOnt
   // AddCommands(FooCommand{}, BarCommand{});
   AddCommands(
     AutoCmdDriveOverChargeStation(subDriveTrain),
-    AutoCmdTimer(timer, 0.5),
+    AutoCmdTimer(timer, 0.2),
     AutoCmdDriveOntoChargeStation(subDriveTrain),
     AutoCmdTimer(timer, 1.0),
     AutoCmdBalanceOnChargeStation(subDriveTrain)
