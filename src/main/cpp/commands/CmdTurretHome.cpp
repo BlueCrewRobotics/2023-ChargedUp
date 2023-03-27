@@ -4,8 +4,8 @@
 
 #include "commands/CmdTurretHome.h"
 
-CmdTurretHome::CmdTurretHome(SubTurret* subTurret) 
-  : m_subTurret{subTurret} {
+CmdTurretHome::CmdTurretHome(SubTurret* subTurret, frc2::CommandXboxController* auxController) 
+  : m_subTurret{subTurret}, m_auxController{auxController} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subTurret);
 }

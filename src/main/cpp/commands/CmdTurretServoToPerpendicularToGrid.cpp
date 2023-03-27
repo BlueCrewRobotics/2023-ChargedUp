@@ -25,23 +25,23 @@ void CmdTurretServoToPerpendicularToGrid::Initialize() {
       m_goingClockwise = false;
     }
     else if(m_subTurret->GetDegrees() < 0) {
-      m_goingClockwise = false;
+      m_goingClockwise = true;
     }
     else if(m_subTurret->GetDegrees() > 0) {
-      m_goingClockwise = true;
+      m_goingClockwise = false;
     }
   }
   else if(m_robotYaw > 10) {
-      m_goingClockwise = true;
-  }
-  else if(m_robotYaw < -10) {
       m_goingClockwise = false;
   }
+  else if(m_robotYaw < -10) {
+      m_goingClockwise = true;
+  }
   if(m_goingClockwise) {
-    m_newTurretAngle = 180 - m_robotYaw;
+    m_newTurretAngle = -180 - m_robotYaw;
   }
   else {
-    m_newTurretAngle = -180 - m_robotYaw;
+    m_newTurretAngle = 180 - m_robotYaw;
   }
   if(m_newTurretAngle > 190) {
     std::cout << "New Turret Angle Was Greater than 190: " << m_newTurretAngle << std::endl;
@@ -58,10 +58,10 @@ void CmdTurretServoToPerpendicularToGrid::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void CmdTurretServoToPerpendicularToGrid::Execute() {
   double currentTurretAngle = m_subTurret->GetDegrees();
-  if(m_goingClockwise && currentTurretAngle > m_newTurretAngle-2) {
+  if(m_goingClockwise && currentTurretAngle < m_newTurretAngle+2) {
     m_finished = true;
   }
-  else if(!m_goingClockwise && currentTurretAngle < m_newTurretAngle+2) {
+  else if(!m_goingClockwise && currentTurretAngle > m_newTurretAngle-2) {
     m_finished = true;
   }
 }

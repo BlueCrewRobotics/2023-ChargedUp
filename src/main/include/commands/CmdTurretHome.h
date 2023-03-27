@@ -7,6 +7,8 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/SubTurret.h"
+#include <frc2/command/button/CommandXboxController.h>
+#include "Constants/ConsControllers.h"
 
 
 /**
@@ -19,7 +21,7 @@
 class CmdTurretHome
     : public frc2::CommandHelper<frc2::CommandBase, CmdTurretHome> {
  public:
-  CmdTurretHome(SubTurret* subTurret);
+  CmdTurretHome(SubTurret* subTurret, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 
@@ -31,5 +33,6 @@ class CmdTurretHome
 
   protected:
   SubTurret* m_subTurret;
+  frc2::CommandXboxController* m_auxController;
   bool m_finished = false;
 };

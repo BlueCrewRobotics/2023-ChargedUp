@@ -68,7 +68,7 @@ void CmdDriveWithController::Execute() {
       m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());
   //    std::cout << "CmdDriveWithController>> Updated desired yaw to: " << m_driveTrain->GetYawStraightValue() << std::endl;
 
-      rotation = m_driverController->GetRawAxis(AXIS_LX)*0.4;
+      rotation = m_driverController->GetRawAxis(AXIS_LX)*0.5;
 
   //    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
     }

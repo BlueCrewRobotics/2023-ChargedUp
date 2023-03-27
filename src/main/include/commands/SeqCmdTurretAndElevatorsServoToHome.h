@@ -17,5 +17,5 @@ class SeqCmdTurretAndElevatorsServoToHome
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  SeqCmdTurretAndElevatorsServoToHome> {
  public:
-  SeqCmdTurretAndElevatorsServoToHome(SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator, SubTurret* subTurret, SubVerticalElevator* subVerticalElevator);
+  SeqCmdTurretAndElevatorsServoToHome(SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator, SubTurret* subTurret, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController);
 };

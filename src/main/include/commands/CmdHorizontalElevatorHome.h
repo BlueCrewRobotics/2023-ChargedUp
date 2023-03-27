@@ -7,6 +7,7 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include "subsystems/SubHorizontalElevator.h"
+#include <frc2/command/button/CommandXboxController.h>
 #include "Constants/ConsControllers.h"
 
 /**
@@ -19,7 +20,7 @@
 class CmdHorizontalElevatorHome
     : public frc2::CommandHelper<frc2::CommandBase, CmdHorizontalElevatorHome> {
  public:
-  CmdHorizontalElevatorHome(SubHorizontalElevator* subHorizontalElevator);
+  CmdHorizontalElevatorHome(SubHorizontalElevator* subHorizontalElevator, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 
@@ -31,5 +32,6 @@ class CmdHorizontalElevatorHome
 
  protected:
   SubHorizontalElevator* m_subHorizontalElevator;
+  frc2::CommandXboxController* m_auxController;
   bool m_finished = false;
 };

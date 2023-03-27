@@ -45,10 +45,10 @@ void AutoCmdDriveOverChargeStation::Execute() {
     m_overChargeStation = true;
   }
   if(!m_overChargeStation && !m_onChargeStation) {
-    speed = -0.6;
+    speed = -0.7;
   }
   else if (!m_overChargeStation && m_onChargeStation) {
-    speed = -0.4;
+    speed = -0.5;
   }
   else {
     m_timer.Start();
