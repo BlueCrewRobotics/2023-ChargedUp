@@ -4,31 +4,51 @@
 
 #include "commands/CmdVerticalElevatorServoToPosition.h"
 
-CmdVerticalElevatorServoToPosition::CmdVerticalElevatorServoToPosition(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, double position) 
-: m_subRobotGlobals{subRobotGlobals}, m_subVerticalElevator{subVerticalElevator}, m_auxController{auxController}, m_position{position} {
+#include <iostream>
+#include <stdio.h>
+
+CmdVerticalElevatorServoToPosition::CmdVerticalElevatorServoToPosition(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController) 
+: m_subRobotGlobals{subRobotGlobals}, m_subVerticalElevator{subVerticalElevator}, m_auxController{auxController} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subVerticalElevator);
 }
 
 // Called when the command is initially scheduled.
-void CmdVerticalElevatorServoToPosition::Initialize() {}
+void CmdVerticalElevatorServoToPosition::Initialize() {
+  m_position = 0.0;
+  m_finished = false;
+  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP))){
+    m_position=VERTICAL_ELEV_POS_CONE_NODE_UPPER;
+  }
+  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER))){
+    m_position=VERTICAL_ELEV_POS_CONE_NODE_LOWER;
+  }
+  if(((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece || m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece)) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_DOWN) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN))){
+    m_position=VERTICAL_ELEV_POS_HYBRID_NODE;
+  }
+  if((m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP))){
+    m_position=VERTICAL_ELEV_POS_CUBE_NODE_UPPER;
+  }
+  if((m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER))){
+    m_position=VERTICAL_ELEV_POS_CUBE_NODE_LOWER;
+  }
+  if(m_position != 0.0) {
+    m_subVerticalElevator->ServoToPosition(m_position);
+    std::cout << "Position Not Set" << std::endl;
+  }
+}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdVerticalElevatorServoToPosition::Execute() {
-  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP))){
-    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CONE_NODE_UPPER);
+  if(m_position != 0.0) {
+    if(m_subVerticalElevator->GetPosition() > (m_position-10000) &&m_subVerticalElevator->GetPosition() < (m_position+10000)) {
+      m_finished = true;
+      std::cout << "Finished Going Up: " << m_subVerticalElevator->GetPosition() << std::endl;
+    }
   }
-  if((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER))){
-    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CONE_NODE_LOWER);
-  }
-  if(((m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece || m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece)) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_DOWN) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_DOWN) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN))){
-    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_HYBRID_NODE);
-  }
-  if((m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP))){
-    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CUBE_NODE_UPPER);
-  }
-  if((m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) && ((m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER))){
-    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_POS_CUBE_NODE_LOWER);
+  else {
+    m_finished = true;
+    std::cout << "Position Not Set Finished" << std::endl;
   }
 }
 
@@ -37,5 +57,5 @@ void CmdVerticalElevatorServoToPosition::End(bool interrupted) {}
 
 // Returns true when the command should end.
 bool CmdVerticalElevatorServoToPosition::IsFinished() {
-  return true;
+  return m_finished;
 }

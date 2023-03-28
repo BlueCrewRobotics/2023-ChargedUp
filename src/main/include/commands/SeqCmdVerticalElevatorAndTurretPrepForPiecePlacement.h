@@ -12,11 +12,12 @@
 
 #include "CmdClawWristGridPiecePlacement.h"
 #include "CmdVerticalElevatorGridPiecePlacement.h"
+#include "CmdVerticalElevatorServoToPosition.h"
 #include "CmdTurretServoToPerpendicularToGrid.h"
 
 class SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement> {
  public:
-  SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, SubLimeLightLower* subLimeLightLower, SubLimeLightUpper* subLimeLightUpper, SubTurret* subTurret, SubDriveTrain* subDriveTrain, SubClawWrist* subClawWrist);
+  SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, SubTurret* subTurret, SubDriveTrain* subDriveTrain, SubClawWrist* subClawWrist);
 };

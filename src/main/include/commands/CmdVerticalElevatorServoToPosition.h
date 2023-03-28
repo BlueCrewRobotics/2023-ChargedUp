@@ -21,7 +21,7 @@
 class CmdVerticalElevatorServoToPosition
     : public frc2::CommandHelper<frc2::CommandBase, CmdVerticalElevatorServoToPosition> {
  public:
-  CmdVerticalElevatorServoToPosition(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, double position);
+  CmdVerticalElevatorServoToPosition(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 
@@ -35,6 +35,7 @@ class CmdVerticalElevatorServoToPosition
   SubRobotGlobals* m_subRobotGlobals;
   SubVerticalElevator* m_subVerticalElevator; 
   frc2::CommandXboxController* m_auxController;
-  double m_position;
-
+  bool m_finished = false;
+  bool m_goingUp = true;
+  double m_position = 0.0;
 };

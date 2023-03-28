@@ -10,8 +10,8 @@
 
 // Vertical Elevator limits
 constexpr double VERTICAL_ELEV_MAX_LIMIT = 92000;
-constexpr double VERTICAL_ELEV_MIN_LIMIT = 1000;
-constexpr int VERTICAL_ELEV_VELOCITY_MAX = 1000; // <---PLACE HOLDER!!!------ Maximum velocity of the elevator motor
+constexpr double VERTICAL_ELEV_MIN_LIMIT = 1200;
+constexpr int VERTICAL_ELEV_VELOCITY_MAX = 1000; 
 
 constexpr int VERTICAL_ELEV_POSITION_HOLD_TOLERANCE = 600;
 

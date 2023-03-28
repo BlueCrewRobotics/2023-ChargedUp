@@ -6,15 +6,14 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+
 #include <frc2/command/button/CommandXboxController.h>
-#include "subsystems/SubVerticalElevator.h"
 #include "Constants/ConsControllers.h"
-#include "subsystems/SubRobotGlobals.h"
-#include "subsystems/SubLimeLightLower.h"
-#include "subsystems/SubLimeLightUpper.h"
 
-#include <iostream>
-
+#include "subsystems/SubClawWrist.h"
+#include "subsystems/SubHorizontalElevator.h"
+#include "subsystems/SubTurret.h"
+#include "subsystems/SubVerticalElevator.h"
 
 /**
  * An example command.
@@ -23,10 +22,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdVerticalElevatorGridPiecePlacement
-    : public frc2::CommandHelper<frc2::CommandBase, CmdVerticalElevatorGridPiecePlacement> {
+class CmdTurretAndElevatorsServoToHome
+    : public frc2::CommandHelper<frc2::CommandBase, CmdTurretAndElevatorsServoToHome> {
  public:
-  CmdVerticalElevatorGridPiecePlacement(SubRobotGlobals* subRobotGlobals, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController, SubLimeLightLower* subLimeLightLower, SubLimeLightUpper* subLimeLightUpper);
+  CmdTurretAndElevatorsServoToHome(SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator, SubTurret* subTurret, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 
@@ -35,14 +34,16 @@ class CmdVerticalElevatorGridPiecePlacement
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-
-  protected: 
-  SubRobotGlobals* m_subRobotGlobals;
-  SubVerticalElevator* m_subVerticalElevator; 
+ private:
+  SubClawWrist* m_subClawWrist;
+  SubHorizontalElevator* m_subHorizontalElevator;
+  SubTurret* m_subTurret;
+  SubVerticalElevator* m_subVerticalElevator;
   frc2::CommandXboxController* m_auxController;
-  SubLimeLightLower* m_subLimeLightLower;
-  SubLimeLightUpper* m_subLimeLightUpper;
+
+  bool m_wristIsHome = false;
+  bool m_horizontalElevatorIsHome = false;
+  bool m_turretIsHome = false;
+  bool m_verticalElevatorIsHome = false;
   bool m_finished = false;
-  bool m_goingUp = true;
-  double m_position = 0.0;
 };

@@ -52,10 +52,10 @@ void SubTurret::ConfigureTurret() {
 
     motor->ConfigPeakCurrentDuration(20, 0);
     motor->ConfigPeakCurrentLimit(15, 0);
-    motor->ConfigContinuousCurrentLimit(9, 0);
+    motor->ConfigContinuousCurrentLimit(7, 0);
     motor->EnableCurrentLimit(true);
 
-    motor->ConfigClosedloopRamp(0.2);
+    motor->ConfigClosedloopRamp(0.28);
     motor->ConfigOpenloopRamp(0);
 
     //motor->SetSelectedSensorPosition(0,0,0);

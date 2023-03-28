@@ -55,13 +55,14 @@ void RobotContainer::ConfigureBindings() {
   //auxController_button_y.OnTrue(CmdSelectPieceType(& auxController).ToPtr());
 
   // Press and hold the Dpad position down and press the x button to move the elevator to the right height based on the global variable
-  auxController_button_x.OnTrue(CmdVerticalElevatorServoToPosition(&m_subRobotGlobals,&m_subVerticalElevator, &auxController,0/*This last variableis not used currently*/).ToPtr());
+  auxController_button_x.OnTrue(CmdVerticalElevatorServoToPosition(&m_subRobotGlobals,&m_subVerticalElevator, &auxController/*,0/*This last variableis not used currently*/).ToPtr());
   //auxController_button_x.OnTrue(SeqCmdPlaceGamePieceOnGrid(&m_subRobotGlobals,&m_subVerticalElevator, &m_subTurret,&m_subHorizontalElevator, &auxController,&m_subLimeLightLower,&m_subLimeLightUpper).ToPtr());
-  auxController_button_b.OnTrue(SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement(&m_subRobotGlobals, &m_subVerticalElevator, &auxController, &m_subLimeLightLower, &m_subLimeLightUpper, &m_subTurret, &m_subDriveTrain, &m_subClawWrist).ToPtr());
+  auxController_button_b.OnTrue(SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement(&m_subRobotGlobals, &m_subVerticalElevator, &auxController, &m_subTurret, &m_subDriveTrain, &m_subClawWrist).ToPtr());
 
   auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subVerticalElevator, &m_subClawWrist, &m_subRobotGlobals).ToPtr());
   //auxController_button_start.OnTrue(CmdVerticalElevatorServoToSubstationShelf(&m_subVerticalElevator).ToPtr());
 //  auxController_button_back.OnTrue(SeqCmdTurretAndElevatorsServoToHome(&m_subClawWrist, &m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator, &auxController).ToPtr());
+  auxController_button_back.OnTrue(CmdTurretAndElevatorsServoToHome(&m_subClawWrist, &m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator, &auxController).ToPtr());
 
 //  auxController_button_b.OnTrue(CmdVerticalElevatorServoUpNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);
 //  auxController_button_a.OnTrue(CmdVerticalElevatorServoDownNodePosition(&m_subVerticalElevator, & auxController).ToPtr()).Debounce((units::time::second_t) 0.3, frc::Debouncer::kBoth);

@@ -296,6 +296,10 @@ void SubDriveTrain::ResetEncoderPositions() {
   leftDriveMotor->ResetEncoder();
 }
 
+void SubDriveTrain::CalibrateNavX() {
+  m_ahrs->Calibrate();
+}
+
 float SubDriveTrain::GetYaw() {
   return m_ahrs->GetYaw();
 }

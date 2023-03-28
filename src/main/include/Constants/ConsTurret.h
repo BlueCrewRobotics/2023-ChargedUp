@@ -21,6 +21,6 @@ constexpr int TURRET_KF_0 = 0;
 constexpr int TURRET_KP_0 = 2.0;
 constexpr int TURRET_KI_0 = 0.0;
 constexpr int TURRET_KD_0 = 100;
-constexpr int TURRET_ENCODER_TICS_PER_DEGREE = 15.37778;
+constexpr double TURRET_ENCODER_TICS_PER_DEGREE = 15.37778;
 constexpr int TURRET_HOME_POSITION = 0;
 constexpr int TURRET_POSITION_HOLD_TOLERANCE = 15;
