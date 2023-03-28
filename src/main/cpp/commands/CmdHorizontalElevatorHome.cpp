@@ -4,8 +4,8 @@
 
 #include "commands/CmdHorizontalElevatorHome.h"
 
-CmdHorizontalElevatorHome::CmdHorizontalElevatorHome(SubHorizontalElevator* subHorizontalElevator)
-  :m_subHorizontalElevator{subHorizontalElevator} {
+CmdHorizontalElevatorHome::CmdHorizontalElevatorHome(SubHorizontalElevator* subHorizontalElevator, frc2::CommandXboxController* auxController)
+  :m_subHorizontalElevator{subHorizontalElevator}, m_auxController{auxController} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements(subHorizontalElevator);
 }

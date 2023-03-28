@@ -22,10 +22,10 @@ void AutoCmdTurretServoToDegree::Initialize() {
     m_angleToFinishAt = m_angleToGoTo - 2;
   }
   if(startingAngle > m_angleToGoTo) {
-    goingClockwise = false;
+    goingClockwise = true;
   }
   else {
-    goingClockwise = true;
+    goingClockwise = false;
   }
 }
 
@@ -36,10 +36,10 @@ void AutoCmdTurretServoToDegree::Execute() {
     m_subTurret->RotateToDegree(m_angleToGoTo);
     m_isPositionSet = true;
   }
-  if(!goingClockwise && currentAngle <= m_angleToFinishAt) {
+  if(!goingClockwise && currentAngle >= m_angleToFinishAt) {
     m_finished = true;
   }
-  else if (goingClockwise && currentAngle >= m_angleToFinishAt) {
+  else if (goingClockwise && currentAngle <= m_angleToFinishAt) {
     m_finished = true;
   }
 }

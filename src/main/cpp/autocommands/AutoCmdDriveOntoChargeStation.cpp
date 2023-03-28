@@ -43,7 +43,7 @@ void AutoCmdDriveOntoChargeStation::Execute() {
   // Do we think we are already on the ChargeStation?
   // Go forward until we start tilting
   if(!m_onChargeStation && (currentPitch > m_levelPitchValue-4) && (currentPitch < m_levelPitchValue+5)) {
-    speed = 0.6;
+    speed = 0.7;
     std::cout << "Driving Forward, Not On Ramp" << std::endl;
   }
   // Drive forward until we are level again
@@ -67,7 +67,7 @@ void AutoCmdDriveOntoChargeStation::Execute() {
           m_wellOntoRampPitchValue = currentPitch;
           std::cout << "Out Of Timer Setting wellOnto Pitch Value" << std::endl;
         }
-        speed = 0.28;
+        speed = 0.31;
       }
     }
     // if we are level again, set onChargeStation to true

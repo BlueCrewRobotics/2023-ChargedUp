@@ -76,6 +76,8 @@ public:
   double GetRightErrorValue();
   // Reset Enocders Positons
   void ResetEncoderPositions();
+  // Callibrate NavX
+  void CalibrateNavX();
   // Get navx positional yaw
   float GetYaw();
   //zero yaw

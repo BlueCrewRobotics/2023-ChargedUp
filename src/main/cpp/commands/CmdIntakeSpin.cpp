@@ -47,13 +47,13 @@ void CmdIntakeSpin::Execute() {
   // Cone speed selected
   if (m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) {
     if(m_pullIn) {
-      speed = -0.3;
+      speed = -0.43;
     }
     else if (m_eject) {
       speed = 0.4;
     }
     else {
-      speed = 0.15;
+      speed = 0.18;
     }
   }
   // Cube speed selected

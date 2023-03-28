@@ -42,7 +42,7 @@ void AutoCmdDriveOntoChargeStationTowardsBatteryEnd::Execute() {
   // Do we think we are already on the ChargeStation?
   // Go forward until we start tilting
   if(!m_onChargeStation && (currentPitch < m_levelPitchValue+1) && (currentPitch > m_levelPitchValue-5)) {
-    speed = -0.6;
+    speed = -0.7;
   }
   // Drive forward until we are level again
   else {

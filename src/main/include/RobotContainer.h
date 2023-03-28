@@ -36,6 +36,7 @@
 #include "commands/CmdClawWristMoveManual.h"
 #include "commands/SeqCmdPlaceGamePieceOnGrid.h"
 #include "commands/SeqCmdTurretAndElevatorsServoToHome.h"
+#include "commands/CmdTurretAndElevatorsServoToHome.h"
 #include "commands/SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement.h"
 
 // Auto commands

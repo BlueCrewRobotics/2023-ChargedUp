@@ -21,7 +21,7 @@ AutoCmdAutonomousDriveOutOfCommunity::AutoCmdAutonomousDriveOutOfCommunity(SubDr
   AddCommands(
 
     // Drive the robot by rotations
-    AutoCmdDrive(subDriveTrain)
+//    AutoCmdDrive(subDriveTrain)
 //    AutoCmdDriveByRotations(subDriveTrain, 1, 1, timer)
 
     // Drive onto the charge Station

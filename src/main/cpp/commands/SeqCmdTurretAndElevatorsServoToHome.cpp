@@ -7,13 +7,13 @@
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-SeqCmdTurretAndElevatorsServoToHome::SeqCmdTurretAndElevatorsServoToHome(SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator, SubTurret* subTurret, SubVerticalElevator* subVerticalElevator) {
+SeqCmdTurretAndElevatorsServoToHome::SeqCmdTurretAndElevatorsServoToHome(SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator, SubTurret* subTurret, SubVerticalElevator* subVerticalElevator, frc2::CommandXboxController* auxController) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand{}, BarCommand{});
   AddCommands(
     CmdWristHome{subClawWrist},
-    CmdHorizontalElevatorHome{subHorizontalElevator},
-    CmdTurretHome{subTurret},
+    CmdHorizontalElevatorHome{subHorizontalElevator, auxController},
+    CmdTurretHome{subTurret, auxController},
     CmdVerticalElevatorHome{subVerticalElevator}
   );
 }

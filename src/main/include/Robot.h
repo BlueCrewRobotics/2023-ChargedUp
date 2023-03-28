@@ -13,6 +13,8 @@
 #include <frc/TimedRobot.h>
 #include <frc2/command/CommandPtr.h>
 
+#include "subsystems/SubDriveTrain.h"
+
 #include "RobotContainer.h"
 
 class Robot : public frc::TimedRobot {
@@ -35,4 +37,6 @@ class Robot : public frc::TimedRobot {
   frc2::Command* m_autonomousCommand;
 
   RobotContainer m_robotContainer;
+
+  SubDriveTrain* m_subDriveTrain;
 };
