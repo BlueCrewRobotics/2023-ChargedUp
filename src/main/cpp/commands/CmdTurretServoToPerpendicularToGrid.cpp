@@ -19,15 +19,15 @@ void CmdTurretServoToPerpendicularToGrid::Initialize() {
   m_robotYaw = -m_subDriveTrain->GetYaw();
   if(m_robotYaw <= 10 && m_robotYaw >= -10) {
     if(m_auxController->GetPOV() == DPAD_VALUE_LEFT_DOWN || m_auxController->GetPOV() == DPAD_VALUE_LEFT_CENTER || m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) {
-      m_goingClockwise = true;
-    }
-    else if(m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN || m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER || m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP) {
       m_goingClockwise = false;
     }
-    else if(m_subTurret->GetDegrees() < 0) {
+    else if(m_auxController->GetPOV() == DPAD_VALUE_RIGHT_DOWN || m_auxController->GetPOV() == DPAD_VALUE_RIGHT_CENTER || m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP) {
       m_goingClockwise = true;
     }
-    else if(m_subTurret->GetDegrees() > 0) {
+    else if(m_subTurret->GetDegrees() <= 0.0) {
+      m_goingClockwise = true;
+    }
+    else if(m_subTurret->GetDegrees() > 0.0) {
       m_goingClockwise = false;
     }
   }
