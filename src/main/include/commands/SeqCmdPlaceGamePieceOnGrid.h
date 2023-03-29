@@ -16,6 +16,8 @@
 #include "commands/CmdTurretGridPiecePlacement.h"
 #include "commands/CmdHorizontalElevGridPiecePlacement.h"
 #include "commands/CmdClawWristGridPiecePlacement.h"
+#include "commands/SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement.h"
+#include "autocommands/AutoCmdTimer.h"
 
 // Subsystem includes
 #include "subsystems/SubRobotGlobals.h"
@@ -35,5 +37,8 @@ class SeqCmdPlaceGamePieceOnGrid
           SubHorizontalElevator* subHorizontalElevator, 
           frc2::CommandXboxController* auxController, 
           SubLimeLightLower* subLimeLightLower, 
-          SubLimeLightUpper* subLimeLightUpper);
+          SubLimeLightUpper* subLimeLightUpper,
+          SubDriveTrain* subDriveTrain,
+          SubClawWrist* subClawWrist,
+          frc::Timer* timer);
 };
