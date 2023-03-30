@@ -31,6 +31,7 @@
 #include "commands/CmdClawEngage.h"
 #include "commands/CmdClawDisengage.h"
 #include "commands/CmdIntakeSpin.h"
+#include "commands/CmdClawWristPickUpOffFloor.h"
 
 #include "commands/CmdClawWristPositioning.h"
 #include "commands/CmdClawWristMoveManual.h"
@@ -90,6 +91,8 @@ class RobotContainer {
   RobotContainer();
 
   frc2::Command* GetAutonomousCommand();
+
+  void ZeroNavXYaw();
 
   // Configure the drive train run this function in RobotInit()
   void ConfigureDrive();

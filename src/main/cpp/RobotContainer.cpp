@@ -45,8 +45,9 @@ void RobotContainer::ConfigureBindings() {
   
   // select type of piece we're interested in
   driverController_button_a.OnTrue(CmdSelectPieceType(&m_subRobotGlobals).ToPtr());
+  // Pick Up Game Piece Off Of Floor
+  driverController_button_y.OnTrue(CmdClawWristPickUpOffFloor(&m_subClawWrist, &driverController, &m_subRobotGlobals).ToPtr());
 
-  
   // Toggle whether or not the claw is engaged when the aux controller left bumper is pressed
   auxController_button_lbump.OnTrue(CmdIntakeSpin(&m_subClawWrist, &auxController, &m_subRobotGlobals).ToPtr());
 //  auxController_button_lbump.OnFalse(CmdClawEngage(&m_subClawWrist).ToPtr());
@@ -93,6 +94,10 @@ void RobotContainer::ConfigureBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   
   return m_autoChooser.GetSelected();
+}
+
+void RobotContainer::ZeroNavXYaw() {
+  m_subDriveTrain.ZeroYaw();
 }
 
 void RobotContainer::ConfigureDrive() {

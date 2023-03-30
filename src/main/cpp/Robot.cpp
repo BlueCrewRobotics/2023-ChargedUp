@@ -37,7 +37,7 @@ void Robot::RobotPeriodic() {
 void Robot::DisabledInit() {}
 
 void Robot::DisabledPeriodic() {
-  //m_subDriveTrain->CalibrateNavX();
+  m_robotContainer.ZeroNavXYaw();
 }
 
 /**
