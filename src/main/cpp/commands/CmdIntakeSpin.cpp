@@ -36,6 +36,12 @@ void CmdIntakeSpin::Execute() {
   if(!m_auxController->GetRawButton(BUTTON_L_BUMP)) {
     m_finished = true;
   }
+  else if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece && m_subIntakeWrist->GetIntakeOutput() >= 14 && m_pullIn && (m_subIntakeWrist->GetPosition() < WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR+3 && m_subIntakeWrist->GetPosition() > WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR-3)) {
+    m_finished = true;
+  }
+  else if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece && m_subIntakeWrist->GetIntakeOutput() >= 8.5 && m_pullIn) {
+    m_finished = true;
+  }
   
 /*  else if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece && m_subIntakeWrist->GetIntakeOutput() > 3) {
     m_finished = true;
@@ -47,7 +53,12 @@ void CmdIntakeSpin::Execute() {
   // Cone speed selected
   if (m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) {
     if(m_pullIn) {
-      speed = -0.43;
+      if(m_subIntakeWrist->GetPosition() < WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR+3 && m_subIntakeWrist->GetPosition() > WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR-3) {
+        speed = -0.175;
+      }
+      else {
+        speed = -0.43;
+      }
     }
     else if (m_eject) {
       speed = 0.4;
