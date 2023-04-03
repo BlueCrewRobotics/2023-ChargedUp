@@ -31,12 +31,11 @@ SeqCmdPlaceGamePieceOnGrid::SeqCmdPlaceGamePieceOnGrid(SubRobotGlobals* subRobot
     //CmdVerticalElevatorGridPiecePlacement(subRobotGlobals, subVerticalElevator, auxController, subLimeLightLower, subLimeLightUpper),
     // Move Turret to be perpendicular to the grid and move the vertical elevator and wrist
     SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement(subRobotGlobals, subVerticalElevator, auxController, subTurret, subDriveTrain, subClawWrist),
+    // Put the horizontal elevator out
+    CmdHorizontalElevGridPiecePlacement(subRobotGlobals, subHorizontalElevator, auxController, subLimeLightLower, subLimeLightUpper, subTurret),
     // Wait a moment for it to settle out
-    AutoCmdTimer(timer, 1),
+    AutoCmdTimer(timer, 0.25),
     // Rotate the turret to the proper locations based on the DPad selected placement
     CmdTurretGridPiecePlacement(subRobotGlobals, subTurret, auxController, subLimeLightLower, subLimeLightUpper)
-
-    
-
   );
 }

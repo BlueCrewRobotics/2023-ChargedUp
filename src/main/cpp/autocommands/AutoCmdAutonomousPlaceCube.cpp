@@ -15,7 +15,7 @@ AutoCmdAutonomousPlaceCube::AutoCmdAutonomousPlaceCube(SubVerticalElevator* subV
     AutoCmdVerticalElevatorServoToPosition{subVerticalElevator, VERTICAL_ELEV_POS_CUBE_NODE_UPPER, 50000},
     AutoCmdTurretServoToDegree{subTurret, 183, 160},
     AutoCmdHorizontalElevatorServoToPosition{subHorizontalElevator, 34, 26},
-    AutoCmdWristServoToPosition{subClawWrist, WRIST_CLAW_PLACE_CUBE, 7.5},
+    AutoCmdWristServoToPosition{subClawWrist, 10.5, 7.5},
     AutoCmdIntakeSpin{subClawWrist, 0.6, timer, 0.1},
     //SeqCmdTurretAndElevatorsServoToHome{subClawWrist, subHorizontalElevator, subTurret, subVerticalElevator}
     AutoCmdWristServoToPosition{subClawWrist, 0, 20},

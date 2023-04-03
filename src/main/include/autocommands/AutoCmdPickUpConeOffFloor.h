@@ -6,9 +6,8 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "common/BC_MotionProfile.h"
-#include "subsystems/SubDriveTrain.h"
-#include <frc/Timer.h>
+
+#include "subsystems/SubClawWrist.h"
 
 /**
  * An example command.
@@ -17,11 +16,11 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AutoCmdDrive
-    : public frc2::CommandHelper<frc2::CommandBase, AutoCmdDrive> {
+class AutoCmdPickUpConeOffFloor
+    : public frc2::CommandHelper<frc2::CommandBase, AutoCmdPickUpConeOffFloor> {
  public:
- // AutoCmdDrive(BC_MotionProfile* motionProfile, SubDriveTrain* subDriveTrain);
-  AutoCmdDrive(SubDriveTrain* subDriveTrain, double speed, double distance);
+  AutoCmdPickUpConeOffFloor(SubClawWrist* subClawWrist);
+
   void Initialize() override;
 
   void Execute() override;
@@ -29,16 +28,7 @@ class AutoCmdDrive
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-  
  private:
-  //BC_MotionProfile* m_motionProfile;
-  SubDriveTrain* m_subDriveTrain;
-  frc::Timer m_timer;
-  double m_speed;
-  double m_distance;
-  double m_rightFinished = 0.0;
-  double m_leftFinished = 0.0;
+  SubClawWrist* m_subClawWrist;
   bool m_finished = false;
-
-
 };

@@ -25,8 +25,9 @@ RobotContainer::RobotContainer() {
   m_autoChooser.AddOption("Place Cube", &m_autoAutonomousPlaceCube);
   m_autoChooser.AddOption("Place Cube And Drive Onto Charge Station", &m_autoAutonomousPlaceCubeAndDriveOntoChargeStation);
   m_autoChooser.AddOption("Place Cube And Drive Over And Onto Charge Station", &m_autoAutonomousPlaceCubeAndDriveOverAndOntoChargeStation);
+  m_autoChooser.AddOption("Place Cube And Drive Out Of Community", &m_autoAutonomousPlaceCubeAndDriveOutOfCommunity);
   m_autoChooser.AddOption("Do Nothing", &m_autoAutonomousDoNothing);
-  m_autoChooser.AddOption("Don't Use until tested - Drive out of Community",&m_autoAutonomousDriveOutOfCommunity);
+  m_autoChooser.AddOption("Drive out of Community",&m_autoAutonomousDriveOutOfCommunity);
 
   // Put the chooser on the dashboard
   frc::SmartDashboard::PutData("Autonomous", &m_autoChooser);
@@ -45,8 +46,9 @@ void RobotContainer::ConfigureBindings() {
   
   // select type of piece we're interested in
   driverController_button_a.OnTrue(CmdSelectPieceType(&m_subRobotGlobals).ToPtr());
+  // Pick Up Game Piece Off Of Floor
+  driverController_button_y.OnTrue(CmdClawWristPickUpOffFloor(&m_subClawWrist, &driverController, &m_subRobotGlobals).ToPtr());
 
-  
   // Toggle whether or not the claw is engaged when the aux controller left bumper is pressed
   auxController_button_lbump.OnTrue(CmdIntakeSpin(&m_subClawWrist, &auxController, &m_subRobotGlobals).ToPtr());
 //  auxController_button_lbump.OnFalse(CmdClawEngage(&m_subClawWrist).ToPtr());
@@ -59,7 +61,7 @@ void RobotContainer::ConfigureBindings() {
   auxController_button_x.OnTrue(SeqCmdPlaceGamePieceOnGrid(&m_subRobotGlobals,&m_subVerticalElevator, &m_subTurret,&m_subHorizontalElevator, &auxController,&m_subLimeLightLower,&m_subLimeLightUpper, &m_subDriveTrain, &m_subClawWrist, &m_autoTimer).ToPtr());
   auxController_button_b.OnTrue(SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement(&m_subRobotGlobals, &m_subVerticalElevator, &auxController, &m_subTurret, &m_subDriveTrain, &m_subClawWrist).ToPtr());
 
-  auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subVerticalElevator, &m_subClawWrist, &m_subRobotGlobals).ToPtr());
+  auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subVerticalElevator, &m_subClawWrist, &m_subRobotGlobals, &auxController).ToPtr());
   //auxController_button_start.OnTrue(CmdVerticalElevatorServoToSubstationShelf(&m_subVerticalElevator).ToPtr());
 //  auxController_button_back.OnTrue(SeqCmdTurretAndElevatorsServoToHome(&m_subClawWrist, &m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator, &auxController).ToPtr());
   auxController_button_back.OnTrue(CmdTurretAndElevatorsServoToHome(&m_subClawWrist, &m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator, &auxController).ToPtr());
@@ -93,6 +95,10 @@ void RobotContainer::ConfigureBindings() {
 frc2::Command* RobotContainer::GetAutonomousCommand() {
   
   return m_autoChooser.GetSelected();
+}
+
+void RobotContainer::ZeroNavXYaw() {
+  m_subDriveTrain.ZeroYaw();
 }
 
 void RobotContainer::ConfigureDrive() {

@@ -19,20 +19,7 @@ AutoCmdAutonomousDriveOutOfCommunity::AutoCmdAutonomousDriveOutOfCommunity(SubDr
   // Add your commands here, e.g.
   // AddCommands(FooCommand(), BarCommand());
   AddCommands(
-
-    // Drive the robot by rotations
-//    AutoCmdDrive(subDriveTrain)
-//    AutoCmdDriveByRotations(subDriveTrain, 1, 1, timer)
-
-    // Drive onto the charge Station
-    //AutoCmdDriveOntoChargeStation(subDriveTrain),
-
-    //AutoCmdTimer(timer, 1.5),
-
-    // Self-Balance on the charge station
-    //AutoCmdBalanceOnChargeStation(subDriveTrain)
-    
-    
-
+    // Drive Robot At Speed For Distance In Inches
+    AutoCmdDrive(subDriveTrain, -0.45, -166)
   );
 }

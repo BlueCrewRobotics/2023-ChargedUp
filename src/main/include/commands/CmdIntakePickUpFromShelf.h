@@ -6,9 +6,12 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
-#include "common/BC_MotionProfile.h"
-#include "subsystems/SubDriveTrain.h"
-#include <frc/Timer.h>
+
+#include <frc2/command/button/CommandXboxController.h>
+#include "Constants/ConsControllers.h"
+
+#include "subsystems/SubClawWrist.h"
+#include "subsystems/SubRobotGlobals.h"
 
 /**
  * An example command.
@@ -17,11 +20,11 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AutoCmdDrive
-    : public frc2::CommandHelper<frc2::CommandBase, AutoCmdDrive> {
+class CmdIntakePickUpFromShelf
+    : public frc2::CommandHelper<frc2::CommandBase, CmdIntakePickUpFromShelf> {
  public:
- // AutoCmdDrive(BC_MotionProfile* motionProfile, SubDriveTrain* subDriveTrain);
-  AutoCmdDrive(SubDriveTrain* subDriveTrain, double speed, double distance);
+  CmdIntakePickUpFromShelf(SubRobotGlobals* subRobotGlobals, SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController);
+
   void Initialize() override;
 
   void Execute() override;
@@ -29,16 +32,9 @@ class AutoCmdDrive
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-  
  private:
-  //BC_MotionProfile* m_motionProfile;
-  SubDriveTrain* m_subDriveTrain;
-  frc::Timer m_timer;
-  double m_speed;
-  double m_distance;
-  double m_rightFinished = 0.0;
-  double m_leftFinished = 0.0;
+  SubClawWrist* m_subIntake;
+  SubRobotGlobals* m_subRobotGlobals;
+  frc2::CommandXboxController* m_auxController;
   bool m_finished = false;
-
-
 };

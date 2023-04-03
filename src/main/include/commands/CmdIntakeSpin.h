@@ -40,4 +40,5 @@ class CmdIntakeSpin
   bool m_finished = false;
   bool m_pullIn = true;
   bool m_eject = false;
+  bool m_superEject = false;
 };

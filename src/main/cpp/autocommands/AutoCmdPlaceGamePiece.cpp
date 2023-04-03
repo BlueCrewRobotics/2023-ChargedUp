@@ -4,12 +4,25 @@
 
 #include "autocommands/AutoCmdPlaceGamePiece.h"
 
-AutoCmdPlaceGamePiece::AutoCmdPlaceGamePiece() {
+AutoCmdPlaceGamePiece::AutoCmdPlaceGamePiece(SubRobotGlobals* subRobotGlobals, SubLimeLightLower* subLimeLightLower, SubVerticalElevator* subVerticalElevator, SubTurret* subTurret, SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator)
+  :m_subRobotGlobals{subRobotGlobals}, m_subLimeLightLower{subLimeLightLower}, m_subVerticalElevator{subVerticalElevator}, m_subTurret{subTurret}, m_subClawWrist{subClawWrist}, m_subHorizontalElevator{subHorizontalElevator} {
   // Use addRequirements() here to declare subsystem dependencies.
+  AddRequirements(subLimeLightLower);
+  AddRequirements(subVerticalElevator);
+  AddRequirements(subTurret);
+  AddRequirements(subClawWrist);
+  AddRequirements(subHorizontalElevator);
 }
 
 // Called when the command is initially scheduled.
-void AutoCmdPlaceGamePiece::Initialize() {}
+void AutoCmdPlaceGamePiece::Initialize() {
+  verticalElevatorIsPositioned = false;
+  turretIsPositioned = false;
+  wristIsPositioned = false;
+  horizontalElevatorIsPositioned = false;
+  pieceIsPlaced = false;
+  m_finished = false;
+}
 
 // Called repeatedly when this Command is scheduled to run
 void AutoCmdPlaceGamePiece::Execute() {}

@@ -7,12 +7,15 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
+#include <frc2/command/button/CommandXboxController.h>
+#include "Constants/ConsControllers.h"
+
+#include "subsystems/SubRobotGlobals.h"
+#include "subsystems/SubHorizontalElevator.h"
+#include "subsystems/SubLimeLightLower.h"
 #include "subsystems/SubTurret.h"
 #include "subsystems/SubVerticalElevator.h"
-#include "subsystems/SubLimeLightLower.h"
-#include "subsystems/SubRobotGlobals.h"
 #include "subsystems/SubClawWrist.h"
-#include "subsystems/SubHorizontalElevator.h"
 
 /**
  * An example command.
@@ -21,10 +24,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class AutoCmdPlaceGamePiece
-    : public frc2::CommandHelper<frc2::CommandBase, AutoCmdPlaceGamePiece> {
+class CmdPlaceGamePieceOnGrid
+    : public frc2::CommandHelper<frc2::CommandBase, CmdPlaceGamePieceOnGrid> {
  public:
-  AutoCmdPlaceGamePiece(SubRobotGlobals* subRobotGlobals, SubLimeLightLower* subLimeLightLower, SubVerticalElevator* subVerticalElevator, SubTurret* subTurret, SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator);
+  CmdPlaceGamePieceOnGrid(SubRobotGlobals* subRobotGlobals, SubLimeLightLower* subLimeLightLower, frc2::CommandXboxController* auxController, SubVerticalElevator* subVerticalElevator, SubTurret* subTurret, SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator);
 
   void Initialize() override;
 
@@ -36,15 +39,17 @@ class AutoCmdPlaceGamePiece
  private:
   SubRobotGlobals* m_subRobotGlobals;
   SubLimeLightLower* m_subLimeLightLower;
+  frc2::CommandXboxController* m_auxController;
   SubVerticalElevator* m_subVerticalElevator;
   SubTurret* m_subTurret;
   SubClawWrist* m_subClawWrist;
   SubHorizontalElevator* m_subHorizontalElevator;
 
-  bool verticalElevatorIsPositioned = false;
-  bool turretIsPositioned = false;
-  bool wristIsPositioned = false;
-  bool horizontalElevatorIsPositioned = false;
-  bool pieceIsPlaced = false;
+  bool isVerticalElevatorUp = false;
+  bool isTurretPerpendicular = false;
+  bool isWristDown = false;
+  bool isHorizontalElevatorOut = false;
+  bool isTurretInPosition = false;
   bool m_finished = false;
+  int dPadPosition = -1;
 };

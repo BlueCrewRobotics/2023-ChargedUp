@@ -35,12 +35,12 @@ constexpr double WRIST_CLAW_MIN_LIMIT = 0;
 constexpr double WRIST_CLAW_TILTED_DOWN = 27; // this is down hitting the floor when elevator is down, not pointing all the way down
 
 constexpr double WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_SHELF = 13;
-constexpr double WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR = 16.8;
+constexpr double WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR = 16.95;//17.1;
 constexpr double WRIST_CLAW_PICKUP_TIPPED_OVER_CONE = 23.5;
-constexpr double WRIST_CLAW_PLACE_CONE = 9;
+constexpr double WRIST_CLAW_PLACE_CONE = 7;
 
 constexpr double WRIST_CLAW_PICKUP_CUBE_OFF_SHELF = 15.0;
-constexpr double WRIST_CLAW_PICKUP_CUBE_OFF_FLOOR = 20;
+constexpr double WRIST_CLAW_PICKUP_CUBE_OFF_FLOOR = 18.625;//21.875;
 constexpr double WRIST_CLAW_PLACE_CUBE = 9;
 
 

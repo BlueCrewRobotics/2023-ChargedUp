@@ -17,7 +17,7 @@ void CmdMoveVerticalElevator::Initialize() {}
 void CmdMoveVerticalElevator::Execute() {
     
     double speed = 0.0;
-    if(m_auxController->GetRawAxis(AXIS_LY) > 0.06 || m_auxController->GetRawAxis(AXIS_LY) < -0.06) {
+    if(m_auxController->GetRawAxis(AXIS_LY) > JOYSTICK_AXIS_BUFFER || m_auxController->GetRawAxis(AXIS_LY) < -JOYSTICK_AXIS_BUFFER) {
       speed = -m_auxController->GetRawAxis(AXIS_LY)*0.7; // <- Actually only 0.49 because we square it
       if(speed < 0) {
         speed = speed*-speed;

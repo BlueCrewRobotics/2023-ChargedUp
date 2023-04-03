@@ -31,6 +31,7 @@
 #include "commands/CmdClawEngage.h"
 #include "commands/CmdClawDisengage.h"
 #include "commands/CmdIntakeSpin.h"
+#include "commands/CmdClawWristPickUpOffFloor.h"
 
 #include "commands/CmdClawWristPositioning.h"
 #include "commands/CmdClawWristMoveManual.h"
@@ -47,6 +48,7 @@
 #include "autocommands/AutoCmdAutonomousPlaceCube.h"
 #include "autocommands/AutoCmdAutonomousPlaceCubeAndDriveOntoChargeStation.h"
 #include "autocommands/AutoCmdAutonomousPlaceCubeAndDriveOverAndOntoRamp.h"
+#include "autocommands/AutoCmdAutonomousPlaceCubeAndDriveOutOfCommunity.h"
 
 
 #include "autocommands/AutoCmdDrive.h"
@@ -91,6 +93,8 @@ class RobotContainer {
 
   frc2::Command* GetAutonomousCommand();
 
+  void ZeroNavXYaw();
+
   // Configure the drive train run this function in RobotInit()
   void ConfigureDrive();
 
@@ -108,6 +112,7 @@ class RobotContainer {
   AutoCmdAutonomousPlaceCube m_autoAutonomousPlaceCube{&m_subVerticalElevator, &m_subTurret, &m_subHorizontalElevator, &m_subClawWrist, &m_autoTimer};
   AutoCmdAutonomousPlaceCubeAndDriveOntoChargeStation m_autoAutonomousPlaceCubeAndDriveOntoChargeStation{&m_subVerticalElevator, &m_subTurret, &m_subHorizontalElevator, &m_subClawWrist, &m_subDriveTrain, &m_autoTimer};
   AutoCmdAutonomousPlaceCubeAndDriveOverAndOntoRamp m_autoAutonomousPlaceCubeAndDriveOverAndOntoChargeStation{&m_subVerticalElevator, &m_subTurret, &m_subHorizontalElevator, &m_subClawWrist, &m_subDriveTrain, &m_autoTimer};
+  AutoCmdAutonomousPlaceCubeAndDriveOutOfCommunity m_autoAutonomousPlaceCubeAndDriveOutOfCommunity{&m_subVerticalElevator, &m_subTurret, &m_subHorizontalElevator, &m_subClawWrist, &m_subDriveTrain, &m_autoTimer};
 
   frc::SendableChooser<frc2::Command*> m_autoChooser;
   frc::SendableChooser<frc2::Command*> m_pieceToAutoPlace;

@@ -7,7 +7,14 @@
 SubRobotGlobals::SubRobotGlobals() = default;
 
 // This method will be called once per scheduler run
-void SubRobotGlobals::Periodic() {}
+void SubRobotGlobals::Periodic() {
+    if(g_gameState.selectedPieceType == ConePiece) {
+        m_blinkin->Set(BLINKIN_SOLID_YELLOW);
+    }
+    else if(g_gameState.selectedPieceType == CubePiece) {
+        m_blinkin->Set(BLINKIN_SOLID_VIOLET);
+    }
+}
 
 void SubRobotGlobals::SetColor(double color){
     m_blinkin->Set(color);
