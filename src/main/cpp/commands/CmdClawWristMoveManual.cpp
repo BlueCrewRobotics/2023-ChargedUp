@@ -16,10 +16,10 @@ void CmdClawWristMoveManual::Initialize() {}
 // Called repeatedly when this Command is scheduled to run
 void CmdClawWristMoveManual::Execute() {
   double speed = 0.0;
-  if(m_auxController->GetLeftTriggerAxis() > 0.06) {
+  if(m_auxController->GetLeftTriggerAxis() > JOYSTICK_AXIS_BUFFER) {
     speed = -0.5 * m_auxController->GetLeftTriggerAxis();
   }
-  else if(m_auxController->GetRightTriggerAxis() > 0.06) {
+  else if(m_auxController->GetRightTriggerAxis() > JOYSTICK_AXIS_BUFFER) {
     speed = 0.5 * m_auxController->GetRightTriggerAxis();
   }
 

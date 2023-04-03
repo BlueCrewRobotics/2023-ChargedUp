@@ -44,8 +44,8 @@ void CmdTurretAndElevatorsServoToHome::Execute() {
     }
   }
   else if(!m_verticalElevatorIsHome) {
-    m_subVerticalElevator->ServoToPosition(VERTICAL_ELEV_MIN_LIMIT);
-    if(m_subVerticalElevator->GetPosition() < 10000) {
+    m_subVerticalElevator->ServoToPosition(35000);
+    if(m_subVerticalElevator->GetPosition() < 50000) {
       m_verticalElevatorIsHome = true;
       m_finished = true;
     }

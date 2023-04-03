@@ -37,6 +37,10 @@ void CmdDriveWithController::Execute() {
 
   }
   */
+  
+  if(m_driverController->GetRawButton(BUTTON_R_BUMP)==1) {
+    m_driveTrain->ZeroYaw();
+  }
 
   // This is controlling the speed of the drive train
   if(m_driverController->GetRawAxis(AXIS_R_TRIG) > 0) {
@@ -59,8 +63,8 @@ void CmdDriveWithController::Execute() {
   // Else use the navX to drive straight
   else */{
     // Booleans for detecting if we want the robot to move
-    bool isMoveDesired = (speed > 0.02 || speed < -0.02);
-    bool isTurnDesired = (m_driverController->GetRawAxis(AXIS_LX) > 0.02 || m_driverController->GetRawAxis(AXIS_LX) < -0.02);
+    bool isMoveDesired = (speed > JOYSTICK_AXIS_BUFFER || speed < -JOYSTICK_AXIS_BUFFER);
+    bool isTurnDesired = (m_driverController->GetRawAxis(AXIS_LX) > JOYSTICK_AXIS_BUFFER || m_driverController->GetRawAxis(AXIS_LX) < -JOYSTICK_AXIS_BUFFER);
 
     // is the controller telling us to turn?
     if(isTurnDesired) {
@@ -68,7 +72,7 @@ void CmdDriveWithController::Execute() {
       m_driveTrain->SetYawStraightValue(m_driveTrain->GetYaw());
   //    std::cout << "CmdDriveWithController>> Updated desired yaw to: " << m_driveTrain->GetYawStraightValue() << std::endl;
 
-      rotation = m_driverController->GetRawAxis(AXIS_LX)*0.5;
+      rotation = m_driverController->GetRawAxis(AXIS_LX)*0.6;
 
   //    std::cout << "CmdDriveWithController>> Rotation set to: " << rotation << " Yaw is: " << m_driveTrain->GetYaw() << std::endl;
     }

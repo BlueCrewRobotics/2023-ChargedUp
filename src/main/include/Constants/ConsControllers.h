@@ -33,6 +33,7 @@ constexpr int AXIS_R_TRIG = 3; // Reverse driving
 constexpr int AXIS_RX = 4;
 constexpr int AXIS_RY = 5;
 
+constexpr double JOYSTICK_AXIS_BUFFER = 0.055;
 
 /*
    CONTROLS --

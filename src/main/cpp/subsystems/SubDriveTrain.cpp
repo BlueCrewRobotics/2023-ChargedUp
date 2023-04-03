@@ -163,7 +163,7 @@ void SubDriveTrain::GetPidFromDashboard() {
 
 // Drives the Drive Train with ArcadeDrive given speed and rotation
 void SubDriveTrain::Drive(double speed, double rotation) {
-    driveTrain->SetDeadband(0.02);
+    driveTrain->SetDeadband(JOYSTICK_AXIS_BUFFER);
     driveTrain->ArcadeDrive(speed, rotation, true);
 }
 
@@ -219,7 +219,7 @@ void SubDriveTrain::DriveStraight(double speed) {
     rotation = rotation - 0.07;
   }
 
-  driveTrain->SetDeadband(0.02);
+  driveTrain->SetDeadband(JOYSTICK_AXIS_BUFFER);
   driveTrain->ArcadeDrive(speed, rotation, true);
 }
 /*

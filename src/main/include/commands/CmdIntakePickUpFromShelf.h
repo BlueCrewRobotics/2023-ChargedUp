@@ -8,9 +8,9 @@
 #include <frc2/command/CommandHelper.h>
 
 #include <frc2/command/button/CommandXboxController.h>
-#include "subsystems/SubClawWrist.h"
 #include "Constants/ConsControllers.h"
-#include "Constants/ConsGlobal.h"
+
+#include "subsystems/SubClawWrist.h"
 #include "subsystems/SubRobotGlobals.h"
 
 /**
@@ -20,10 +20,10 @@
  * directly; this is crucially important, or else the decorator functions in
  * Command will *not* work!
  */
-class CmdIntakeSpin
-    : public frc2::CommandHelper<frc2::CommandBase, CmdIntakeSpin> {
+class CmdIntakePickUpFromShelf
+    : public frc2::CommandHelper<frc2::CommandBase, CmdIntakePickUpFromShelf> {
  public:
-  CmdIntakeSpin(SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController, SubRobotGlobals* subRobotGlobals);
+  CmdIntakePickUpFromShelf(SubRobotGlobals* subRobotGlobals, SubClawWrist* subClawWrist, frc2::CommandXboxController* auxController);
 
   void Initialize() override;
 
@@ -32,13 +32,9 @@ class CmdIntakeSpin
   void End(bool interrupted) override;
 
   bool IsFinished() override;
-
  private:
-  SubClawWrist* m_subIntakeWrist;
-  frc2::CommandXboxController* m_auxController;
+  SubClawWrist* m_subIntake;
   SubRobotGlobals* m_subRobotGlobals;
+  frc2::CommandXboxController* m_auxController;
   bool m_finished = false;
-  bool m_pullIn = true;
-  bool m_eject = false;
-  bool m_superEject = false;
 };

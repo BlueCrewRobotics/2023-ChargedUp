@@ -7,11 +7,12 @@
 // NOTE:  Consider using this command inline, rather than writing a subclass.
 // For more information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-CmdPickUpFromSubstationShelfPrep::CmdPickUpFromSubstationShelfPrep(SubVerticalElevator* subVerticalElevator, SubClawWrist* subClawWrist, SubRobotGlobals* subRobotGlobals) {
+CmdPickUpFromSubstationShelfPrep::CmdPickUpFromSubstationShelfPrep(SubVerticalElevator* subVerticalElevator, SubClawWrist* subClawWrist, SubRobotGlobals* subRobotGlobals, frc2::CommandXboxController* auxController) {
   // Add your commands here, e.g.
   // AddCommands(FooCommand{}, BarCommand{});
   AddCommands(
     CmdVerticalElevatorServoToSubstationShelf(subVerticalElevator),
-    CmdClawWristSubstationPrep(subClawWrist, subRobotGlobals)
+    CmdClawWristSubstationPrep(subClawWrist, subRobotGlobals),
+    CmdIntakePickUpFromShelf(subRobotGlobals, subClawWrist, auxController)
   );
 }

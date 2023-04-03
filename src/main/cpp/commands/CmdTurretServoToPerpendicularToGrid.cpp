@@ -52,11 +52,16 @@ void CmdTurretServoToPerpendicularToGrid::Initialize() {
     m_newTurretAngle = -190;
   }
   std::cout << "New Turret Angle: " << m_newTurretAngle << std::endl;
-  m_subTurret->RotateToDegree(m_newTurretAngle);
+  if(!(m_auxController->GetRawAxis(AXIS_LX) > JOYSTICK_AXIS_BUFFER || m_auxController->GetRawAxis(AXIS_LX) < -JOYSTICK_AXIS_BUFFER) && !(m_auxController->GetRawAxis(AXIS_RX) > JOYSTICK_AXIS_BUFFER || m_auxController->GetRawAxis(AXIS_RX) < -JOYSTICK_AXIS_BUFFER)) {
+    m_subTurret->RotateToDegree(m_newTurretAngle);
+  }
 }
 
 // Called repeatedly when this Command is scheduled to run
 void CmdTurretServoToPerpendicularToGrid::Execute() {
+  if((m_auxController->GetRawAxis(AXIS_LX) > JOYSTICK_AXIS_BUFFER || m_auxController->GetRawAxis(AXIS_LX) < -JOYSTICK_AXIS_BUFFER) || (m_auxController->GetRawAxis(AXIS_RX) > JOYSTICK_AXIS_BUFFER || m_auxController->GetRawAxis(AXIS_RX) < -JOYSTICK_AXIS_BUFFER)) {
+    m_subTurret->RotateToDegree(m_newTurretAngle);
+  }
   double currentTurretAngle = m_subTurret->GetDegrees();
   if(m_goingClockwise && currentTurretAngle < m_newTurretAngle+2) {
     m_finished = true;

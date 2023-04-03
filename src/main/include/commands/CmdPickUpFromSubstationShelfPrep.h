@@ -9,10 +9,11 @@
 
 #include "CmdClawWristSubstationPrep.h"
 #include "CmdVerticalElevatorServoToSubstationShelf.h"
+#include "CmdIntakePickUpFromShelf.h"
 
 class CmdPickUpFromSubstationShelfPrep
     : public frc2::CommandHelper<frc2::SequentialCommandGroup,
                                  CmdPickUpFromSubstationShelfPrep> {
  public:
-  CmdPickUpFromSubstationShelfPrep(SubVerticalElevator* subVerticalElevator, SubClawWrist* subClawWrist, SubRobotGlobals* subRobotGlobals);
+  CmdPickUpFromSubstationShelfPrep(SubVerticalElevator* subVerticalElevator, SubClawWrist* subClawWrist, SubRobotGlobals* subRobotGlobals, frc2::CommandXboxController* auxController);
 };

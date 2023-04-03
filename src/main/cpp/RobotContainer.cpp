@@ -60,7 +60,7 @@ void RobotContainer::ConfigureBindings() {
   auxController_button_x.OnTrue(SeqCmdPlaceGamePieceOnGrid(&m_subRobotGlobals,&m_subVerticalElevator, &m_subTurret,&m_subHorizontalElevator, &auxController,&m_subLimeLightLower,&m_subLimeLightUpper, &m_subDriveTrain, &m_subClawWrist, &m_autoTimer).ToPtr());
   auxController_button_b.OnTrue(SeqCmdVerticalElevatorAndTurretPrepForPiecePlacement(&m_subRobotGlobals, &m_subVerticalElevator, &auxController, &m_subTurret, &m_subDriveTrain, &m_subClawWrist).ToPtr());
 
-  auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subVerticalElevator, &m_subClawWrist, &m_subRobotGlobals).ToPtr());
+  auxController_button_start.OnTrue(CmdPickUpFromSubstationShelfPrep(&m_subVerticalElevator, &m_subClawWrist, &m_subRobotGlobals, &auxController).ToPtr());
   //auxController_button_start.OnTrue(CmdVerticalElevatorServoToSubstationShelf(&m_subVerticalElevator).ToPtr());
 //  auxController_button_back.OnTrue(SeqCmdTurretAndElevatorsServoToHome(&m_subClawWrist, &m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator, &auxController).ToPtr());
   auxController_button_back.OnTrue(CmdTurretAndElevatorsServoToHome(&m_subClawWrist, &m_subHorizontalElevator, &m_subTurret, &m_subVerticalElevator, &auxController).ToPtr());

@@ -4,6 +4,9 @@
 
 #include "subsystems/SubClawWrist.h"
 
+#include <iostream>
+#include <stdio.h>
+
 SubClawWrist::SubClawWrist() = default;
 
 // This method will be called once per scheduler run
@@ -49,6 +52,7 @@ void SubClawWrist::ConfigureMotor() {
     m_motorIntake->ConfigNeutralDeadband(0.001);
     // Set output limit
     m_motorIntake->ConfigSupplyCurrentLimit(SupplyCurrentLimitConfiguration(true,10,12,100));
+    std::cout << "Initialized ClawWrist motors" << std::endl;
 }
 
 double SubClawWrist::GetPosition() {

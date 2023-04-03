@@ -15,7 +15,8 @@ void CmdHorizontalElevGridPiecePlacement::Initialize() {}
 
 // Called repeatedly when this Command is scheduled to run
 void CmdHorizontalElevGridPiecePlacement::Execute() {
-    double turretAngle = abs(m_subTurret->GetDegrees());
+  /*
+  double turretAngle = abs(m_subTurret->GetDegrees());
   if(turretAngle > 0 && turretAngle <= 120){
     m_maxExtension = -0.00019*turretAngle*turretAngle*turretAngle + 0.05838*turretAngle*turretAngle -5.8506*turretAngle + 233.99285;
     //m_subHorizontalElevator->SetMaxExtension(maxValue);
@@ -24,8 +25,10 @@ void CmdHorizontalElevGridPiecePlacement::Execute() {
     m_maxExtension = -0.30*turretAngle +90.0;
     //m_subHorizontalElevator->SetMaxExtension(maxValue);
   }
-  
-
+  */
+  if((m_auxController->GetPOV() == DPAD_VALUE_LEFT_UP) || (m_auxController->GetPOV() == DPAD_VALUE_RIGHT_UP) || (m_auxController->GetPOV() == DPAD_VALUE_MIDDLE_UP)) {
+    m_subHorizontalElevator->SetHoldPosition(36);
+  }
 }
 
 // Called once the command ends or is interrupted.

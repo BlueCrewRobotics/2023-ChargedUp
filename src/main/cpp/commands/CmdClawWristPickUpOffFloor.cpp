@@ -18,6 +18,12 @@ void CmdClawWristPickUpOffFloor::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void CmdClawWristPickUpOffFloor::Execute() {
   if(m_driverController->GetYButton() == true) {
+    if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece && m_subClawWrist->GetIntakeOutput() > 40) {
+      m_finished = true;
+    }
+    else if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece && m_subClawWrist->GetIntakeOutput() > 9.5) {
+      m_finished = true;
+    }
     if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) {
       m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR);
       m_subClawWrist->SpinIntake(-0.43);
@@ -28,14 +34,15 @@ void CmdClawWristPickUpOffFloor::Execute() {
     }
   }
   else {
-    m_subClawWrist->ServoToPosition(WRIST_CLAW_MIN_LIMIT);
-    m_subClawWrist->SpinIntake(0.0);
     m_finished = true;
   }
 }
 
 // Called once the command ends or is interrupted.
-void CmdClawWristPickUpOffFloor::End(bool interrupted) {}
+void CmdClawWristPickUpOffFloor::End(bool interrupted) {
+  m_subClawWrist->ServoToPosition(WRIST_CLAW_MIN_LIMIT);
+  m_subClawWrist->SpinIntake(0.0);
+}
 
 // Returns true when the command should end.
 bool CmdClawWristPickUpOffFloor::IsFinished() {

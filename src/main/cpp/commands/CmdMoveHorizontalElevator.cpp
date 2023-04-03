@@ -29,7 +29,7 @@ void CmdMoveHorizontalElevator::Execute() {
   
 
   double speed = 0.0;
-  if(m_auxController->GetRawAxis(AXIS_RY) > 0.06 || m_auxController->GetRawAxis(AXIS_RY) < -0.06) {
+  if(m_auxController->GetRawAxis(AXIS_RY) > JOYSTICK_AXIS_BUFFER || m_auxController->GetRawAxis(AXIS_RY) < -JOYSTICK_AXIS_BUFFER) {
     speed = -m_auxController->GetRawAxis(AXIS_RY)*0.3;
     m_subHorizontalElevator->EnableHoldPosition(false);
     m_subHorizontalElevator->ControlMotorManually(speed); 

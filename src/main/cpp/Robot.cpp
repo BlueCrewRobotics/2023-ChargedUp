@@ -37,7 +37,7 @@ void Robot::RobotPeriodic() {
 void Robot::DisabledInit() {}
 
 void Robot::DisabledPeriodic() {
-  m_robotContainer.ZeroNavXYaw();
+//  m_robotContainer.ZeroNavXYaw();
 }
 
 /**
@@ -45,6 +45,7 @@ void Robot::DisabledPeriodic() {
  * RobotContainer} class.
  */
 void Robot::AutonomousInit() {
+  m_robotContainer.ZeroNavXYaw();
   m_autonomousCommand = m_robotContainer.GetAutonomousCommand();
 
   if (m_autonomousCommand) {
