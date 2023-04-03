@@ -18,7 +18,7 @@ void CmdClawWristPickUpOffFloor::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void CmdClawWristPickUpOffFloor::Execute() {
   if(m_driverController->GetYButton() == true) {
-    if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece && m_subClawWrist->GetIntakeOutput() > 40) {
+    if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece && m_subClawWrist->GetIntakeOutput() > 11) {
       m_finished = true;
     }
     else if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece && m_subClawWrist->GetIntakeOutput() > 9.5) {
@@ -26,7 +26,7 @@ void CmdClawWristPickUpOffFloor::Execute() {
     }
     if(m_subRobotGlobals->g_gameState.selectedPieceType == ConePiece) {
       m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_UPRIGHT_CONE_OFF_FLOOR);
-      m_subClawWrist->SpinIntake(-0.43);
+      m_subClawWrist->SpinIntake(-0.175);
     }
     else if(m_subRobotGlobals->g_gameState.selectedPieceType == CubePiece) {
       m_subClawWrist->ServoToPosition(WRIST_CLAW_PICKUP_CUBE_OFF_FLOOR);

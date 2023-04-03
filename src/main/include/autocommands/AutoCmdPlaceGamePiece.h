@@ -7,6 +7,13 @@
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
+#include "subsystems/SubTurret.h"
+#include "subsystems/SubVerticalElevator.h"
+#include "subsystems/SubLimeLightLower.h"
+#include "subsystems/SubRobotGlobals.h"
+#include "subsystems/SubClawWrist.h"
+#include "subsystems/SubHorizontalElevator.h"
+
 /**
  * An example command.
  *
@@ -17,7 +24,7 @@
 class AutoCmdPlaceGamePiece
     : public frc2::CommandHelper<frc2::CommandBase, AutoCmdPlaceGamePiece> {
  public:
-  AutoCmdPlaceGamePiece();
+  AutoCmdPlaceGamePiece(SubRobotGlobals* subRobotGlobals, SubLimeLightLower* subLimeLightLower, SubVerticalElevator* subVerticalElevator, SubTurret* subTurret, SubClawWrist* subClawWrist, SubHorizontalElevator* subHorizontalElevator);
 
   void Initialize() override;
 
@@ -26,4 +33,18 @@ class AutoCmdPlaceGamePiece
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+ private:
+  SubRobotGlobals* m_subRobotGlobals;
+  SubLimeLightLower* m_subLimeLightLower;
+  SubVerticalElevator* m_subVerticalElevator;
+  SubTurret* m_subTurret;
+  SubClawWrist* m_subClawWrist;
+  SubHorizontalElevator* m_subHorizontalElevator;
+
+  bool verticalElevatorIsPositioned = false;
+  bool turretIsPositioned = false;
+  bool wristIsPositioned = false;
+  bool horizontalElevatorIsPositioned = false;
+  bool pieceIsPlaced = false;
+  bool m_finished = false;
 };

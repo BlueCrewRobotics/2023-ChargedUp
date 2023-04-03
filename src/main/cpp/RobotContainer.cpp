@@ -25,8 +25,9 @@ RobotContainer::RobotContainer() {
   m_autoChooser.AddOption("Place Cube", &m_autoAutonomousPlaceCube);
   m_autoChooser.AddOption("Place Cube And Drive Onto Charge Station", &m_autoAutonomousPlaceCubeAndDriveOntoChargeStation);
   m_autoChooser.AddOption("Place Cube And Drive Over And Onto Charge Station", &m_autoAutonomousPlaceCubeAndDriveOverAndOntoChargeStation);
+  m_autoChooser.AddOption("Place Cube And Drive Out Of Community", &m_autoAutonomousPlaceCubeAndDriveOutOfCommunity);
   m_autoChooser.AddOption("Do Nothing", &m_autoAutonomousDoNothing);
-  m_autoChooser.AddOption("Don't Use until tested - Drive out of Community",&m_autoAutonomousDriveOutOfCommunity);
+  m_autoChooser.AddOption("Drive out of Community",&m_autoAutonomousDriveOutOfCommunity);
 
   // Put the chooser on the dashboard
   frc::SmartDashboard::PutData("Autonomous", &m_autoChooser);
